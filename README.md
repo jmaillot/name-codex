@@ -20,12 +20,19 @@ Name Codex is a single-page application that helps you define, explore and gover
 - Segments can be **fixed** (first/last), **locked**, **recommended**, or free to reorder
 - Reorder, remove or add custom segments with one click
 - Infobulles (tips) on each segment label to understand what it represents
+- **Literals in patterns**: fixed text can be embedded in a pattern (e.g. a `DEF-` prefix or an `ENABLEINEMERGENCY` keyword) and is always regenerated; empty or optional segments are automatically collapsed
+- Tooltips on multi-select chips show the description of each selected value
 - Live pattern display with a **Modified** badge when you deviate from the convention
 
 ### Validation & governance
 - Live name preview respecting the convention's validation rules (length, allowed characters, mandatory segments)
 - Governance **score /100** with a per-rule checklist
 - Policy examples for Conditional Access
+
+### Segment governance
+- **Mutual exclusions**: selecting one value disables its opposite (e.g. *Trusted device* vs *Non-trusted device*, *MFA* vs *MFA strength*) so a policy can't be contradictory
+- **Conditional values**: the choices offered for a segment can depend on another segment (e.g. endpoint profile types filtered by the chosen OS)
+- **Auto-numbered IDs**: fixed-prefix policy IDs with built-in numbering (e.g. `CA001`, `EM001`, `DEVSEC001`) and persona-based ranges for Conditional Access
 
 ### Output & persistence
 - Copy the generated name or the full Markdown documentation to the clipboard
@@ -34,7 +41,7 @@ Name Codex is a single-page application that helps you define, explore and gover
 - **Convention Reference**: a value dictionary for every segment used
 
 ### Data-driven
-All conventions, segment libraries and generators are plain JSON under `src/rules`, `src/data/segments`, `src/data/generators` — add or adjust a naming standard without touching the code.
+All conventions, segment libraries and generators are plain JSON under `src/rules`, `src/data/segments`, `src/data/generators` — add or adjust a naming standard without touching the code. Shared segment definitions live in `segment-catalog.json`; individual rules reference libraries and can restrict or reshape them with `allowedValues`, mutual exclusions and pattern literals.
 
 ## Tech stack
 

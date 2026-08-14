@@ -39,3 +39,50 @@ All conventions, segment libraries and generators are plain JSON under `src/rule
 ## Tech stack
 
 React + TypeScript + Vite, with all data stored locally as JSON (no backend).
+
+## Build it yourself
+
+### 1. Install Node.js
+
+Download and install the latest **LTS** version from <https://nodejs.org/>.
+
+Verify the installation from a terminal:
+
+```bash
+node -v
+npm -v
+```
+
+Both commands should print a version number.
+
+### 2. Clone the repository
+
+```bash
+git clone https://github.com/jmaillot/name-codex.git
+cd name-codex
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Run the development server
+
+```bash
+npm run dev
+```
+
+Open the local URL printed in the terminal (usually <http://localhost:5173/>) in your browser.
+
+### Available scripts
+
+| Script            | Description                             |
+| ----------------- | --------------------------------------- |
+| `npm run dev`     | Start the development server (HMR)      |
+| `npm run build`   | Type-check and build for production     |
+| `npm run lint`    | Run oxlint                              |
+| `npm run preview` | Preview the production build locally    |
+
+The production build is output to `dist/` and can be served by any static file server.

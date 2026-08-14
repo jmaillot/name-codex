@@ -1,0 +1,21 @@
+{
+  "name": "IntPrefix",
+  "values": [
+    {
+      "value": "CMP",
+      "description": "Compliance Policy"
+    },
+    {
+      "value": "CFG",
+      "description": "Configuration Policy"
+    },
+    {
+      "value": "MAM",
+      "description": "Mobile Application Management"
+    },
+    {
+      "value": "MACFG",
+      "description": "Mobile Application Configuration Policy"
+    }
+  ]
+}

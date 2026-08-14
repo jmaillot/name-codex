@@ -1,0 +1,22 @@
+{
+  "name": "MembershipType",
+  "values": [
+
+    {
+      "value": "ASS",
+      "description": "Assigned"
+    },
+    {
+      "value": "RA",
+      "description": "Role Assignable"
+    },
+    {
+      "value": "DYNU",
+      "description": "Dynamic User"
+    },
+    {
+      "value": "DYND",
+      "description": "Dynamic Device"
+    }
+  ]
+}

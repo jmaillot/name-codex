@@ -1,0 +1,22 @@
+{
+  "name": "MailboxType",
+  "values": [
+    {
+      "value": "Room",
+      "description": "Room Mailbox"
+    },
+    {
+      "value": "Equip",
+      "description": "Equipment Mailbox"
+    },
+    {
+      "value": "SHARED",
+      "description": "Shared Mailbox"
+    },
+    {
+      "value": "SMB",
+      "description": "Shared Mailbox"
+    }
+  ]
+}
+

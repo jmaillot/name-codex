@@ -1,0 +1,21 @@
+{
+  "name": "Department",
+  "values": [
+    {
+      "value": "Marketing",
+      "description": ""
+    },
+    {
+      "value": "IT",
+      "description": ""
+    },
+    {
+      "value": "Finance",
+      "description": ""
+    },
+    {
+      "value": "HR",
+      "description": "Human Resources"
+    }
+  ]
+}

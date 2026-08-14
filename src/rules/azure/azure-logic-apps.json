@@ -1,0 +1,67 @@
+{
+  "id": "azure-logic-apps",
+  "category": "Azure",
+  "name": "Logic Apps",
+  "description": "Azure Logic Apps naming.",
+  "pattern": "[Country][Location][Type][Role][Instance]",
+  "fields": [
+    {
+      "name": "Country",
+      "defaultValue": "FR",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Location",
+      "defaultValue": "AZ"
+    },
+    {
+      "name": "Type",
+      "defaultValue": "LA",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Role",
+      "defaultValue": "SEAR",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "label": "Instance",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "001",
+          "description": "Default"
+        },
+        {
+          "value": "002",
+          "description": ""
+        },
+        {
+          "value": "003",
+          "description": ""
+        }
+      ],
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": [
+    "FRAZLASEAR"
+  ],
+  "builder": { 
+    "separator": "",
+    "defaultSegments": ["Country","Location","Type","Role","Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Type","Instance"],
+    "lockedSegments": ["Role"],
+    "fixedFirstSegments": ["Country","Location"],
+    "fixedLastSegments": ["Role"]
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

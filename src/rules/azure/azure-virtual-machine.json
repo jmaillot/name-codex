@@ -1,0 +1,67 @@
+{
+  "id": "azure-virtual-machine",
+  "category": "Azure",
+  "name": "Virtual Machine",
+  "description": "Azure virtual machine naming.",
+  "pattern": "[Country][Location][OS][Role][Instance]",
+  "fields": [
+    {
+      "name": "Country",
+      "defaultValue": "FR",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Location",
+      "defaultValue": "AZ"
+    },
+    {
+      "name": "OS",
+      "defaultValue": "W",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Role",
+      "defaultValue": "AD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "label": "Instance",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "001",
+          "description": "Default"
+        },
+        {
+          "value": "002",
+          "description": ""
+        },
+        {
+          "value": "003",
+          "description": ""
+        }
+      ],
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": [
+    "FRAZWADP001"
+  ],
+  "builder": { 
+    "separator": "",
+    "defaultSegments": ["Country","Location","OS","Role","Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": ["Role"],
+    "fixedFirstSegments": ["Country","Location","OS"],
+    "fixedLastSegments": ["Instance"]
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

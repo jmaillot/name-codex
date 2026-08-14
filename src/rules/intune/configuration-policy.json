@@ -1,0 +1,75 @@
+{
+  "id": "intune-configuration-policy",
+  "category": "Intune",
+  "name": "Configuration Policy",
+  "description": "Configuration profile that pushes settings to enrolled devices, such as Wi-Fi, VPN, email, or endpoint protection. Can also cover Intune scripts and remediation scripts.",
+  "pattern": "[IntPrefix]-[ScopeTag]-[OS]-[Assignments]-[Descriptor]-[Environment]-[Version]",
+  "fields": [
+    {
+      "name": "IntPrefix",
+      "label": "Prefix",
+      "defaultValue": "CFG"
+    },
+    {
+      "name": "ScopeTag",
+      "defaultValue": "",
+      "examples": ["Global", "EMEA", "FR","HR","IT"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "OS",
+      "defaultValue": "W"
+    },
+    {
+      "name": "Assignments",
+      "defaultValue": "AllUsers",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "AllUsers",
+          "description": ""
+        },
+        {
+          "value": "AllDevices",
+          "description": ""
+        }
+      ],
+      "examples": ["GroupName"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Descriptor",
+      "examples": ["WifiCorp", "VPN", "Bitlocker"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Version",
+      "type": "text",
+      "defaultValue": "V1"
+    }
+  ],
+  "examples": [
+    "CFG-GLOBAL-W-VPNUSERS-VPN-PROD-V1"
+  ],
+  "builder": { 
+    "separator": "-",
+    "defaultSegments": ["IntPrefix","ScopeTag","OS","Assignments","Descriptor","Environment","Version"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["OS","Environment","Version"],
+    "lockedSegments": ["Assignments","Descriptor"],
+    "fixedFirstSegments": ["IntPrefix","ScopeTag"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}
+

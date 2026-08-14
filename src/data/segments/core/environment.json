@@ -1,0 +1,33 @@
+{
+  "name": "Environment",
+  "values": [
+    {
+      "value": "PROD",
+      "description": "Production"
+    },
+    {
+      "value": "PREPROD",
+      "description": "Pre-production"
+    },
+    {
+      "value": "UAT",
+      "description": "User Acceptance Testing"
+    },
+    {
+      "value": "TEST",
+      "description": "Test"
+    },
+    {
+      "value": "DEV",
+      "description": "Development"
+    },
+    {
+      "value": "LAB",
+      "description": "Laboratory"
+    },
+    {
+      "value": "PILOT",
+      "description": "Pilot"
+    }
+  ]
+}

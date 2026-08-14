@@ -1,0 +1,33 @@
+{
+  "name": "os",
+  "values": [
+    {
+      "value": "W",
+      "description": "Windows"
+    },
+    {
+      "value": "L",
+      "description": "Linux"
+    },
+    {
+      "value": "IOS",
+      "description": ""
+    },
+    {
+      "value": "IPOS",
+      "description": "IPad OS"
+    },
+    {
+      "value": "MAC",
+      "description": "MacOS"
+    },
+    {
+      "value": "AND",
+      "description": "Android"
+    },
+    {
+      "value": "AllPlatforms",
+      "description": ""
+    }
+  ]
+}

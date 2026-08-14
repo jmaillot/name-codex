@@ -1,0 +1,21 @@
+{
+  "name": "Country",
+  "values": [
+    {
+      "value": "FR",
+      "description": "France"
+    },
+    {
+      "value": "US",
+      "description": "United States"
+    },
+    {
+      "value": "BE",
+      "description": "Belgium"
+    },
+    {
+      "value": "UK",
+      "description": "United Kingdom"
+    }
+  ]
+}

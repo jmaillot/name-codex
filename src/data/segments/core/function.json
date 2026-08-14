@@ -1,0 +1,17 @@
+{
+  "name": "Purpose",
+  "values": [
+    {
+      "value": "Backup",
+      "description": ""
+    },
+    {
+      "value": "Reporting",
+      "description": ""
+    },
+    {
+      "value": "SSO",
+      "description": "Single-Sign-On"
+    }
+  ]
+}

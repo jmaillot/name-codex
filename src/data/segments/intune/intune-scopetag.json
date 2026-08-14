@@ -1,0 +1,17 @@
+{
+  "name": "ScopeTag",
+  "values": [
+    {
+      "value": "Global",
+      "description": ""
+    },
+    {
+      "value": "EMEA",
+      "description": ""
+    },
+    {
+      "value": "FR",
+      "description": "France"
+    }
+  ]
+}

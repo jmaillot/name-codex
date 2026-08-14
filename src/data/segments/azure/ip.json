@@ -1,0 +1,17 @@
+{
+  "name": "ip",
+  "values": [
+    {
+      "value": "IP",
+      "description": "IP Address"
+    },
+    {
+      "value": "PIP",
+      "description": "Public IP"
+    },
+    {
+      "value": "VIP",
+      "description": "Virtual IP"
+    }
+  ]
+}

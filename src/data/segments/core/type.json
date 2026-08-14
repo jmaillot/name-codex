@@ -1,0 +1,26 @@
+
+{
+  "name": "type",
+  "values": [
+    {
+      "value": "RG",
+      "description": "Resource Group"
+    },
+    {
+      "value": "VM",
+      "description": "Virtual Machine"
+    },
+    {
+      "value": "LA",
+      "description": "Logic App"
+    },
+    {
+      "value": "KV",
+      "description": "Key Vault"
+    },
+    {
+      "value": "SA",
+      "description": "Storage Account"
+    }
+  ]
+}

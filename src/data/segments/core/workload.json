@@ -1,0 +1,37 @@
+{
+  "name": "Workload",
+  "values": [
+    {
+      "value": "AD",
+      "description": "Identity"
+    },
+    {
+      "value": "VNET",
+      "description": "Virtual Network"
+    },
+    {
+      "value": "Subnet",
+      "description": "Virtual Subnet"
+    },
+    {
+      "value": "WEBAPP",
+      "description": "Web Application"
+    },
+    {
+      "value": "LOGS",
+      "description": "Logging"
+    },
+    {
+      "value": "BACKUP",
+      "description": "Backup"
+    },
+    {
+      "value": "ERP",
+      "description": "ERP"
+    },
+    {
+      "value": "CRM",
+      "description": "CRM"
+    }
+  ]
+}

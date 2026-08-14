@@ -1,0 +1,75 @@
+{
+  "id": "intune-compliance-policy",
+  "category": "Intune",
+  "name": "Compliance Policy",
+  "description": "Device compliance policy that evaluates whether a device meets your organization's security requirements.",
+  "pattern": "[IntPrefix]-[ScopeTag]-[OS]-[Assignments]-[Descriptor]-[Environment]-[Version]",
+  "fields": [
+    {
+      "name": "IntPrefix",
+      "label": "Prefix",
+      "defaultValue": "CMP"
+    },
+    {
+      "name": "ScopeTag",
+      "defaultValue": "",
+      "examples": ["Global", "EMEA", "FR","HR","IT"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "OS",
+      "defaultValue": "W"
+    },
+    {
+      "name": "Assignments",
+      "defaultValue": "AllUsers",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "AllUsers",
+          "description": ""
+        },
+        {
+          "value": "AllDevices",
+          "description": ""
+        }
+      ],
+      "examples": ["GroupName"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Descriptor",
+      "examples": ["BitLockerAndPasswordPolicy", "NonComplianceActions", "BaselineSecurityRules"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Version",
+      "type": "text",
+      "defaultValue": "V1"
+    }
+  ],
+  "examples": [
+    "CMP-GLOBAL-W-ALLUSERS-BASELINESECURITYRULES-PROD-V1"
+  ],
+  "builder": { 
+    "separator": "-",
+    "defaultSegments": ["IntPrefix","ScopeTag","OS","Assignments","Descriptor","Environment","Version"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["OS","Environment","Version"],
+    "lockedSegments": ["Assignments","Descriptor"],
+    "fixedFirstSegments": ["IntPrefix","ScopeTag"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}
+

@@ -1,0 +1,30 @@
+{
+  "name": "DefPolicyType",
+  "values": [
+    {
+      "value": "AntiPhish",
+      "description": "Anti Phishing Policy"
+    },
+    {
+      "value": "AntiSpam",
+      "description": "Anti Spam Policy"
+    },
+    {
+      "value": "AntiMalware",
+      "description": "Anti Malware Policy"
+    },
+    {
+      "value": "SafeAttachments",
+      "description": "Safe Attachments Policy"
+    },
+    {
+      "value": "SafeLinks",
+      "description": "Safe Links Policy"
+    },
+    {
+      "value": "Quarantine",
+      "description": "Quarantine Policy"
+    }
+  ]
+}
+

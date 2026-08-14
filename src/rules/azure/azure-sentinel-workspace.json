@@ -1,0 +1,46 @@
+{
+  "id": "azure-sentinel-workspace",
+  "category": "Azure",
+  "name": "Sentinel Workspace",
+  "description": "Azure Sentinel Workspace naming.",
+  "pattern": "[Country][Location][Type][Role]",
+  "fields": [
+    {
+      "name": "Country",
+      "defaultValue": "FR",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Location",
+      "defaultValue": "AZ"
+    },
+    {
+      "name": "Type",
+      "defaultValue": "LA",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Role",
+      "defaultValue": "SIEM",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": [
+    "FRAZLASIEM"
+  ],
+  "builder": { 
+    "separator": "",
+    "defaultSegments": ["Country","Location","Type","Role"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Type"],
+    "lockedSegments": ["Role"],
+    "fixedFirstSegments": ["Country","Location"],
+    "fixedLastSegments": ["Role"]
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

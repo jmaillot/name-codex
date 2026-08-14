@@ -1,0 +1,41 @@
+{
+  "name": "role",
+  "values": [
+    {
+      "value": "AD",
+      "description": "Active Directory"
+    },
+    {
+      "value": "SQL",
+      "description": "SQL Server"
+    },
+    {
+      "value": "RDS",
+      "description": "Remote Desktop"
+    },
+    {
+      "value": "GW",
+      "description": "Gateway"
+    },
+    {
+      "value": "SIEM",
+      "description": "Security Information Event Management"
+    },
+    {
+      "value": "SEAR",
+      "description": "Send Email Automated Response"
+    },
+    {
+      "value": "SMTP",
+      "description": "Mail Relay"
+    },
+    {
+      "value": "VPN",
+      "description": "VPN Gateway"
+    },
+    {
+      "value": "APP",
+      "description": "Application"
+    }
+  ]
+}

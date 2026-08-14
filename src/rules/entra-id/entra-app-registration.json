@@ -1,0 +1,208 @@
+{
+  "id": "entra-app-registration",
+  "category": "Entra ID",
+  "name": "Application Registration",
+  "description": "Microsoft Entra App Registration naming.",
+
+  "pattern": "[Tool]-[Function]-[AccessLevel]-[Environment]-[Version]",
+
+  "patterns": [
+    {
+      "id": "generic",
+      "name": "Generic",
+      "description": "Best for single-tenant organisations. Focuses on what the app does, its access level, and deployment environment.",
+      "pattern": "[Tool]-[Function]-[AccessLevel]-[Environment]-[Version]",
+
+      "fields": [
+        {
+          "name": "Tool",
+          "examples": ["Intune", "Veeam", "Dynamics"],
+          "defaultValue": "",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Function",
+          "examples": ["Backup", "Reporting", "SSO"],
+          "defaultValue": "Backup",
+          "allowCustomValue": true
+        },
+        {
+          "name": "AccessLevel",
+          "examples": ["RO", "RW", "ADMIN"],
+          "defaultValue": "RO",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Environment",
+          "defaultValue": "PROD",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Version",
+          "type": "text",
+          "defaultValue": "V1"
+        }
+      ],
+
+      "examples": [
+        "INTUNE-BACKUP-RW-PROD-V1"
+      ]
+    },
+
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "description": "Best for large organisations with department-level segregation. Company and department identify ownership.",
+      "pattern": "[Company]-[Department]-[Tool]-[Function]-[AccessLevel]-[Environment]-[Version]",
+
+      "fields": [
+        {
+          "name": "Company",
+          "type": "text",
+          "defaultValue": "PRODWARE"
+        },
+        {
+          "name": "Department",
+          "defaultValue": "IT",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Tool",
+          "examples": ["Intune", "Veeam", "Dynamics"],
+          "defaultValue": "",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Function",
+          "examples": ["Backup", "Reporting", "SSO"],
+          "defaultValue": "",
+          "allowCustomValue": true
+        },
+        {
+          "name": "AccessLevel",
+          "examples": ["RO", "RW", "ADMIN"],
+          "defaultValue": "RO",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Environment",
+          "defaultValue": "PROD",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Version",
+          "type": "text",
+          "defaultValue": "V1"
+        }
+      ],
+
+      "examples": [
+        "PRODWARE-IT-VEEAM-BACKUP-RO-PROD-V1"
+      ]
+    },
+
+    {
+      "id": "msp",
+      "name": "MSP",
+      "description": "Best for MSPs managing multiple customer tenants. Tool is listed first for quick filtering by product.",
+      "pattern": "[Customer]-[Tool]-[Function]-[AccessLevel]-[Environment]-[Version]",
+
+      "fields": [
+        {
+          "name": "Customer",
+          "type": "text",
+          "defaultValue": "PRODWARE"
+        },
+        {
+          "name": "Tool",
+          "examples": ["Intune", "Veeam", "Dynamics"],
+          "defaultValue": "",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Function",
+          "examples": ["Backup", "Reporting", "SSO"],
+          "defaultValue": "",
+          "allowCustomValue": true
+        },
+        {
+          "name": "AccessLevel",
+          "examples": ["RO", "RW", "ADMIN"],
+          "defaultValue": "RO",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Environment",
+          "defaultValue": "PROD",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Version",
+          "type": "text",
+          "defaultValue": "V1"
+        }
+      ],
+
+      "examples": [
+        "PRODWARE-VEEAM-BACKUP-RO-PROD-V1"
+      ]
+    },
+
+    {
+      "id": "project",
+      "name": "Project",
+      "description": "Best for time-bound integrations. Project name identifies the context instead of the company.",
+      "pattern": "[Project]-[Tool]-[AccessLevel]-[Environment]-[Version]",
+
+      "fields": [
+        {
+          "name": "Project",
+          "type": "text",
+          "defaultValue": "ProjERP"
+        },
+        {
+          "name": "Tool",
+          "examples": ["Intune", "Veeam", "Dynamics"],
+          "defaultValue": "",
+          "allowCustomValue": true
+        },
+        {
+          "name": "AccessLevel",
+          "examples": ["RO", "RW", "ADMIN"],
+          "defaultValue": "RO",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Environment",
+          "defaultValue": "PROD",
+          "allowCustomValue": true
+        },
+        {
+          "name": "Version",
+          "type": "text",
+          "defaultValue": "V1"
+        }
+      ],
+
+      "examples": [
+        "PROJERP-DYNAMICS-RO-PROD-V1"
+      ]
+    }
+  ],
+
+  "fields": [],
+  "examples": [],
+  "builder": {
+    "separator": "-",
+    "availableSegments": ["Company","Dept","Customer","Tool","Function","AccessLevel","Environment","Version","Custom"],
+    "recommendedSegments": ["Function","Version"],
+    "lockedSegments": ["Tool","AccessLevel","Environment"]
+  },
+
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
+  }
+}
+
+

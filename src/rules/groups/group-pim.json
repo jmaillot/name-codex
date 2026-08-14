@@ -1,0 +1,92 @@
+{
+  "id": "groups-pim",
+  "category": "Groups",
+  "name": "PIM / JIT Group",
+  "description": "Privileged Identity Management group for just-in-time access to privileged roles and resources.",
+  "pattern": "[Prefix]-[PimRoles]-[Scope]-[AccessType]-[Environment]",
+  "fields": [
+    {
+      "name": "Prefix",
+      "label": "Prefix",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "PIM",
+          "description": "Privileged Identity group"
+        },
+        {
+          "value": "JIT",
+          "description": "Just-In-Time Group"
+        }
+      ],
+      "defaultValue": "PIM",
+      "allowCustomValue": true
+    },
+    {
+      "name": "PimRoles",
+      "defaultValue": "GlobalAdmin",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Scope",
+      "label": "Scope",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "Tier1",
+          "description": ""
+        },
+        {
+          "value": "Partner",
+          "description": ""
+        },
+        {
+          "value": "Audit",
+          "description": ""
+        }
+      ],
+      "defaultValue": "Tier1",
+      "allowCustomValue": true
+    },
+    {
+      "name": "AccessType",
+      "label": "AccessType",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "Eligible",
+          "description": ""
+        },
+        {
+          "value": "Active",
+          "description": ""
+        }
+      ],
+      "defaultValue": "Eligible",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": [
+    "PIM-GLOBALADMIN-TIER1-ELIGIBLE-PROD"
+  ],
+  "builder": { 
+    "separator": "-",
+    "defaultSegments": ["Prefix","PimRoles","Scope","AccessType","Environment"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Environment"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Prefix","PimRoles","Scope","AccessType"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

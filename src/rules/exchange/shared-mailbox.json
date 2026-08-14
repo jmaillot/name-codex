@@ -1,0 +1,64 @@
+{
+  "id": "exchange-shared-mailbox",
+  "category": "Exchange",
+  "name": "Shared Mailbox",
+  "description": "Shared mailbox accessible by multiple users for monitoring and sending from a common email address.",
+  "pattern": "[MailboxType]-[Department]-[Function]-[City]",
+  "fields": [
+    {
+      "name": "MailboxType",
+      "defaultValue": "SHARED"
+    },
+    {
+      "name": "Department",
+      "label": "Department",
+      "type": "dropdown",
+      "values": [
+        ""
+      ],
+      "defaultValue": "",
+      "examples": ["HR", "IT", "FIN", "OPS"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Function",
+      "label": "Function",
+      "type": "dropdown",
+      "values": [
+        ""
+      ],
+      "defaultValue": "",
+      "examples": ["Alerts", "Info"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "City",
+      "label": "City",
+      "type": "dropdown",
+      "values": [
+        ""
+      ],
+      "defaultValue": "",
+      "examples": ["Lille", "Paris"],
+      "allowCustomValue": true
+    }
+  ],
+  "examples": [
+    "SHARED-HR-RECRUITMENT-LILLE"
+  ],
+  "builder": { 
+    "separator": "-",
+    "defaultSegments": ["MailboxType","Department","Function","City"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["City"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["MailboxType","Department","Function"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "AccessLevel",
+  "values": [
+    {
+      "value": "RO",
+      "description": "Read-Only"
+    },
+    {
+      "value": "RW",
+      "description": "Read/Write"
+    },
+    {
+      "value": "ADMIN",
+      "description": ""
+    }
+  ]
+}

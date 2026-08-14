@@ -1,0 +1,21 @@
+{
+  "name": "Scope",
+  "values": [
+    {
+      "value": "AllUsers",
+      "description": ""
+    },
+    {
+      "value": "IT",
+      "description": ""
+    },
+    {
+      "value": "Finance",
+      "description": ""
+    },
+    {
+      "value": "Guests",
+      "description": ""
+    }
+  ]
+}

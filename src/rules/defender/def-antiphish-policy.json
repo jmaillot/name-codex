@@ -1,0 +1,76 @@
+{
+  "id": "defender-antiphish-policy",
+  "category": "Defender",
+  "name": "Defender AntiPhish Policy",
+  "description": "Protects against impersonation, spoofing, and phishing attacks targeting your recipients.",
+  "pattern": "[DefPrefix]-[DefPolicyType]-[ScopeType]-[Descriptor]-[Environment]-[Version]",
+  "fields": [
+    {
+      "name": "DefPrefix",
+      "label": "Prefix",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "DEF",
+          "description": "Defender"
+        }
+      ],
+      "defaultValue": "DEF",
+      "allowCustomValue": false
+    },
+    {
+      "name": "DefPolicyType",
+      "label": "PolicyType",
+      "defaultValue": "AntiPhish",
+      "allowCustomValue": true
+    },
+    {
+      "name": "ScopeType",
+      "label": "Scope",
+      "type": "dropdown",
+      "defaultValue": "",
+      "values": [
+        {
+          "value": "AllUsers",
+          "description": ""
+        }
+      ],
+      "examples": ["AllUsers", "GroupName"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Descriptor",
+      "examples": ["Strict", "Baseline","HighRisk"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Version",
+      "type": "text",
+      "defaultValue": "V1"
+    }
+  ],
+  "examples": [
+    "DEF-ANTIPHISH-ALLUSERS-STRICT-PROD-V1"
+  ],
+  "builder": { 
+    "separator": "-",
+    "defaultSegments": ["DefPrefix","DefPolicyType","ScopeType","Descriptor","Environment","Version"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Environment","Version"],
+    "lockedSegments": ["Descriptor"],
+    "fixedFirstSegments": ["DefPrefix","DefPolicyType","ScopeType"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}
+

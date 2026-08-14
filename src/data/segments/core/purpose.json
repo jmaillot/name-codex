@@ -1,0 +1,22 @@
+{
+  "name": "Purpose",
+  "values": [
+    {
+      "value": "Alerts",
+      "description": ""
+    },
+    {
+      "value": "Invoices",
+      "description": ""
+    },
+    {
+      "value": "Admins",
+      "description": ""
+    },
+    {
+      "value": "LIC",
+      "description": "Licence Assignment"
+    }
+  ]
+}
+

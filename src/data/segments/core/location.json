@@ -1,0 +1,13 @@
+{
+  "name": "Location",
+  "values": [
+    {
+      "value": "AAD",
+      "description": "Entra ID"
+    },
+    {
+      "value": "AZ",
+      "description": "Azure"
+    }
+  ]
+}

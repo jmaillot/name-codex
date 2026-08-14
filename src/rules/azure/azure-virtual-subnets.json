@@ -1,0 +1,63 @@
+{
+  "id": "azure-virtual-subnets",
+  "category": "Azure",
+  "name": "Virtual Subnets",
+  "description": "Azure Subnet naming.",
+  "pattern": "[Country]-[Environment]-[Workload]-[Instance]",
+  "fields": [
+    {
+      "name": "Country",
+      "defaultValue": "FR",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Workload",
+      "defaultValue": "Subnet",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "label": "Instance",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "001",
+          "description": "Default"
+        },
+        {
+          "value": "002",
+          "description": ""
+        },
+        {
+          "value": "003",
+          "description": ""
+        }
+      ],
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": [
+    "FR-PROD-SUBNET-001"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Country","Environment","Workload","Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Environment","Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Country"],
+    "fixedLastSegments": ["Instance"]
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

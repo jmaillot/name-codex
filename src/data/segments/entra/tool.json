@@ -1,0 +1,17 @@
+{
+  "name": "Tool",
+  "values": [
+    {
+      "value": "Intune",
+      "description": ""
+    },
+    {
+      "value": "Veeam",
+      "description": ""
+    },
+    {
+      "value": "Dynamics",
+      "description": ""
+    }
+  ]
+}

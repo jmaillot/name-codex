@@ -1,0 +1,49 @@
+{
+  "default": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
+  },
+
+  "segments": {
+    "Region": {
+      "required": false
+    },
+
+    "Location": {
+      "required": false
+    },
+
+    "Environment": {
+      "allowedValues": [
+        "PROD",
+        "PREPROD",
+        "UAT",
+        "TEST",
+        "DEV",
+        "LAB",
+        "PILOT"
+      ]
+    },
+
+    "Instance": {
+      "pattern": "^\\d{3}$"
+    },
+
+    "OS": {
+      "allowedValues": ["W", "L"]
+    },
+
+    "PolicyId": {
+      "pattern": "^CA\\d+$"
+    }
+  },
+
+  "Azure": {
+    "Storage Account": {
+      "maxLength": 24,
+      "allowedPattern": "^[a-z0-9]+$",
+      "forceLowercase": true,
+      "removeCharacters": ["-", "_", "."]
+    }
+  }
+}

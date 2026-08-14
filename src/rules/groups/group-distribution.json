@@ -1,0 +1,76 @@
+{
+  "id": "exchange-distribution-group",
+  "category": "Groups",
+  "name": "Distribution Group",
+  "description": "Distribution list for sending email to a defined set of recipients, optionally scoped to internal-only or external senders.",
+  "pattern": "[Location]-[Prefix]-[Scope]-[Department]-[Purpose]",
+  "fields": [
+    {
+      "name": "Location",
+      "defaultValue": "AAD"
+    },
+    {
+      "name": "Prefix",
+      "label": "Prefix",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "DL",
+          "description": "Distribution List"
+        },
+        {
+          "value": "DYNDL",
+          "description": "Dynamic Distribution List"
+        }
+      ],
+      "defaultValue": "DL",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Scope",
+      "label": "Scope",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "Internal",
+          "description": ""
+        },
+        {
+          "value": "External",
+          "description": ""
+        }
+      ],
+      "defaultValue": "Internal"
+    },
+    {
+      "name": "Department",
+      "defaultValue": "",
+      "examples": ["HR", "IT", "FIN", "OPS"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Purpose",
+      "defaultValue": "",
+      "examples": ["Alerts", "Invoices"],
+      "allowCustomValue": true
+    }
+  ],
+  "examples": [
+    "AAD-DL-INTERNAL-IT-ALERTS"
+  ],
+  "builder": { 
+    "separator": "-",
+    "defaultSegments": ["Location","Prefix","Scope","Department","Purpose"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Department","Purpose"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Location","Prefix","Scope"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

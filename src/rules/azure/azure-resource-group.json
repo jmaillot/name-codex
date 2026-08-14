@@ -1,0 +1,54 @@
+{
+  "id": "azure-resource-group",
+  "category": "Azure",
+  "name": "Resource Group",
+  "description": "Azure resource group naming.",
+  "pattern": "[Prefix]-[Region]-[Environment]-[Workload]",
+  "fields": [
+    {
+      "name": "Prefix",
+      "label": "Prefix",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "RG",
+          "description": "Resource Group"
+        }
+      ],
+      "defaultValue": "RG"
+    },
+    {
+      "name": "Region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Workload",
+      "defaultValue": "AD",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": [
+    "RG-FRC-PROD-VNET"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Prefix","Region","Environment","Workload"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": ["Region","Environment"],
+    "fixedFirstSegments": ["Prefix"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "id": "intune-app-protection",
+  "category": "Intune",
+  "name": "Application Protection Policy",
+  "description": "App protection policy that protects organizational data within managed apps, independent of device enrollment.",
+  "pattern": "[IntPrefix]-[ScopeTag]-[Platform]-[Assignments]-[Descriptor]-[Environment]-[Version]",
+  "fields": [
+    {
+      "name": "IntPrefix",
+      "label": "Prefix",
+      "defaultValue": "MAM"
+    },
+    {
+      "name": "ScopeTag",
+      "defaultValue": "",
+      "examples": ["Global", "EMEA", "FR","HR","IT"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Platform",
+      "defaultValue": "W"
+    },
+    {
+      "name": "Assignments",
+      "defaultValue": "BYODUsers",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "ExternalContractors",
+          "description": ""
+        },
+        {
+          "value": "BYODUsers",
+          "description": ""
+        }
+      ],
+      "examples": ["FrontlineUsers"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Descriptor",
+      "examples": ["DataProtectionoutlook", "BlockCopyPaste","BlockDownload"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Version",
+      "type": "text",
+      "defaultValue": "V1"
+    }
+  ],
+  "examples": [
+    "MAM-W-BYODUSERS-BLOCKCOPYPASTE-PROD-V1"
+  ],
+  "builder": { 
+    "separator": "-",
+    "defaultSegments": ["IntPrefix","ScopeTag","OS","Assignments","Descriptor","Environment","Version"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["OS","Environment","Version"],
+    "lockedSegments": ["Assignments","Descriptor"],
+    "fixedFirstSegments": ["IntPrefix","ScopeTag"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}
+

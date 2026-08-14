@@ -1,0 +1,84 @@
+{
+  "id": "azure-virtual-network-gateway-ip",
+  "category": "Azure",
+  "name": "Virtual Network Gateway IP Address",
+  "description": "Azure Virtual Network Gateway IP Address naming.",
+  "pattern": "[Region]-[Country]-[Workload]-[Instance]-[Role]-[IP]",
+  "fields": [
+    {
+      "name": "Region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Country",
+      "defaultValue": "FR",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Workload",
+      "label": "Workload",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "VNET",
+          "description": ""
+        }
+      ],
+      "defaultValue": "VNET",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "label": "Instance",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "001",
+          "description": "Default"
+        },
+        {
+          "value": "002",
+          "description": ""
+        },
+        {
+          "value": "003",
+          "description": ""
+        }
+      ],
+      "defaultValue": "001",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Role",
+      "defaultValue": "GW"
+    },
+    {
+      "name": "IP",
+      "defaultValue": "IP"
+    }
+  ],
+  "examples": [
+    "FRC-FR-VNET-001-GW-IP"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Region","Country","Workload","Instance","Role","IP"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Country","Instance"],
+    "lockedSegments": ["Workload"],
+    "fixedFirstSegments": ["Region"],
+    "fixedLastSegments": ["Role","IP"]
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

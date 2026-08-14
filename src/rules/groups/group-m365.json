@@ -1,0 +1,78 @@
+{
+  "id": "groups-m365",
+  "category": "Groups",
+  "name": "Microsoft 365 Group",
+  "description": "Microsoft 365 Group with a shared mailbox, calendar, and collaboration space across Microsoft 365 services. Supports optional role-assignable or dynamic user membership and a sensitivity label.",
+  "pattern": "[Prefix]-[MembershipTypeM365]-[Department]-[Purpose]-[Sensitivity]-[Environment]",
+  "fields": [
+    {
+      "name": "Location",
+      "defaultValue": "AAD"
+    },
+    {
+      "name": "Prefix",
+      "label": "Prefix",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "M365",
+          "description": "M365 Group"
+        },
+        {
+          "value": "O365",
+          "description": "O365 Group"
+        },
+        {
+          "value": "TEAM",
+          "description": "TEAM Group"
+        }
+      ],
+      "defaultValue": "M365",
+      "allowCustomValue": true
+    },
+    {
+      "name": "MembershipTypeM365",
+      "defaultValue": "ASS"
+    },
+    {
+      "name": "Department",
+      "defaultValue": "",
+      "examples": ["HR", "IT", "FIN", "OPS"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Purpose",
+      "defaultValue": "",
+      "examples": ["Alerts", "Invoices"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Sensitivity",
+      "defaultValue": "PRIVATE",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": [
+    "M365-DYNU-IT-PRIVATE-PROD"
+  ],
+  "builder": { 
+    "separator": "-",
+    "defaultSegments": ["Prefix","MembershipTypeM365","Department","Purpose","Sensitivity","Environment"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Department"],
+    "lockedSegments": ["Purpose"],
+    "fixedFirstSegments": ["Prefix","MembershipTypeM365"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Region",
+  "values": [
+    {
+      "value": "WE",
+      "description": "West Europe"
+    },
+    {
+      "value": "NE",
+      "description": "North Europe"
+    },
+    {
+      "value": "FRC",
+      "description": "France Central"
+    },
+    {
+      "value": "FRS",
+      "description": "France South"
+    }
+  ]
+}

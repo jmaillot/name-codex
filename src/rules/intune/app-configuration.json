@@ -1,0 +1,90 @@
+{
+  "id": "intune-app-configuration",
+  "category": "Intune",
+  "name": "Application Configuration Policy",
+  "description": "App configuration policy that pre-configures settings inside a managed app for enrolled devices or managed apps.",
+  "pattern": "[IntPrefix]-[ScopeTag]-[EnrollmentType]-[Target]-[Descriptor]-[Environment]-[Version]",
+  "fields": [
+    {
+      "name": "IntPrefix",
+      "label": "Prefix",
+      "defaultValue": "MACFG"
+    },
+    {
+      "name": "ScopeTag",
+      "defaultValue": "",
+      "examples": ["Global", "EMEA", "FR","HR","IT"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "EnrollmentType",
+      "defaultValue": "Not selected",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "ManagedDevices",
+          "description": ""
+        },
+        {
+          "value": "ManagedApps",
+          "description": ""
+        },
+        {
+          "value": "",
+          "description": "Not selected"
+        }
+      ],
+      "allowCustomValue": false
+    },
+    {
+      "name": "Target",
+      "defaultValue": "",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "iOS",
+          "description": "iPadOS"
+        },
+        {
+          "value": "Android",
+          "description": "Enterprise"
+        }
+      ],
+      "allowCustomValue": false
+    },
+    {
+      "name": "Descriptor",
+      "examples": ["OutlookFocusedInbox", "TeamsConfig","VPNSettings"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Version",
+      "type": "text",
+      "defaultValue": "V1"
+    }
+  ],
+  "examples": [
+    "MACFG-GLOBAL-MANAGEDAPPS-IOS-TEAMSCONFIG-PROD-V1"
+  ],
+  "builder": { 
+    "separator": "-",
+    "defaultSegments": ["IntPrefix","ScopeTag","EnrollmentType","Target","Descriptor","Environment","Version"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["EnrollmentType","Environment","Version"],
+    "lockedSegments": ["Target","Descriptor"],
+    "fixedFirstSegments": ["IntPrefix","ScopeTag"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}
+

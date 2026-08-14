@@ -1,0 +1,63 @@
+{
+  "id": "azure-virtual-network",
+  "category": "Azure",
+  "name": "Virtual Network",
+  "description": "Virtual Network naming.",
+  "pattern": "[Region]-[Country]-[Workload]-[Instance]",
+  "fields": [
+    {
+      "name": "Region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true 
+    },
+    {
+      "name": "Country",
+      "defaultValue": "FR",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Workload",
+      "defaultValue": "VNET",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "label": "Instance",
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "001",
+          "description": "Default"
+        },
+        {
+          "value": "002",
+          "description": ""
+        },
+        {
+          "value": "003",
+          "description": ""
+        }
+      ],
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": [
+    "FRC-FR-VNET-001"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Region","Country","Workload","Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Country","Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Region"],
+    "fixedLastSegments": ["Instance"]
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

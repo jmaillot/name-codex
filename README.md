@@ -2,6 +2,8 @@
 
 **Naming Governance App** — Microsoft 365 & Azure naming standards, made visual.
 
+**[View the live demo →](https://name-codex.jeremymaillot.fr/)** — the app is deployed and running at https://name-codex.jeremymaillot.fr/.
+
 Name Codex is a single-page application that helps you define, explore and govern naming conventions for Azure, Microsoft 365, Intune, Defender, Exchange and Groups resources. Pick an object type, assemble its segments, and the app generates, validates and documents the final name in real time.
 
 ![Name Codex screenshot](./docs/screenshot.png)

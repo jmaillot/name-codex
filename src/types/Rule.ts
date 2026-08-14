@@ -13,6 +13,10 @@ export interface NamingField {
   defaultValue?: string;
   placeholder?: string;
   allowCustomValue?: boolean;
+  customOnly?: boolean;
+  multiSelect?: boolean;
+  multiSeparator?: string;
+  multiAllValue?: string;
   library?: string;
   generator?: string;
   examples?: string[];

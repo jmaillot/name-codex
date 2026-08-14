@@ -8,42 +8,17 @@
     {
       "name": "PolicyId",
       "label": "PolicyId",
-      "type": "dropdown",
-      "values": [
-        "CA001",
-        "CA101",
-        "CA201",
-        "CA301",
-        "CA401",
-        "CA501",
-        "CA601",
-        "CA701",
-        "CA801",
-        "CA901",
-        "CA1000"
-      ],
-      "defaultValue": "CA001"
+      "type": "text",
+      "generator": "ca-policy-id",
+      "customOnly": true,
+      "placeholder": "",
+      "examples": ["Select the persona, then fill CAx + number, e.g. CA1 + 01 = CA101"],
+      "tip": "Select the persona, then fill CAx + number, e.g. CA1 + 01 = CA101",
+      "defaultValue": ""
     },
     {
       "name": "Persona",
-      "label": "Persona",
-      "type": "dropdown",
-      "values": [
-        "ALLUSERS",
-        "EMPLOYEES",
-        "ADMINS",
-        "GUESTS",
-        "BYOD",
-        "BREAKGLASS",
-        "INTERNALS",
-        "EXTERNALS",
-        "SERVICEACCOUNTS",
-        "AZURESERVICEACCOUNTS",
-        "CORPSERVICEACCOUNTS",
-        "WORKLOADS",
-        "DEVELOPERS"
-      ],
-      "defaultValue": "ALLUSERS"
+      "defaultValue": "AllUsers"
     },
     {
       "name": "Application",
@@ -63,6 +38,8 @@
       "name": "Platform",
       "label": "Platform",
       "type": "dropdown",
+      "multiSelect": true,
+      "multiAllValue": "ALLPLATFORMS",
       "values": [
         "ALLPLATFORMS",
         "WINDOWS",

@@ -468,6 +468,69 @@ select:focus {
   min-width: 0;
 }
 
+.policy-id-editor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+}
+
+.policy-id-prefix {
+  flex-shrink: 0;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 14px;
+  border: 1px dashed rgba(79, 140, 255, .5);
+  border-radius: 11px;
+  background: rgba(79, 140, 255, .08);
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.policy-id-editor input {
+  min-width: 0;
+}
+
+.multi-select-editor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+
+.multi-select-chip {
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel-soft);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.multi-select-chip:hover {
+  border-color: rgba(79, 140, 255, .5);
+  color: var(--text);
+}
+
+.multi-select-chip.active {
+  background: rgba(79, 140, 255, .16);
+  border-color: rgba(79, 140, 255, .55);
+  color: var(--accent);
+}
+
+.multi-select-chip:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 140, 255, .3);
+}
+
 /* Mode normal : valeur prédéfinie sélectionnée */
 .custom-dropdown-editor.preset-mode {
   grid-template-columns:
@@ -973,6 +1036,10 @@ summary:focus-visible {
   .builder-editor select {
     height: 38px;
     min-width: 0;
+  }
+
+  .policy-id-prefix {
+    height: 38px;
   }
 
   .builder-editor .custom-dropdown-editor {

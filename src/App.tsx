@@ -12,6 +12,7 @@ import type { DropdownValue, NamingConvention, NamingField, NamingFieldOption } 
 import segmentLibraryData from "./data/segment-library.json";
 import segmentCatalogData from "./data/segment-catalog.json";
 import validationRulesData from "./data/validation-rules.json";
+import caNumberingRangesData from "./data/ca-numbering-ranges.json";
 import "./App.css";
 
 type SegmentLibrary = Record<string, Record<string, string>>;
@@ -35,20 +36,20 @@ type SequenceGenerator = {
   descriptionPrefix?: string;
 };
 
+type CaPolicyRange = {
+  label: string;
+  prefix: string;
+  digits: number;
+  defaultNumber?: string;
+  min: number;
+  max: number;
+};
+
 type CaPolicyIdGenerator = {
   name: string;
   type: "caPolicyId";
-  ranges?: Record<
-    string,
-    {
-      label: string;
-      prefix: string;
-      digits: number;
-      defaultNumber?: string;
-      min: number;
-      max: number;
-    }
-  >;
+  ranges?: Record<string, CaPolicyRange>;
+  personaRanges?: Record<string, string>;
 };
 
 type SegmentGenerator = SequenceGenerator | CaPolicyIdGenerator;
@@ -59,6 +60,7 @@ type ValidationResult = { label: string; valid: boolean };
 const segmentLibrary = segmentLibraryData as SegmentLibrary;
 const segmentCatalog = segmentCatalogData as NamingField[];
 const validationRules = validationRulesData as any;
+const caNumberingRanges = caNumberingRangesData as Record<string, CaPolicyRange>;
 
 const segmentModules = import.meta.glob("./data/segments/**/*.json", {
   eager: true,
@@ -121,7 +123,7 @@ function generateSequence(generator: SequenceGenerator): NamingFieldOption[] {
 }
 
 function generateCaPolicyIds(generator: CaPolicyIdGenerator): NamingFieldOption[] {
-  const ranges = generator.ranges ?? {};
+  const ranges = generator.ranges ?? caNumberingRanges;
 
   return Object.values(ranges).flatMap((range) =>
     Array.from(
@@ -150,6 +152,58 @@ function generateValues(generator: SegmentGenerator): NamingFieldOption[] {
   }
 
   return [];
+}
+
+function caPolicyIdRange(
+  generator: CaPolicyIdGenerator,
+  rangeKey: string
+): CaPolicyRange | undefined {
+  return (generator.ranges ?? caNumberingRanges)[rangeKey];
+}
+
+function caPolicyIdOptionsForRange(
+  generator: CaPolicyIdGenerator,
+  rangeKey: string
+): NamingFieldOption[] {
+  const range = caPolicyIdRange(generator, rangeKey);
+  if (!range) return [];
+
+  return Array.from({ length: range.max - range.min + 1 }, (_, index) => {
+    const number = range.min + index;
+    const value = `${range.prefix}${String(number).padStart(range.digits, "0")}`;
+    return { value, description: range.label };
+  });
+}
+
+function personaRangeKeyForField(
+  field: NamingField | undefined,
+  segments: BuilderSegment[]
+): string | undefined {
+  if (!field?.generator) return undefined;
+
+  const generatorFile = getGeneratorFile(field.generator);
+  if (generatorFile?.type !== "caPolicyId") return undefined;
+
+  const persona = segments.find((s) => s.sourceName === "Persona")?.value;
+  if (!persona) return undefined;
+
+  const personaKey = persona.trim().toUpperCase();
+  return generatorFile.personaRanges?.[personaKey];
+}
+
+function optionsForSegment(
+  field: NamingField | undefined,
+  segments: BuilderSegment[]
+): NamingFieldOption[] {
+  const options = valuesForField(field);
+
+  const rangeKey = personaRangeKeyForField(field, segments);
+  if (!rangeKey) return options;
+
+  const generatorFile = field?.generator ? getGeneratorFile(field.generator) : undefined;
+  if (!generatorFile || generatorFile.type !== "caPolicyId") return options;
+
+  return caPolicyIdOptionsForRange(generatorFile, rangeKey);
 }
 
 
@@ -640,7 +694,7 @@ export default function App() {
   const referenceEntries = builderSegments
     .map((segment) => {
       const field = fieldByName(activeFields, segment.sourceName);
-      const valuesFromField = valuesForField(field);
+      const valuesFromField = optionsForSegment(field, builderSegments);
       return {
         segment,
         entries: valuesFromField.map((value) => {
@@ -655,7 +709,32 @@ export default function App() {
     .filter((item) => item.entries.length > 0);
 
   const updateSegmentValue = (key: string, value: string) =>
-    setBuilderSegments((prev) => prev.map((s) => (s.key === key ? { ...s, value } : s)));
+    setBuilderSegments((prev) => {
+      const changed = prev.find((s) => s.key === key);
+      const next = prev.map((s) => (s.key === key ? { ...s, value } : s));
+
+      if (changed?.sourceName === "Persona") {
+        const policy = next.find((s) => s.sourceName === "PolicyId");
+        if (policy) {
+          const policyField = fieldByName(activeFields, "PolicyId");
+          const rangeKey = personaRangeKeyForField(policyField, next);
+          const generatorFile = policyField?.generator ? getGeneratorFile(policyField.generator) : undefined;
+          const range = rangeKey && generatorFile && generatorFile.type === "caPolicyId"
+            ? caPolicyIdRange(generatorFile, rangeKey)
+            : undefined;
+
+          if (range && !policy.value.startsWith(range.prefix)) {
+            return next.map((s) =>
+              s.key === policy.key
+                ? { ...s, value: `${range.prefix}${range.defaultNumber ?? ""}` }
+                : s
+            );
+          }
+        }
+      }
+
+      return next;
+    });
 
 const moveSegment = (index: number, direction: -1 | 1) =>
   setBuilderSegments((prev) => {
@@ -861,7 +940,20 @@ const moveSegment = (index: number, direction: -1 | 1) =>
 
   const renderSegmentEditor = (segment: BuilderSegment, index: number) => {
     const field = fieldByName(activeFields, segment.sourceName);
-    const options = valuesForField(field);
+    const options = optionsForSegment(field, builderSegments);
+
+    const caRange = (() => {
+      if (!field?.customOnly || !field.generator) return undefined;
+      const rangeKey = personaRangeKeyForField(field, builderSegments);
+      const generatorFile = getGeneratorFile(field.generator);
+      if (rangeKey && generatorFile?.type === "caPolicyId") {
+        return caPolicyIdRange(generatorFile, rangeKey);
+      }
+      return undefined;
+    })();
+    const caPrefix = caRange?.prefix ?? "";
+    const caDigits = caRange?.digits ?? 2;
+    const caDefaultNumber = caRange?.defaultNumber ?? "01";
 
     const fixedFirst = isFixedFirst(selectedConvention, segment.sourceName);
     const fixedLast = isFixedLast(selectedConvention, segment.sourceName);
@@ -922,7 +1014,82 @@ const moveSegment = (index: number, direction: -1 | 1) =>
         </div>
 
         <div className="builder-editor">
-          {field?.allowCustomValue && options.length > 0 ? (
+          {field?.multiSelect && options.length > 0 ? (
+            (() => {
+              const separator = field.multiSeparator ?? ".";
+              const allValue = field.multiAllValue;
+              const current = segment.value ? segment.value.split(separator) : [];
+              const toggleMulti = (code: string) => {
+                let next: string[];
+                if (current.includes(code)) {
+                  next = current.filter((x) => x !== code);
+                } else if (allValue && code === allValue) {
+                  next = [code];
+                } else {
+                  next = [...current.filter((x) => x !== allValue), code];
+                }
+                updateSegmentValue(segment.key, next.join(separator));
+              };
+              return (
+                <div className="multi-select-editor">
+                  {options.map((v) => {
+                    const code = optionValue(v);
+                    const active = current.includes(code);
+                    return (
+                      <button
+                        key={code}
+                        type="button"
+                        className={`multi-select-chip ${active ? "active" : ""}`}
+                        aria-pressed={active}
+                        onClick={() => toggleMulti(code)}
+                      >
+                        {optionLabel(v)}
+                      </button>
+                    );
+                  })}
+                </div>
+              );
+            })()
+          ) : field?.customOnly ? (
+            caPrefix ? (
+              <div className="policy-id-editor">
+                <span className="policy-id-prefix">{caPrefix}</span>
+                <input
+                  inputMode="numeric"
+                  value={
+                    (segment.value.startsWith(caPrefix)
+                      ? segment.value.slice(caPrefix.length)
+                      : segment.value) || caDefaultNumber
+                  }
+                  onChange={(e) => {
+                    const digits = e.target.value.replace(/\D/g, "").slice(0, caDigits);
+                    updateSegmentValue(segment.key, caPrefix + digits);
+                  }}
+                  onBlur={() => {
+                    const suffix = segment.value.startsWith(caPrefix)
+                      ? segment.value.slice(caPrefix.length)
+                      : segment.value;
+                    const normalized = suffix
+                      ? suffix.padStart(caDigits, "0")
+                      : caDefaultNumber;
+                    updateSegmentValue(segment.key, caPrefix + normalized);
+                  }}
+                  placeholder={caDefaultNumber}
+                  aria-label={`${segment.label} number`}
+                />
+              </div>
+            ) : (
+              <input
+                value={segment.value}
+                onChange={(e) => updateSegmentValue(segment.key, e.target.value)}
+                placeholder={
+                  field?.examples?.length
+                    ? `e.g. ${field.examples.slice(0, 3).join(", ")}...`
+                    : field?.placeholder ?? segment.label
+                }
+              />
+            )
+          ) : field?.allowCustomValue && options.length > 0 ? (
             renderEditableSuggestions(segment, field, options)
           ) : field?.type === "dropdown" || options.length > 0 ? (
             <select

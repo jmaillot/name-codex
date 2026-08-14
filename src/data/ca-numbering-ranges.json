@@ -80,10 +80,10 @@
     "max": 99
   },
   "Developers": {
-    "label": "CA1xxx = Developers",
-    "prefix": "CA1",
-    "digits": 3,
-    "defaultNumber": "000",
+    "label": "CA10xx = Developers",
+    "prefix": "CA10",
+    "digits": 2,
+    "defaultNumber": "01",
     "min": 0,
     "max": 99
   }

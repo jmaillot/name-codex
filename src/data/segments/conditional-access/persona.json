@@ -1,0 +1,61 @@
+{
+  "name": "Persona",
+  "values": [
+    {
+      "value": "AllUsers",
+      "description": ""
+    },
+    {
+      "value": "Employees",
+      "description": ""
+    },
+    {
+      "value": "Admins",
+      "description": ""
+    },
+    {
+      "value": "Guests",
+      "description": ""
+    },
+    {
+      "value": "GuestsAdmins",
+      "description": ""
+    },
+    {
+      "value": "BYOD",
+      "description": ""
+    },
+    {
+      "value": "BreakGlass",
+      "description": ""
+    },
+    {
+      "value": "Internals",
+      "description": ""
+    },
+    {
+      "value": "Externals",
+      "description": ""
+    },
+    {
+      "value": "ServiceAccounts",
+      "description": ""
+    },
+    {
+      "value": "AzureServiceAccounts",
+      "description": ""
+    },
+    {
+      "value": "CorpServiceAccounts",
+      "description": ""
+    },
+    {
+      "value": "Workloads",
+      "description": ""
+    },
+    {
+      "value": "Developers",
+      "description": ""
+    }
+  ]
+}

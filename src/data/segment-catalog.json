@@ -159,5 +159,12 @@
     "type": "dropdown",
     "library": "defender/def-policytype",
     "tip": "Microsoft Defender policy type."
+  },
+  {
+    "name": "Persona",
+    "label": "Persona",
+    "type": "dropdown",
+    "library": "conditional-access/persona",
+    "tip": "User type."
   }
 ]

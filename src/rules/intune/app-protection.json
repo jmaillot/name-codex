@@ -3,7 +3,7 @@
   "category": "Intune",
   "name": "Application Protection Policy",
   "description": "App protection policy that protects organizational data within managed apps, independent of device enrollment.",
-  "pattern": "[IntPrefix]-[ScopeTag]-[Platform]-[Assignments]-[Descriptor]-[Environment]-[Version]",
+  "pattern": "[IntPrefix]-[ScopeTag]-[CA-Platforms]-[Assignments]-[Descriptor]-[Environment]-[Version]",
   "fields": [
     {
       "name": "IntPrefix",
@@ -19,7 +19,8 @@
       "allowCustomValue": true
     },
     {
-      "name": "Platform",
+      "name": "CA-Platforms",
+      "label": "Plaform",
       "defaultValue": "W"
     },
     {
@@ -51,9 +52,9 @@
   ],
   "builder": { 
     "separator": "-",
-    "defaultSegments": ["IntPrefix","ScopeTag","OS","Assignments","Descriptor","Environment","Version"],
+    "defaultSegments": ["IntPrefix","ScopeTag","CA-Platforms","Assignments","Descriptor","Environment","Version"],
     "availableSegments": ["Custom"],
-    "recommendedSegments": ["OS","Environment","Version"],
+    "recommendedSegments": ["CA-Platforms","Environment","Version"],
     "lockedSegments": ["Assignments","Descriptor"],
     "fixedFirstSegments": ["IntPrefix","ScopeTag"],
     "fixedLastSegments": []

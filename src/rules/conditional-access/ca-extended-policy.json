@@ -72,7 +72,7 @@
     "defaultSegments": ["PolicyId","CA-Persona","CA-Applications","CA-Platforms","CA-Conditions","CA-Controls"],
     "availableSegments": ["Custom"],
     "recommendedSegments": [],
-    "lockedSegments": [""],
+    "lockedSegments": [],
     "fixedFirstSegments": ["PolicyId","CA-Persona","CA-Applications","CA-Platforms","CA-Conditions","CA-Controls"],
     "fixedLastSegments": []
   },

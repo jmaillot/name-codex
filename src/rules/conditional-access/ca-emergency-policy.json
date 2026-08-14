@@ -72,7 +72,7 @@
     "defaultSegments": ["PolicyId","CA-Disruption","CA-EmergencyApps","CA-Platforms","CA-Controls","CA-Conditions"],
     "availableSegments": ["Custom"],
     "recommendedSegments": [],
-    "lockedSegments": [""],
+    "lockedSegments": [],
     "fixedFirstSegments": ["PolicyId","CA-Disruption","CA-EmergencyApps","CA-Platforms","CA-Controls","CA-Conditions"],
     "fixedLastSegments": []
   },

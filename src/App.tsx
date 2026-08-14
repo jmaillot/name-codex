@@ -305,6 +305,7 @@ function getCategoryIcon(category: string) {
     "Conditional Access": iconConditionalAccess,
     "Conditional Access Policy": iconConditionalAccess,
     Defender: iconDefender,
+    "Defender for M365": iconDefender,
   };
   const src = icons[category] ?? iconAzure;
   return <img src={src} alt="" className="category-icon" />;

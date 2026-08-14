@@ -1,32 +1,46 @@
-# React + TypeScript + Vite
+# Name Codex
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Naming Governance App — Microsoft 365 & Azure naming standards builder.
 
-Currently, two official plugins are available:
+A single-page app that helps define and govern naming conventions for Azure, Microsoft 365, Intune, Defender, Exchange and Groups resources. It provides a segment-based builder, live preview, validation rules, a governance score and generated documentation.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+- Segment-based naming builder (fixed, locked, recommended and custom segments)
+- Live name preview with validation (length, allowed characters, required segments)
+- Governance score and per-rule check list
+- Copy to clipboard, favorites and history (localStorage)
+- Generated Markdown documentation and segment value dictionary
+- Rules, segment libraries and generators defined as JSON data under `src/data`, `src/rules`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting started
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Scripts
+
+| Script          | Description                       |
+| --------------- | --------------------------------- |
+| `npm run dev`   | Start the Vite dev server         |
+| `npm run build` | Type-check and build for production |
+| `npm run lint`  | Run oxlint                        |
+| `npm run preview` | Preview the production build    |
+
+## Deployment (GitHub Pages)
+
+The repo includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds the app and publishes it to GitHub Pages on every push to `main`.
+
+Requirements:
+
+- `base: './'` is already set in `vite.config.ts` so asset paths are relative.
+- In GitHub: **Settings → Pages → Source → GitHub Actions**.
+
+To build locally:
+
+```bash
+npm run build
+npm run preview
+```

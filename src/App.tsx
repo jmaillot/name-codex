@@ -9,13 +9,10 @@ import iconIntune from "./assets/icons/intune.svg";
 import iconConditionalAccess from "./assets/icons/conditional-access.svg";
 import iconDefender from "./assets/icons/defender.svg";
 import type { DropdownValue, NamingConvention, NamingField, NamingFieldOption } from "./types/Rule";
-import segmentLibraryData from "./data/segment-library.json";
 import segmentCatalogData from "./data/segment-catalog.json";
 import validationRulesData from "./data/validation-rules.json";
 import caNumberingRangesData from "./data/ca-numbering-ranges.json";
 import "./App.css";
-
-type SegmentLibrary = Record<string, Record<string, string>>;
 
 type SegmentValue = {
   value: string;
@@ -61,7 +58,6 @@ type SegmentGenerator = SequenceGenerator | CaPolicyIdGenerator;
 type BuilderSegment = { key: string; sourceName: string; label: string; value: string; custom?: boolean };
 type ValidationResult = { label: string; valid: boolean };
 
-const segmentLibrary = segmentLibraryData as SegmentLibrary;
 const segmentCatalog = segmentCatalogData as NamingField[];
 const validationRules = validationRulesData as any;
 const caNumberingRanges = caNumberingRangesData as Record<string, CaPolicyRange>;
@@ -369,11 +365,7 @@ function valuesForField(field?: NamingField): NamingFieldOption[] {
 
     options = generatorFile ? generateValues(generatorFile) : [];
   } else {
-    const legacyValues = segmentLibrary[field.name] ?? {};
-    options = Object.entries(legacyValues).map(([value, description]) => ({
-      value,
-      description,
-    }));
+    options = [];
   }
 
   if (field.allowedValues?.length) {
@@ -648,7 +640,7 @@ export default function App() {
     setSelectedPatternId((current) =>
       current === firstPatternId ? current : firstPatternId
     );
-  }, [selectedConvention?.id]);
+  }, [selectedConvention]);
 
   useEffect(() => {
     const storedByCategory = localStorage.getItem("name-codex-last-object-by-category-v11-6");
@@ -663,10 +655,17 @@ export default function App() {
 
   useEffect(() => {
     if (!selectedConvention) return;
-    const nextByCategory = { ...lastObjectByCategory, [selectedConvention.category]: selectedConvention.id };
-    setLastObjectByCategory(nextByCategory);
-    localStorage.setItem("name-codex-last-object-by-category-v11-6", JSON.stringify(nextByCategory));
-  }, [selectedConvention?.id]);
+    setLastObjectByCategory((prev) => ({
+      ...prev,
+      [selectedConvention.category]: selectedConvention.id,
+    }));
+  }, [selectedConvention]);
+
+  useEffect(() => {
+    if (lastObjectByCategory && Object.keys(lastObjectByCategory).length > 0) {
+      localStorage.setItem("name-codex-last-object-by-category-v11-6", JSON.stringify(lastObjectByCategory));
+    }
+  }, [lastObjectByCategory]);
 
   useEffect(() => {
     if (!selectedConvention) return;
@@ -679,8 +678,10 @@ export default function App() {
       })
     );
   }, [
-    selectedConvention?.id,
-    selectedPattern?.id,
+    selectedConvention,
+    activeDefaultSegments,
+    activeFields,
+    activeFixedValues,
   ]);
 
   useEffect(() => {

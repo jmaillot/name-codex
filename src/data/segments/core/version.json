@@ -1,0 +1,29 @@
+{
+  "name": "Version",
+  "values": [
+    {
+      "value": "V1",
+      "description": ""
+    },
+    {
+      "value": "V2",
+      "description": ""
+    },
+    {
+      "value": "V3",
+      "description": ""
+    },
+    {
+      "value": "V4",
+      "description": ""
+    },
+    {
+      "value": "V5",
+      "description": ""
+    },
+    {
+      "value": "V10",
+      "description": ""
+    }
+  ]
+}

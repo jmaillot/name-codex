@@ -41,9 +41,7 @@
       "allowCustomValue": true
     },
     {
-      "name": "Version",
-      "type": "text",
-      "defaultValue": "V1"
+      "name": "Version"
     }
   ],
   "examples": [

@@ -215,6 +215,15 @@
     "type": "dropdown",
     "library": "conditional-access/ca-emergencyapps",
     "tip": "The application or group of applications this contingency policy applies to"
+  },
+  {
+    "name": "Version",
+    "label": "Version",
+    "type": "dropdown",
+    "library": "core/version",
+    "defaultValue": "V1",
+    "allowCustomValue": true,
+    "tip": "Policy version, e.g. V1."
   }
 ]
 

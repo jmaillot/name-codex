@@ -1,0 +1,41 @@
+{
+  "name": "CA-Conditions",
+  "values": [
+    {
+      "value": "LegacyAuth",
+      "description": "Legacy Authentication"
+    },
+    {
+      "value": "DeviceCode",
+      "description": "Device Code"
+    },
+    {
+      "value": "UnsupportedOS",
+      "description": "Unsupported OS"
+    },
+    {
+      "value": "RiskySignIn",
+      "description": "Risky Sign-In"
+    },
+    {
+      "value": "UserRisk",
+      "description": "User Risk"
+    },
+    {
+      "value": "TrustedDevice",
+      "description": "Trusted Device"
+    },
+    {
+      "value": "NonTrustedDevice",
+      "description": "Non-Trusted Device"
+    },
+    {
+      "value": "TrustedLocation",
+      "description": "Trusted Location"
+    },
+    {
+      "value": "NonTrustedLocation",
+      "description": "Non-Trusted Location"
+    }
+  ]
+}

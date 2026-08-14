@@ -1,0 +1,25 @@
+{
+  "name": "CA-Applications",
+  "values": [
+    {
+      "value": "AllApps",
+      "description": ""
+    },
+    {
+      "value": "Office365",
+      "description": ""
+    },
+    {
+      "value": "ExchangeOnline",
+      "description": ""
+    },
+    {
+      "value": "SharepointOnline",
+      "description": ""
+    },
+    {
+      "value": "Teams",
+      "description": ""
+    }
+  ]
+}

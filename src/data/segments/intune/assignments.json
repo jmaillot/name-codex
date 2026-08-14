@@ -1,0 +1,21 @@
+{
+  "name": "Assignments",
+  "values": [
+    {
+      "value": "AllUsers",
+      "description": "All users"
+    },
+    {
+      "value": "AllDevices",
+      "description": "All devices"
+    },
+    {
+      "value": "BYODUsers",
+      "description": "Bring Your Own Device users"
+    },
+    {
+      "value": "ExternalContractors",
+      "description": "External contractors"
+    }
+  ]
+}

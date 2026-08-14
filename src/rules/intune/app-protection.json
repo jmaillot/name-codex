@@ -8,7 +8,9 @@
     {
       "name": "IntPrefix",
       "label": "Prefix",
-      "defaultValue": "MAM"
+      "library": "intune/intune-prefix",
+      "defaultValue": "MAM",
+      "allowedValues": ["MAM"]
     },
     {
       "name": "ScopeTag",
@@ -22,18 +24,9 @@
     },
     {
       "name": "Assignments",
+      "library": "intune/assignments",
       "defaultValue": "BYODUsers",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "ExternalContractors",
-          "description": ""
-        },
-        {
-          "value": "BYODUsers",
-          "description": ""
-        }
-      ],
+      "allowedValues": ["BYODUsers", "ExternalContractors"],
       "examples": ["FrontlineUsers"],
       "allowCustomValue": true
     },

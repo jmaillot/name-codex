@@ -503,6 +503,7 @@ select:focus {
 }
 
 .multi-select-chip {
+  position: relative;
   height: 30px;
   padding: 0 12px;
   border-radius: 999px;
@@ -513,6 +514,37 @@ select:focus {
   font-weight: 700;
   cursor: pointer;
   transition: all .2s ease;
+}
+
+.chip-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 240px;
+  padding: 6px 10px;
+  background: #020617;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--text);
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 20;
+  transition: opacity .2s ease;
+}
+
+.multi-select-chip:hover .chip-tooltip {
+  opacity: 1;
+}
+
+.multi-select-chip:focus-visible .chip-tooltip {
+  opacity: 1;
 }
 
 .multi-select-chip:hover {

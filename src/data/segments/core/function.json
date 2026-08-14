@@ -2,11 +2,23 @@
   "name": "Purpose",
   "values": [
     {
+      "value": "Alerts",
+      "description": ""
+    },
+    {
+      "value": "Info",
+      "description": ""
+    },
+    {
       "value": "Backup",
       "description": ""
     },
     {
       "value": "Reporting",
+      "description": ""
+    },
+    {
+      "value": "Invoices",
       "description": ""
     },
     {

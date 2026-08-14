@@ -8,18 +8,9 @@
     {
       "name": "Prefix",
       "label": "Prefix",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "PIM",
-          "description": "Privileged Identity group"
-        },
-        {
-          "value": "JIT",
-          "description": "Just-In-Time Group"
-        }
-      ],
+      "library": "groups/prefix",
       "defaultValue": "PIM",
+      "allowedValues": ["PIM", "JIT"],
       "allowCustomValue": true
     },
     {
@@ -30,39 +21,15 @@
     {
       "name": "Scope",
       "label": "Scope",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "Tier1",
-          "description": ""
-        },
-        {
-          "value": "Partner",
-          "description": ""
-        },
-        {
-          "value": "Audit",
-          "description": ""
-        }
-      ],
       "defaultValue": "Tier1",
+      "allowedValues": ["Tier1", "Partner", "Audit"],
       "allowCustomValue": true
     },
     {
       "name": "AccessType",
       "label": "AccessType",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "Eligible",
-          "description": ""
-        },
-        {
-          "value": "Active",
-          "description": ""
-        }
-      ],
       "defaultValue": "Eligible",
+      "allowedValues": ["Eligible", "Active"],
       "allowCustomValue": true
     },
     {

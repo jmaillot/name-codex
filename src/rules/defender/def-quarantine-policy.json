@@ -1,0 +1,48 @@
+{
+  "id": "defender-quarantine-policy",
+  "category": "Defender for M365",
+  "name": "Defender Quarantine Policy",
+  "description": "Quarantine policy controlling end-user access and notifications for quarantined messages.",
+  "pattern": "QUARANTINE-[QuarantineScope]-[AccessLevel]-[Notify]",
+  "fields": [
+    {
+      "name": "QuarantineScope",
+      "label": "Scope",
+      "examples": ["Company", "Finance","IT"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "AccessLevel",
+      "label": "AccessLevel",
+      "library": "defender/def-accesslevel",
+      "defaultValue": "FullAccess",
+      "allowCustomValue": false
+    },
+    {
+      "name": "Notify",
+      "label": "Notify",
+      "library": "defender/def-notification",
+      "defaultValue": "WithNotification",
+      "allowedValues": ["WithNotification", ""],
+      "allowCustomValue": false
+    }
+  ],
+  "examples": [
+    "QUARANTINE-IT-FULLACCESS-WITHNOTIFICATION"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["QuarantineScope","AccessLevel", "Notify"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["QuarantineScope","AccessLevel", "Notify"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

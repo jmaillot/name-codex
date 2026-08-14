@@ -7,19 +7,15 @@
   "fields": [
     {
       "name": "Location",
-      "defaultValue": "AAD"
+      "defaultValue": "AAD",
+      "allowedValues": ["AAD"]
     },
     {
       "name": "Prefix",
       "label": "Prefix",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "GSEC",
-          "description": "Security Group"
-        }
-      ],
-      "defaultValue": "GSEC"
+      "library": "groups/prefix",
+      "defaultValue": "GSEC",
+      "allowedValues": ["GSEC"]
     },
     {
       "name": "MembershipType",

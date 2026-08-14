@@ -6,28 +6,11 @@
   "pattern": "[Prefix]-[MembershipTypeM365]-[Department]-[Purpose]-[Sensitivity]-[Environment]",
   "fields": [
     {
-      "name": "Location",
-      "defaultValue": "AAD"
-    },
-    {
       "name": "Prefix",
       "label": "Prefix",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "M365",
-          "description": "M365 Group"
-        },
-        {
-          "value": "O365",
-          "description": "O365 Group"
-        },
-        {
-          "value": "TEAM",
-          "description": "TEAM Group"
-        }
-      ],
+      "library": "groups/prefix",
       "defaultValue": "M365",
+      "allowedValues": ["M365", "O365", "TEAM"],
       "allowCustomValue": true
     },
     {

@@ -1,0 +1,45 @@
+{
+  "name": "Instance",
+  "values": [
+    {
+      "value": "001",
+      "description": "Default"
+    },
+    {
+      "value": "002",
+      "description": ""
+    },
+    {
+      "value": "003",
+      "description": ""
+    },
+    {
+      "value": "004",
+      "description": ""
+    },
+    {
+      "value": "005",
+      "description": ""
+    },
+    {
+      "value": "006",
+      "description": ""
+    },
+    {
+      "value": "007",
+      "description": ""
+    },
+    {
+      "value": "008",
+      "description": ""
+    },
+    {
+      "value": "009",
+      "description": ""
+    },
+    {
+      "value": "010",
+      "description": ""
+    }
+  ]
+}

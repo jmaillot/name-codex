@@ -1,0 +1,85 @@
+{
+  "id": "ca-extended-policy",
+  "category": "Conditional Access",
+  "name": "Conditional Access Policy - Extended",
+  "description": "Use for full context policies. Includes Platform and Version segments not available in the Microsoft Recommended pattern. Recommended when platform-specific targeting or change tracking is required.",
+  "pattern": "[PolicyId]-[CA-Persona]-[CA-Applications]-[CA-Platforms]-[CA-Conditions]-[CA-Controls]",
+  "fields": [
+    {
+      "name": "PolicyId",
+      "label": "PolicyId",
+      "type": "text",
+      "generator": "ca-policy-id",
+      "customOnly": true,
+      "placeholder": "",
+      "examples": ["Select the persona, then fill CAx + number, e.g. CA1 + 01 = CA101"],
+      "defaultValue": ""
+    },
+    {
+      "name": "CA-Persona",
+      "label": "Persona",
+      "library": "conditional-access/ca-persona",
+      "defaultValue": "",
+      "allowCustomValue": true,
+      "examples": ["Select the persona, then fill CAx + number, e.g. CA1 + 01 = CA101"]
+    },
+    {
+      "name": "CA-Applications",
+      "label": "Application",
+      "library": "conditional-access/ca-apps",
+      "defaultValue": "AllApps",
+      "allowCustomValue": true,
+      "examples": ["Fill out the scoped App used by this policy, ex: AzureManagementPortal"]
+    },
+    {
+      "name": "CA-Platforms",
+      "label": "Platforms",
+      "library": "conditional-access/ca-platforms",
+      "multiSelect": true,
+      "multiAllValue": "AllPlatforms",
+      "defaultValue": "AllPlatforms"
+    },
+    {
+      "name": "CA-Conditions",
+      "label": "Condition/When",
+      "library": "conditional-access/ca-conditions",
+      "defaultValue": "",
+      "allowCustomValue": true,
+      "multiSelect": true,
+      "multiExclusions": [
+        ["TrustedDevice", "NonTrustedDevice"],
+        ["TrustedLocation", "NonTrustedLocation"]
+      ],
+      "examples": ["Select one or put a custom condition"]
+    },
+    {
+      "name": "CA-Controls",
+      "label": "Controls",
+      "library": "conditional-access/ca-controls",
+      "defaultValue": "MFA",
+      "multiSelect": true,
+      "multiExclusions": [
+        ["MFA", "MFASTRENGH"]
+      ],
+      "multiAllValue": "Block"
+    }
+  ],
+  "examples": [
+    "CA201-EMPLOYEES-ALLAPPS-ALLPLATFORMS-EXTERNAL-MFA-PROD"
+  ],
+  "builder": { 
+    "separator": "-",
+    "defaultSegments": ["PolicyId","CA-Persona","CA-Applications","CA-Platforms","CA-Conditions","CA-Controls"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [""],
+    "fixedFirstSegments": ["PolicyId","CA-Persona","CA-Applications","CA-Platforms","CA-Conditions","CA-Controls"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

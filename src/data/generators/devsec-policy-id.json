@@ -1,0 +1,7 @@
+{
+  "name": "devsec-policy-id",
+  "type": "caPolicyId",
+  "prefix": "DEVSEC",
+  "digits": 3,
+  "defaultNumber": "001"
+}

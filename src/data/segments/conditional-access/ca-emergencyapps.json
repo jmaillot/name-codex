@@ -1,0 +1,17 @@
+{
+  "name": "CA-EmergencyApps",
+  "values": [
+    {
+      "value": "MissionCritical",
+      "description": "Mission Critical Apps"
+    },
+    {
+      "value": "ImportantApps",
+      "description": "Important Apps"
+    },
+    {
+      "value": "LowPriorityApps",
+      "description": "Low Priority Apps"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "name": "CA-Controls",
+  "values": [
+    {
+      "value": "Block",
+      "description": "Block Access"
+    },
+    {
+      "value": "MFA",
+      "description": "Require MFA"
+    },
+    {
+      "value": "MFASTRENGH",
+      "description": "Require Authentication Strength"
+    },
+    {
+      "value": "Compliant",
+      "description": "Require Compliant Device"
+    },
+    {
+      "value": "HybridJoined",
+      "description": "Require Hybrid Joined Device"
+    },
+    {
+      "value": "AppProtection",
+      "description": "Require App Protection Policy"
+    },
+    {
+      "value": "PwdChange",
+      "description": "Require Password Change"
+    }
+  ]
+}

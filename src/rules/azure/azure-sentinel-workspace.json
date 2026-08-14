@@ -12,7 +12,8 @@
     },
     {
       "name": "Location",
-      "defaultValue": "AZ"
+      "defaultValue": "AZ",
+      "allowedValues": ["AZ"]
     },
     {
       "name": "Type",

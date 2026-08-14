@@ -3,20 +3,8 @@
   "category": "Azure",
   "name": "Resource Group",
   "description": "Azure resource group naming.",
-  "pattern": "[Prefix]-[Region]-[Environment]-[Workload]",
+  "pattern": "RG-[Region]-[Environment]-[Workload]",
   "fields": [
-    {
-      "name": "Prefix",
-      "label": "Prefix",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "RG",
-          "description": "Resource Group"
-        }
-      ],
-      "defaultValue": "RG"
-    },
     {
       "name": "Region",
       "defaultValue": "FRC",
@@ -30,6 +18,7 @@
     {
       "name": "Workload",
       "defaultValue": "AD",
+      "allowedValues": ["AD", "VNET", "WEBAPP", "LOGS", "BACKUP", "ERP", "CRM"],
       "allowCustomValue": true
     }
   ],
@@ -38,11 +27,11 @@
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Prefix","Region","Environment","Workload"],
+    "defaultSegments": ["Region","Environment","Workload"],
     "availableSegments": ["Custom"],
     "recommendedSegments": ["Workload"],
     "lockedSegments": ["Region","Environment"],
-    "fixedFirstSegments": ["Prefix"],
+    "fixedFirstSegments": [],
     "fixedLastSegments": []
   },
   "validation": {

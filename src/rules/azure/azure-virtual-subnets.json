@@ -18,6 +18,7 @@
     {
       "name": "Workload",
       "defaultValue": "Subnet",
+      "allowedValues": ["Subnet"],
       "allowCustomValue": true
     },
     {

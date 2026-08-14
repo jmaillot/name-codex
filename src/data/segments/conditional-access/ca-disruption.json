@@ -1,0 +1,29 @@
+{
+  "name": "CA-Disruption",
+  "values": [
+    {
+      "value": "MFAOutage",
+      "description": "MFA Outage"
+    },
+    {
+      "value": "ExternalMFAOutage",
+      "description": "External MFA Outage"
+    },
+    {
+      "value": "DeviceComplianceOutage",
+      "description": "Device Compliance Outage"
+    },
+    {
+      "value": "IDProtectionOutage",
+      "description": "ID Protection Outage"
+    },
+    {
+      "value": "NamedLocationOutage",
+      "description": "Named Location Outage"
+    },
+    {
+      "value": "TrustedDevice",
+      "description": "Trusted Device"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "CA-Platforms",
+  "values": [
+    {
+      "value": "AllPlatforms",
+      "description": ""
+    },
+    {
+      "value": "Windows",
+      "description": ""
+    },
+    {
+      "value": "iOS",
+      "description": ""
+    },
+    {
+      "value": "macOS",
+      "description": ""
+    },
+    {
+      "value": "Linux",
+      "description": ""
+    }
+  ]
+}

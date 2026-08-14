@@ -1,0 +1,59 @@
+{
+  "id": "defender-antispam-policy",
+  "category": "Defender for M365",
+  "name": "Defender Anti-Spam Policy",
+  "description": "Anti-spam policy protecting against spam and phishing threats, directional inbound or outbound.",
+  "pattern": "DEF-ANTISPAM-[Direction]-[ScopeType]-[Descriptor]-[Environment]-[Version]",
+  "fields": [
+    {
+      "name": "Direction",
+      "label": "Direction",
+      "library": "defender/def-direction",
+      "defaultValue": "Inbound",
+      "allowedValues": ["Inbound", "Outbound"],
+      "allowCustomValue": false
+    },
+    {
+      "name": "ScopeType",
+      "label": "Scope",
+      "library": "intune/assignments",
+      "defaultValue": "AllUsers",
+      "allowedValues": ["AllUsers"],
+      "examples": ["AllUsers", "GroupName"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Descriptor",
+      "examples": ["Strict", "Baseline", "HighRisk"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Version",
+      "type": "text",
+      "defaultValue": "V1"
+    }
+  ],
+  "examples": [
+    "DEF-ANTISPAM-INBOUND-ALLUSERS-STRICT-PROD-V1"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Direction", "ScopeType", "Descriptor", "Environment", "Version"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Environment", "Version"],
+    "lockedSegments": ["Descriptor"],
+    "fixedFirstSegments": ["Direction", "ScopeType"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

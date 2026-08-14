@@ -1,0 +1,45 @@
+{
+  "name": "IntProfileType",
+  "values": [
+    {
+      "value": "AntivirusExperience",
+      "description": "Windows Security Experience"
+    },
+    {
+      "value": "Antivirus",
+      "description": "Microsoft Defender Antivirus"
+    },
+    {
+      "value": "AntivirusExclusions",
+      "description": "Microsoft Defender Antivirus Exclusions"
+    },
+    {
+      "value": "ASR",
+      "description": "Attack Surgace Reduction Rules"
+    },
+    {
+      "value": "Firewall",
+      "description": "Microsoft Defender Firewall"
+    },
+    {
+      "value": "FirewallRules",
+      "description": "Microsoft Defender Firewall Rules"
+    },
+    {
+      "value": "AntivirusUpdate",
+      "description": "Defender Update Control"
+    },
+    {
+      "value": "EDR",
+      "description": "Endpoint Detection and Response"
+    },
+    {
+      "value": "CUSTOM",
+      "description": "Custom Profile"
+    },
+    {
+      "value": "DeviceControl",
+      "description": "Device Control"
+    }
+  ]
+}

@@ -8,7 +8,9 @@
     {
       "name": "IntPrefix",
       "label": "Prefix",
-      "defaultValue": "MACFG"
+      "library": "intune/intune-prefix",
+      "defaultValue": "MACFG",
+      "allowedValues": ["MACFG"]
     },
     {
       "name": "ScopeTag",
@@ -18,38 +20,16 @@
     },
     {
       "name": "EnrollmentType",
-      "defaultValue": "Not selected",
+      "defaultValue": "",
       "type": "dropdown",
-      "values": [
-        {
-          "value": "ManagedDevices",
-          "description": ""
-        },
-        {
-          "value": "ManagedApps",
-          "description": ""
-        },
-        {
-          "value": "",
-          "description": "Not selected"
-        }
-      ],
+      "allowedValues": ["ManagedDevices", "ManagedApps"],
       "allowCustomValue": false
     },
     {
       "name": "Target",
       "defaultValue": "",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "iOS",
-          "description": "iPadOS"
-        },
-        {
-          "value": "Android",
-          "description": "Enterprise"
-        }
-      ],
+      "library": "core/operating-system",
+      "allowedValues": ["IOS", "AND"],
       "allowCustomValue": false
     },
     {

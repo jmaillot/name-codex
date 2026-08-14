@@ -17,8 +17,11 @@ export interface NamingField {
   multiSelect?: boolean;
   multiSeparator?: string;
   multiAllValue?: string;
+  multiExclusions?: string[][];
   library?: string;
   generator?: string;
+  allowedValues?: string[];
+  allowedValuesByField?: Record<string, Record<string, string[]>>;
   examples?: string[];
   tip?: string;
 }

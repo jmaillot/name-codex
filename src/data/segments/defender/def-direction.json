@@ -1,0 +1,13 @@
+{
+  "name": "Direction",
+  "values": [
+    {
+      "value": "Inbound",
+      "description": "Inbound messages"
+    },
+    {
+      "value": "Outbound",
+      "description": "Outbound messages"
+    }
+  ]
+}

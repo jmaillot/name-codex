@@ -1,14 +1,16 @@
 {
-  "id": "intune-configuration-policy",
+  "id": "intune-configuration-profile",
   "category": "Intune",
-  "name": "Configuration Policy",
+  "name": "Configuration Profile",
   "description": "Configuration profile that pushes settings to enrolled devices, such as Wi-Fi, VPN, email, or endpoint protection. Can also cover Intune scripts and remediation scripts.",
   "pattern": "[IntPrefix]-[ScopeTag]-[OS]-[Assignments]-[Descriptor]-[Environment]-[Version]",
   "fields": [
     {
       "name": "IntPrefix",
       "label": "Prefix",
-      "defaultValue": "CFG"
+      "library": "intune/intune-prefix",
+      "defaultValue": "CFG",
+      "allowedValues": ["CFG"]
     },
     {
       "name": "ScopeTag",
@@ -22,18 +24,9 @@
     },
     {
       "name": "Assignments",
+      "library": "intune/assignments",
       "defaultValue": "AllUsers",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "AllUsers",
-          "description": ""
-        },
-        {
-          "value": "AllDevices",
-          "description": ""
-        }
-      ],
+      "allowedValues": ["AllUsers", "AllDevices"],
       "examples": ["GroupName"],
       "allowCustomValue": true
     },

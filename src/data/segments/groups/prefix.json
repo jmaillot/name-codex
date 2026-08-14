@@ -1,0 +1,37 @@
+{
+  "name": "Prefix",
+  "values": [
+    {
+      "value": "DL",
+      "description": "Distribution List"
+    },
+    {
+      "value": "DYNDL",
+      "description": "Dynamic Distribution List"
+    },
+    {
+      "value": "M365",
+      "description": "Microsoft 365 Group"
+    },
+    {
+      "value": "O365",
+      "description": "Office 365 Group"
+    },
+    {
+      "value": "TEAM",
+      "description": "Team"
+    },
+    {
+      "value": "GSEC",
+      "description": "Security Group"
+    },
+    {
+      "value": "PIM",
+      "description": "Privileged Identity Group"
+    },
+    {
+      "value": "JIT",
+      "description": "Just-In-Time Group"
+    }
+  ]
+}

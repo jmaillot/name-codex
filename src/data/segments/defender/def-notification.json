@@ -1,0 +1,13 @@
+{
+  "name": "Notification",
+  "values": [
+    {
+      "value": "WithNotification",
+      "description": "End-user notifications enabled"
+    },
+    {
+      "value": "",
+      "description": "No notification"
+    }
+  ]
+}

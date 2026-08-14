@@ -7,40 +7,22 @@
   "fields": [
     {
       "name": "Location",
-      "defaultValue": "AAD"
+      "defaultValue": "AAD",
+      "allowedValues": ["AAD"]
     },
     {
       "name": "Prefix",
       "label": "Prefix",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "DL",
-          "description": "Distribution List"
-        },
-        {
-          "value": "DYNDL",
-          "description": "Dynamic Distribution List"
-        }
-      ],
+      "library": "groups/prefix",
       "defaultValue": "DL",
+      "allowedValues": ["DL", "DYNDL"],
       "allowCustomValue": true
     },
     {
       "name": "Scope",
       "label": "Scope",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "Internal",
-          "description": ""
-        },
-        {
-          "value": "External",
-          "description": ""
-        }
-      ],
-      "defaultValue": "Internal"
+      "defaultValue": "Internal",
+      "allowedValues": ["Internal", "External"]
     },
     {
       "name": "Department",
@@ -51,7 +33,6 @@
     {
       "name": "Purpose",
       "defaultValue": "",
-      "examples": ["Alerts", "Invoices"],
       "allowCustomValue": true
     }
   ],

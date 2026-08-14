@@ -7,15 +7,19 @@
     },
     {
       "value": "IT",
-      "description": ""
-    },
-    {
-      "value": "Finance",
-      "description": ""
+      "description": "Information Technology"
     },
     {
       "value": "HR",
       "description": "Human Resources"
+    },
+    {
+      "value": "FIN",
+      "description": "Finance"
+    },
+    {
+      "value": "OPS",
+      "description": "Operations"
     }
   ]
 }

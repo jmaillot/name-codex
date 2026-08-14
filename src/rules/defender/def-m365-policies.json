@@ -1,40 +1,23 @@
 {
-  "id": "defender-antiphish-policy",
-  "category": "Defender",
-  "name": "Defender AntiPhish Policy",
+  "id": "defender-m365-policy",
+  "category": "Defender for M365",
+  "name": "Defender for M365 - Other Policies Type",
   "description": "Protects against impersonation, spoofing, and phishing attacks targeting your recipients.",
-  "pattern": "[DefPrefix]-[DefPolicyType]-[ScopeType]-[Descriptor]-[Environment]-[Version]",
+  "pattern": "DEF-[DefPolicyType]-[ScopeType]-[Descriptor]-[Environment]-[Version]",
   "fields": [
-    {
-      "name": "DefPrefix",
-      "label": "Prefix",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "DEF",
-          "description": "Defender"
-        }
-      ],
-      "defaultValue": "DEF",
-      "allowCustomValue": false
-    },
     {
       "name": "DefPolicyType",
       "label": "PolicyType",
       "defaultValue": "AntiPhish",
+      "allowedValues": ["AntiPhish", "AntiMalware", "SafeAttachments", "SafeLinks"],
       "allowCustomValue": true
     },
     {
       "name": "ScopeType",
       "label": "Scope",
-      "type": "dropdown",
-      "defaultValue": "",
-      "values": [
-        {
-          "value": "AllUsers",
-          "description": ""
-        }
-      ],
+      "library": "intune/assignments",
+      "defaultValue": "AllUsers",
+      "allowedValues": ["AllUsers"],
       "examples": ["AllUsers", "GroupName"],
       "allowCustomValue": true
     },
@@ -59,11 +42,11 @@
   ],
   "builder": { 
     "separator": "-",
-    "defaultSegments": ["DefPrefix","DefPolicyType","ScopeType","Descriptor","Environment","Version"],
+    "defaultSegments": ["DefPolicyType","ScopeType","Descriptor","Environment","Version"],
     "availableSegments": ["Custom"],
     "recommendedSegments": ["Environment","Version"],
     "lockedSegments": ["Descriptor"],
-    "fixedFirstSegments": ["DefPrefix","DefPolicyType","ScopeType"],
+    "fixedFirstSegments": ["DefPolicyType","ScopeType"],
     "fixedLastSegments": []
   },
   "validation": {

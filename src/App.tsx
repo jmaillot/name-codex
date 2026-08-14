@@ -50,6 +50,10 @@ type CaPolicyIdGenerator = {
   type: "caPolicyId";
   ranges?: Record<string, CaPolicyRange>;
   personaRanges?: Record<string, string>;
+  personaSource?: string;
+  prefix?: string;
+  digits?: number;
+  defaultNumber?: string;
 };
 
 type SegmentGenerator = SequenceGenerator | CaPolicyIdGenerator;
@@ -161,6 +165,21 @@ function caPolicyIdRange(
   return (generator.ranges ?? caNumberingRanges)[rangeKey];
 }
 
+function caPolicyIdFallbackRange(
+  generator: CaPolicyIdGenerator
+): CaPolicyRange | undefined {
+  if (!generator.prefix) return undefined;
+  const digits = generator.digits ?? 3;
+  return {
+    label: generator.name ?? generator.prefix,
+    prefix: generator.prefix,
+    digits,
+    defaultNumber: generator.defaultNumber ?? "001",
+    min: 0,
+    max: Math.pow(10, digits) - 1,
+  };
+}
+
 function caPolicyIdOptionsForRange(
   generator: CaPolicyIdGenerator,
   rangeKey: string
@@ -175,6 +194,15 @@ function caPolicyIdOptionsForRange(
   });
 }
 
+function caPolicyIdPersonaSource(field: NamingField | undefined): string {
+  if (!field?.generator) return "Persona";
+
+  const generatorFile = getGeneratorFile(field.generator);
+  return generatorFile?.type === "caPolicyId"
+    ? generatorFile.personaSource ?? "Persona"
+    : "Persona";
+}
+
 function personaRangeKeyForField(
   field: NamingField | undefined,
   segments: BuilderSegment[]
@@ -184,7 +212,8 @@ function personaRangeKeyForField(
   const generatorFile = getGeneratorFile(field.generator);
   if (generatorFile?.type !== "caPolicyId") return undefined;
 
-  const persona = segments.find((s) => s.sourceName === "Persona")?.value;
+  const personaName = caPolicyIdPersonaSource(field);
+  const persona = segments.find((s) => s.sourceName === personaName)?.value;
   if (!persona) return undefined;
 
   const personaKey = persona.trim().toUpperCase();
@@ -196,6 +225,19 @@ function optionsForSegment(
   segments: BuilderSegment[]
 ): NamingFieldOption[] {
   const options = valuesForField(field);
+
+  const byField = field?.allowedValuesByField;
+  if (byField) {
+    for (const [depName, valueMap] of Object.entries(byField)) {
+      const depValue = segments.find((s) => s.sourceName === depName)?.value;
+      if (!depValue) continue;
+      const key = depValue.trim().toUpperCase();
+      const allowed = valueMap[key];
+      if (!allowed) continue;
+      const allowedSet = new Set(allowed.map((v) => v.toUpperCase()));
+      return options.filter((o) => allowedSet.has(optionValue(o).toUpperCase()));
+    }
+  }
 
   const rangeKey = personaRangeKeyForField(field, segments);
   if (!rangeKey) return options;
@@ -231,6 +273,26 @@ function optionLabel(value: NamingFieldOption): string {
 
 function patternToSegments(pattern: string): string[] {
   return (pattern.match(/\[[^\]]+\]/g) ?? []).map((segment) => segment.slice(1, -1));
+}
+
+type PatternToken = { type: "literal" | "segment"; value: string };
+
+function parsePattern(pattern: string): PatternToken[] {
+  const tokens: PatternToken[] = [];
+  const segmentRe = /\[[^\]]+\]/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  while ((match = segmentRe.exec(pattern))) {
+    if (match.index > lastIndex) {
+      tokens.push({ type: "literal", value: pattern.slice(lastIndex, match.index) });
+    }
+    tokens.push({ type: "segment", value: match[0].slice(1, -1) });
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < pattern.length) {
+    tokens.push({ type: "literal", value: pattern.slice(lastIndex) });
+  }
+  return tokens;
 }
 
 function getCategoryIcon(category: string) {
@@ -291,32 +353,34 @@ function fieldByName(fields: NamingField[], name: string): NamingField | undefin
 function valuesForField(field?: NamingField): NamingFieldOption[] {
   if (!field) return [];
 
-  if (field.values && field.values.length > 0) {
-    return field.values;
-  }
+  let options: NamingFieldOption[];
 
-  if (field.library) {
+  if (field.values && field.values.length > 0) {
+    options = field.values;
+  } else if (field.library) {
     const segmentFile = getSegmentFile(field.library);
 
-    if (segmentFile?.values?.length) {
-      return normalizeSegmentValues(segmentFile.values);
-    }
-  }
-
-  if (field.generator) {
+    options = segmentFile?.values?.length
+      ? normalizeSegmentValues(segmentFile.values)
+      : [];
+  } else if (field.generator) {
     const generatorFile = getGeneratorFile(field.generator);
 
-    if (generatorFile) {
-      return generateValues(generatorFile);
-    }
+    options = generatorFile ? generateValues(generatorFile) : [];
+  } else {
+    const legacyValues = segmentLibrary[field.name] ?? {};
+    options = Object.entries(legacyValues).map(([value, description]) => ({
+      value,
+      description,
+    }));
   }
 
-  const legacyValues = segmentLibrary[field.name] ?? {};
+  if (field.allowedValues?.length) {
+    const allowed = new Set(field.allowedValues);
+    options = options.filter((option) => allowed.has(optionValue(option)));
+  }
 
-  return Object.entries(legacyValues).map(([value, description]) => ({
-    value,
-    description,
-  }));
+  return options;
 }
 
 function defaultValueForField(field?: NamingField): string {
@@ -638,17 +702,50 @@ export default function App() {
       : selectedPattern?.examples?.[0] ??
         selectedConvention.examples?.[0];
   const separator = selectedConvention.builder?.separator ?? "-";
-  
-  const rawName = builderSegments
-    .map((segment) => segment.value.trim().toUpperCase())
-    .filter(Boolean)
-    .join(separator);
+
+  const patternTokens = parsePattern(activePattern);
+  const literalPrefixes = new Map<string, string>();
+  const patternSegmentOrder: string[] = [];
+  let pendingLiteral = "";
+  for (const token of patternTokens) {
+    if (token.type === "literal") {
+      pendingLiteral += token.value;
+    } else {
+      literalPrefixes.set(token.value, pendingLiteral);
+      patternSegmentOrder.push(token.value);
+      pendingLiteral = "";
+    }
+  }
+  const patternSuffix = pendingLiteral;
+  const lastPatternSegment = patternSegmentOrder[patternSegmentOrder.length - 1];
+
+  const rawName = normalizeName(
+    patternTokens
+      .map((token) => {
+        if (token.type === "literal") return token.value;
+        const seg = builderSegments.find((s) => s.sourceName === token.value);
+        return seg?.value.trim().toUpperCase() ?? "";
+      })
+      .join("")
+      .replace(/^[-.\s]+/, "")
+      .replace(/[-.\s]+$/, "")
+      .replace(/([-.\s])\1+/g, "$1"),
+    selectedConvention
+  );
 
   const generatedName = normalizeName(rawName, selectedConvention);
 
   const dynamicPattern = builderSegments
-    .map((segment) => `[${segment.sourceName}]`)
-    .join(separator);
+    .map((segment, index) => {
+      const prefix = literalPrefixes.get(segment.sourceName) ?? separator;
+      const suffix =
+        index === builderSegments.length - 1 &&
+        segment.sourceName === lastPatternSegment
+          ? patternSuffix
+          : "";
+      return `${prefix}[${segment.sourceName}]${suffix}`;
+    })
+    .join("");
 
   const patternModified = dynamicPattern !== activePattern;
 
@@ -712,11 +809,11 @@ export default function App() {
     setBuilderSegments((prev) => {
       const changed = prev.find((s) => s.key === key);
       const next = prev.map((s) => (s.key === key ? { ...s, value } : s));
+      const policyField = fieldByName(activeFields, "PolicyId");
+      const policy = next.find((s) => s.sourceName === "PolicyId");
 
-      if (changed?.sourceName === "Persona") {
-        const policy = next.find((s) => s.sourceName === "PolicyId");
+      if (policy && changed?.sourceName === caPolicyIdPersonaSource(policyField)) {
         if (policy) {
-          const policyField = fieldByName(activeFields, "PolicyId");
           const rangeKey = personaRangeKeyForField(policyField, next);
           const generatorFile = policyField?.generator ? getGeneratorFile(policyField.generator) : undefined;
           const range = rangeKey && generatorFile && generatorFile.type === "caPolicyId"
@@ -946,10 +1043,9 @@ const moveSegment = (index: number, direction: -1 | 1) =>
       if (!field?.customOnly || !field.generator) return undefined;
       const rangeKey = personaRangeKeyForField(field, builderSegments);
       const generatorFile = getGeneratorFile(field.generator);
-      if (rangeKey && generatorFile?.type === "caPolicyId") {
-        return caPolicyIdRange(generatorFile, rangeKey);
-      }
-      return undefined;
+      if (generatorFile?.type !== "caPolicyId") return undefined;
+      if (rangeKey) return caPolicyIdRange(generatorFile, rangeKey);
+      return caPolicyIdFallbackRange(generatorFile);
     })();
     const caPrefix = caRange?.prefix ?? "";
     const caDigits = caRange?.digits ?? 2;
@@ -1026,7 +1122,14 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                 } else if (allValue && code === allValue) {
                   next = [code];
                 } else {
-                  next = [...current.filter((x) => x !== allValue), code];
+                  let base = current.filter((x) => x !== allValue);
+                  const exclusionGroup = (field.multiExclusions ?? []).find((g) =>
+                    g.includes(code)
+                  );
+                  if (exclusionGroup) {
+                    base = base.filter((x) => !exclusionGroup.includes(x));
+                  }
+                  next = [...base, code];
                 }
                 updateSegmentValue(segment.key, next.join(separator));
               };
@@ -1035,6 +1138,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                   {options.map((v) => {
                     const code = optionValue(v);
                     const active = current.includes(code);
+                    const description = isDropdownValue(v) ? v.description : undefined;
                     return (
                       <button
                         key={code}
@@ -1043,7 +1147,12 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                         aria-pressed={active}
                         onClick={() => toggleMulti(code)}
                       >
-                        {optionLabel(v)}
+                        {optionValue(v)}
+                        {description ? (
+                          <span className="chip-tooltip" role="tooltip">
+                            {description}
+                          </span>
+                        ) : null}
                       </button>
                     );
                   })}

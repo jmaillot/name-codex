@@ -1,0 +1,17 @@
+{
+  "name": "AccessLevel",
+  "values": [
+    {
+      "value": "NoAccess",
+      "description": "No access to quarantined messages"
+    },
+    {
+      "value": "LimitedAccess",
+      "description": "Limited access to quarantined messages"
+    },
+    {
+      "value": "FullAccess",
+      "description": "Full access to quarantined messages"
+    }
+  ]
+}

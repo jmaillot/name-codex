@@ -1,0 +1,85 @@
+{
+  "id": "ca-emergency-policy",
+  "category": "Conditional Access",
+  "name": "Conditional Access Policy - Emergency",
+  "description": "Use for break-glass contingency policies. Keep in Report-Only mode until a disruption occurs.",
+  "pattern": "[PolicyId]-ENABLEINEMERGENCY-[CA-Disruption]-[CA-EmergencyApps]-[CA-Platforms]-[CA-Controls]-[CA-Conditions]",
+  "fields": [
+    {
+      "name": "PolicyId",
+      "label": "Policy",
+      "type": "text",
+      "generator": "ca-emergency-policy-id",
+      "customOnly": true,
+      "placeholder": "",
+      "examples": ["EM is fixed. Add the number, e.g. EM + 001 = EM001"],
+      "defaultValue": "EM001"
+    },
+    {
+      "name": "CA-Disruption",
+      "label": "Disruption",
+      "library": "conditional-access/ca-disruption",
+      "defaultValue": "MFAOutage",
+      "allowCustomValue": true,
+      "examples": ["Select the access control mechanism that is disrupted or unavailable"]
+    },
+    {
+      "name": "CA-EmergencyApps",
+      "label": "Applications",
+      "library": "conditional-access/ca-emergencyapps",
+      "defaultValue": "MissionCritical",
+      "allowCustomValue": true,
+      "examples": ["Fill out the scoped apps used by this contingency policy"]
+    },
+    {
+      "name": "CA-Platforms",
+      "label": "Platforms",
+      "library": "conditional-access/ca-platforms",
+      "multiSelect": true,
+      "multiAllValue": "AllPlatforms",
+      "defaultValue": "AllPlatforms"
+    },
+    {
+      "name": "CA-Controls",
+      "label": "Controls",
+      "library": "conditional-access/ca-controls",
+      "defaultValue": "MFA",
+      "multiSelect": true,
+      "multiExclusions": [
+        ["MFA", "MFASTRENGH"]
+      ],
+      "multiAllValue": "Block"
+    },
+    {
+      "name": "CA-Conditions",
+      "label": "Condition/When",
+      "library": "conditional-access/ca-conditions",
+      "defaultValue": "",
+      "allowCustomValue": true,
+      "multiSelect": true,
+      "multiExclusions": [
+        ["TrustedDevice", "NonTrustedDevice"],
+        ["TrustedLocation", "NonTrustedLocation"]
+      ],
+      "examples": ["Select one or put a custom condition"]
+    }
+  ],
+  "examples": [
+    "EM001-ENABLEINEMERGENCY-MFAOUTAGE-MISSIONCRITICAL-ALLPLATFORMS-MFA"
+  ],
+  "builder": { 
+    "separator": "-",
+    "defaultSegments": ["PolicyId","CA-Disruption","CA-EmergencyApps","CA-Platforms","CA-Controls","CA-Conditions"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [""],
+    "fixedFirstSegments": ["PolicyId","CA-Disruption","CA-EmergencyApps","CA-Platforms","CA-Controls","CA-Conditions"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

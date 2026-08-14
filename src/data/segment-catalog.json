@@ -154,6 +154,13 @@
     "tip": "Intune scope tag assigned to the policy."
   },
   {
+    "name": "IntProfileType",
+    "label": "IntProfileType",
+    "type": "dropdown",
+    "library": "intune/intune-endpointprofiletype",
+    "tip": "Intune endpoint security profile."
+  },
+  {
     "name": "DefPolicyType",
     "label": "DefPolicyType",
     "type": "dropdown",
@@ -161,10 +168,54 @@
     "tip": "Microsoft Defender policy type."
   },
   {
-    "name": "Persona",
-    "label": "Persona",
+    "name": "CA-Persona",
+    "label": "CA-Persona",
     "type": "dropdown",
-    "library": "conditional-access/persona",
+    "library": "conditional-access/ca-persona",
     "tip": "User type."
+  },
+  {
+    "name": "CA-Applications",
+    "label": "CA-Applications",
+    "type": "dropdown",
+    "library": "conditional-access/ca-apps",
+    "tip": "Scoped Apps."
+  },
+  {
+    "name": "CA-Platforms",
+    "label": "CA-Platforms",
+    "type": "dropdown",
+    "library": "conditional-access/ca-platforms",
+    "tip": "Scoped Platforms."
+  },
+  {
+    "name": "CA-Conditions",
+    "label": "CA-Conditions",
+    "type": "dropdown",
+    "library": "conditional-access/ca-conditions",
+    "tip": "Conditions where CA must apply."
+  },
+  {
+    "name": "CA-Controls",
+    "label": "CA-Controls",
+    "type": "dropdown",
+    "library": "conditional-access/ca-controls",
+    "tip": "Conditional Access Grant Policy"
+  },
+  {
+    "name": "CA-Disruption",
+    "label": "CA-Disruption",
+    "type": "dropdown",
+    "library": "conditional-access/ca-disruption",
+    "tip": "The access control mechanism that is disrupted or unavailable"
+  },
+  {
+    "name": "CA-EmergencyApps",
+    "label": "CA-EmergencyApps",
+    "type": "dropdown",
+    "library": "conditional-access/ca-emergencyapps",
+    "tip": "The application or group of applications this contingency policy applies to"
   }
 ]
+
+

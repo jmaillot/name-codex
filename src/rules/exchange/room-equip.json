@@ -8,15 +8,13 @@
   "fields": [
     {
       "name": "MailboxType",
-      "defaultValue": "Room"
+      "defaultValue": "Room",
+      "allowedValues": ["Room", "Equip"]
     },
     {
       "name": "Department",
       "label": "Department",
       "type": "dropdown",
-      "values": [
-        ""
-      ],
       "defaultValue": "",
       "examples": ["HR", "IT", "FIN", "OPS"],
       "allowCustomValue": true
@@ -24,10 +22,6 @@
     {
       "name": "City",
       "label": "City",
-      "type": "dropdown",
-      "values": [
-        ""
-      ],
       "defaultValue": "",
       "examples": ["Lille", "Paris"],
       "allowCustomValue": true
@@ -35,10 +29,6 @@
     {
       "name": "Floor",
       "label": "Floor",
-      "type": "dropdown",
-      "values": [
-        ""
-      ],
       "defaultValue": "",
       "examples": ["1st Floor"],
       "allowCustomValue": true
@@ -46,10 +36,6 @@
     {
       "name": "Name",
       "label": "Name / Number",
-      "type": "dropdown",
-      "values": [
-        ""
-      ],
       "defaultValue": "",
       "allowCustomValue": true
     }

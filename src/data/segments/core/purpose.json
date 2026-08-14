@@ -16,6 +16,14 @@
     {
       "value": "LIC",
       "description": "Licence Assignment"
+    },
+    {
+      "value": "ADM",
+      "description": "Administration"
+    },
+    {
+      "value": "AppAccess",
+      "description": "Application Access"
     }
   ]
 }

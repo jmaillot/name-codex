@@ -18,40 +18,16 @@
     {
       "name": "Workload",
       "label": "Workload",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "VNET",
-          "description": ""
-        }
-      ],
       "defaultValue": "VNET",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Environment",
-      "defaultValue": "PROD",
+      "allowedValues": ["VNET"],
       "allowCustomValue": true
     },
     {
       "name": "Instance",
       "label": "Instance",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "001",
-          "description": "Default"
-        },
-        {
-          "value": "002",
-          "description": ""
-        },
-        {
-          "value": "003",
-          "description": ""
-        }
-      ],
+      "library": "core/instance",
       "defaultValue": "001",
+      "allowedValues": ["001", "002", "003"],
       "allowCustomValue": true
     },
     {

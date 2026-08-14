@@ -1,6 +1,7 @@
 {
   "name": "PolicyId",
   "type": "caPolicyId",
+  "personaSource": "CA-Persona",
   "personaRanges": {
     "ALLUSERS": "Global",
     "EMPLOYEES": "Internals",

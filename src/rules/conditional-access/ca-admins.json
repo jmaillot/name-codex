@@ -1,0 +1,179 @@
+{
+  "id": "ca-admins",
+  "category": "Conditional Access",
+  "name": "Admins Policy",
+  "description": "Conditional Access policy targeting administrators.",
+  "pattern": "[PolicyId]-[Persona]-[Application]-[Platform]-[Condition]-[Control]-[Environment]",
+  "fields": [
+    {
+      "name": "PolicyId",
+      "label": "PolicyId",
+      "type": "dropdown",
+      "values": [
+        "CA001",
+        "CA101",
+        "CA201",
+        "CA301",
+        "CA401",
+        "CA501",
+        "CA601",
+        "CA701",
+        "CA801",
+        "CA901",
+        "CA1000"
+      ],
+      "defaultValue": "CA001"
+    },
+    {
+      "name": "Persona",
+      "label": "Persona",
+      "type": "dropdown",
+      "values": [
+        "ALLUSERS",
+        "EMPLOYEES",
+        "ADMINS",
+        "GUESTS",
+        "BYOD",
+        "BREAKGLASS",
+        "INTERNALS",
+        "EXTERNALS",
+        "SERVICEACCOUNTS",
+        "AZURESERVICEACCOUNTS",
+        "CORPSERVICEACCOUNTS",
+        "WORKLOADS",
+        "DEVELOPERS"
+      ],
+      "defaultValue": "ALLUSERS"
+    },
+    {
+      "name": "Application",
+      "label": "Application",
+      "type": "dropdown",
+      "values": [
+        "ALLAPPS",
+        "OFFICE365",
+        "EXCHANGE",
+        "SHAREPOINT",
+        "TEAMS",
+        "MOBILEAPPS"
+      ],
+      "defaultValue": "ALLAPPS"
+    },
+    {
+      "name": "Platform",
+      "label": "Platform",
+      "type": "dropdown",
+      "values": [
+        "ALLPLATFORMS",
+        "WINDOWS",
+        "WIN",
+        "IOS",
+        "ANDROID",
+        "MACOS",
+        "LINUX",
+        "MOBILE",
+        "BROWSER"
+      ],
+      "defaultValue": "ALLPLATFORMS"
+    },
+    {
+      "name": "Condition",
+      "label": "Condition",
+      "type": "dropdown",
+      "values": [
+        "ANY",
+        "EXTERNAL",
+        "INTERNAL",
+        "LEGACYAUTH",
+        "RISKY",
+        "TRUSTED"
+      ],
+      "defaultValue": "ANY"
+    },
+    {
+      "name": "Control",
+      "label": "Control",
+      "type": "dropdown",
+      "values": [
+        "MFA",
+        "BLOCK",
+        "COMPLIANT",
+        "MAM",
+        "PHISHRESISTANT",
+        "SESSION"
+      ],
+      "defaultValue": "MFA"
+    },
+    {
+      "name": "Environment",
+      "label": "Environment",
+      "type": "dropdown",
+      "values": [
+        "PROD",
+        "PREPROD",
+        "TEST",
+        "DEV"
+      ],
+      "defaultValue": "PROD"
+    }
+  ],
+  "examples": [
+    "CA101-ADMINS-ALLAPPS-ALLPLATFORMS-EXTERNAL-MFA-PROD"
+  ],
+  "builder": {
+    "defaultSegments": [
+      "PolicyId",
+      "Persona",
+      "Application",
+      "Platform",
+      "Condition",
+      "Control",
+      "Environment"
+    ],
+    "availableSegments": [
+      "Action",
+      "AppName",
+      "Application",
+      "BusinessUnit",
+      "Condition",
+      "Control",
+      "Department",
+      "Environment",
+      "Instance",
+      "Intent",
+      "Location",
+      "MembershipType",
+      "ObjectType",
+      "Persona",
+      "Platform",
+      "PolicyFamily",
+      "PolicyId",
+      "Prefix",
+      "Purpose",
+      "Region",
+      "Role",
+      "Scope",
+      "Sensitivity",
+      "Target",
+      "Workload"
+    ],
+    "recommendedSegments": [
+      "PolicyId",
+      "Persona",
+      "Application",
+      "Platform",
+      "Condition",
+      "Control",
+      "Environment"
+    ],
+    "lockedSegments": [
+      "PolicyId"
+    ]
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$",
+    "requireLockedSegments": true,
+    "requireRecommendedSegments": false
+  }
+}

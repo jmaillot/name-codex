@@ -1,6 +1,13 @@
-import { useEffect, useMemo, useState } from "react";
-import { Cloud, ShieldCheck, Mail, Users, MonitorSmartphone, Shield, ArrowUp, ArrowDown, X, Pin, Lock, Star } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { ArrowUp, ArrowDown, X, Pin, Lock, Star } from "lucide-react";
 import logo from "./assets/name-codex.svg";
+import iconAzure from "./assets/icons/azure.svg";
+import iconEntraId from "./assets/icons/entra-id.svg";
+import iconExchange from "./assets/icons/exchange.svg";
+import iconGroups from "./assets/icons/groups.svg";
+import iconIntune from "./assets/icons/intune.svg";
+import iconConditionalAccess from "./assets/icons/conditional-access.svg";
+import iconDefender from "./assets/icons/defender.svg";
 import type { DropdownValue, NamingConvention, NamingField, NamingFieldOption } from "./types/Rule";
 import segmentLibraryData from "./data/segment-library.json";
 import segmentCatalogData from "./data/segment-catalog.json";
@@ -173,28 +180,18 @@ function patternToSegments(pattern: string): string[] {
 }
 
 function getCategoryIcon(category: string) {
-  switch (category) {
-    case "Azure":
-      return <Cloud size={16} />;
-
-    case "Entra ID":
-      return <ShieldCheck size={16} />;
-
-    case "Exchange":
-      return <Mail size={16} />;
-
-    case "Groups":
-      return <Users size={16} />;
-
-    case "Intune":
-      return <MonitorSmartphone size={16} />;
-
-    case "Conditional Access Policy":
-      return <Shield size={16} />;
-
-    default:
-      return <Cloud size={16} />;
-  }
+  const icons: Record<string, string> = {
+    Azure: iconAzure,
+    "Entra ID": iconEntraId,
+    Exchange: iconExchange,
+    Groups: iconGroups,
+    Intune: iconIntune,
+    "Conditional Access": iconConditionalAccess,
+    "Conditional Access Policy": iconConditionalAccess,
+    Defender: iconDefender,
+  };
+  const src = icons[category] ?? iconAzure;
+  return <img src={src} alt="" className="category-icon" />;
 }
 
 function getCategoryClass(category: string): string {
@@ -214,6 +211,7 @@ function getCategoryClass(category: string): string {
     case "Intune":
       return "intune-icon";
 
+    case "Conditional Access":
     case "Conditional Access Policy":
       return "ca-icon";
 
@@ -380,9 +378,41 @@ function governanceScore(results: ValidationResult[]): number {
 }
 
 function InfoIcon({ text }: { text: string }) {
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
   return (
-    <span className="info-wrapper">
-      <button type="button" className="info-icon" aria-label={text}>i</button>
+    <span
+      ref={wrapperRef}
+      className={`info-wrapper${open ? " open" : ""}`}
+    >
+      <button
+        type="button"
+        className="info-icon"
+        aria-label={text}
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+      >
+        i
+      </button>
       <span className="tooltip" role="tooltip">{text}</span>
     </span>
   );
@@ -473,6 +503,18 @@ export default function App() {
     () => selectedPattern?.fixedValues ?? {},
     [selectedPattern]
   );
+
+  useEffect(() => {
+    const onScroll = () => {
+      document.body.classList.toggle("scrolled", window.scrollY > 8);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.body.classList.remove("scrolled");
+    };
+  }, []);
 
   useEffect(() => {
     if (!selectedConvention?.patterns?.length) {
@@ -1148,11 +1190,17 @@ const moveSegment = (index: number, direction: -1 | 1) =>
             </div>
           </div>
 
-          <div className="glass-card score-card">
-            <div className="card-header">
+          <details
+            className="glass-card score-card"
+            open={namingScore < 100 ? true : undefined}
+          >
+            <summary className="azure-summary">
               <CardTitle title="Governance Score" info="Score based on locked segments, recommended segments, validation rules, length, and characters." />
-              <span className="score-pill">{namingScore}/100</span>
-            </div>
+              <span className="summary-actions">
+                <span className="score-pill">{namingScore}/100</span>
+                <span className="summary-chevron">⌄</span>
+              </span>
+            </summary>
             <div className="score-bar"><div style={{ width: `${namingScore}%` }} /></div>
             <ul className="check-list">
               {validationResults.map((r) => (
@@ -1161,7 +1209,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                 </li>
               ))}
             </ul>
-          </div>
+          </details>
 
           <details className="glass-card documentation-card">
             <summary className="azure-summary">
@@ -1197,21 +1245,47 @@ const moveSegment = (index: number, direction: -1 | 1) =>
             )}
           </details>
 
-          <div className="glass-card history-card">
-            <div className="card-header">
+          <details className="glass-card history-card">
+            <summary className="azure-summary">
               <CardTitle title="Favorites" info="Locally saved favorite generated names." />
-              <button className="text-button" onClick={clearFavorites}>Clear</button>
-            </div>
+              <span className="summary-actions">
+                <button
+                  type="button"
+                  className="text-button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    clearFavorites();
+                  }}
+                >
+                  Clear
+                </button>
+                <span className="summary-chevron">⌄</span>
+              </span>
+            </summary>
             {favorites.length === 0 ? <p className="section-note">No favorites yet.</p> : <ul>{favorites.map((item) => <li key={item}>{item}</li>)}</ul>}
-          </div>
+          </details>
 
-          <div className="glass-card history-card">
-            <div className="card-header">
+          <details className="glass-card history-card">
+            <summary className="azure-summary">
               <CardTitle title="History" info="Names copied recently from this browser session." />
-              <button className="text-button" onClick={clearHistory}>Clear</button>
-            </div>
+              <span className="summary-actions">
+                <button
+                  type="button"
+                  className="text-button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    clearHistory();
+                  }}
+                >
+                  Clear
+                </button>
+                <span className="summary-chevron">⌄</span>
+              </span>
+            </summary>
             {history.length === 0 ? <p className="section-note">No names generated yet.</p> : <ul>{history.map((item) => <li key={item}>{item}</li>)}</ul>}
-          </div>
+          </details>
         </section>
         <footer className="footer">Name Codex · Microsoft 365 &amp; Azure Naming Standards · by jmaillot</footer>
       </main>

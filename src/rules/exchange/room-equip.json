@@ -36,8 +36,22 @@
     {
       "name": "Name",
       "label": "Name / Number",
-      "defaultValue": "",
-      "allowCustomValue": true
+      "type": "dropdown",
+      "values": [
+        {
+          "value": "001",
+          "description": "Default"
+        },
+        {
+          "value": "002",
+          "description": ""
+        },
+        {
+          "value": "003",
+          "description": ""
+        }
+      ],
+      "defaultValue": "001"
     }
   ],
   "examples": [

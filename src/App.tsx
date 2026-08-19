@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ArrowUp, ArrowDown, X, Pin, Lock, Star } from "lucide-react";
 import logo from "./assets/name-codex.svg";
 import iconAzure from "./assets/icons/azure.svg";
@@ -12,7 +13,12 @@ import type { DropdownValue, NamingConvention, NamingField, NamingFieldOption } 
 import segmentCatalogData from "./data/segment-catalog.json";
 import validationRulesData from "./data/validation-rules.json";
 import caNumberingRangesData from "./data/ca-numbering-ranges.json";
+import i18n, { setLanguage } from "./i18n";
 import "./App.css";
+
+function tl(key: string, fallback: string, vars?: Record<string, string | number>): string {
+  return i18n.t(key, { defaultValue: fallback, ...vars });
+}
 
 type SegmentValue = {
   value: string;
@@ -135,7 +141,7 @@ function generateCaPolicyIds(generator: CaPolicyIdGenerator): NamingFieldOption[
 
         return {
           value,
-          description: range.label,
+          description: tl(`data.caRange.${range.label}`, range.label),
         };
       }
     )
@@ -186,7 +192,7 @@ function caPolicyIdOptionsForRange(
   return Array.from({ length: range.max - range.min + 1 }, (_, index) => {
     const number = range.min + index;
     const value = `${range.prefix}${String(number).padStart(range.digits, "0")}`;
-    return { value, description: range.label };
+    return { value, description: tl(`data.caRange.${range.label}`, range.label) };
   });
 }
 
@@ -262,9 +268,43 @@ function optionValue(value: NamingFieldOption): string {
   return isDropdownValue(value) ? value.value : value;
 }
 
-function optionLabel(value: NamingFieldOption): string {
+function optionLabel(value: NamingFieldOption, field?: NamingField): string {
   if (!isDropdownValue(value)) return value;
-  return value.description ? `${value.value} - ${value.description}` : value.value;
+  const description = field
+    ? valueDescription(field, value)
+    : (value.description ?? "");
+  return description ? `${value.value} - ${description}` : value.value;
+}
+
+function fieldLabel(field: NamingField | undefined, fallback: string): string {
+  if (!field) return fallback;
+  return tl(`data.field.${field.name}.label`, fallback);
+}
+
+function fieldTip(field: NamingField | undefined, fallback: string): string {
+  if (!field?.tip) return fallback;
+  return tl(`data.field.${field.name}.tip`, fallback);
+}
+
+function valueDescription(field: NamingField | undefined, value: NamingFieldOption): string {
+  if (!isDropdownValue(value)) return "";
+  const code = optionValue(value);
+  const fallback = value.description ?? "";
+  if (field?.library) return tl(`data.lib.${field.library}.${code}`, fallback);
+  if (field?.name) return tl(`data.value.${field.name}.${code}`, fallback);
+  return fallback;
+}
+
+function conventionName(convention: NamingConvention): string {
+  return tl(`data.rule.${convention.id}.name`, convention.name);
+}
+
+function conventionDescription(convention: NamingConvention): string {
+  return tl(`data.rule.${convention.id}.description`, convention.description);
+}
+
+function patternName(convention: NamingConvention, pattern: { id: string; name: string }): string {
+  return tl(`data.rule.${convention.id}.pattern.${pattern.id}.name`, pattern.name);
 }
 
 function patternToSegments(pattern: string): string[] {
@@ -415,7 +455,7 @@ function buildSegments(
     return {
       key: `${name}-${index}-${Date.now()}`,
       sourceName: name,
-      label: field?.label ?? name,
+      label: fieldLabel(field, field?.label ?? name),
       value: fixedValues[name] ?? defaultValueForField(field),
       custom: !field,
     };
@@ -463,21 +503,21 @@ function validateName(name: string, convention: NamingConvention, segments: Buil
   const rule = validationRules?.[convention.category]?.[convention.name] ?? convention.validation ?? validationRules.default;
   const names = segments.map((s) => s.sourceName);
   const results: ValidationResult[] = [
-    { label: "Generated name is not empty", valid: name.length > 0 },
-    { label: "All segments are filled", valid: segments.every((s) => s.value.trim().length > 0) },
-    { label: `Length is ${rule.maxLength ?? 128} characters or less`, valid: name.length <= (rule.maxLength ?? 128) },
+    { label: tl("ui.valEmpty", "Generated name is not empty"), valid: name.length > 0 },
+    { label: tl("ui.valFilled", "All segments are filled"), valid: segments.every((s) => s.value.trim().length > 0) },
+    { label: tl("ui.valLength", `Length is ${rule.maxLength ?? 128} characters or less`, { max: rule.maxLength ?? 128 }), valid: name.length <= (rule.maxLength ?? 128) },
     {
-      label: "Allowed characters are respected",
+      label: tl("ui.valAllowed", "Allowed characters are respected"),
       valid: new RegExp(rule.allowedPattern ?? "^[A-Za-z0-9_.-]+$").test(name) || name.length === 0,
     },
   ];
 
   (convention.builder?.lockedSegments ?? []).forEach((s: string) =>
-    results.push({ label: `Locked segment present: ${s}`, valid: names.includes(s) }),
+    results.push({ label: tl("ui.valLockedPresent", `Locked segment present: ${s}`, { name: s }), valid: names.includes(s) }),
   );
 
   (convention.builder?.recommendedSegments ?? []).forEach((s: string) =>
-    results.push({ label: `Recommended segment present: ${s}`, valid: names.includes(s) }),
+    results.push({ label: tl("ui.valRecommendedPresent", `Recommended segment present: ${s}`, { name: s }), valid: names.includes(s) }),
   );
 
   return results;
@@ -539,6 +579,7 @@ function CardTitle({ title, info }: { title: string; info: string }) {
 }
 
 export default function App() {
+  const { i18n } = useTranslation();
   const [history, setHistory] = useState<string[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [lastObjectByCategory, setLastObjectByCategory] = useState<Record<string, string>>({});
@@ -568,12 +609,12 @@ export default function App() {
 
     return conventionsForCategory.filter(
       (item) =>
-        item.name.toLowerCase().includes(query) ||
-        item.description.toLowerCase().includes(query) ||
+        conventionName(item).toLowerCase().includes(query) ||
+        conventionDescription(item).toLowerCase().includes(query) ||
         item.id.toLowerCase().includes(query) ||
         (item.pattern ?? "").toLowerCase().includes(query)
     );
-  }, [conventionsForCategory, objectSearch]);
+  }, [conventionsForCategory, objectSearch, i18n.language]);
 
   const selectedConvention =
     conventionsForCategory.find((item) => item.id === selectedConventionId) ??
@@ -588,8 +629,8 @@ export default function App() {
     selectedConvention?.patterns?.[0];
 
   const activeDescription =
-    selectedPattern?.description ??
-    selectedConvention.description;
+    selectedPattern?.description ?? selectedConvention.description;
+  const activeDescriptionLabel = tl(`data.rule.${selectedConvention.id}.description`, activeDescription);
 
   const activeFields = useMemo(
     () =>
@@ -682,6 +723,7 @@ export default function App() {
     activeDefaultSegments,
     activeFields,
     activeFixedValues,
+    i18n.language,
   ]);
 
   useEffect(() => {
@@ -755,39 +797,39 @@ export default function App() {
   const namingScore = governanceScore(validationResults);
 
   const markdown = [
-    `# ${selectedConvention.category} - ${selectedConvention.name}`,
+    `# ${conventionName(selectedConvention)}`,
     "",
-    "## Generated name",
-    generatedName || "Not generated",
+    `## ${tl("ui.mdGeneratedName", "Generated name")}`,
+    generatedName || tl("ui.mdNotGenerated", "Not generated"),
     "",
-    "## Pattern",
+    `## ${tl("ui.mdPattern", "Pattern")}`,
     activePattern,
     "",
-    "## Example",
-    selectedExample ?? "No example defined",
+    `## ${tl("ui.mdExample", "Example")}`,
+    selectedExample ?? tl("ui.mdNoExample", "No example defined"),
     "",
-    "## Segments",
-    "| Segment | Value | Status |",
+    `## ${tl("ui.mdSegments", "Segments")}`,
+    `| ${tl("ui.mdSegmentCol", "Segment")} | ${tl("ui.mdValueCol", "Value")} | ${tl("ui.mdStatusCol", "Status")} |`,
     "|---|---|---|",
     ...builderSegments.map(
       (s) =>
-        `| ${s.label} | ${s.value || "<empty>"} | ${
+        `| ${s.label} | ${s.value || tl("ui.mdEmpty", "<empty>")} | ${
           isFixedFirst(selectedConvention, s.sourceName)
-            ? "Fixed"
+            ? tl("ui.mdFixed", "Fixed")
             : isFixedLast(selectedConvention, s.sourceName)
-              ? "Fixed"
+              ? tl("ui.mdFixed", "Fixed")
               : isLocked(selectedConvention, s.sourceName)
-                ? "Locked"
+                ? tl("ui.mdLocked", "Locked")
                 : isRecommended(selectedConvention, s.sourceName)
-                  ? "Recommended"
+                  ? tl("ui.mdRecommended", "Recommended")
                   : s.custom
-                    ? "Custom"
-                    : "Optional"
+                    ? tl("ui.mdCustom", "Custom")
+                    : tl("ui.mdOptional", "Optional")
         } |`,
     ),
     "",
-    "## Validation",
-    ...validationResults.map((r) => `- ${r.valid ? "OK" : "WARN"} ${r.label}`),
+    `## ${tl("ui.mdValidation", "Validation")}`,
+    ...validationResults.map((r) => `- ${r.valid ? tl("ui.mdOk", "OK") : tl("ui.mdWarn", "WARN")} ${r.label}`),
   ].join("\n");
 
   const referenceEntries = builderSegments
@@ -800,7 +842,7 @@ export default function App() {
           const code = optionValue(value);
           return {
             code,
-            meaning: isDropdownValue(value) ? value.description ?? "" : "",
+            meaning: valueDescription(field, value),
           };
         }),
       };
@@ -1010,12 +1052,12 @@ const moveSegment = (index: number, direction: -1 | 1) =>
               key={optionValue(v)}
               value={optionValue(v)}
             >
-              {optionLabel(v)}
+              {optionLabel(v, field)}
             </option>
           ))}
 
           <option value="__CUSTOM__">
-            Custom...
+            {tl("ui.customOption", "Custom...")}
           </option>
         </select>
 
@@ -1027,7 +1069,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
             }
             placeholder={
               isCustomValue && field.examples?.length
-                ? `e.g. ${field.examples.slice(0, 2).join(", ")}...`
+                ? tl("ui.customExample", `e.g. ${field.examples.slice(0, 2).join(", ")}...`, { examples: field.examples.slice(0, 2).join(", ") })
                 : field.placeholder ?? segment.label
             }
             disabled={!isCustomValue}
@@ -1081,16 +1123,16 @@ const moveSegment = (index: number, direction: -1 | 1) =>
           className={`builder-handle ${statusClass}`}
           title={
             fixedFirst
-              ? "Fixed segment"
+              ? tl("ui.segFixed", "Fixed segment")
               : fixedLast
-                ? "Fixed segment"
+                ? tl("ui.segFixed", "Fixed segment")
                 : locked
-                  ? "Locked segment"
+                  ? tl("ui.segLocked", "Locked segment")
                   : recommended
-                    ? "Recommended segment"
+                    ? tl("ui.segRecommended", "Recommended segment")
                     : segment.custom
-                      ? "Custom segment"
-                      : "Optional segment"
+                      ? tl("ui.segCustom", "Custom segment")
+                      : tl("ui.segOptional", "Optional segment")
           }
         >
           {fixedFirst ? (
@@ -1108,7 +1150,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
 
         <div className="builder-label">
           {segment.label}
-          {field?.tip && <InfoIcon text={field.tip} />}
+          {field?.tip && <InfoIcon text={fieldTip(field, field.tip)} />}
         </div>
 
         <div className="builder-editor">
@@ -1140,7 +1182,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                   {options.map((v) => {
                     const code = optionValue(v);
                     const active = current.includes(code);
-                    const description = isDropdownValue(v) ? v.description : undefined;
+                    const description = valueDescription(field, v) || undefined;
                     return (
                       <button
                         key={code}
@@ -1186,7 +1228,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                     updateSegmentValue(segment.key, caPrefix + normalized);
                   }}
                   placeholder={caDefaultNumber}
-                  aria-label={`${segment.label} number`}
+                  aria-label={tl("ui.segmentNumber", `${segment.label} number`, { label: segment.label })}
                 />
               </div>
             ) : (
@@ -1195,7 +1237,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                 onChange={(e) => updateSegmentValue(segment.key, e.target.value)}
                 placeholder={
                   field?.examples?.length
-                    ? `e.g. ${field.examples.slice(0, 3).join(", ")}...`
+                    ? tl("ui.customExample", `e.g. ${field.examples.slice(0, 3).join(", ")}...`, { examples: field.examples.slice(0, 3).join(", ") })
                     : field?.placeholder ?? segment.label
                 }
               />
@@ -1209,7 +1251,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
             >
               {options.map((v) => (
                 <option key={optionValue(v)} value={optionValue(v)}>
-                  {optionLabel(v)}
+                  {optionLabel(v, field)}
                 </option>
               ))}
             </select>
@@ -1219,7 +1261,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
               onChange={(e) => updateSegmentValue(segment.key, e.target.value)}
               placeholder={
                 field?.examples?.length
-                  ? `e.g. ${field.examples.slice(0, 3).join(", ")}...`
+                  ? tl("ui.customExample", `e.g. ${field.examples.slice(0, 3).join(", ")}...`, { examples: field.examples.slice(0, 3).join(", ") })
                   : field?.placeholder ?? segment.label
               }
             />
@@ -1231,7 +1273,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
             type="button"
             disabled={protectedSegment}
             onClick={() => moveSegment(index, -1)}
-            title="Move up"
+            title={tl("ui.moveUp", "Move up")}
           >
             <ArrowUp size={16} strokeWidth={2.2} />
           </button>
@@ -1240,7 +1282,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
             type="button"
             disabled={protectedSegment}
             onClick={() => moveSegment(index, 1)}
-            title="Move down"
+            title={tl("ui.moveDown", "Move down")}
           >
             <ArrowDown size={16} strokeWidth={2.2} />
           </button>
@@ -1249,7 +1291,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
             type="button"
             disabled={protectedSegment}
             onClick={() => removeSegment(segment.key)}
-            title="Remove segment"
+            title={tl("ui.removeSegment", "Remove segment")}
           >
             <X size={16} strokeWidth={2.2} />
           </button>
@@ -1264,7 +1306,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
     return acc;
   }, {});
 
-  if (!selectedConvention) return <div className="app-shell empty-state">No naming rules found.</div>;
+  if (!selectedConvention) return <div className="app-shell empty-state">{tl("ui.emptyRules", "No naming rules found.")}</div>;
 
   return (
     <div className="app-shell">
@@ -1274,11 +1316,11 @@ const moveSegment = (index: number, direction: -1 | 1) =>
           <div className="brand-divider" />
           <div>
             <div className="brand-title">Name Codex</div>
-            <div className="brand-subtitle">Naming Governance App</div>
+            <div className="brand-subtitle">{tl("ui.appTagline", "Naming Governance App")}</div>
           </div>
           <div className="brand-divider" />
         </div>
-        <div className="nav-section-title">Categories</div>
+        <div className="nav-section-title">{tl("ui.categories", "Categories")}</div>
         <div className="nav-list">
           {categories.map((c) => (
             <button key={c} className={`nav-item ${selectedCategory === c ? "active" : ""}`} onClick={() => setSelectedCategory(c)}>
@@ -1295,23 +1337,40 @@ const moveSegment = (index: number, direction: -1 | 1) =>
       </aside>
 
       <main className="main-panel">
+        <div className="lang-switcher" role="group" aria-label="Language">
+          {[
+            { code: "en", flag: "🇬🇧", title: "English" },
+            { code: "fr", flag: "🇫🇷", title: "Français" },
+          ].map(({ code, flag, title }) => (
+            <button
+              key={code}
+              type="button"
+              className={`lang-btn${i18n.language.startsWith(code) ? " active" : ""}`}
+              onClick={() => setLanguage(code)}
+              title={title}
+              aria-label={title}
+            >
+              {flag}
+            </button>
+          ))}
+        </div>
         <section className="workspace-stack">
           <div className="glass-card configure-card compact-config">
             <div className="card-header">
               <CardTitle
-                title="Configure"
-                info="Filter and select an object type from the current category."
+                title={tl("ui.configure", "Configure")}
+                info={tl("ui.configureInfo", "Filter and select an object type from the current category.")}
               />
             </div>
 
             <div className={`compact-selector-grid ${ hasPatterns ? "has-patterns" : "no-patterns" }`}>
               <div className="field-block selector-filter">
-                <label>Filter</label>
+                <label>{tl("ui.filter", "Filter")}</label>
                 <div className="filter-field">
                   <input
                     value={objectSearch}
                     onChange={(e) => setObjectSearch(e.target.value)}
-                    placeholder="Filter..."
+                    placeholder={tl("ui.filterPlaceholder", "Filter...")}
                   />
 
                   {objectSearch && (
@@ -1319,7 +1378,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                       type="button"
                       className="filter-clear"
                       onClick={() => setObjectSearch("")}
-                      aria-label="Clear filter"
+                      aria-label={tl("ui.clearFilter", "Clear filter")}
                     >
                       ×
                     </button>
@@ -1328,14 +1387,14 @@ const moveSegment = (index: number, direction: -1 | 1) =>
               </div>
 
               <div className="field-block selector-object">
-                <label>Object Type</label>
+                <label>{tl("ui.objectType", "Object Type")}</label>
                 <select
                   value={selectedConvention.id}
                   onChange={(e) => setSelectedConventionId(e.target.value)}
                 >
                   {filteredConventions.map((c) => (
                     <option key={c.id} value={c.id}>
-                      {c.name}
+                      {conventionName(c)}
                     </option>
                   ))}
                 </select>
@@ -1343,7 +1402,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
 
               {hasPatterns && (
                 <div className="field-block selector-pattern">
-                  <label>Pattern</label>
+                  <label>{tl("ui.pattern", "Pattern")}</label>
 
                   <select
                     value={selectedPattern?.id ?? ""}
@@ -1351,7 +1410,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                   >
                     {selectedConvention.patterns!.map((pattern) => (
                       <option key={pattern.id} value={pattern.id}>
-                        {pattern.name}
+                        {patternName(selectedConvention, pattern)}
                       </option>
                     ))}
                   </select>
@@ -1360,13 +1419,13 @@ const moveSegment = (index: number, direction: -1 | 1) =>
 
               <div className="selector-meta">
                 <div className="selector-description">
-                  <span>Description:</span>
-                  {activeDescription}
+                  <span>{tl("ui.description", "Description:")}</span>
+                  {activeDescriptionLabel}
                 </div>
 
                 <div className="selector-example">
-                  <span>Example:</span>
-                  {selectedExample ?? selectedConvention.examples?.[0] ?? generatedName ?? "No example defined"}
+                  <span>{tl("ui.example", "Example:")}</span>
+                  {selectedExample ?? selectedConvention.examples?.[0] ?? generatedName ?? tl("ui.noExample", "No example defined")}
                 </div>
               </div>
             </div>
@@ -1374,21 +1433,21 @@ const moveSegment = (index: number, direction: -1 | 1) =>
 
           <div className="glass-card result-card">
             <div className="card-header">
-              <CardTitle title="Live Preview" info="Generated name preview." />
+              <CardTitle title={tl("ui.livePreview", "Live Preview")} info={tl("ui.livePreviewInfo", "Generated name preview.")} />
             </div>
-            <div className="generated-name">{generatedName || "Build segments to generate a name..."}</div>
+            <div className="generated-name">{generatedName || tl("ui.buildPlaceholder", "Build segments to generate a name...")}</div>
             <div className="action-row">
-              <button className="ghost-button" onClick={copyName}>Copy Name</button>
-              {actionFeedback === "copy" && <span className="action-success">✓ Copied</span>}
+              <button className="ghost-button" onClick={copyName}>{tl("ui.copyName", "Copy Name")}</button>
+              {actionFeedback === "copy" && <span className="action-success">✓ {tl("ui.copied", "Copied")}</span>}
 
-              <button className="ghost-button" onClick={copyMarkdown}>Copy Markdown</button>
-              {actionFeedback === "markdown" && <span className="action-success">✓ Copied</span>}
+              <button className="ghost-button" onClick={copyMarkdown}>{tl("ui.copyMarkdown", "Copy Markdown")}</button>
+              {actionFeedback === "markdown" && <span className="action-success">✓ {tl("ui.copied", "Copied")}</span>}
 
-              <button className="ghost-button" onClick={addFavorite}>Add Favorite</button>
-              {actionFeedback === "favorite" && <span className="action-success">★ Added</span>}
+              <button className="ghost-button" onClick={addFavorite}>{tl("ui.addFavorite", "Add Favorite")}</button>
+              {actionFeedback === "favorite" && <span className="action-success">★ {tl("ui.added", "Added")}</span>}
 
-              <button className="ghost-button" onClick={resetBuilder}>Reset Builder</button>
-              {actionFeedback === "reset" && <span className="action-success">↺ Reset</span>}
+              <button className="ghost-button" onClick={resetBuilder}>{tl("ui.resetBuilder", "Reset Builder")}</button>
+              {actionFeedback === "reset" && <span className="action-success">↺ {tl("ui.reset", "Reset")}</span>}
 
               {actionFeedback === "segment-added" && (
                 <span className="action-success">
@@ -1398,19 +1457,19 @@ const moveSegment = (index: number, direction: -1 | 1) =>
 
               {actionFeedback === "already-exists" && (
                 <span className="action-success">
-                  ⚠ Segment already exists
+                  ⚠ {tl("ui.alreadyExists", "Segment already exists")}
                 </span>
               )}
 
               {actionFeedback === "fixed-first" && (
                 <span className="action-warning">
-                  📌 This segment must remain in that position
+                  📌 {tl("ui.fixedFirstWarn", "This segment must remain in that position")}
                 </span>
               )}
 
               {actionFeedback === "fixed-last" && (
                 <span className="action-warning">
-                  📌 This segment must remain in last position
+                  📌 {tl("ui.fixedLastWarn", "This segment must remain in last position")}
                 </span>
               )}
             </div>
@@ -1419,17 +1478,17 @@ const moveSegment = (index: number, direction: -1 | 1) =>
           <div className="glass-card builder-card">
             <div className="card-header">
               <CardTitle
-                title={selectedConvention.category === "Conditional Access Policy" ? "Conditional Access Policy Builder" : "Segment Builder"}
-                info="Reorder, remove, add predefined segments, or create a custom segment."
+                title={selectedConvention.category === "Conditional Access Policy" ? tl("ui.caBuilder", "Conditional Access Policy Builder") : tl("ui.segmentBuilder", "Segment Builder")}
+                info={tl("ui.builderInfo", "Reorder, remove, add predefined segments, or create a custom segment.")}
               />
             </div>
           <div className="pattern-box">
             <span>
-              Pattern
+              {tl("ui.pattern", "Pattern")}
 
               {patternModified && (
                 <span className="pattern-modified">
-                  Modified
+                  {tl("ui.modified", "Modified")}
                 </span>
               )}
             </span>
@@ -1440,8 +1499,8 @@ const moveSegment = (index: number, direction: -1 | 1) =>
 
             {selectedConvention.category === "Conditional Access Policy" && (
               <div className="ca-example-inline">
-                <label>Example</label>
-                <div className="example-box">{selectedExample ?? generatedName ?? "No example defined"}</div>
+                <label>{tl("ui.example", "Example")}</label>
+                <div className="example-box">{selectedExample ?? generatedName ?? tl("ui.noExample", "No example defined")}</div>
               </div>
             )}
             <div className="builder-list">{builderSegments.map((s, i) => renderSegmentEditor(s, i))}</div>
@@ -1449,7 +1508,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
               <input
                 value={customSegmentName}
                 onChange={(e) => setCustomSegmentName(e.target.value)}
-                placeholder="Add a custom segment..."
+                placeholder={tl("ui.addCustomPlaceholder", "Add a custom segment...")}
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                   addCustomSegment();
@@ -1463,7 +1522,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                 onClick={addCustomSegment}
                 disabled={!customSegmentName.trim()}
               >
-                Add Segment
+                {tl("ui.addSegment", "Add Segment")}
               </button>
             </div>
           </div>
@@ -1473,7 +1532,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
             open={namingScore < 100 ? true : undefined}
           >
             <summary className="azure-summary">
-              <CardTitle title="Governance Score" info="Score based on locked segments, recommended segments, validation rules, length, and characters." />
+              <CardTitle title={tl("ui.governanceScore", "Governance Score")} info={tl("ui.governanceScoreInfo", "Score based on locked segments, recommended segments, validation rules, length, and characters.")} />
               <span className="summary-actions">
                 <span className="score-pill">{namingScore}/100</span>
                 <span className="summary-chevron">⌄</span>
@@ -1491,7 +1550,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
 
           <details className="glass-card documentation-card">
             <summary className="azure-summary">
-              <CardTitle title="Markdown Documentation" info="Governance documentation generated from the current builder." />
+              <CardTitle title={tl("ui.markdownDoc", "Markdown Documentation")} info={tl("ui.markdownDocInfo", "Governance documentation generated from the current builder.")} />
               <span className="summary-chevron">⌄</span>
             </summary>
             <pre className="documentation-box">{markdown}</pre>
@@ -1499,11 +1558,11 @@ const moveSegment = (index: number, direction: -1 | 1) =>
 
           <details className="glass-card reference-card">
             <summary className="azure-summary">
-              <CardTitle title="Convention Reference" info="Dictionary of values used by active segments." />
+              <CardTitle title={tl("ui.conventionRef", "Convention Reference")} info={tl("ui.conventionRefInfo", "Dictionary of values used by active segments.")} />
               <span className="summary-chevron">⌄</span>
             </summary>
             {referenceEntries.length === 0 ? (
-              <p className="section-note reference-note">No predefined dictionary values.</p>
+              <p className="section-note reference-note">{tl("ui.noDictionary", "No predefined dictionary values.")}</p>
             ) : (
               <div className="reference-grid">
                 {referenceEntries.map((item) => (
@@ -1525,7 +1584,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
 
           <details className="glass-card history-card">
             <summary className="azure-summary">
-              <CardTitle title="Favorites" info="Locally saved favorite generated names." />
+              <CardTitle title={tl("ui.favorites", "Favorites")} info={tl("ui.favoritesInfo", "Locally saved favorite generated names.")} />
               <span className="summary-actions">
                 <button
                   type="button"
@@ -1536,17 +1595,17 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                     clearFavorites();
                   }}
                 >
-                  Clear
+                  {tl("ui.clear", "Clear")}
                 </button>
                 <span className="summary-chevron">⌄</span>
               </span>
             </summary>
-            {favorites.length === 0 ? <p className="section-note">No favorites yet.</p> : <ul>{favorites.map((item) => <li key={item}>{item}</li>)}</ul>}
+            {favorites.length === 0 ? <p className="section-note">{tl("ui.noFavorites", "No favorites yet.")}</p> : <ul>{favorites.map((item) => <li key={item}>{item}</li>)}</ul>}
           </details>
 
           <details className="glass-card history-card">
             <summary className="azure-summary">
-              <CardTitle title="History" info="Names copied recently from this browser session." />
+              <CardTitle title={tl("ui.history", "History")} info={tl("ui.historyInfo", "Names copied recently from this browser session.")} />
               <span className="summary-actions">
                 <button
                   type="button"
@@ -1557,15 +1616,15 @@ const moveSegment = (index: number, direction: -1 | 1) =>
                     clearHistory();
                   }}
                 >
-                  Clear
+                  {tl("ui.clear", "Clear")}
                 </button>
                 <span className="summary-chevron">⌄</span>
               </span>
             </summary>
-            {history.length === 0 ? <p className="section-note">No names generated yet.</p> : <ul>{history.map((item) => <li key={item}>{item}</li>)}</ul>}
+            {history.length === 0 ? <p className="section-note">{tl("ui.noHistory", "No names generated yet.")}</p> : <ul>{history.map((item) => <li key={item}>{item}</li>)}</ul>}
           </details>
         </section>
-        <footer className="footer">Name Codex · Microsoft 365 &amp; Azure Naming Standards · by jmaillot</footer>
+        <footer className="footer">{tl("ui.footer", "Name Codex · Microsoft 365 & Azure Naming Standards · by jmaillot")}</footer>
       </main>
     </div>
   );

@@ -136,6 +136,50 @@ label,
   margin: 20px 4px 9px;
 }
 
+.lang-switcher {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  gap: 6px;
+  padding: 5px;
+  border-radius: 14px;
+  background: rgba(14, 22, 42, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+}
+
+.lang-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  filter: grayscale(0.5);
+  opacity: 0.6;
+  transition: all 0.25s ease;
+}
+
+.lang-btn:hover {
+  filter: grayscale(0);
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.lang-btn.active {
+  filter: grayscale(0);
+  opacity: 1;
+  background: linear-gradient(90deg, rgba(79, 140, 255, 0.25), rgba(79, 140, 255, 0.08));
+  border-color: rgba(79, 140, 255, 0.5);
+}
+
 .nav-list {
   display: grid;
   gap: 6px;

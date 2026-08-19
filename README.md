@@ -47,6 +47,35 @@ All conventions, segment libraries and generators are plain JSON under `src/rule
 
 React + TypeScript + Vite, with all data stored locally as JSON (no backend).
 
+## End-user guide
+
+### 1. Pick a category
+Choose a category from the sidebar — Azure, Entra ID, Exchange, Groups, Intune, Conditional Access or Defender. The last object you selected in each category is restored automatically on your next visit.
+
+### 2. Select an object type
+Use the search box to filter object types, and switch between pattern variants if the object offers several. Each convention shows its active description and an example.
+
+### 3. Assemble your segments
+Build the name segment by segment:
+- **Fixed segments** (first/last) are pre-placed and cannot move; **locked** segments keep their value; **recommended** segments guide you but stay editable
+- Click a segment to pick a value — multi-select chips show a tooltip describing each value
+- Reorder, remove or add custom segments in one click
+- Hover the tips on each segment label to understand what it represents
+- Literals embedded in the pattern (e.g. a `DEF-` prefix or `ENABLEINEMERGENCY`) are regenerated automatically; empty or optional segments collapse on their own
+
+### 4. Respect the governance rules
+- Some values are **mutually exclusive**: selecting one disables its opposite (e.g. *Trusted device* vs *Non-trusted device*, *MFA* vs *MFA strength*)
+- Offered choices can depend on another segment (e.g. endpoint profile types filtered by the OS you chose)
+- Policy IDs are **auto-numbered** (e.g. `CA001`, `EM001`, `DEVSEC001`) with persona-based ranges for Conditional Access
+
+### 5. Validate and check your score
+Watch the live preview respect the convention's validation rules (length, allowed characters, mandatory segments). A **Modified** badge appears when you deviate from the convention. Track your **governance score /100** with its per-rule checklist.
+
+### 6. Save or share
+- Copy the generated name or the full **Markdown documentation** to the clipboard
+- Star it as a **favorite** or keep it in your **history** (both persist locally between sessions)
+- Refer to the **Convention Reference** for a value dictionary of every segment used
+
 ## Build it yourself
 
 ### 1. Install Node.js

@@ -1,3 +1,9 @@
+# Planning docs
+.planning
+
+# Backups
+.backups
+
 # Logs
 logs
 *.log

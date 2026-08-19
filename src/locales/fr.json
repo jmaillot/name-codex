@@ -95,7 +95,7 @@
     "data.field.Environment.tip": "Environnement de déploiement, ex. prod, dev, test.",
     "data.field.Department.label": "Département",
     "data.field.Department.tip": "Département ou unité métier propriétaire.",
-    "data.field.Purpose.label": "Finalité",
+    "data.field.Purpose.label": "Objet",
     "data.field.Purpose.tip": "Finalité métier ou utilisation prévue de la ressource.",
     "data.field.Function.label": "Fonction",
     "data.field.Function.tip": "Domaine fonctionnel pris en charge par la ressource.",

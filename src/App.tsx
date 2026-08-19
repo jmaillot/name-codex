@@ -13,6 +13,7 @@ import type { DropdownValue, NamingConvention, NamingField, NamingFieldOption } 
 import segmentCatalogData from "./data/segment-catalog.json";
 import validationRulesData from "./data/validation-rules.json";
 import caNumberingRangesData from "./data/ca-numbering-ranges.json";
+import pkg from "../package.json";
 import i18n, { setLanguage } from "./i18n";
 import "./App.css";
 
@@ -1624,7 +1625,7 @@ const moveSegment = (index: number, direction: -1 | 1) =>
             {history.length === 0 ? <p className="section-note">{tl("ui.noHistory", "No names generated yet.")}</p> : <ul>{history.map((item) => <li key={item}>{item}</li>)}</ul>}
           </details>
         </section>
-        <footer className="footer">{tl("ui.footer", "Name Codex · Microsoft 365 & Azure Naming Standards · by jmaillot")}</footer>
+        <footer className="footer">{tl("ui.footer", "Name Codex · Microsoft 365 & Azure Naming Standards · by jmaillot")} · v{pkg.version}</footer>
       </main>
     </div>
   );

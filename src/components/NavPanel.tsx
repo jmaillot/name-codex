@@ -52,6 +52,10 @@ function getCategoryClass(category: string): string {
     case "Conditional Access Policy":
       return "ca-icon";
 
+    case "Defender":
+    case "Defender for M365":
+      return "defender-icon";
+
     default:
       return "";
   }

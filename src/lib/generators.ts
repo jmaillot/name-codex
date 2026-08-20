@@ -59,10 +59,12 @@ export function generateSequence(generator: SequenceGenerator): NamingFieldOptio
 }
 
 export function generateCaPolicyIds(generator: CaPolicyIdGenerator): NamingFieldOption[] {
-  const ranges = generator.ranges ?? caNumberingRanges;
+  const ranges = generator.ranges
+    ?? (generator.prefix ? { fallback: caPolicyIdFallbackRange(generator) } : caNumberingRanges);
 
-  return Object.values(ranges).flatMap((range) =>
-    Array.from(
+  return Object.values(ranges).flatMap((range) => {
+    if (!range) return [];
+    return Array.from(
       { length: range.max - range.min + 1 },
       (_, index) => {
         const number = range.min + index;
@@ -74,8 +76,8 @@ export function generateCaPolicyIds(generator: CaPolicyIdGenerator): NamingField
           description: tl(`data.caRange.${range.label}`, range.label),
         };
       }
-    )
-  );
+    );
+  });
 }
 
 export function generateValues(generator: SegmentGenerator): NamingFieldOption[] {

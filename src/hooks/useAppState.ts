@@ -459,15 +459,17 @@ export function useAppState() {
 
   const copyName = async () => {
     if (!generatedName) return;
-    await navigator.clipboard.writeText(generatedName);
-    const next = [generatedName, ...history].filter((v, i, a) => a.indexOf(v) === i).slice(0, 12);
-    setHistory(next);
-    saveJSON(STORAGE_KEYS.history, next);
-    showFeedback("copy");
+    const ok = await writeClipboard(generatedName);
+    if (ok) {
+      const next = [generatedName, ...history].filter((v, i, a) => a.indexOf(v) === i).slice(0, 12);
+      setHistory(next);
+      saveJSON(STORAGE_KEYS.history, next);
+      showFeedback("copy");
+    }
   };
 
   const copyMarkdown = async () => {
-    await navigator.clipboard.writeText(markdown);
+    await writeClipboard(markdown);
     showFeedback("markdown");
   };
 

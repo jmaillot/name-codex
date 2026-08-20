@@ -1,0 +1,110 @@
+import { tl } from "../lib/i18n-utils";
+import { conventionName, patternName } from "../lib/segments";
+import type { NamingConvention, NamingPatternOption } from "../types/Rule";
+import CardTitle from "./CardTitle";
+
+type ConfigureCardProps = {
+  objectSearch: string;
+  onObjectSearchChange: (value: string) => void;
+  filteredConventions: NamingConvention[];
+  selectedConvention: NamingConvention;
+  hasPatterns: boolean;
+  selectedPattern?: NamingPatternOption;
+  onSelectConvention: (id: string) => void;
+  onSelectPattern: (id: string) => void;
+  activeDescriptionLabel: string;
+  selectedExample?: string;
+  generatedName: string;
+};
+
+export default function ConfigureCard({
+  objectSearch,
+  onObjectSearchChange,
+  filteredConventions,
+  selectedConvention,
+  hasPatterns,
+  selectedPattern,
+  onSelectConvention,
+  onSelectPattern,
+  activeDescriptionLabel,
+  selectedExample,
+  generatedName,
+}: ConfigureCardProps) {
+  return (
+    <div className="glass-card configure-card compact-config">
+      <div className="card-header">
+        <CardTitle
+          title={tl("ui.configure", "Configure")}
+          info={tl("ui.configureInfo", "Filter and select an object type from the current category.")}
+        />
+      </div>
+
+      <div className={`compact-selector-grid ${ hasPatterns ? "has-patterns" : "no-patterns" }`}>
+        <div className="field-block selector-filter">
+          <label>{tl("ui.filter", "Filter")}</label>
+          <div className="filter-field">
+            <input
+              value={objectSearch}
+              onChange={(e) => onObjectSearchChange(e.target.value)}
+              placeholder={tl("ui.filterPlaceholder", "Filter...")}
+            />
+
+            {objectSearch && (
+              <button
+                type="button"
+                className="filter-clear"
+                onClick={() => onObjectSearchChange("")}
+                aria-label={tl("ui.clearFilter", "Clear filter")}
+              >
+                ×
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="field-block selector-object">
+          <label>{tl("ui.objectType", "Object Type")}</label>
+          <select
+            value={selectedConvention.id}
+            onChange={(e) => onSelectConvention(e.target.value)}
+          >
+            {filteredConventions.map((c) => (
+              <option key={c.id} value={c.id}>
+                {conventionName(c)}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {hasPatterns && (
+          <div className="field-block selector-pattern">
+            <label>{tl("ui.pattern", "Pattern")}</label>
+
+            <select
+              value={selectedPattern?.id ?? ""}
+              onChange={(e) => onSelectPattern(e.target.value)}
+            >
+              {selectedConvention.patterns!.map((pattern) => (
+                <option key={pattern.id} value={pattern.id}>
+                  {patternName(selectedConvention, pattern)}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        <div className="selector-meta">
+          <div className="selector-description">
+            <span>{tl("ui.description", "Description:")}</span>
+            {activeDescriptionLabel}
+          </div>
+
+          <div className="selector-example">
+            <span>{tl("ui.example", "Example:")}</span>
+            {selectedExample ?? selectedConvention.examples?.[0] ?? generatedName ?? tl("ui.noExample", "No example defined")}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { allConventions, getGeneratorFile } from "../lib/data";
 import { tl } from "../lib/i18n-utils";
@@ -59,10 +59,17 @@ export function useAppState() {
   const [customSegmentName, setCustomSegmentName] = useState("");
   const [objectSearch, setObjectSearch] = useState("");
   const [actionFeedback, setActionFeedback] = useState<string | null>(null);
+  const feedbackTimer = useRef<number | null>(null);
 
   const showFeedback = (value: string) => {
+    if (feedbackTimer.current !== null) {
+      window.clearTimeout(feedbackTimer.current);
+    }
     setActionFeedback(value);
-    window.setTimeout(() => setActionFeedback(null), 2000);
+    feedbackTimer.current = window.setTimeout(() => {
+      setActionFeedback(null);
+      feedbackTimer.current = null;
+    }, 2000);
   };
 
   const categories = useMemo(() => Array.from(new Set(allConventions.map((item) => item.category))), []);

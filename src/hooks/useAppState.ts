@@ -27,7 +27,7 @@ import {
   validateName,
 } from "../lib/validation";
 import type { BuilderSegment } from "../lib/segments";
-import { loadJSON, saveJSON, STORAGE_KEYS } from "../lib/storage";
+import { loadJSONArray, loadJSONRecord, saveJSON, STORAGE_KEYS } from "../lib/storage";
 
 export function useAppState() {
   const { i18n } = useTranslation();
@@ -135,7 +135,7 @@ export function useAppState() {
   }, [selectedConvention]);
 
   useEffect(() => {
-    const parsedByCategory = loadJSON<Record<string, string>>(STORAGE_KEYS.lastObjectByCategory) ?? {};
+    const parsedByCategory = loadJSONRecord(STORAGE_KEYS.lastObjectByCategory) ?? {};
     const lastForCategory = parsedByCategory[selectedCategory];
     const firstConvention = allConventions.find((item) => item.category === selectedCategory);
     const restoredConvention = allConventions.find((item) => item.category === selectedCategory && item.id === lastForCategory);
@@ -177,13 +177,13 @@ export function useAppState() {
   ]);
 
   useEffect(() => {
-    const h = loadJSON<string[]>(STORAGE_KEYS.history);
+    const h = loadJSONArray(STORAGE_KEYS.history);
     if (h) setHistory(h);
 
-    const f = loadJSON<string[]>(STORAGE_KEYS.favorites);
+    const f = loadJSONArray(STORAGE_KEYS.favorites);
     if (f) setFavorites(f);
 
-    const l = loadJSON<Record<string, string>>(STORAGE_KEYS.lastObjectByCategory);
+    const l = loadJSONRecord(STORAGE_KEYS.lastObjectByCategory);
     if (l) setLastObjectByCategory(l);
 
     localStorage.removeItem("name-codex-recent-objects-v11-5");

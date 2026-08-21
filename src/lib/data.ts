@@ -23,26 +23,32 @@ function moduleKeyFromName(name: string): string {
   return name.trim().toLowerCase();
 }
 
+const segmentModuleMap = new Map<string, SegmentFile>(
+  Object.entries(segmentModules).map(([path, file]) => {
+    const lower = path.toLowerCase();
+    const marker = "/segments/";
+    const idx = lower.indexOf(marker);
+    const key = idx >= 0 ? lower.slice(idx + marker.length).replace(".json", "") : lower.split("/").pop()?.replace(".json", "") ?? "";
+    return [key, file] as const;
+  })
+);
+
+const generatorModuleMap = new Map<string, SegmentGenerator>(
+  Object.entries(generatorModules).map(([path, file]) => {
+    const lower = path.toLowerCase();
+    const marker = "/generators/";
+    const idx = lower.indexOf(marker);
+    const key = idx >= 0 ? lower.slice(idx + marker.length).replace(".json", "") : lower.split("/").pop()?.replace(".json", "") ?? "";
+    return [key, file] as const;
+  })
+);
+
 export function getSegmentFile(libraryName: string): SegmentFile | undefined {
-  const key = moduleKeyFromName(libraryName);
-
-  const entry = Object.entries(segmentModules).find(([path]) =>
-    path.toLowerCase().endsWith(`/segments/${key}.json`) ||
-    path.toLowerCase().endsWith(`segments/${key}.json`)
-  );
-
-  return entry?.[1];
+  return segmentModuleMap.get(moduleKeyFromName(libraryName));
 }
 
 export function getGeneratorFile(generatorName: string): SegmentGenerator | undefined {
-  const key = moduleKeyFromName(generatorName);
-
-  const entry = Object.entries(generatorModules).find(([path]) =>
-    path.toLowerCase().endsWith(`/generators/${key}.json`) ||
-    path.toLowerCase().endsWith(`generators/${key}.json`)
-  );
-
-  return entry?.[1];
+  return generatorModuleMap.get(moduleKeyFromName(generatorName));
 }
 
 const ruleModules = import.meta.glob("../rules/**/*.json", {

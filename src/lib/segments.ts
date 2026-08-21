@@ -143,7 +143,7 @@ export function buildSegments(
     const field = fieldByName(fields, name);
 
     return {
-      key: `${name}-${index}-${Date.now()}`,
+      key: `${name}-${index}`,
       sourceName: name,
       label: fieldLabel(field, field?.label ?? name),
       value: fixedValues[name] ?? defaultValueForField(field),

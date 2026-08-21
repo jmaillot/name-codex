@@ -436,7 +436,7 @@ export function useAppState() {
     }
     setBuilderSegments((prev) => {
       const newSegment: BuilderSegment = {
-        key: `${name}-${Date.now()}-${prev.length}`,
+        key: `${name}-custom-${prev.length}`,
         sourceName: name,
         label: name,
         value: "",

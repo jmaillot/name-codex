@@ -221,12 +221,8 @@ export function useAppState() {
     localStorage.removeItem("name-codex-recent-objects-v11-5");
   }, []);
 
-  const selectedPolicyId = builderSegments.find((segment) => segment.sourceName === "PolicyId")?.value;
   const selectedExample =
-    selectedPolicyId && selectedConvention.policyExamples?.[selectedPolicyId]
-      ? selectedConvention.policyExamples[selectedPolicyId]
-      : selectedPattern?.examples?.[0] ??
-        selectedConvention.examples?.[0];
+    selectedPattern?.examples?.[0] ?? selectedConvention.examples?.[0];
   const separator = selectedConvention.builder?.separator ?? "-";
 
   const patternTokens = parsePattern(activePattern);

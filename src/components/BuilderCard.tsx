@@ -37,11 +37,14 @@ export default function BuilderCard({
   onMoveSegment,
   onRemoveSegment,
 }: BuilderCardProps) {
+  void category;
+  void selectedExample;
+  void generatedName;
   return (
     <div className="glass-card builder-card">
       <div className="card-header">
         <CardTitle
-          title={category === "Conditional Access Policy" ? tl("ui.caBuilder", "Conditional Access Policy Builder") : tl("ui.segmentBuilder", "Segment Builder")}
+          title={tl("ui.segmentBuilder", "Segment Builder")}
           info={tl("ui.builderInfo", "Reorder, remove, add predefined segments, or create a custom segment.")}
         />
       </div>
@@ -59,13 +62,6 @@ export default function BuilderCard({
         <code>{dynamicPattern}</code>
       </div>
 
-
-      {category === "Conditional Access Policy" && (
-        <div className="ca-example-inline">
-          <label>{tl("ui.example", "Example")}</label>
-          <div className="example-box">{selectedExample ?? generatedName ?? tl("ui.noExample", "No example defined")}</div>
-        </div>
-      )}
       <div className="builder-list">{segments.map((s, i) => <SegmentEditor key={s.key} segment={s} index={i} convention={convention} fields={fields} segments={segments} onUpdate={onUpdateSegment} onMove={onMoveSegment} onRemove={onRemoveSegment} />)}</div>
       <div className="add-segment-row">
         <input

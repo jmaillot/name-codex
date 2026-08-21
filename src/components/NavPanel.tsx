@@ -23,7 +23,6 @@ function getCategoryIcon(category: string) {
     Groups: iconGroups,
     Intune: iconIntune,
     "Conditional Access": iconConditionalAccess,
-    "Conditional Access Policy": iconConditionalAccess,
     Defender: iconDefender,
     "Defender for M365": iconDefender,
   };
@@ -49,7 +48,6 @@ function getCategoryClass(category: string): string {
       return "intune-icon";
 
     case "Conditional Access":
-    case "Conditional Access Policy":
       return "ca-icon";
 
     case "Defender":

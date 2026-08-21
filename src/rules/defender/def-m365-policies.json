@@ -9,7 +9,12 @@
       "name": "DefPolicyType",
       "label": "PolicyType",
       "defaultValue": "AntiPhish",
-      "allowedValues": ["AntiPhish", "AntiMalware", "SafeAttachments", "SafeLinks"],
+      "allowedValues": [
+        "AntiPhish",
+        "AntiMalware",
+        "SafeAttachments",
+        "SafeLinks"
+      ],
       "allowCustomValue": true
     },
     {
@@ -17,13 +22,22 @@
       "label": "Scope",
       "library": "intune/assignments",
       "defaultValue": "AllUsers",
-      "allowedValues": ["AllUsers"],
-      "examples": ["AllUsers", "GroupName"],
+      "allowedValues": [
+        "AllUsers"
+      ],
+      "examples": [
+        "AllUsers",
+        "GroupName"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "Descriptor",
-      "examples": ["Strict", "Baseline","HighRisk"],
+      "examples": [
+        "Strict",
+        "Baseline",
+        "HighRisk"
+      ],
       "allowCustomValue": true
     },
     {
@@ -38,20 +52,33 @@
   "examples": [
     "DEF-ANTIPHISH-ALLUSERS-STRICT-PROD-V1"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["DefPolicyType","ScopeType","Descriptor","Environment","Version"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Environment","Version"],
-    "lockedSegments": ["Descriptor"],
-    "fixedFirstSegments": ["DefPolicyType","ScopeType"],
+    "defaultSegments": [
+      "DefPolicyType",
+      "ScopeType",
+      "Descriptor",
+      "Environment",
+      "Version"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Environment",
+      "Version"
+    ],
+    "lockedSegments": [
+      "Descriptor"
+    ],
+    "fixedFirstSegments": [
+      "DefPolicyType",
+      "ScopeType"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }
-

@@ -10,7 +10,11 @@
       "label": "Prefix",
       "library": "groups/prefix",
       "defaultValue": "M365",
-      "allowedValues": ["M365", "O365", "TEAM"],
+      "allowedValues": [
+        "M365",
+        "O365",
+        "TEAM"
+      ],
       "allowCustomValue": true
     },
     {
@@ -20,13 +24,21 @@
     {
       "name": "Department",
       "defaultValue": "",
-      "examples": ["HR", "IT", "FIN", "OPS"],
+      "examples": [
+        "HR",
+        "IT",
+        "FIN",
+        "OPS"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "Purpose",
       "defaultValue": "",
-      "examples": ["Alerts", "Invoices"],
+      "examples": [
+        "Alerts",
+        "Invoices"
+      ],
       "allowCustomValue": true
     },
     {
@@ -43,19 +55,33 @@
   "examples": [
     "M365-DYNU-IT-PRIVATE-PROD"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["Prefix","MembershipTypeM365","Department","Purpose","Sensitivity","Environment"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Department"],
-    "lockedSegments": ["Purpose"],
-    "fixedFirstSegments": ["Prefix","MembershipTypeM365"],
+    "defaultSegments": [
+      "Prefix",
+      "MembershipTypeM365",
+      "Department",
+      "Purpose",
+      "Sensitivity",
+      "Environment"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Department"
+    ],
+    "lockedSegments": [
+      "Purpose"
+    ],
+    "fixedFirstSegments": [
+      "Prefix",
+      "MembershipTypeM365"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

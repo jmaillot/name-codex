@@ -18,7 +18,9 @@
     {
       "name": "Workload",
       "defaultValue": "Subnet",
-      "allowedValues": ["Subnet"],
+      "allowedValues": [
+        "Subnet"
+      ],
       "allowCustomValue": true
     },
     {
@@ -48,17 +50,29 @@
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Country","Environment","Workload","Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Environment","Workload"],
+    "defaultSegments": [
+      "Country",
+      "Environment",
+      "Workload",
+      "Instance"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Environment",
+      "Workload"
+    ],
     "lockedSegments": [],
-    "fixedFirstSegments": ["Country"],
-    "fixedLastSegments": ["Instance"]
+    "fixedFirstSegments": [
+      "Country"
+    ],
+    "fixedLastSegments": [
+      "Instance"
+    ]
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

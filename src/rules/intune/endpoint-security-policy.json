@@ -12,7 +12,9 @@
       "generator": "devsec-policy-id",
       "customOnly": true,
       "placeholder": "",
-      "examples": ["DEVSEC is fixed. Add the number, e.g. DEVSEC + 001 = DEVSEC001"],
+      "examples": [
+        "DEVSEC is fixed. Add the number, e.g. DEVSEC + 001 = DEVSEC001"
+      ],
       "defaultValue": "DEVSEC001"
     },
     {
@@ -24,7 +26,11 @@
     {
       "name": "OS",
       "defaultValue": "W",
-      "allowedValues": ["W", "MAC", "L"]
+      "allowedValues": [
+        "W",
+        "MAC",
+        "L"
+      ]
     },
     {
       "name": "IntProfileType",
@@ -33,8 +39,16 @@
       "allowCustomValue": true,
       "allowedValuesByField": {
         "OS": {
-          "L": ["Antivirus", "AntivirusExclusions", "EDR"],
-          "MAC": ["Antivirus", "AntivirusExclusions", "EDR"]
+          "L": [
+            "Antivirus",
+            "AntivirusExclusions",
+            "EDR"
+          ],
+          "MAC": [
+            "Antivirus",
+            "AntivirusExclusions",
+            "EDR"
+          ]
         }
       }
     },
@@ -42,13 +56,22 @@
       "name": "Assignments",
       "library": "intune/assignments",
       "defaultValue": "AllUsers",
-      "allowedValues": ["AllUsers", "AllDevices"],
-      "examples": ["GroupName"],
+      "allowedValues": [
+        "AllUsers",
+        "AllDevices"
+      ],
+      "examples": [
+        "GroupName"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "Descriptor",
-      "examples": ["AttackSurfaceReduction", "DefenderBaseline", "FirewallRules"],
+      "examples": [
+        "AttackSurfaceReduction",
+        "DefenderBaseline",
+        "FirewallRules"
+      ],
       "allowCustomValue": true
     },
     {
@@ -63,20 +86,39 @@
   "examples": [
     "DEVSEC001-GLOBAL-W-ASR-ALLUSERS-BASELINE-PROD-V1"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["PolicyId","ScopeTag","OS","IntProfileType","Assignments","Descriptor","Environment","Version"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Environment","Version"],
-    "lockedSegments": ["Descriptor"],
-    "fixedFirstSegments": ["PolicyId","ScopeTag","OS","IntProfileType","Assignments"],
+    "defaultSegments": [
+      "PolicyId",
+      "ScopeTag",
+      "OS",
+      "IntProfileType",
+      "Assignments",
+      "Descriptor",
+      "Environment",
+      "Version"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Environment",
+      "Version"
+    ],
+    "lockedSegments": [
+      "Descriptor"
+    ],
+    "fixedFirstSegments": [
+      "PolicyId",
+      "ScopeTag",
+      "OS",
+      "IntProfileType",
+      "Assignments"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }
-

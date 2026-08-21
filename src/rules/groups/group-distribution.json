@@ -8,26 +8,39 @@
     {
       "name": "Location",
       "defaultValue": "AAD",
-      "allowedValues": ["AAD"]
+      "allowedValues": [
+        "AAD"
+      ]
     },
     {
       "name": "Prefix",
       "label": "Prefix",
       "library": "groups/prefix",
       "defaultValue": "DL",
-      "allowedValues": ["DL", "DYNDL"],
+      "allowedValues": [
+        "DL",
+        "DYNDL"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "Scope",
       "label": "Scope",
       "defaultValue": "Internal",
-      "allowedValues": ["Internal", "External"]
+      "allowedValues": [
+        "Internal",
+        "External"
+      ]
     },
     {
       "name": "Department",
       "defaultValue": "",
-      "examples": ["HR", "IT", "FIN", "OPS"],
+      "examples": [
+        "HR",
+        "IT",
+        "FIN",
+        "OPS"
+      ],
       "allowCustomValue": true
     },
     {
@@ -39,19 +52,32 @@
   "examples": [
     "AAD-DL-INTERNAL-IT-ALERTS"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["Location","Prefix","Scope","Department","Purpose"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Department","Purpose"],
+    "defaultSegments": [
+      "Location",
+      "Prefix",
+      "Scope",
+      "Department",
+      "Purpose"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Department",
+      "Purpose"
+    ],
     "lockedSegments": [],
-    "fixedFirstSegments": ["Location","Prefix","Scope"],
+    "fixedFirstSegments": [
+      "Location",
+      "Prefix",
+      "Scope"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

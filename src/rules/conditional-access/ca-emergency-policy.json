@@ -12,7 +12,9 @@
       "generator": "ca-emergency-policy-id",
       "customOnly": true,
       "placeholder": "",
-      "examples": ["EM is fixed. Add the number, e.g. EM + 001 = EM001"],
+      "examples": [
+        "EM is fixed. Add the number, e.g. EM + 001 = EM001"
+      ],
       "defaultValue": "EM001"
     },
     {
@@ -21,7 +23,9 @@
       "library": "conditional-access/ca-disruption",
       "defaultValue": "MFAOutage",
       "allowCustomValue": true,
-      "examples": ["Select the access control mechanism that is disrupted or unavailable"]
+      "examples": [
+        "Select the access control mechanism that is disrupted or unavailable"
+      ]
     },
     {
       "name": "CA-EmergencyApps",
@@ -29,7 +33,9 @@
       "library": "conditional-access/ca-emergencyapps",
       "defaultValue": "MissionCritical",
       "allowCustomValue": true,
-      "examples": ["Fill out the scoped apps used by this contingency policy"]
+      "examples": [
+        "Fill out the scoped apps used by this contingency policy"
+      ]
     },
     {
       "name": "CA-Platforms",
@@ -46,7 +52,10 @@
       "defaultValue": "MFA",
       "multiSelect": true,
       "multiExclusions": [
-        ["MFA", "MFASTRENGH"]
+        [
+          "MFA",
+          "MFASTRENGH"
+        ]
       ],
       "multiAllValue": "Block"
     },
@@ -58,28 +67,50 @@
       "allowCustomValue": true,
       "multiSelect": true,
       "multiExclusions": [
-        ["TrustedDevice", "NonTrustedDevice"],
-        ["TrustedLocation", "NonTrustedLocation"]
+        [
+          "TrustedDevice",
+          "NonTrustedDevice"
+        ],
+        [
+          "TrustedLocation",
+          "NonTrustedLocation"
+        ]
       ],
-      "examples": ["Select one or put a custom condition"]
+      "examples": [
+        "Select one or put a custom condition"
+      ]
     }
   ],
   "examples": [
     "EM001-ENABLEINEMERGENCY-MFAOUTAGE-MISSIONCRITICAL-ALLPLATFORMS-MFA"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["PolicyId","CA-Disruption","CA-EmergencyApps","CA-Platforms","CA-Controls","CA-Conditions"],
-    "availableSegments": ["Custom"],
+    "defaultSegments": [
+      "PolicyId",
+      "CA-Disruption",
+      "CA-EmergencyApps",
+      "CA-Platforms",
+      "CA-Controls",
+      "CA-Conditions"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
     "recommendedSegments": [],
     "lockedSegments": [],
-    "fixedFirstSegments": ["PolicyId","CA-Disruption","CA-EmergencyApps","CA-Platforms","CA-Controls","CA-Conditions"],
+    "fixedFirstSegments": [
+      "PolicyId",
+      "CA-Disruption",
+      "CA-EmergencyApps",
+      "CA-Platforms",
+      "CA-Controls",
+      "CA-Conditions"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

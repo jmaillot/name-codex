@@ -8,14 +8,18 @@
     {
       "name": "Location",
       "defaultValue": "AAD",
-      "allowedValues": ["AAD"]
+      "allowedValues": [
+        "AAD"
+      ]
     },
     {
       "name": "Prefix",
       "label": "Prefix",
       "library": "groups/prefix",
       "defaultValue": "GSEC",
-      "allowedValues": ["GSEC"]
+      "allowedValues": [
+        "GSEC"
+      ]
     },
     {
       "name": "MembershipType",
@@ -24,19 +28,32 @@
     {
       "name": "Department",
       "defaultValue": "",
-      "examples": ["HR", "IT", "FIN", "OPS"],
+      "examples": [
+        "HR",
+        "IT",
+        "FIN",
+        "OPS"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "Purpose",
       "defaultValue": "",
-      "examples": ["ADM", "LIC", "AppAccess"],
+      "examples": [
+        "ADM",
+        "LIC",
+        "AppAccess"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "Scope",
       "defaultValue": "",
-      "examples": ["AllUsers", "IT", "Guests"],
+      "examples": [
+        "AllUsers",
+        "IT",
+        "Guests"
+      ],
       "allowCustomValue": true
     },
     {
@@ -48,19 +65,35 @@
   "examples": [
     "AAD-GSEC-DYNU-APPACCESS-GUESTS"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["Location","Prefix","MembershipType","Department","Purpose","Scope","Environment"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["MembershipType","Scope"],
-    "lockedSegments": ["Purpose"],
-    "fixedFirstSegments": ["Location","Prefix"],
+    "defaultSegments": [
+      "Location",
+      "Prefix",
+      "MembershipType",
+      "Department",
+      "Purpose",
+      "Scope",
+      "Environment"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "MembershipType",
+      "Scope"
+    ],
+    "lockedSegments": [
+      "Purpose"
+    ],
+    "fixedFirstSegments": [
+      "Location",
+      "Prefix"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

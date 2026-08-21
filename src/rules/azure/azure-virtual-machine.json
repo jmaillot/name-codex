@@ -13,7 +13,9 @@
     {
       "name": "Location",
       "defaultValue": "AZ",
-      "allowedValues": ["AZ"]
+      "allowedValues": [
+        "AZ"
+      ]
     },
     {
       "name": "OS",
@@ -30,26 +32,44 @@
       "label": "Instance",
       "library": "core/instance",
       "defaultValue": "001",
-      "allowedValues": ["001", "002", "003"],
+      "allowedValues": [
+        "001",
+        "002",
+        "003"
+      ],
       "allowCustomValue": true
     }
   ],
   "examples": [
     "FRAZWADP001"
   ],
-  "builder": { 
+  "builder": {
     "separator": "",
-    "defaultSegments": ["Country","Location","OS","Role","Instance"],
-    "availableSegments": ["Custom"],
+    "defaultSegments": [
+      "Country",
+      "Location",
+      "OS",
+      "Role",
+      "Instance"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
     "recommendedSegments": [],
-    "lockedSegments": ["Role"],
-    "fixedFirstSegments": ["Country","Location","OS"],
-    "fixedLastSegments": ["Instance"]
+    "lockedSegments": [
+      "Role"
+    ],
+    "fixedFirstSegments": [
+      "Country",
+      "Location",
+      "OS"
+    ],
+    "fixedLastSegments": [
+      "Instance"
+    ]
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

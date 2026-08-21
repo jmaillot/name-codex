@@ -8,7 +8,7 @@
     {
       "name": "Region",
       "defaultValue": "FRC",
-      "allowCustomValue": true 
+      "allowCustomValue": true
     },
     {
       "name": "Country",
@@ -18,7 +18,9 @@
     {
       "name": "Workload",
       "defaultValue": "VNET",
-      "allowedValues": ["VNET"],
+      "allowedValues": [
+        "VNET"
+      ],
       "allowCustomValue": true
     },
     {
@@ -26,7 +28,11 @@
       "label": "Instance",
       "library": "core/instance",
       "defaultValue": "001",
-      "allowedValues": ["001", "002", "003"],
+      "allowedValues": [
+        "001",
+        "002",
+        "003"
+      ],
       "allowCustomValue": true
     }
   ],
@@ -35,17 +41,29 @@
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Region","Country","Workload","Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Country","Workload"],
+    "defaultSegments": [
+      "Region",
+      "Country",
+      "Workload",
+      "Instance"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Country",
+      "Workload"
+    ],
     "lockedSegments": [],
-    "fixedFirstSegments": ["Region"],
-    "fixedLastSegments": ["Instance"]
+    "fixedFirstSegments": [
+      "Region"
+    ],
+    "fixedLastSegments": [
+      "Instance"
+    ]
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

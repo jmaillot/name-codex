@@ -18,7 +18,15 @@
     {
       "name": "Workload",
       "defaultValue": "AD",
-      "allowedValues": ["AD", "VNET", "WEBAPP", "LOGS", "BACKUP", "ERP", "CRM"],
+      "allowedValues": [
+        "AD",
+        "VNET",
+        "WEBAPP",
+        "LOGS",
+        "BACKUP",
+        "ERP",
+        "CRM"
+      ],
       "allowCustomValue": true
     }
   ],
@@ -27,17 +35,26 @@
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Region","Environment","Workload"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Workload"],
-    "lockedSegments": ["Region","Environment"],
+    "defaultSegments": [
+      "Region",
+      "Environment",
+      "Workload"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Workload"
+    ],
+    "lockedSegments": [
+      "Region",
+      "Environment"
+    ],
     "fixedFirstSegments": [],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

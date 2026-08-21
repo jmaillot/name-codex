@@ -12,7 +12,9 @@
       "generator": "ca-policy-id",
       "customOnly": true,
       "placeholder": "",
-      "examples": ["Select the persona, then fill CAx + number, e.g. CA1 + 01 = CA101"],
+      "examples": [
+        "Select the persona, then fill CAx + number, e.g. CA1 + 01 = CA101"
+      ],
       "defaultValue": ""
     },
     {
@@ -21,7 +23,9 @@
       "library": "conditional-access/ca-persona",
       "defaultValue": "",
       "allowCustomValue": true,
-      "examples": ["Select the persona, then fill CAx + number, e.g. CA1 + 01 = CA101"]
+      "examples": [
+        "Select the persona, then fill CAx + number, e.g. CA1 + 01 = CA101"
+      ]
     },
     {
       "name": "CA-Applications",
@@ -29,7 +33,9 @@
       "library": "conditional-access/ca-apps",
       "defaultValue": "AllApps",
       "allowCustomValue": true,
-      "examples": ["Fill out the scoped App used by this policy, ex: AzureManagementPortal"]
+      "examples": [
+        "Fill out the scoped App used by this policy, ex: AzureManagementPortal"
+      ]
     },
     {
       "name": "CA-Platforms",
@@ -47,10 +53,18 @@
       "allowCustomValue": true,
       "multiSelect": true,
       "multiExclusions": [
-        ["TrustedDevice", "NonTrustedDevice"],
-        ["TrustedLocation", "NonTrustedLocation"]
+        [
+          "TrustedDevice",
+          "NonTrustedDevice"
+        ],
+        [
+          "TrustedLocation",
+          "NonTrustedLocation"
+        ]
       ],
-      "examples": ["Select one or put a custom condition"]
+      "examples": [
+        "Select one or put a custom condition"
+      ]
     },
     {
       "name": "CA-Controls",
@@ -59,7 +73,10 @@
       "defaultValue": "MFA",
       "multiSelect": true,
       "multiExclusions": [
-        ["MFA", "MFASTRENGH"]
+        [
+          "MFA",
+          "MFASTRENGH"
+        ]
       ],
       "multiAllValue": "Block"
     }
@@ -67,19 +84,33 @@
   "examples": [
     "CA201-EMPLOYEES-ALLAPPS-ALLPLATFORMS-EXTERNAL-MFA-PROD"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["PolicyId","CA-Persona","CA-Applications","CA-Platforms","CA-Conditions","CA-Controls"],
-    "availableSegments": ["Custom"],
+    "defaultSegments": [
+      "PolicyId",
+      "CA-Persona",
+      "CA-Applications",
+      "CA-Platforms",
+      "CA-Conditions",
+      "CA-Controls"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
     "recommendedSegments": [],
     "lockedSegments": [],
-    "fixedFirstSegments": ["PolicyId","CA-Persona","CA-Applications","CA-Platforms","CA-Conditions","CA-Controls"],
+    "fixedFirstSegments": [
+      "PolicyId",
+      "CA-Persona",
+      "CA-Applications",
+      "CA-Platforms",
+      "CA-Conditions",
+      "CA-Controls"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

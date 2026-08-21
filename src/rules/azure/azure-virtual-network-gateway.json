@@ -19,7 +19,9 @@
       "name": "Workload",
       "label": "Workload",
       "defaultValue": "VNET",
-      "allowedValues": ["VNET"],
+      "allowedValues": [
+        "VNET"
+      ],
       "allowCustomValue": true
     },
     {
@@ -27,7 +29,11 @@
       "label": "Instance",
       "library": "core/instance",
       "defaultValue": "001",
-      "allowedValues": ["001", "002", "003"],
+      "allowedValues": [
+        "001",
+        "002",
+        "003"
+      ],
       "allowCustomValue": true
     },
     {
@@ -40,17 +46,32 @@
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Region","Country","Workload","Instance","Role"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Country","Instance"],
-    "lockedSegments": ["Workload"],
-    "fixedFirstSegments": ["Region"],
-    "fixedLastSegments": ["Role"]
+    "defaultSegments": [
+      "Region",
+      "Country",
+      "Workload",
+      "Instance",
+      "Role"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Country",
+      "Instance"
+    ],
+    "lockedSegments": [
+      "Workload"
+    ],
+    "fixedFirstSegments": [
+      "Region"
+    ],
+    "fixedLastSegments": [
+      "Role"
+    ]
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

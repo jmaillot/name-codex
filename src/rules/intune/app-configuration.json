@@ -10,31 +10,49 @@
       "label": "Prefix",
       "library": "intune/intune-prefix",
       "defaultValue": "MACFG",
-      "allowedValues": ["MACFG"]
+      "allowedValues": [
+        "MACFG"
+      ]
     },
     {
       "name": "ScopeTag",
       "defaultValue": "",
-      "examples": ["Global", "EMEA", "FR","HR","IT"],
+      "examples": [
+        "Global",
+        "EMEA",
+        "FR",
+        "HR",
+        "IT"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "EnrollmentType",
       "defaultValue": "",
       "type": "dropdown",
-      "allowedValues": ["ManagedDevices", "ManagedApps"],
+      "allowedValues": [
+        "ManagedDevices",
+        "ManagedApps"
+      ],
       "allowCustomValue": false
     },
     {
       "name": "Target",
       "defaultValue": "",
       "library": "core/operating-system",
-      "allowedValues": ["IOS", "AND"],
+      "allowedValues": [
+        "IOS",
+        "AND"
+      ],
       "allowCustomValue": false
     },
     {
       "name": "Descriptor",
-      "examples": ["OutlookFocusedInbox", "TeamsConfig","VPNSettings"],
+      "examples": [
+        "OutlookFocusedInbox",
+        "TeamsConfig",
+        "VPNSettings"
+      ],
       "allowCustomValue": true
     },
     {
@@ -49,20 +67,37 @@
   "examples": [
     "MACFG-GLOBAL-MANAGEDAPPS-IOS-TEAMSCONFIG-PROD-V1"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["IntPrefix","ScopeTag","EnrollmentType","Target","Descriptor","Environment","Version"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["EnrollmentType","Environment","Version"],
-    "lockedSegments": ["Target","Descriptor"],
-    "fixedFirstSegments": ["IntPrefix","ScopeTag"],
+    "defaultSegments": [
+      "IntPrefix",
+      "ScopeTag",
+      "EnrollmentType",
+      "Target",
+      "Descriptor",
+      "Environment",
+      "Version"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "EnrollmentType",
+      "Environment",
+      "Version"
+    ],
+    "lockedSegments": [
+      "Target",
+      "Descriptor"
+    ],
+    "fixedFirstSegments": [
+      "IntPrefix",
+      "ScopeTag"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }
-

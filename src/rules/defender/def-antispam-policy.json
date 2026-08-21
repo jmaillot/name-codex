@@ -10,7 +10,10 @@
       "label": "Direction",
       "library": "defender/def-direction",
       "defaultValue": "Inbound",
-      "allowedValues": ["Inbound", "Outbound"],
+      "allowedValues": [
+        "Inbound",
+        "Outbound"
+      ],
       "allowCustomValue": false
     },
     {
@@ -18,13 +21,22 @@
       "label": "Scope",
       "library": "intune/assignments",
       "defaultValue": "AllUsers",
-      "allowedValues": ["AllUsers"],
-      "examples": ["AllUsers", "GroupName"],
+      "allowedValues": [
+        "AllUsers"
+      ],
+      "examples": [
+        "AllUsers",
+        "GroupName"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "Descriptor",
-      "examples": ["Strict", "Baseline", "HighRisk"],
+      "examples": [
+        "Strict",
+        "Baseline",
+        "HighRisk"
+      ],
       "allowCustomValue": true
     },
     {
@@ -41,17 +53,31 @@
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Direction", "ScopeType", "Descriptor", "Environment", "Version"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Environment", "Version"],
-    "lockedSegments": ["Descriptor"],
-    "fixedFirstSegments": ["Direction", "ScopeType"],
+    "defaultSegments": [
+      "Direction",
+      "ScopeType",
+      "Descriptor",
+      "Environment",
+      "Version"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Environment",
+      "Version"
+    ],
+    "lockedSegments": [
+      "Descriptor"
+    ],
+    "fixedFirstSegments": [
+      "Direction",
+      "ScopeType"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

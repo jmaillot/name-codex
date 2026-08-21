@@ -8,14 +8,22 @@
     {
       "name": "MailboxType",
       "defaultValue": "SHARED",
-      "allowedValues": ["SHARED", "SMB"]
+      "allowedValues": [
+        "SHARED",
+        "SMB"
+      ]
     },
     {
       "name": "Department",
       "label": "Department",
       "type": "dropdown",
       "defaultValue": "",
-      "examples": ["HR", "IT", "FIN", "OPS"],
+      "examples": [
+        "HR",
+        "IT",
+        "FIN",
+        "OPS"
+      ],
       "allowCustomValue": true
     },
     {
@@ -23,34 +31,57 @@
       "label": "Function",
       "type": "dropdown",
       "defaultValue": "",
-      "examples": ["Alerts", "Info"],
-      "allowedValues": ["Alerts","Info","Backup","Reporting","Invoices"],
+      "examples": [
+        "Alerts",
+        "Info"
+      ],
+      "allowedValues": [
+        "Alerts",
+        "Info",
+        "Backup",
+        "Reporting",
+        "Invoices"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "City",
       "label": "City",
       "defaultValue": "",
-      "examples": ["Lille", "Paris"],
+      "examples": [
+        "Lille",
+        "Paris"
+      ],
       "allowCustomValue": true
     }
   ],
   "examples": [
     "SHARED-HR-RECRUITMENT-LILLE"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["MailboxType","Department","Function","City"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["City"],
+    "defaultSegments": [
+      "MailboxType",
+      "Department",
+      "Function",
+      "City"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "City"
+    ],
     "lockedSegments": [],
-    "fixedFirstSegments": ["MailboxType","Department","Function"],
+    "fixedFirstSegments": [
+      "MailboxType",
+      "Department",
+      "Function"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

@@ -8,7 +8,11 @@
     {
       "name": "QuarantineScope",
       "label": "Scope",
-      "examples": ["Company", "Finance","IT"],
+      "examples": [
+        "Company",
+        "Finance",
+        "IT"
+      ],
       "allowCustomValue": true
     },
     {
@@ -23,7 +27,10 @@
       "label": "Notify",
       "library": "defender/def-notification",
       "defaultValue": "WithNotification",
-      "allowedValues": ["WithNotification", ""],
+      "allowedValues": [
+        "WithNotification",
+        ""
+      ],
       "allowCustomValue": false
     }
   ],
@@ -32,17 +39,25 @@
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["QuarantineScope","AccessLevel", "Notify"],
-    "availableSegments": ["Custom"],
+    "defaultSegments": [
+      "QuarantineScope",
+      "AccessLevel",
+      "Notify"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
     "recommendedSegments": [],
     "lockedSegments": [],
-    "fixedFirstSegments": ["QuarantineScope","AccessLevel", "Notify"],
+    "fixedFirstSegments": [
+      "QuarantineScope",
+      "AccessLevel",
+      "Notify"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

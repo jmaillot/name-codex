@@ -4,33 +4,45 @@
   "name": "Room Mailbox / Equipment Mailbox",
   "description": "Resource mailbox for bookable rooms or equipment, integrated with Outlook calendar scheduling.",
   "pattern": "[MailboxType]-[Department]-[City]-[Floor]-[Name]",
-
   "fields": [
     {
       "name": "MailboxType",
       "defaultValue": "Room",
-      "allowedValues": ["Room", "Equip"]
+      "allowedValues": [
+        "Room",
+        "Equip"
+      ]
     },
     {
       "name": "Department",
       "label": "Department",
       "type": "dropdown",
       "defaultValue": "",
-      "examples": ["HR", "IT", "FIN", "OPS"],
+      "examples": [
+        "HR",
+        "IT",
+        "FIN",
+        "OPS"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "City",
       "label": "City",
       "defaultValue": "",
-      "examples": ["Lille", "Paris"],
+      "examples": [
+        "Lille",
+        "Paris"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "Floor",
       "label": "Floor",
       "defaultValue": "",
-      "examples": ["1st Floor"],
+      "examples": [
+        "1st Floor"
+      ],
       "allowCustomValue": true
     },
     {
@@ -57,19 +69,33 @@
   "examples": [
     "ROOM-HR-LILLE-1RSTFLOOR-MEETINGROOM01"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["MailboxType","Department","City","Floor","Name"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Department","City","Floor"],
+    "defaultSegments": [
+      "MailboxType",
+      "Department",
+      "City",
+      "Floor",
+      "Name"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Department",
+      "City",
+      "Floor"
+    ],
     "lockedSegments": [],
-    "fixedFirstSegments": ["MailboxType"],
-    "fixedLastSegments": ["Name"]
+    "fixedFirstSegments": [
+      "MailboxType"
+    ],
+    "fixedLastSegments": [
+      "Name"
+    ]
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

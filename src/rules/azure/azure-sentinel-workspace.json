@@ -13,7 +13,9 @@
     {
       "name": "Location",
       "defaultValue": "AZ",
-      "allowedValues": ["AZ"]
+      "allowedValues": [
+        "AZ"
+      ]
     },
     {
       "name": "Type",
@@ -29,19 +31,33 @@
   "examples": [
     "FRAZLASIEM"
   ],
-  "builder": { 
+  "builder": {
     "separator": "",
-    "defaultSegments": ["Country","Location","Type","Role"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Type"],
-    "lockedSegments": ["Role"],
-    "fixedFirstSegments": ["Country","Location"],
-    "fixedLastSegments": ["Role"]
+    "defaultSegments": [
+      "Country",
+      "Location",
+      "Type",
+      "Role"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Type"
+    ],
+    "lockedSegments": [
+      "Role"
+    ],
+    "fixedFirstSegments": [
+      "Country",
+      "Location"
+    ],
+    "fixedLastSegments": [
+      "Role"
+    ]
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

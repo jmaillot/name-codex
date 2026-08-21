@@ -10,12 +10,20 @@
       "label": "Prefix",
       "library": "intune/intune-prefix",
       "defaultValue": "CMP",
-      "allowedValues": ["CMP"]
+      "allowedValues": [
+        "CMP"
+      ]
     },
     {
       "name": "ScopeTag",
       "defaultValue": "",
-      "examples": ["Global", "EMEA", "FR","HR","IT"],
+      "examples": [
+        "Global",
+        "EMEA",
+        "FR",
+        "HR",
+        "IT"
+      ],
       "allowCustomValue": true
     },
     {
@@ -26,13 +34,22 @@
       "name": "Assignments",
       "library": "intune/assignments",
       "defaultValue": "AllUsers",
-      "allowedValues": ["AllUsers", "AllDevices"],
-      "examples": ["GroupName"],
+      "allowedValues": [
+        "AllUsers",
+        "AllDevices"
+      ],
+      "examples": [
+        "GroupName"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "Descriptor",
-      "examples": ["BitLockerAndPasswordPolicy", "NonComplianceActions", "BaselineSecurityRules"],
+      "examples": [
+        "BitLockerAndPasswordPolicy",
+        "NonComplianceActions",
+        "BaselineSecurityRules"
+      ],
       "allowCustomValue": true
     },
     {
@@ -47,20 +64,37 @@
   "examples": [
     "CMP-GLOBAL-W-ALLUSERS-BASELINESECURITYRULES-PROD-V1"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["IntPrefix","ScopeTag","OS","Assignments","Descriptor","Environment","Version"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["OS","Environment","Version"],
-    "lockedSegments": ["Assignments","Descriptor"],
-    "fixedFirstSegments": ["IntPrefix","ScopeTag"],
+    "defaultSegments": [
+      "IntPrefix",
+      "ScopeTag",
+      "OS",
+      "Assignments",
+      "Descriptor",
+      "Environment",
+      "Version"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "OS",
+      "Environment",
+      "Version"
+    ],
+    "lockedSegments": [
+      "Assignments",
+      "Descriptor"
+    ],
+    "fixedFirstSegments": [
+      "IntPrefix",
+      "ScopeTag"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }
-

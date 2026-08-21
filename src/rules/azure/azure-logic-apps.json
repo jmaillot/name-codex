@@ -13,7 +13,9 @@
     {
       "name": "Location",
       "defaultValue": "AZ",
-      "allowedValues": ["AZ"]
+      "allowedValues": [
+        "AZ"
+      ]
     },
     {
       "name": "Type",
@@ -50,19 +52,35 @@
   "examples": [
     "FRAZLASEAR"
   ],
-  "builder": { 
+  "builder": {
     "separator": "",
-    "defaultSegments": ["Country","Location","Type","Role","Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Type","Instance"],
-    "lockedSegments": ["Role"],
-    "fixedFirstSegments": ["Country","Location"],
-    "fixedLastSegments": ["Role"]
+    "defaultSegments": [
+      "Country",
+      "Location",
+      "Type",
+      "Role",
+      "Instance"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Type",
+      "Instance"
+    ],
+    "lockedSegments": [
+      "Role"
+    ],
+    "fixedFirstSegments": [
+      "Country",
+      "Location"
+    ],
+    "fixedLastSegments": [
+      "Role"
+    ]
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

@@ -39,8 +39,6 @@ export interface NamingBuilderConfig {
 export interface NamingValidationConfig {
   maxLength?: number;
   allowedPattern?: string;
-  requireLockedSegments?: boolean;
-  requireRecommendedSegments?: boolean;
   forceLowercase?: boolean;
   removeCharacters?: string[];
 }
@@ -71,7 +69,6 @@ export interface NamingConvention {
   sourcePath?: string;
 
   examples?: string[];
-  policyExamples?: Record<string, string>;
   maturity?: string;
 
   builder?: NamingBuilderConfig;

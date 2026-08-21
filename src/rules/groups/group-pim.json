@@ -10,7 +10,10 @@
       "label": "Prefix",
       "library": "groups/prefix",
       "defaultValue": "PIM",
-      "allowedValues": ["PIM", "JIT"],
+      "allowedValues": [
+        "PIM",
+        "JIT"
+      ],
       "allowCustomValue": true
     },
     {
@@ -22,14 +25,21 @@
       "name": "Scope",
       "label": "Scope",
       "defaultValue": "Tier1",
-      "allowedValues": ["Tier1", "Partner", "Audit"],
+      "allowedValues": [
+        "Tier1",
+        "Partner",
+        "Audit"
+      ],
       "allowCustomValue": true
     },
     {
       "name": "AccessType",
       "label": "AccessType",
       "defaultValue": "Eligible",
-      "allowedValues": ["Eligible", "Active"],
+      "allowedValues": [
+        "Eligible",
+        "Active"
+      ],
       "allowCustomValue": true
     },
     {
@@ -41,19 +51,32 @@
   "examples": [
     "PIM-GLOBALADMIN-TIER1-ELIGIBLE-PROD"
   ],
-  "builder": { 
+  "builder": {
     "separator": "-",
-    "defaultSegments": ["Prefix","PimRoles","Scope","AccessType","Environment"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Environment"],
+    "defaultSegments": [
+      "Prefix",
+      "PimRoles",
+      "Scope",
+      "AccessType",
+      "Environment"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Environment"
+    ],
     "lockedSegments": [],
-    "fixedFirstSegments": ["Prefix","PimRoles","Scope","AccessType"],
+    "fixedFirstSegments": [
+      "Prefix",
+      "PimRoles",
+      "Scope",
+      "AccessType"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$",
-    "requireLockedSegments": true,
-    "requireRecommendedSegments": false
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

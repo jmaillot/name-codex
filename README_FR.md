@@ -114,11 +114,14 @@ Ouvrez l'URL locale affichée dans le terminal (généralement <http://localhost
 
 ### Scripts disponibles
 
-| Script            | Description                                 |
-| ----------------- | ------------------------------------------- |
-| `npm run dev`     | Lancer le serveur de développement (HMR)    |
-| `npm run build`   | Vérifier les types et compiler pour la prod |
-| `npm run lint`    | Exécuter oxlint                             |
-| `npm run preview` | Prévisualiser la compilation de production  |
+| Script                  | Description                                                |
+| ----------------------- | ---------------------------------------------------------- |
+| `npm run dev`           | Lancer le serveur de développement (HMR)                   |
+| `npm run build`         | Vérifier les types et compiler pour la prod                |
+| `npm run lint`          | Exécuter oxlint                                            |
+| `npm test`              | Lancer les tests unitaires Vitest (jsdom, 137 tests)       |
+| `npm run test:watch`    | Lancer les tests en mode watch                             |
+| `npm run test:coverage` | Lancer les tests avec couverture v8 (80% lignes sur src/lib) |
+| `npm run preview`       | Prévisualiser la compilation de production                 |
 
 La compilation de production est générée dans `dist/` et peut être servie par n'importe quel serveur de fichiers statiques.

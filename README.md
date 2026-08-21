@@ -114,11 +114,14 @@ Open the local URL printed in the terminal (usually <http://localhost:5173/>) in
 
 ### Available scripts
 
-| Script            | Description                             |
-| ----------------- | --------------------------------------- |
-| `npm run dev`     | Start the development server (HMR)      |
-| `npm run build`   | Type-check and build for production     |
-| `npm run lint`    | Run oxlint                              |
-| `npm run preview` | Preview the production build locally    |
+| Script                  | Description                                      |
+| ----------------------- | ------------------------------------------------ |
+| `npm run dev`           | Start the development server (HMR)               |
+| `npm run build`         | Type-check and build for production              |
+| `npm run lint`          | Run oxlint                                       |
+| `npm test`              | Run Vitest unit tests (jsdom, 137 tests)         |
+| `npm run test:watch`    | Run tests in watch mode                          |
+| `npm run test:coverage` | Run tests with v8 coverage (80% lines on src/lib) |
+| `npm run preview`       | Preview the production build locally             |
 
 The production build is output to `dist/` and can be served by any static file server.

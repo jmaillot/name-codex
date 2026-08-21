@@ -32,6 +32,11 @@ export default function ReferenceCard({ referenceEntries }: ReferenceCardProps) 
                     <span>{e.meaning}</span>
                   </li>
                 ))}
+                {item.entries.length === 100 && item.segment.sourceName === "PolicyId" ? (
+                  <li className="reference-more">
+                    <span>{tl("ui.referenceTruncated", "Showing 100 — select a persona to narrow")}</span>
+                  </li>
+                ) : null}
               </ul>
             </div>
           ))}

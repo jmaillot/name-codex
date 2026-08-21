@@ -310,13 +310,17 @@ export function useAppState() {
     ...validationResults.map((r) => `- ${r.valid ? tl("ui.mdOk", "OK") : tl("ui.mdWarn", "WARN")} ${r.label}`),
   ].join("\n");
 
-  const referenceEntries = builderSegments
+  const referenceEntries = useMemo(() => builderSegments
     .map((segment) => {
       const field = fieldByName(activeFields, segment.sourceName);
       const valuesFromField = optionsForSegment(field, builderSegments);
+      let entriesToShow = valuesFromField;
+      if (entriesToShow.length > 100 && field?.generator) {
+        entriesToShow = entriesToShow.slice(0, 100);
+      }
       return {
         segment,
-        entries: valuesFromField.map((value) => {
+        entries: entriesToShow.map((value) => {
           const code = optionValue(value);
           return {
             code,
@@ -325,7 +329,7 @@ export function useAppState() {
         }),
       };
     })
-    .filter((item) => item.entries.length > 0);
+    .filter((item) => item.entries.length > 0), [builderSegments, activeFields, i18n.language]);
 
   const updateSegmentValue = (key: string, value: string) =>
     setBuilderSegments((prev) => {

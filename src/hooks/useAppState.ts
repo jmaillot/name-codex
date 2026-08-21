@@ -39,11 +39,15 @@ async function writeClipboard(text: string): Promise<boolean> {
       textarea.value = text;
       textarea.style.position = "fixed";
       textarea.style.opacity = "0";
+      textarea.setAttribute("readonly", "");
       document.body.appendChild(textarea);
-      textarea.select();
-      const ok = document.execCommand("copy");
-      textarea.remove();
-      return ok;
+      try {
+        textarea.select();
+        textarea.setSelectionRange(0, text.length);
+        return document.execCommand("copy");
+      } finally {
+        textarea.remove();
+      }
     } catch {
       return false;
     }

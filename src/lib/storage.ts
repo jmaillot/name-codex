@@ -5,9 +5,9 @@ export const STORAGE_KEYS = {
 } as const;
 
 export function loadJSON<T>(key: string): T | null {
-  const raw = localStorage.getItem(key);
-  if (!raw) return null;
   try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
     return JSON.parse(raw) as T;
   } catch {
     return null;
@@ -16,13 +16,14 @@ export function loadJSON<T>(key: string): T | null {
 
 export function loadJSONArray(key: string): string[] | null {
   const parsed = loadJSON<unknown>(key);
-  return Array.isArray(parsed) ? (parsed as string[]) : null;
+  if (!Array.isArray(parsed)) return null;
+  return parsed.every((v) => typeof v === "string") ? (parsed as string[]) : null;
 }
 
 export function loadJSONRecord(key: string): Record<string, string> | null {
   const parsed = loadJSON<unknown>(key);
   if (parsed === null || typeof parsed !== "object" || Array.isArray(parsed)) return null;
-  return parsed as Record<string, string>;
+  return Object.values(parsed).every((v) => typeof v === "string") ? (parsed as Record<string, string>) : null;
 }
 
 export function saveJSON<T>(key: string, value: T): void {

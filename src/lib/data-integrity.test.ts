@@ -1,5 +1,5 @@
-import { allConventions, caNumberingRanges, getGeneratorFile, getSegmentFile, segmentCatalog } from "./data"
-import { parsePattern } from "./parse"
+import { allConventions, caNumberingRanges, getGeneratorFile, getSegmentFile, segmentCatalog } from './data'
+import { parsePattern } from './parse'
 import { fieldByName } from "./segments"
 
 describe("data integrity", () => {

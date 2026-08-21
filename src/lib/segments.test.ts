@@ -1,5 +1,5 @@
-import { defaultValueForField, fieldByName, optionsForSegment, valuesForField } from "./segments"
-import type { BuilderSegment } from "./segments"
+import { defaultValueForField, fieldByName, optionsForSegment, valuesForField } from './segments'
+import type { BuilderSegment } from './segments'
 import type { NamingField } from "../types/Rule"
 
 function seg(name: string, value: string): BuilderSegment {

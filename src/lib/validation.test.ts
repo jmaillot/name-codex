@@ -1,4 +1,4 @@
-import { governanceScore, isFixedFirst, isFixedLast, isLocked, isRecommended, normalizeName, validateName } from "./validation"
+import { governanceScore, isFixedFirst, isFixedLast, isLocked, isRecommended, normalizeName, validateName } from './validation'
 import { makeConvention } from "../test/fixtures/synthetic-conventions"
 import type { BuilderSegment } from "./segments"
 

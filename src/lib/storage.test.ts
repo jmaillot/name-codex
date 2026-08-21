@@ -1,4 +1,4 @@
-import { loadJSONArray, loadJSON, loadJSONRecord } from "./storage"
+import { loadJSONArray, loadJSON, loadJSONRecord } from './storage'
 
 describe("loadJSONArray", () => {
   beforeEach(() => {

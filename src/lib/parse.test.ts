@@ -1,4 +1,4 @@
-import { parsePattern, patternToSegments } from "./parse"
+import { parsePattern, patternToSegments } from './parse'
 
 describe("parsePattern", () => {
   it("returns empty array for empty string", () => {

@@ -1,5 +1,5 @@
-import { caPolicyIdFallbackRange, caPolicyIdOptionsForRange, caPolicyIdRange, generateCaPolicyIds, generateSequence, personaRangeKeyForField } from "./generators"
-import { caNumberingRanges } from "./data"
+import { caPolicyIdFallbackRange, caPolicyIdOptionsForRange, caPolicyIdRange, generateCaPolicyIds, generateSequence, personaRangeKeyForField } from './generators'
+import { caNumberingRanges } from './data'
 import type { BuilderSegment } from "./segments"
 
 function seg(name: string, value: string): BuilderSegment {

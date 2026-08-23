@@ -1311,6 +1311,38 @@ summary:focus-visible {
   .main-panel {
     padding: 12px;
   }
+
+  /* Command bar — keep single-row, no vertical stacking (D-04) */
+  .command-bar {
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
+    flex-wrap: nowrap;
+  }
+
+  .command-bar__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 18ch;
+  }
+
+  .command-bar__center {
+    position: relative;
+  }
+
+  .command-bar__center input {
+    width: 40px;
+    padding-left: 32px;
+    transition: width 0.2s ease;
+  }
+
+  .command-bar__center input:focus {
+    width: 200px;
+  }
+
+  .command-bar__right {
+    gap: 4px;
+  }
 }
 
 @media (max-width: 1000px) {

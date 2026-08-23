@@ -9,10 +9,10 @@
   max-width: 520px;
   margin: 0 auto;
   padding: 40px 32px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  color: var(--text);
+  background: var(--surface-panel);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  color: var(--text-primary);
   text-align: center;
 }
 
@@ -20,7 +20,7 @@
   margin: 0;
   font-size: 26px;
   font-weight: 700;
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .error-boundary__message {
@@ -28,7 +28,7 @@
   max-width: 420px;
   font-size: 14px;
   line-height: 1.5;
-  color: var(--muted);
+  color: var(--text-secondary);
 }
 
 .error-boundary__button {
@@ -40,8 +40,8 @@
   margin-top: 8px;
   border: none;
   border-radius: 999px;
-  color: var(--text);
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--text-on-accent);
+  background: var(--accent);
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;

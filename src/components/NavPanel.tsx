@@ -1,3 +1,4 @@
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { tl } from "../lib/i18n-utils";
 import logo from "../assets/name-codex.svg";
 import iconAzure from "../assets/icons/azure.svg";
@@ -13,6 +14,8 @@ type NavPanelProps = {
   selectedCategory: string;
   categoryCounts: Record<string, number>;
   onSelectCategory: (category: string) => void;
+  collapsed?: boolean;
+  onToggle?: () => void;
 };
 
 function getCategoryIcon(category: string) {
@@ -59,11 +62,20 @@ function getCategoryClass(category: string): string {
   }
 }
 
-export default function NavPanel({ categories, selectedCategory, categoryCounts, onSelectCategory }: NavPanelProps) {
+export default function NavPanel({ categories, selectedCategory, categoryCounts, onSelectCategory, collapsed, onToggle }: NavPanelProps) {
   return (
-    <aside className="nav-panel">
+    <aside className={`nav-panel ${collapsed ? "nav-panel--collapsed" : ""}`}>
+      <button
+        type="button"
+        className="rail-toggle"
+        aria-expanded={!collapsed}
+        aria-label={collapsed ? tl("ui.expandNav", "Expand navigation") : tl("ui.collapseNav", "Collapse navigation")}
+        onClick={onToggle}
+      >
+        {collapsed ? <ChevronRight size={16} aria-hidden="true" /> : <ChevronLeft size={16} aria-hidden="true" />}
+      </button>
       <div className="brand-card">
-        <img src={logo} alt="Name Codex" />
+        <img src={logo} alt="Name Codex" className={`brand-logo ${collapsed ? "brand-logo--collapsed" : ""}`} />
         <div className="brand-divider" />
         <div>
           <div className="brand-title">Name Codex</div>

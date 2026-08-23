@@ -10,7 +10,9 @@ import { join, relative, sep } from 'node:path';
 
 const ROOT = process.cwd();
 const SRC = join(ROOT, 'src');
-const TOKENS_FILE = 'tokens.css';
+// Canonical path: Gate 1 exempts exactly this file (substring matching would
+// silently exempt future files like theme-tokens.css).
+const TOKENS_PATH = join(SRC, 'styles', 'tokens.css');
 const ALLOWLIST_MARKER = 'brand-lockup exception';
 
 const HEX_RE = /#[0-9a-fA-F]{3,8}\b/;
@@ -35,7 +37,7 @@ function walkCss(dir) {
 
 const violations = [];
 for (const file of walkCss(SRC)) {
-  if (file.includes(TOKENS_FILE)) continue;
+  if (file === TOKENS_PATH) continue;
   const rel = relative(ROOT, file).split(sep).join('/');
   const lines = readFileSync(file, 'utf8').split('\n');
   let inAllowlist = false;
@@ -104,7 +106,7 @@ function contrast(a, b) {
   return (hi + 0.05) / (lo + 0.05);
 }
 
-const tokensCss = readFileSync(join(SRC, 'styles', TOKENS_FILE), 'utf8');
+const tokensCss = readFileSync(TOKENS_PATH, 'utf8');
 const tokens = parseTokens(tokensCss);
 
 const textTokens = ['--text-primary', '--text-secondary'];

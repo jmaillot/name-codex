@@ -110,8 +110,15 @@ select {
   gap: 8px;
 }
 
+.command-bar .lang-switcher,
 .command-bar__right .lang-switcher {
   position: static;
+  top: auto;
+  right: auto;
+  z-index: auto;
+  background: transparent;
+  border: 0;
+  padding: 0;
 }
 
 .command-bar__action {

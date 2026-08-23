@@ -2,6 +2,10 @@
   "ui": {
     "appTagline": "Application de gouvernance de nommage",
     "categories": "Catégories",
+    "collapseNav": "Réduire la navigation",
+    "commandBarLabel": "Barre de commandes",
+    "expandNav": "Déployer la navigation",
+    "toggleNav": "Basculer la navigation",
     "configure": "Configuration",
     "configureInfo": "Filtrez et sélectionnez un type d'objet dans la catégorie courante.",
     "filter": "Filtrer",

@@ -2,7 +2,7 @@ import { useAppState } from "./hooks/useAppState";
 import { tl } from "./lib/i18n-utils";
 import { setLanguage } from "./i18n";
 import NavPanel from "./components/NavPanel";
-import LangSwitcher from "./components/LangSwitcher";
+import CommandBar from "./components/CommandBar";
 import ConfigureCard from "./components/ConfigureCard";
 import ResultCard from "./components/ResultCard";
 import BuilderCard from "./components/BuilderCard";
@@ -23,6 +23,8 @@ export default function App() {
     categoryCounts,
     objectSearch,
     setObjectSearch,
+    railCollapsed,
+    toggleRailCollapse,
     filteredConventions,
     selectedConvention,
     hasPatterns,
@@ -62,15 +64,30 @@ export default function App() {
   }
 
   return (
-    <div className="app-shell">
-      <NavPanel
-        categories={categories}
-        selectedCategory={selectedCategory}
-        categoryCounts={categoryCounts}
-        onSelectCategory={setSelectedCategory}
+    <>
+      <CommandBar
+        railCollapsed={railCollapsed}
+        onToggleRail={toggleRailCollapse}
+        objectSearch={objectSearch}
+        onObjectSearchChange={setObjectSearch}
+        language={language}
+        onSelectLanguage={setLanguage}
+        onCopyName={copyName}
+        onCopyMarkdown={copyMarkdown}
+        onAddFavorite={addFavorite}
+        generatedName={generatedName}
+        version={pkg.version}
       />
-      <main className="main-panel">
-        <LangSwitcher language={language} onSelectLanguage={setLanguage} />
+      <div className={`app-shell ${railCollapsed ? "app-shell--rail-collapsed" : ""}`}>
+        <NavPanel
+          categories={categories}
+          selectedCategory={selectedCategory}
+          categoryCounts={categoryCounts}
+          onSelectCategory={setSelectedCategory}
+          collapsed={railCollapsed}
+          onToggle={toggleRailCollapse}
+        />
+        <main className="main-panel">
         <section className="workspace-stack">
           <ConfigureCard
             objectSearch={objectSearch}
@@ -116,7 +133,8 @@ export default function App() {
           <HistoryCard history={history} onClearHistory={clearHistory} />
         </section>
         <footer className="footer">{tl("ui.footer", "Name Codex · Microsoft 365 & Azure Naming Standards · by jmaillot")} · v{pkg.version}</footer>
-      </main>
-    </div>
+        </main>
+      </div>
+    </>
   );
 }

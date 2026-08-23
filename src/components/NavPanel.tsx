@@ -1,4 +1,3 @@
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { tl } from "../lib/i18n-utils";
 import logo from "../assets/name-codex.svg";
 import iconAzure from "../assets/icons/azure.svg";
@@ -14,8 +13,6 @@ type NavPanelProps = {
   selectedCategory: string;
   categoryCounts: Record<string, number>;
   onSelectCategory: (category: string) => void;
-  collapsed?: boolean;
-  onToggle?: () => void;
 };
 
 function getCategoryIcon(category: string) {
@@ -62,20 +59,11 @@ function getCategoryClass(category: string): string {
   }
 }
 
-export default function NavPanel({ categories, selectedCategory, categoryCounts, onSelectCategory, collapsed, onToggle }: NavPanelProps) {
+export default function NavPanel({ categories, selectedCategory, categoryCounts, onSelectCategory }: NavPanelProps) {
   return (
-    <aside className={`nav-panel ${collapsed ? "nav-panel--collapsed" : ""}`}>
-      <button
-        type="button"
-        className="rail-toggle"
-        aria-expanded={!collapsed}
-        aria-label={collapsed ? tl("ui.expandNav", "Expand navigation") : tl("ui.collapseNav", "Collapse navigation")}
-        onClick={onToggle}
-      >
-        {collapsed ? <ChevronRight size={16} aria-hidden="true" /> : <ChevronLeft size={16} aria-hidden="true" />}
-      </button>
+    <aside className="nav-panel">
       <div className="brand-card">
-        <img src={logo} alt="Name Codex" className={`brand-logo ${collapsed ? "brand-logo--collapsed" : ""}`} />
+        <img src={logo} alt="Name Codex" className="brand-logo" />
         <div className="brand-divider" />
         <div>
           <div className="brand-title">Name Codex</div>
@@ -87,11 +75,7 @@ export default function NavPanel({ categories, selectedCategory, categoryCounts,
       <div className="nav-list">
         {categories.map((c) => (
           <button key={c} className={`nav-item ${selectedCategory === c ? "active" : ""}`} onClick={() => onSelectCategory(c)}>
-            <span
-              className={`nav-icon ${getCategoryClass(c)}`}
-            >
-              {getCategoryIcon(c)}
-            </span>
+            <span className={`nav-icon ${getCategoryClass(c)}`}>{getCategoryIcon(c)}</span>
             <span className="nav-label">{c}</span>
             <span className="nav-count">{categoryCounts[c]}</span>
           </button>

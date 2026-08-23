@@ -1,3 +1,4 @@
+import { Search } from "lucide-react";
 import { tl } from "../lib/i18n-utils";
 import { conventionName, patternName } from "../lib/segments";
 import type { NamingConvention, NamingPatternOption } from "../types/Rule";
@@ -13,6 +14,8 @@ type ConfigureCardProps = {
   activeDescriptionLabel: string;
   selectedExample?: string;
   generatedName: string;
+  objectSearch?: string;
+  onObjectSearchChange?: (v: string) => void;
 };
 
 export default function ConfigureCard({
@@ -25,6 +28,8 @@ export default function ConfigureCard({
   activeDescriptionLabel,
   selectedExample,
   generatedName,
+  objectSearch = "",
+  onObjectSearchChange,
 }: ConfigureCardProps) {
   return (
     <div className="glass-card configure-card compact-config">
@@ -34,6 +39,28 @@ export default function ConfigureCard({
           info={tl("ui.configureInfo", "Filter and select an object type from the current category.")}
         />
       </div>
+
+      {onObjectSearchChange && (
+        <div className="filter-field configure-filter">
+          <Search size={14} aria-hidden="true" className="configure-filter__icon" />
+          <input
+            value={objectSearch}
+            onChange={(e) => onObjectSearchChange(e.target.value)}
+            placeholder={tl("ui.filterPlaceholder", "Filter...")}
+            aria-label={tl("ui.filterPlaceholder", "Filter...")}
+          />
+          {objectSearch && (
+            <button
+              type="button"
+              className="filter-clear"
+              onClick={() => onObjectSearchChange("")}
+              aria-label={tl("ui.clearFilter", "Clear filter")}
+            >
+              ×
+            </button>
+          )}
+        </div>
+      )}
 
       <div className={`compact-selector-grid ${ hasPatterns ? "has-patterns" : "no-patterns" }`}>
         <div className="field-block selector-object">

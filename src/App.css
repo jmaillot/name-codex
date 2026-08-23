@@ -22,7 +22,7 @@ select {
 }
 
 /* =========================================================
-   Command Bar — sticky top chrome (D-01/D-02)
+   Command Bar — language-only header (09.1, D-01/D-02 trimmed)
    ========================================================= */
 .command-bar {
   position: sticky;
@@ -30,122 +30,44 @@ select {
   left: 0;
   right: 0;
   z-index: 50;
-  height: 50px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  height: 36px;
+  display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 0 16px;
+  justify-content: flex-end;
+  padding: 0 12px;
   background: var(--surface-panel);
   border-bottom: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-card);
 }
 
-.command-bar__left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.command-bar__title {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--text-primary);
-  white-space: nowrap;
-}
-
-.command-bar__hamburger,
-.command-bar__rail-toggle,
-.rail-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  border: 1px solid var(--border-subtle);
-  background: var(--surface-raised);
-  color: var(--text-primary);
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.command-bar__hamburger:hover,
-.command-bar__rail-toggle:hover,
-.rail-toggle:hover {
-  background: var(--surface-hover);
-  border-color: var(--border-strong);
-}
-
-.command-bar__center {
-  max-width: 520px;
-  width: 100%;
-  justify-self: center;
-}
-
-.command-bar__center .filter-field input {
-  width: 100%;
-}
-
-.command-bar__search {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.command-bar__search-icon {
-  position: absolute;
-  left: 10px;
-  color: var(--text-secondary);
+/* language-only — overlay on same line as nav + main top, no extra row */
+.command-bar--lang-only {
+  position: fixed;
+  top: 8px;
+  right: 12px;
+  left: auto;
+  width: auto;
+  height: 32px;
+  padding: 0;
+  background: transparent;
+  border-bottom: 0;
+  box-shadow: none;
   pointer-events: none;
 }
 
-.command-bar__search input {
-  padding-left: 32px;
+.command-bar--lang-only .lang-switcher {
+  pointer-events: auto;
 }
 
-.command-bar__right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.command-bar .lang-switcher,
-.command-bar__right .lang-switcher {
+.command-bar .lang-switcher {
   position: static;
   top: auto;
   right: auto;
   z-index: auto;
-  background: transparent;
-  border: 0;
-  padding: 0;
-}
-
-.command-bar__action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  padding: 0 12px;
-  border-radius: 999px;
+  background: var(--surface-panel);
   border: 1px solid var(--border-subtle);
-  background: var(--surface-raised);
-  color: var(--text-primary);
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
-}
-
-.command-bar__action:hover:not(:disabled) {
-  background: var(--accent-soft);
-  border-color: var(--accent-hover);
-}
-
-.command-bar__action:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
+  padding: 4px;
+  border-radius: 14px;
 }
 
 .app-shell {
@@ -156,57 +78,6 @@ select {
   zoom: 0.9;
   max-width: 1560px;
   margin: 0 auto;
-  transition: grid-template-columns 200ms ease;
-}
-
-.app-shell--rail-collapsed {
-  grid-template-columns: 64px minmax(0, 1fr);
-}
-
-/* Collapsed rail overrides (D-05/D-07) */
-.nav-panel--collapsed .nav-label {
-  display: none;
-}
-
-.nav-panel--collapsed .nav-count {
-  min-width: 10px;
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  padding: 0;
-  font-size: 0;
-  background: var(--accent);
-}
-
-.nav-panel--collapsed .brand-title,
-.nav-panel--collapsed .brand-subtitle,
-.nav-panel--collapsed .brand-divider,
-.nav-panel--collapsed .nav-section-title {
-  display: none;
-}
-
-.nav-panel--collapsed .brand-card {
-  padding: 12px 8px;
-  gap: 0;
-}
-
-.nav-panel--collapsed .brand-logo {
-  width: 32px;
-  height: 32px;
-}
-
-.nav-panel--collapsed .nav-item {
-  justify-content: center;
-  padding: 10px 6px;
-}
-
-.nav-panel--collapsed .nav-panel--collapsed .nav-icon {
-  margin: 0 auto;
-}
-
-.rail-toggle {
-  width: 100%;
-  margin-bottom: 8px;
 }
 
 .nav-panel {
@@ -303,20 +174,29 @@ label,
 }
 
 .lang-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  gap: 5px;
+  min-width: 52px;
+  height: 30px;
+  padding: 0 8px;
   border-radius: 10px;
   border: 1px solid transparent;
   background: transparent;
-  font-size: 20px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
   line-height: 1;
   cursor: pointer;
-  filter: grayscale(0.5);
-  opacity: 0.6;
+  opacity: 0.7;
   transition: all 0.25s ease;
+}
+
+.lang-flag {
+  flex-shrink: 0;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--border-subtle) 60%, transparent);
 }
 
 .lang-btn:hover {
@@ -626,6 +506,28 @@ label {
   background: color-mix(in srgb, var(--text-secondary) 15%, transparent);
   color: var(--text-secondary);
   cursor: pointer;
+}
+
+.configure-filter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.configure-filter__icon {
+  position: absolute;
+  left: 10px;
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+.configure-filter input {
+  width: 100%;
+  height: 36px;
+  padding-left: 30px;
+  padding-right: 34px;
+  font-size: 13px;
 }
 
 input,
@@ -1312,36 +1214,10 @@ summary:focus-visible {
     padding: 12px;
   }
 
-  /* Command bar — keep single-row, no vertical stacking (D-04) */
+  /* Command bar — language-only: keep on right, no reflow */
   .command-bar {
-    grid-template-columns: auto 1fr auto;
-    gap: 8px;
-    flex-wrap: nowrap;
-  }
-
-  .command-bar__title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 18ch;
-  }
-
-  .command-bar__center {
-    position: relative;
-  }
-
-  .command-bar__center input {
-    width: 40px;
-    padding-left: 32px;
-    transition: width 0.2s ease;
-  }
-
-  .command-bar__center input:focus {
-    width: 200px;
-  }
-
-  .command-bar__right {
-    gap: 4px;
+    justify-content: flex-end;
+    padding: 0 8px;
   }
 }
 

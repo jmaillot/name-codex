@@ -23,8 +23,6 @@ export default function App() {
     categoryCounts,
     objectSearch,
     setObjectSearch,
-    railCollapsed,
-    toggleRailCollapse,
     filteredConventions,
     selectedConvention,
     hasPatterns,
@@ -65,27 +63,13 @@ export default function App() {
 
   return (
     <>
-      <CommandBar
-        railCollapsed={railCollapsed}
-        onToggleRail={toggleRailCollapse}
-        objectSearch={objectSearch}
-        onObjectSearchChange={setObjectSearch}
-        language={language}
-        onSelectLanguage={setLanguage}
-        onCopyName={copyName}
-        onCopyMarkdown={copyMarkdown}
-        onAddFavorite={addFavorite}
-        generatedName={generatedName}
-        version={pkg.version}
-      />
-      <div className={`app-shell ${railCollapsed ? "app-shell--rail-collapsed" : ""}`}>
+      <CommandBar language={language} onSelectLanguage={setLanguage} />
+      <div className="app-shell">
         <NavPanel
           categories={categories}
           selectedCategory={selectedCategory}
           categoryCounts={categoryCounts}
           onSelectCategory={setSelectedCategory}
-          collapsed={railCollapsed}
-          onToggle={toggleRailCollapse}
         />
         <main className="main-panel">
         <section className="workspace-stack">
@@ -99,6 +83,8 @@ export default function App() {
             activeDescriptionLabel={activeDescriptionLabel}
             selectedExample={selectedExample}
             generatedName={generatedName}
+            objectSearch={objectSearch}
+            onObjectSearchChange={setObjectSearch}
           />
           <ResultCard
             generatedName={generatedName}

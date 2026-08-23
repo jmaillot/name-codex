@@ -2,7 +2,6 @@ export const STORAGE_KEYS = {
   history: "name-codex-history-v11-6",
   favorites: "name-codex-favorites-v11-6",
   lastObjectByCategory: "name-codex-last-object-by-category-v11-6",
-  railCollapsed: "name-codex-rail-collapsed-v1",
 } as const;
 
 export function loadJSON<T>(key: string): T | null {
@@ -28,5 +27,9 @@ export function loadJSONRecord(key: string): Record<string, string> | null {
 }
 
 export function saveJSON<T>(key: string, value: T): void {
-  localStorage.setItem(key, JSON.stringify(value));
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    // Ignore SecurityError (private mode) / QuotaExceededError — persistence is best-effort
+  }
 }

@@ -4,8 +4,6 @@ import type { NamingConvention, NamingPatternOption } from "../types/Rule";
 import CardTitle from "./CardTitle";
 
 type ConfigureCardProps = {
-  objectSearch: string;
-  onObjectSearchChange: (value: string) => void;
   filteredConventions: NamingConvention[];
   selectedConvention: NamingConvention;
   hasPatterns: boolean;
@@ -18,8 +16,6 @@ type ConfigureCardProps = {
 };
 
 export default function ConfigureCard({
-  objectSearch,
-  onObjectSearchChange,
   filteredConventions,
   selectedConvention,
   hasPatterns,
@@ -40,28 +36,6 @@ export default function ConfigureCard({
       </div>
 
       <div className={`compact-selector-grid ${ hasPatterns ? "has-patterns" : "no-patterns" }`}>
-        <div className="field-block selector-filter">
-          <label>{tl("ui.filter", "Filter")}</label>
-          <div className="filter-field">
-            <input
-              value={objectSearch}
-              onChange={(e) => onObjectSearchChange(e.target.value)}
-              placeholder={tl("ui.filterPlaceholder", "Filter...")}
-            />
-
-            {objectSearch && (
-              <button
-                type="button"
-                className="filter-clear"
-                onClick={() => onObjectSearchChange("")}
-                aria-label={tl("ui.clearFilter", "Clear filter")}
-              >
-                ×
-              </button>
-            )}
-          </div>
-        </div>
-
         <div className="field-block selector-object">
           <label>{tl("ui.objectType", "Object Type")}</label>
           <select

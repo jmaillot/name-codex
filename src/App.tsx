@@ -90,8 +90,6 @@ export default function App() {
         <main className="main-panel">
         <section className="workspace-stack">
           <ConfigureCard
-            objectSearch={objectSearch}
-            onObjectSearchChange={setObjectSearch}
             filteredConventions={filteredConventions}
             selectedConvention={selectedConvention}
             hasPatterns={hasPatterns}

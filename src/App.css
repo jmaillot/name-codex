@@ -514,29 +514,22 @@ h3 {
 
 .compact-selector-grid.has-patterns {
   grid-template-columns:
-    minmax(170px, 220px)
     minmax(220px, 1fr)
     minmax(180px, 240px);
 }
 
 .compact-selector-grid.no-patterns {
   grid-template-columns:
-    minmax(170px, 220px)
     minmax(220px, 1fr);
 }
 
-.selector-filter {
+.selector-object {
   grid-column: 1;
   grid-row: 1;
 }
 
-.selector-object {
-  grid-column: 2;
-  grid-row: 1;
-}
-
 .selector-pattern {
-  grid-column: 3;
+  grid-column: 2;
   grid-row: 1;
 }
 

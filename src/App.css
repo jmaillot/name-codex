@@ -239,18 +239,16 @@ label,
 }
 
 .glass-card {
-  background: var(--panel);
-  border: 1px solid var(--border);
+  background: var(--surface-panel);
+  border: 1px solid var(--border-subtle);
   border-radius: 18px;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-card);
   padding: 12px 14px;
-  transition: background .3s ease, backdrop-filter .3s ease;
+  transition: background .3s ease;
 }
 
 body.scrolled .glass-card {
-  background: rgba(20, 27, 43, .70);
-  backdrop-filter: blur(10px);
+  background: var(--surface-panel);
 }
 
 .workspace-stack {
@@ -314,8 +312,8 @@ h3 {
   justify-content: center;
   flex-shrink: 0;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--panel-soft);
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-raised);
   color: var(--text-secondary);
   font-size: 11px;
   line-height: 1;
@@ -330,10 +328,10 @@ h3 {
   min-width: 220px;
   max-width: 320px;
   padding: 8px 10px;
-  background: #020617;
-  border: 1px solid var(--border);
+  background: var(--surface-inset);
+  border: 1px solid var(--border-subtle);
   border-radius: 10px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-card);
   font-size: 12px;
   line-height: 1.35;
   white-space: normal;
@@ -402,20 +400,20 @@ h3 {
 
 .selector-description {
   min-width: 0;
-  color: rgba(255,255,255,.75);
+  color: var(--text-secondary);
   font-size: 13px;
 
   overflow-wrap: break-word;
 }
 
 .selector-example {
-  color: #70a5ff;
+  color: var(--cat-link);
   font-size: 13px;
 
   white-space: nowrap;
   justify-self: start;
   padding-left: 12px;
-  border-left: 1px solid var(--border);
+  border-left: 1px solid var(--border-subtle);
 }
 
 
@@ -472,8 +470,8 @@ label {
   height: 24px;
   border: 0;
   border-radius: 999px;
-  background: rgba(148, 163, 184, .15);
-  color: var(--muted);
+  background: color-mix(in srgb, var(--text-secondary) 15%, transparent);
+  color: var(--text-secondary);
   cursor: pointer;
 }
 
@@ -481,9 +479,9 @@ input,
 select {
   width: 100%;
   height: 44px;
-  color: var(--text);
-  background: var(--panel-soft);
-  border: 1px solid var(--border);
+  color: var(--text-primary);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-strong);
   border-radius: 11px;
   padding: 0 10px;
   outline: none;
@@ -543,9 +541,9 @@ select:focus {
   height: 30px;
   padding: 0 12px;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--panel-soft);
-  color: var(--muted);
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-raised);
+  color: var(--text-secondary);
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
@@ -560,14 +558,14 @@ select:focus {
   width: max-content;
   max-width: 240px;
   padding: 6px 10px;
-  background: #020617;
-  border: 1px solid var(--border);
+  background: var(--surface-inset);
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-card);
   font-size: 11px;
   font-weight: 500;
   line-height: 1.35;
-  color: var(--text);
+  color: var(--text-primary);
   white-space: normal;
   opacity: 0;
   pointer-events: none;
@@ -626,8 +624,8 @@ select:focus {
 
 .custom-dropdown-editor input:disabled {
   opacity: 0.45;
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--muted);
+  background: color-mix(in srgb, var(--surface-hover) 50%, transparent);
+  color: var(--text-secondary);
   cursor: not-allowed;
 }
 
@@ -695,9 +693,9 @@ summary:focus-visible {
   min-height: 46px;
   padding: 6px 10px;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--panel-soft), var(--accent-soft));
+  background: var(--surface-raised);
   letter-spacing: 0.02em;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-subtle);
   color: var(--accent);
   font-size: clamp(18px, 2.5vw, 28px);
   font-weight: 850;
@@ -713,8 +711,8 @@ summary:focus-visible {
   display: flex;
   align-items: center;
   color: var(--accent);
-  background: var(--panel-soft);
-  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
   border-radius: 11px;
   padding: 8px 10px;
   font-family: Consolas, monospace;
@@ -725,9 +723,9 @@ summary:focus-visible {
 .ca-example-inline {
   margin: 0 0 10px;
   padding: 10px;
-  border: 1px solid rgba(79, 140, 255, .22);
+  border: 1px solid var(--accent-hover);
   border-radius: 14px;
-  background: rgba(79, 140, 255, .06);
+  background: color-mix(in srgb, var(--accent-soft) 43%, transparent);
 }
 
 .pattern-box {
@@ -737,9 +735,9 @@ summary:focus-visible {
   align-items: center;
   margin: 0 0 10px;
   padding: 8px 10px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-subtle);
   border-radius: 12px;
-  background: var(--panel-soft);
+  background: var(--surface-raised);
 }
 
 .pattern-box span {
@@ -789,9 +787,9 @@ summary:focus-visible {
   gap: 12px;
   align-items: center;
   padding: 9px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-subtle);
   border-radius: 14px;
-  background: var(--panel-soft);
+  background: var(--surface-raised);
 }
 
 
@@ -840,8 +838,8 @@ summary:focus-visible {
 
 .score-bar {
   height: 8px;
-  background: var(--panel-soft);
-  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -881,7 +879,7 @@ summary:focus-visible {
 .reference-group li {
   padding: 7px 9px;
   border-radius: 10px;
-  background: var(--panel-soft);
+  background: var(--surface-raised);
   font-size: 12px;
   word-break: break-word;
 }
@@ -889,7 +887,7 @@ summary:focus-visible {
 .check-list li {
   display: flex;
   gap: 8px;
-  color: var(--muted);
+  color: var(--text-secondary);
 }
 
 .check-list li.valid span {
@@ -981,8 +979,8 @@ summary:focus-visible {
   margin: 0 14px 12px;
   padding: 10px 12px;
   border-radius: 13px;
-  background: var(--panel-soft);
-  border: 1px solid var(--border);
+  background: var(--surface-raised);
+  border: 1px solid var(--border-subtle);
   font-family: Consolas, monospace;
   font-size: 12px;
   line-height: 1.45;
@@ -991,7 +989,7 @@ summary:focus-visible {
   max-height: 320px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(79, 140, 255, .4) transparent;
+  scrollbar-color: var(--accent-hover) transparent;
 }
 
 .documentation-box::-webkit-scrollbar {
@@ -999,7 +997,7 @@ summary:focus-visible {
 }
 
 .documentation-box::-webkit-scrollbar-thumb {
-  background: rgba(79, 140, 255, .35);
+  background: var(--accent-hover);
   border-radius: 999px;
 }
 
@@ -1013,10 +1011,10 @@ summary:focus-visible {
 }
 
 .reference-group {
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-subtle);
   border-radius: 13px;
   padding: 10px;
-  background: var(--panel-soft);
+  background: var(--surface-raised);
 }
 
 .reference-group li {
@@ -1042,7 +1040,7 @@ summary:focus-visible {
 }
 
 .footer {
-  color: var(--muted);
+  color: var(--text-secondary);
   text-align: center;
   padding: 16px;
   font-size: 12px;

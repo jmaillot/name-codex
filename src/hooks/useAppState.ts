@@ -27,7 +27,7 @@ import {
   validateName,
 } from "../lib/validation";
 import type { BuilderSegment } from "../lib/segments";
-import { loadJSONArray, loadJSONRecord, saveJSON, STORAGE_KEYS } from "../lib/storage";
+import { loadJSON, loadJSONArray, loadJSONRecord, saveJSON, STORAGE_KEYS } from "../lib/storage";
 
 async function writeClipboard(text: string): Promise<boolean> {
   try {
@@ -62,7 +62,10 @@ export function useAppState() {
   const [builderSegments, setBuilderSegments] = useState<BuilderSegment[]>([]);
   const [customSegmentName, setCustomSegmentName] = useState("");
   const [objectSearch, setObjectSearch] = useState("");
+  const [railCollapsed, setRailCollapsed] = useState(false);
   const [actionFeedback, setActionFeedback] = useState<string | null>(null);
+
+  const toggleRailCollapse = () => setRailCollapsed((v) => !v);
   const feedbackTimer = useRef<number | null>(null);
 
   const showFeedback = (value: string) => {
@@ -220,6 +223,15 @@ export function useAppState() {
 
     localStorage.removeItem("name-codex-recent-objects-v11-5");
   }, []);
+
+  useEffect(() => {
+    const stored = loadJSON<boolean>(STORAGE_KEYS.railCollapsed);
+    if (typeof stored === "boolean") setRailCollapsed(stored);
+  }, []);
+
+  useEffect(() => {
+    saveJSON(STORAGE_KEYS.railCollapsed, railCollapsed);
+  }, [railCollapsed]);
 
   const selectedExample =
     selectedPattern?.examples?.[0] ?? selectedConvention.examples?.[0];
@@ -515,6 +527,8 @@ export function useAppState() {
     categoryCounts,
     objectSearch,
     setObjectSearch,
+    railCollapsed,
+    toggleRailCollapse,
     filteredConventions,
     selectedConvention,
     hasPatterns,

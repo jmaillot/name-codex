@@ -2,6 +2,7 @@ export const STORAGE_KEYS = {
   history: "name-codex-history-v11-6",
   favorites: "name-codex-favorites-v11-6",
   lastObjectByCategory: "name-codex-last-object-by-category-v11-6",
+  railCollapsed: "name-codex-rail-collapsed-v1",
 } as const;
 
 export function loadJSON<T>(key: string): T | null {

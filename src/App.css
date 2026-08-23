@@ -1117,7 +1117,7 @@ summary:focus-visible {
 
 .builder-handle.recommended {
   background: color-mix(in srgb, var(--warning) 12%, transparent);
-  color: color-mix(in srgb, var(--warning) 80%, white);
+  color: var(--warning-text);
   border: 1px solid color-mix(in srgb, var(--warning) 30%, transparent);
 }
 
@@ -1316,7 +1316,7 @@ summary:focus-visible {
 /* Survol spécial pour suppression */
 
 .builder-actions button:last-child {
-  color: color-mix(in srgb, var(--danger) 70%, white);
+  color: var(--danger-text);
   border-color: color-mix(in srgb, var(--danger) 20%, transparent);
 }
 
@@ -1332,7 +1332,7 @@ summary:focus-visible {
 }
 
 .action-warning {
-  color: color-mix(in srgb, var(--warning) 80%, white);
+  color: var(--warning-text);
   font-weight: 600;
 }
 

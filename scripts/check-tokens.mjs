@@ -15,6 +15,11 @@ const ALLOWLIST_MARKER = 'brand-lockup exception';
 
 const HEX_RE = /#[0-9a-fA-F]{3,8}\b/;
 const FUNC_RE = /\b(?:rgb|rgba|hsl|hsla)\(/i;
+// CSS named colors. Lookarounds prevent property-name false positives like
+// `white-space` / `-moz-blue-...`. `transparent` is a structural keyword used
+// legitimately across the CSS and is intentionally NOT treated as a literal.
+const NAMED_COLOR_RE =
+  /(?<![\w-])(?:white|black|silver|gray|grey|red|maroon|yellow|olive|lime|green|aqua|cyan|teal|blue|navy|fuchsia|magenta|purple|orange|pink|brown|gold)(?![\w-])/i;
 
 function walkCss(dir) {
   const out = [];
@@ -45,7 +50,7 @@ for (const file of walkCss(SRC)) {
       if (line.includes('}')) inAllowlist = false;
       continue;
     }
-    if (HEX_RE.test(line) || FUNC_RE.test(line)) {
+    if (HEX_RE.test(line) || FUNC_RE.test(line) || NAMED_COLOR_RE.test(line)) {
       violations.push({ file: rel, line: i + 1, snippet: line.trim() });
     }
   }

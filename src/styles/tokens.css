@@ -36,6 +36,9 @@
   --warning: #f59e0b;
   --danger: #ef4444;
   --danger-soft: rgba(239, 68, 68, 0.15);
+  /* Precomputed tints of status colors toward white (replaces inline color-mix literals) */
+  --warning-text: #f7b13c;
+  --danger-text: #f47c7c;
 
   /* Category palette (data-viz, exempt from 60/30/10) */
   --cat-azure: #3b82f6;

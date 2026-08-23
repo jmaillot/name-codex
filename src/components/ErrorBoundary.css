@@ -41,7 +41,7 @@
   border: none;
   border-radius: 999px;
   color: var(--text-on-accent);
-  background: var(--accent);
+  background: var(--accent-strong);
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;

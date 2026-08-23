@@ -28,6 +28,8 @@
 
   /* Accent — THE single accent system */
   --accent: #4f8cff;
+  /* AA-safe fill for controls carrying --text-on-accent text (#fff ≥ 4.5:1) */
+  --accent-strong: #366fdf;
   --accent-hover: rgba(79, 140, 255, 0.55);
   --accent-soft: rgba(79, 140, 255, 0.14);
 

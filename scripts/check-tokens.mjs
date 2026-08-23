@@ -2,7 +2,8 @@
 // 1. Literal gate: zero hardcoded color literals in src/**/*.css outside tokens.css
 //    (documented allowlist: lines containing "brand-lockup exception")
 // 2. Contrast gate: WCAG ratios of text tokens on every navy surface layer
-//    --text-primary >= 7:1 and --text-secondary >= 4.5:1 on all four surfaces.
+//    --text-primary >= 7:1 and --text-secondary >= 4.5:1 on all four surfaces,
+//    plus --text-on-accent >= 4.5:1 on both accent fills (WR-01).
 // Node >= 18, ESM, zero dependencies.
 
 import { readdirSync, readFileSync } from 'node:fs';
@@ -118,26 +119,32 @@ const surfaces = [
 ];
 const thresholds = { '--text-primary': 7, '--text-secondary': 4.5 };
 
+// (foreground, background, minimum ratio). Rule per WR-01 + UI-SPEC D-2
+// (#4f8cff stays the accent): any fill carrying --text-on-accent text MUST use
+// --accent-strong; bare --accent fills are decorative/text-free.
+const checks = [
+  ...surfaces.map((s) => ({ fg: '--text-primary', bg: s, min: 7 })),
+  ...surfaces.map((s) => ({ fg: '--text-secondary', bg: s, min: 4.5 })),
+  { fg: '--text-on-accent', bg: '--accent-strong', min: 4.5 },
+];
+
 let passCount = 0;
 const failures = [];
 
-for (const text of textTokens) {
-  const textColor = resolveHex(tokens.get(text), tokens);
-  for (const surface of surfaces) {
-    const surfaceColor = resolveHex(tokens.get(surface), tokens);
-    if (!textColor || !surfaceColor) {
-      failures.push(`${text} on ${surface}: unresolvable token value`);
-      continue;
-    }
-    const ratio = contrast(textColor, surfaceColor);
-    const min = thresholds[text];
-    if (ratio >= min) {
-      passCount++;
-    } else {
-      failures.push(
-        `${text} on ${surface}: ${ratio.toFixed(2)}:1 < required ${min}:1`
-      );
-    }
+for (const { fg, bg, min } of checks) {
+  const textColor = resolveHex(tokens.get(fg), tokens);
+  const bgColor = resolveHex(tokens.get(bg), tokens);
+  if (!textColor || !bgColor) {
+    failures.push(`${fg} on ${bg}: unresolvable token value`);
+    continue;
+  }
+  const ratio = contrast(textColor, bgColor);
+  if (ratio >= min) {
+    passCount++;
+  } else {
+    failures.push(
+      `${fg} on ${bg}: ${ratio.toFixed(2)}:1 < required ${min}:1`
+    );
   }
 }
 
@@ -148,5 +155,5 @@ if (failures.length > 0) {
 }
 
 console.log(
-  `TOKEN GATE PASS (literals: 0 violations, contrast: ${passCount}/8 pairs)`
+  `TOKEN GATE PASS (literals: 0 violations, contrast: ${passCount}/${checks.length} pairs)`
 );

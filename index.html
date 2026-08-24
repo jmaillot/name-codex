@@ -8,6 +8,25 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Name Codex</title>
+    <script>
+      // Pre-paint theme resolution (Phase 12, D-06). Runs before React mounts.
+      // Key string duplicates THEME_STORAGE_KEY in src/lib/theme.ts — that file is
+      // the single source of truth; keep both sites in sync when renaming (D-09).
+      (function () {
+        try {
+          var stored = localStorage.getItem("name-codex-theme-v14-0");
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          /* fail silent — :root defaults to dark */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

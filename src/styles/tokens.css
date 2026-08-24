@@ -53,7 +53,7 @@
   --cat-label: #8cb6ff;
 
   /* Brand title gradient stops (moved from App.css brand-lockup exception) */
-  --brand-title-from: #ffffff;
+  --brand-title-from: #e2e8f0;
   --brand-title-to: #adc6ff;
 
   /* Elevation — exactly one shadow level */

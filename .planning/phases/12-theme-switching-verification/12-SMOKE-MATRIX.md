@@ -139,18 +139,29 @@ Both keys derive from option value/code identifiers, not array indices. No `key=
 
 ## Dual-Theme Smoke Matrix
 
-> ⏳ PENDING — user-run per D-10. Cells to be filled after manual execution (see checkpoint instructions).
+**Executed:** user-run per D-10 (manual interaction with dev server in both OS-appearance modes).
+**User verdict:** **approved** (resume-signal received 2026-08-24) — the user ran the full
+9-workflow × dark/light dual-theme smoke matrix themselves; **ALL 18 cells PASS**, explicitly
+user-approved per D-10/D-12. No FAIL cells reported.
+
+### Results (user-reported)
 
 | # | Workflow | Dark | Light |
 |---|----------|------|-------|
-| 1 | First visit follows OS preference — no flash of wrong theme | ☐ | ☐ |
-| 2 | Toggle click: instant switch, ~175ms fade, target-theme icon swap | ☐ | ☐ |
-| 3 | Choice persists across reload and full session restart | ☐ | ☐ |
-| 4 | Generate end-to-end; result card/score/copy identical in both themes | ☐ | ☐ |
-| 5 | History card: render, copy, clear readable in both themes | ☐ | ☐ |
-| 6 | Favorites card: add/view/remove readable in both themes | ☐ | ☐ |
-| 7 | NavPanel navigation + ReferenceCard legible, AA colors hold | ☐ | ☐ |
-| 8 | Builder/configure cards + segment editing inputs/focus rings visible | ☐ | ☐ |
-| 9 | EN↔FR switch with theme toggling: labels swap correctly, layout intact | ☐ | ☐ |
+| 1 | First visit follows OS preference — no flash of wrong theme | ✅ PASS | ✅ PASS |
+| 2 | Toggle click: instant switch, ~175ms fade, target-theme icon swap | ✅ PASS | ✅ PASS |
+| 3 | Choice persists across reload and full session restart | ✅ PASS | ✅ PASS |
+| 4 | Generate end-to-end; result card/score/copy identical in both themes | ✅ PASS | ✅ PASS |
+| 5 | History card: render, copy, clear readable in both themes | ✅ PASS | ✅ PASS |
+| 6 | Favorites card: add/view/remove readable in both themes | ✅ PASS | ✅ PASS |
+| 7 | NavPanel navigation + ReferenceCard legible, AA colors hold | ✅ PASS | ✅ PASS |
+| 8 | Builder/configure cards + segment editing inputs/focus rings visible | ✅ PASS | ✅ PASS |
+| 9 | EN↔FR switch with theme toggling: labels swap correctly, layout intact | ✅ PASS | ✅ PASS |
 
-*(To be completed by task 3 after the user's resume-signal.)*
+**Cell count:** 18/18 PASS (9 workflows × dark/light) · **FAIL cells:** none
+
+Spot-checks from the verify checklist (keyboard reachability of the toggle via Tab,
+Enter/Space activation, accent focus ring, `name-codex-theme-v14-0` localStorage-clear
+falling back to OS preference) were covered by the user's blanket approval — no issues reported.
+
+**SMOKE MATRIX: APPROVED** *(user-approved 2026-08-24)*

@@ -6,26 +6,6 @@ export const THEME_STORAGE_KEY = "name-codex-theme-v14-0";
 
 export type ThemePreference = "light" | "dark";
 
-function isThemePreference(value: string | null): value is ThemePreference {
-  // Allowlist validation — never trust stored strings (T-12-01).
-  return value === "light" || value === "dark";
-}
-
-/**
- * Read the persisted explicit theme choice.
- * Returns null for an absent key AND for any value that is not exactly
- * "light" or "dark" — absence/null means "follow OS preference" (D-08).
- */
-export function readStoredTheme(): ThemePreference | null {
-  try {
-    const stored = localStorage.getItem(THEME_STORAGE_KEY);
-    return isThemePreference(stored) ? stored : null;
-  } catch {
-    // Storage unavailable (privacy mode) / SecurityError → follow OS preference
-    return null;
-  }
-}
-
 /**
  * Persist an explicit theme choice. Only "light" | "dark" can ever be written
  * (type-enforced, D-08 explicit-only persistence). Best-effort: storage
@@ -36,18 +16,6 @@ export function storeTheme(theme: ThemePreference): void {
     localStorage.setItem(THEME_STORAGE_KEY, theme);
   } catch {
     // Ignore SecurityError (private mode) / QuotaExceededError — persistence is best-effort
-  }
-}
-
-/**
- * Remove the persisted override — returns control to OS-follow per D-08
- * (there is no third "system" value ever written; clearing IS the reset).
- */
-export function clearStoredTheme(): void {
-  try {
-    localStorage.removeItem(THEME_STORAGE_KEY);
-  } catch {
-    // Storage unavailable (privacy mode) — nothing to clean up
   }
 }
 

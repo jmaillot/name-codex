@@ -568,6 +568,7 @@ select:focus {
 .policy-id-prefix {
   flex-shrink: 0;
   height: 44px;
+  font-family: var(--font-mono);
   display: inline-flex;
   align-items: center;
   padding: 0 14px;
@@ -582,6 +583,7 @@ select:focus {
 
 .policy-id-editor input {
   min-width: 0;
+  font-family: var(--font-mono);
 }
 
 .multi-select-editor {
@@ -672,6 +674,11 @@ select:focus {
   width: 100%;
 }
 
+/* Custom-mode freeform input carries code-like values (D-04) */
+.custom-dropdown-editor.custom-mode input {
+  font-family: var(--font-mono);
+}
+
 .custom-input-wrapper {
   min-width: 0;
   width: 100%;
@@ -747,6 +754,7 @@ summary:focus-visible {
 .generated-name {
   min-height: 46px;
   padding: 6px 10px;
+  font-family: var(--font-mono);
   border-radius: 16px;
   background: var(--surface-raised);
   letter-spacing: 0.02em;
@@ -770,7 +778,7 @@ summary:focus-visible {
   border: 1px solid var(--border-subtle);
   border-radius: 11px;
   padding: 8px 10px;
-  font-family: Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 13px;
   word-break: break-word;
 }
@@ -805,7 +813,7 @@ summary:focus-visible {
 
 .pattern-box code {
   color: var(--accent);
-  font-family: Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 12px;
   overflow-wrap: anywhere;
 }
@@ -955,7 +963,7 @@ summary:focus-visible {
 
 .history-card li {
   color: var(--accent);
-  font-family: Consolas, monospace;
+  font-family: var(--font-mono);
 }
 
 .documentation-card,
@@ -1036,7 +1044,7 @@ summary:focus-visible {
   border-radius: 13px;
   background: var(--surface-raised);
   border: 1px solid var(--border-subtle);
-  font-family: Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 12px;
   line-height: 1.45;
   white-space: pre-wrap;
@@ -1080,7 +1088,7 @@ summary:focus-visible {
 
 .reference-group code {
   color: var(--accent);
-  font-family: Consolas, monospace;
+  font-family: var(--font-mono);
   font-weight: 800;
 }
 

@@ -18,7 +18,7 @@ requirements_completed: []  # SAFE-01 closes only after 10-04's smoke matrix pas
 gap_closure: true
 
 # Metrics
-duration: ~
+duration: ~8min (diagnosis + fix + full gate re-proof)
 completed: 2026-08-24
 ---
 
@@ -104,6 +104,98 @@ Both stale commented-out rule blocks deleted; every ACTIVE rule byte-identical:
 
 Diff stat after task 2: `src/App.css | 9 ---------` (deletions only), `src/hooks/useAppState.ts | 3 ++-`. `node scripts/check-tokens.mjs` → TOKEN GATE PASS re-run after deletion.
 
+## Task 3: Post-Fix Proofs — PERF-01..03 Re-proven, Full Gate Green
+
+### PERF guard re-proof (D-16: failures BLOCK) — ALL PASS
+
+| Guard | Command | Observed | Verdict |
+|-------|---------|----------|---------|
+| PERF-01 memo | `grep -n "useMemo" src/hooks/useAppState.ts` | `referenceEntries = useMemo(...)` at **:314**, deps `[builderSegments, activeFields, i18n.language]` verbatim at **:333** | PASS |
+| PERF-01 cap | `grep -n "slice(0, 100)" src/hooks/useAppState.ts` | exactly 1 hit at **:320** (cap 100, guarded by `entriesToShow.length > 100 && field?.generator`); NOT raised, no virtualization (D-15) | PASS |
+| PERF-01 persona narrowing | `grep -n "personaRangeKeyForField" src/hooks/useAppState.ts` | present at **:344** (import :18) → `caPolicyIdOptionsForRange` path intact | PASS |
+| PERF-02 no linear scans | `grep -cE "\.find\(|\.filter\(" src/lib/data.ts` | **0** hits | PASS |
+| PERF-02 Map lookups | `grep -n "\.get(" src/lib/data.ts` | `segmentModuleMap.get(...)` **:47**, `generatorModuleMap.get(...)` **:51** | PASS |
+| PERF-03 no Date.now() | `grep -c "Date.now()" src/hooks/useAppState.ts` | **0** | PASS |
+| PERF-03 stable keys | grep key patterns | `` `${name}-${index}` `` at `src/lib/segments.ts:146`; `` `${name}-custom-${prev.length}` `` at `src/hooks/useAppState.ts:440` | PASS |
+
+### Full automated gate — ALL PASS
+
+| Gate | Command | Result |
+|------|---------|--------|
+| Build | `npm run build` | ✓ green — built in 5.75s |
+| Lint | `npm run lint` (oxlint) | ✓ **0 errors** — same 5 pre-existing warnings as 10-02 baseline (2× useAppState exhaustive-deps = the intentional i18n.language memo deps; vite.config triple-slash; check-tokens unused vars ×2). No new warnings introduced. |
+| Tests | `npx vitest run` | ✓ **exactly 137 passed (137)**, 6 files, 0 failed/skipped — D-11 lock held, no tests committed |
+
+Raw vitest tail:
+
+```
+ Test Files  6 passed (6)
+      Tests  137 passed (137)
+   Duration  22.00s
+```
+
+Full gate output captured at `/tmp/opencode/p10-gate.out`; diagnostic repro output at `/tmp/opencode/p10-diag.out`.
+
+Token gate: `node scripts/check-tokens.mjs` → **TOKEN GATE PASS** (literals: 0 violations, contrast: 9/9 pairs) — re-run after the IN-01 deletions.
+
+### D-14 exception audit
+
+Plan diff scope (`git diff --name-only a783c9c^..HEAD`, plan base = pre-plan commit):
+
+```
+.planning/phases/10-developer-portal-polish-verification/10-03-SUMMARY.md
+src/App.css
+src/hooks/useAppState.ts
+```
+
+Exactly the declared set {SUMMARY.md, App.css, useAppState.ts}. The full hook diff (`git diff 0f46edc..HEAD -- src/hooks/useAppState.ts`) shows a **single hunk confined to the resolution block (~lines 102-107)**:
+
+```diff
+   const selectedConvention =
+-    conventionsForCategory.find((item) => item.id === selectedConventionId) ??
++    filteredConventions.find((item) => item.id === selectedConventionId) ??
+     filteredConventions[0] ??
++    conventionsForCategory.find((item) => item.id === selectedConventionId) ??
+     conventionsForCategory[0] ??
+     allConventions[0];
+```
+
+No other hunks. Zero edits to the filter memo (:89-100), builder effect (:193-209), referenceEntries memo (:314-333), slice cap (:320), or segment keys (:440).
+
+## Verification
+
+Every command with its observed output is recorded in the tables above (mirroring the 10-02 style):
+
+- Root cause empirically confirmed (task 1, 5/5 diag tests green, real ids/query recorded)
+- Fix landed at useAppState.ts:102-106 with filter-aware precedence; IN-01 blocks deleted
+- PERF-01..03 greps re-proven green post-fix (D-16 satisfied)
+- Exactly 137 tests, build + lint clean (0 errors), TOKEN GATE PASS
+- SAFE-01 status: the workflow-8 drift's code half is FIXED and gate-green. Behavioral re-proof (full 9-workflow smoke × EN/FR, live EN↔FR toggle spot-check, visual density check) routes to **plan 10-04**'s human smoke matrix. SAFE-01 remains open until that matrix passes.
+
+## Commits
+
+| task | Name | Commit | Files |
+| ---- | ---- | ------ | ----- |
+| 1 | Root-cause diagnosis w/ empirical repro | a783c9c | 10-03-SUMMARY.md |
+| 2 | Filter-aware selection fix + IN-01 cleanup | c9cf94c | useAppState.ts, App.css, SUMMARY |
+| 3 | Post-fix proofs + final gate + D-14 audit | (this commit) | 10-03-SUMMARY.md |
+
 ## Deviations from Plan
 
-None — plan executed exactly as written so far.
+None — plan executed exactly as written.
+
+## Known Stubs
+
+None.
+
+## Deferred Issues
+
+None new. Pre-existing review infos IN-02/IN-03/IN-04 remain documented and non-blocking per 10-REVIEW.md (IN-01 now closed by this plan).
+
+## Self-Check: PASSED
+
+- FOUND: src/hooks/useAppState.ts (fix hunk verified via git diff)
+- FOUND: src/App.css (IN-01 deletions verified via git diff)
+- FOUND: .planning/phases/10-developer-portal-polish-verification/10-03-SUMMARY.md
+- FOUND commits: a783c9c, c9cf94c
+- /tmp/opencode/p10-diag.out, /tmp/opencode/p10-gate.out exist as raw evidence

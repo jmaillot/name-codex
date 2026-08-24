@@ -370,7 +370,7 @@
     "data.caRange.CA2xx = Internals": "CA2xx = Internes",
     "data.caRange.CA3xx = Externals": "CA3xx = Externes",
     "data.caRange.CA4xx = Guests": "CA4xx = Invités",
-    "data.caRange.CA5xx = GuestsAdmins": "CA5xx = InvitésAdministrateurs",
+    "data.caRange.CA5xx = GuestsAdmins": "CA5xx = Invités Administrateurs",
     "data.caRange.CA6xx = ServiceAccounts": "CA6xx = Comptes de service",
     "data.caRange.CA7xx = AzureServiceAccounts": "CA7xx = Comptes de service Azure",
     "data.caRange.CA8xx = CorpServiceAccounts": "CA8xx = Comptes de service d'entreprise",

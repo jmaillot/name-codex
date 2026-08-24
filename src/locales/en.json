@@ -283,7 +283,7 @@
     "data.lib.intune/intune-endpointprofiletype.AntivirusExperience": "Windows Security Experience",
     "data.lib.intune/intune-endpointprofiletype.Antivirus": "Microsoft Defender Antivirus",
     "data.lib.intune/intune-endpointprofiletype.AntivirusExclusions": "Microsoft Defender Antivirus Exclusions",
-    "data.lib.intune/intune-endpointprofiletype.ASR": "Attack Surgace Reduction Rules",
+    "data.lib.intune/intune-endpointprofiletype.ASR": "Attack Surface Reduction Rules",
     "data.lib.intune/intune-endpointprofiletype.Firewall": "Microsoft Defender Firewall",
     "data.lib.intune/intune-endpointprofiletype.FirewallRules": "Microsoft Defender Firewall Rules",
     "data.lib.intune/intune-endpointprofiletype.AntivirusUpdate": "Defender Update Control",

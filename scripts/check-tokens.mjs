@@ -68,24 +68,56 @@ if (violations.length > 0) {
 }
 
 // --- Gate 2: WCAG contrast of text tokens on navy surfaces ---
+// Theme-scoped (Phase 11, D-06): the dark `:root` block and the light
+// `:root[data-theme="light"]` block are parsed into SEPARATE maps — never
+// merged — and the full pair matrix runs once per theme. Light resolves
+// var() chains against its own values first, falling back to the dark map
+// for inherited tokens (--text-on-accent, --border-focus).
 
-function parseTokens(css) {
+function extractBlock(css, selectorRe, label) {
+  const m = css.match(selectorRe);
+  if (!m) throw new Error(`Gate 2: could not locate ${label} block in tokens.css`);
+  let i = m.index + m[0].length;
+  if (css[i - 1] !== '{') {
+    while (i < css.length && css[i] !== '{') i++;
+    if (i >= css.length) throw new Error(`Gate 2: ${label} block has no opening brace`);
+    i++;
+  }
+  let depth = 0;
+  const start = i;
+  for (; i < css.length; i++) {
+    if (css[i] === '{') depth++;
+    else if (css[i] === '}') {
+      if (depth === 0) return css.slice(start, i);
+      depth--;
+    }
+  }
+  throw new Error(`Gate 2: ${label} block is not closed`);
+}
+
+function parseTokens(block) {
   const map = new Map();
-  for (const m of css.matchAll(/--([\w-]+)\s*:\s*([^;]+);/g)) {
+  for (const m of block.matchAll(/--([\w-]+)\s*:\s*([^;]+);/g)) {
     map.set(`--${m[1]}`, m[2].trim());
   }
   return map;
 }
 
-function resolveHex(value, tokens, seen = new Set()) {
+// Resolves a raw value through var() chains within ONE theme scope.
+// Missing/circular/unhexable values are LOUD errors — never silent defaults.
+function resolveHex(value, own, fallback, seen = new Set()) {
   let v = value.trim();
-  while (v.startsWith('var(') && !seen.has(v)) {
+  while (v.startsWith('var(')) {
+    if (seen.has(v)) throw new Error(`circular var() reference at "${v}"`);
     seen.add(v);
     const name = v.slice(4, v.indexOf(')')).trim();
-    v = tokens.get(name) ?? '';
+    const next = own.get(name) ?? fallback?.get(name);
+    if (next === undefined) throw new Error(`unresolvable token "${name}"`);
+    v = next;
   }
   const m = v.match(/^#([0-9a-fA-F]{6})$/);
-  return m ? `#${m[1]}` : null;
+  if (!m) throw new Error(`value does not resolve to a hex color: "${v}"`);
+  return `#${m[1]}`;
 }
 
 function hexToRgb(hex) {
@@ -108,7 +140,22 @@ function contrast(a, b) {
 }
 
 const tokensCss = readFileSync(TOKENS_PATH, 'utf8');
-const tokens = parseTokens(tokensCss);
+
+const darkMap = parseTokens(
+  extractBlock(tokensCss, /(^|\s):root\s*\{/, ':root (dark)')
+);
+const lightMap = parseTokens(
+  extractBlock(
+    tokensCss,
+    /:root\[data-theme=["']light["']\]\s*\{/,
+    ':root[data-theme="light"]'
+  )
+);
+
+const themes = [
+  { tag: 'dark', own: darkMap, fallback: null },
+  { tag: 'light', own: lightMap, fallback: darkMap },
+];
 
 const textTokens = ['--text-primary', '--text-secondary'];
 const surfaces = [
@@ -129,31 +176,46 @@ const checks = [
 ];
 
 let passCount = 0;
+const totalPairs = checks.length * themes.length;
 const failures = [];
 
-for (const { fg, bg, min } of checks) {
-  const textColor = resolveHex(tokens.get(fg), tokens);
-  const bgColor = resolveHex(tokens.get(bg), tokens);
-  if (!textColor || !bgColor) {
-    failures.push(`${fg} on ${bg}: unresolvable token value`);
-    continue;
-  }
-  const ratio = contrast(textColor, bgColor);
-  if (ratio >= min) {
-    passCount++;
-  } else {
-    failures.push(
-      `${fg} on ${bg}: ${ratio.toFixed(2)}:1 < required ${min}:1`
+for (const theme of themes) {
+  for (const { fg, bg, min } of checks) {
+    let ratio;
+    try {
+      const textColor = resolveHex(
+        theme.own.get(fg) ?? theme.fallback?.get(fg),
+        theme.own,
+        theme.fallback
+      );
+      const bgColor = resolveHex(
+        theme.own.get(bg) ?? theme.fallback?.get(bg),
+        theme.own,
+        theme.fallback
+      );
+      ratio = contrast(textColor, bgColor);
+    } catch (err) {
+      failures.push(`[${theme.tag}] ${fg} on ${bg}: ${err.message}`);
+      console.log(`  [${theme.tag}] ${fg} on ${bg}: UNRESOLVABLE (${err.message})`);
+      continue;
+    }
+    const ok = ratio >= min;
+    if (ok) passCount++;
+    else failures.push(`[${theme.tag}] ${fg} on ${bg}: ${ratio.toFixed(2)}:1 < required ${min}:1`);
+    console.log(
+      `  [${theme.tag}] ${fg} on ${bg}: ${ratio.toFixed(2)}:1 (min ${min}:1) ${ok ? 'PASS' : 'FAIL'}`
     );
   }
 }
 
 if (failures.length > 0) {
-  console.error('TOKEN GATE FAIL — WCAG contrast below thresholds:');
+  console.error('TOKEN GATE FAIL — WCAG contrast below thresholds or unresolvable:');
   for (const f of failures) console.error(`  ${f}`);
   process.exit(1);
 }
 
-console.log(
-  `TOKEN GATE PASS (literals: 0 violations, contrast: ${passCount}/${checks.length} pairs)`
-);
+const perTheme = themes
+  .map((t) => `${t.tag} ${checks.length}/${checks.length}`)
+  .join(', ');
+console.log('TOKEN GATE PASS (literals: 0 violations)');
+console.log(`WCAG: ${passCount}/${totalPairs} pairs pass (${perTheme})`);

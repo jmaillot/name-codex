@@ -1471,10 +1471,6 @@ html.theme-anim *::after {
     box-shadow 175ms ease-out;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html.theme-anim *,
-  html.theme-anim *::before,
-  html.theme-anim *::after {
-    transition-duration: 0s;
-  }
-}
+/* NOTE (reduced motion): the global prefers-reduced-motion block above already
+   forces transition-duration to 0.01ms !important on all elements, so the
+   theme-anim fade is fully neutralized there — no extra block is needed. */

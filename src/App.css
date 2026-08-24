@@ -53,6 +53,14 @@ select {
   border-bottom: 0;
   box-shadow: none;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* theme pill inherits pointer-events like its lang sibling */
+.command-bar--lang-only .theme-toggle {
+  pointer-events: auto;
 }
 
 .command-bar--lang-only .lang-switcher {

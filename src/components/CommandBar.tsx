@@ -1,9 +1,12 @@
 import { tl } from "../lib/i18n-utils";
 import LangSwitcher from "./LangSwitcher";
+import ThemeToggle from "./ThemeToggle";
 
 /**
  * CommandBar — language-only sticky header (Phase 09.1).
  * Keeps configuration/menu on top of the grid; only LangSwitcher remains.
+ * Phase 12: adds the ThemeToggle pill before LangSwitcher so the cluster
+ * reads [theme] [EN/FR] (UI-SPEC Component Inventory).
  * Token-only styling: background var(--surface-panel), border var(--border-subtle).
  */
 
@@ -19,6 +22,7 @@ export default function CommandBar({ language, onSelectLanguage }: CommandBarPro
       role="banner"
       aria-label={tl("ui.commandBarLabel", "Command bar")}
     >
+      <ThemeToggle />
       <LangSwitcher language={language} onSelectLanguage={onSelectLanguage} />
     </header>
   );

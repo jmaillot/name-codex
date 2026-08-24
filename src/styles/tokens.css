@@ -80,7 +80,7 @@
   color-scheme: light;
 
   /* Surfaces — navy-tinted day mode, same ~220° hue family inverted */
-  --surface-canvas: #eef1f7;
+  --surface-canvas: #e4e9f2;
   --surface-raised: #f4f6fb;
   --surface-panel: #ffffff;
   --surface-overlay: #f8fafd;
@@ -89,7 +89,7 @@
 
   /* Text (--text-on-accent inherits dark's #ffffff) */
   --text-primary: #17203a;
-  --text-secondary: #5b6b85;
+  --text-secondary: #54647e;
 
   /* Border & focus — strengthened opacity for crisp edges on white
      (--border-focus inherits var(--accent)) */

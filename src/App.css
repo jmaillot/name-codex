@@ -283,7 +283,7 @@ label,
   border: 1px solid var(--border-subtle);
   border-radius: 18px;
   box-shadow: var(--shadow-card);
-  padding: 12px 14px;
+  padding: 9px 10px;
   transition: background .3s ease;
 }
 
@@ -294,7 +294,7 @@ body.scrolled .glass-card {
 .workspace-stack {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 9px;
   margin-top: 0;
 }
 
@@ -303,7 +303,7 @@ body.scrolled .glass-card {
 } */
 
 .compact-config {
-  padding: 10px 14px 8px;
+  padding: var(--space-sm) 10px 6px;
 }
 
 .card-header {
@@ -849,7 +849,7 @@ summary:focus-visible {
     auto;
   gap: 12px;
   align-items: center;
-  padding: 9px;
+  padding: 7px;
   border: 1px solid var(--border-subtle);
   border-radius: 14px;
   background: var(--surface-raised);
@@ -1040,7 +1040,7 @@ summary:focus-visible {
 
 .documentation-box {
   margin: 0 14px 12px;
-  padding: 10px 12px;
+  padding: var(--space-sm) 10px;
   border-radius: 13px;
   background: var(--surface-raised);
   border: 1px solid var(--border-subtle);
@@ -1076,7 +1076,7 @@ summary:focus-visible {
 .reference-group {
   border: 1px solid var(--border-subtle);
   border-radius: 13px;
-  padding: 10px;
+  padding: var(--space-sm);
   background: var(--surface-raised);
 }
 

@@ -68,9 +68,54 @@
   --space-3xl: 64px;
 }
 
-/* Light theme override point (D-02) — intentionally EMPTY in Phase 8.
-   Future light mode populates ONLY this block; swapping these values
-   alone must produce a coherent alternate theme (Roadmap SC 1). */
+/* Light theme override point (D-02) — populated in Phase 11 (v1.4 Light Mode).
+   Swapping these values alone produces the coherent alternate theme
+   (Roadmap SC 1); switching mechanics live in Phase 12.
+   Values locked by 11-UI-SPEC.md (D-01..D-05). */
 :root[data-theme="light"] {
-  /* reserved */
+  color-scheme: light;
+
+  /* Surfaces — navy-tinted day mode, same ~220° hue family inverted */
+  --surface-canvas: #eef1f7;
+  --surface-raised: #f4f6fb;
+  --surface-panel: #ffffff;
+  --surface-overlay: #f8fafd;
+  --surface-inset: #f1f4f9;
+  --surface-hover: rgba(15, 23, 42, 0.05);
+
+  /* Text (--text-on-accent inherits dark's #ffffff) */
+  --text-primary: #17203a;
+  --text-secondary: #5b6b85;
+
+  /* Border & focus — strengthened opacity for crisp edges on white
+     (--border-focus inherits var(--accent)) */
+  --border-subtle: rgba(71, 85, 105, 0.22);
+  --border-strong: rgba(71, 85, 105, 0.38);
+
+  /* Accent — deepened so white text/focus stays crisp on light surfaces */
+  --accent: #2e6fe0;
+  --accent-strong: #1e56c0;
+  --accent-hover: rgba(46, 111, 224, 0.45);
+  --accent-soft: rgba(46, 111, 224, 0.10);
+
+  /* Status — darker AA-friendly shades; *-text flip to darker-on-white */
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --danger-soft: rgba(220, 38, 38, 0.10);
+  --warning-text: #92400e;
+  --danger-text: #b91c1c;
+
+  /* Category palette — slightly darkened variants for badge/dot legibility */
+  --cat-azure: #2563eb;
+  --cat-entra: #7c3aed;
+  --cat-exchange: #d97706;
+  --cat-groups: #16a34a;
+  --cat-intune: #0891b2;
+  --cat-defender: #be123c;
+  --cat-link: #3563c9;
+  --cat-label: #4c74cc;
+
+  /* Elevation — softened navy-gray shadow, one shadow level as in dark */
+  --shadow-card: 0 2px 4px rgba(15, 23, 42, 0.08);
 }

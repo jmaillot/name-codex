@@ -126,8 +126,8 @@ src/App.css
 
 | task | Name | Commit | Files |
 | ---- | ---- | ------ | ----- |
-| 1 | PERF-01..03 grep proofs + locale parity diff | (pending) | 10-02-SUMMARY.md |
-| 2 | Final automated gate + diff boundary audit | (pending) | 10-02-SUMMARY.md |
+| 1 | PERF-01..03 grep proofs + locale parity diff | 1501122 | 10-02-SUMMARY.md |
+| 2 | Final automated gate + diff boundary audit | (this commit) | 10-02-SUMMARY.md |
 | 3 | Manual 9-workflow smoke record (EN+FR) | (pending) | 10-02-SUMMARY.md |
 
 ## Verification
@@ -136,6 +136,7 @@ src/App.css
 - Locale key sets identical between en.json and fr.json (372 = 372)
 - Build green, lint clean (0 errors), exactly 137 tests passing
 - Diff-boundary audit: no violations
+- Full gate output captured at `/tmp/opencode/p10-vitest.out` (vitest run 2026-08-24T09:13Z)
 
 ## Deviations from Plan
 

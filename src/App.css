@@ -58,11 +58,6 @@ select {
   gap: var(--space-sm);
 }
 
-/* theme pill inherits pointer-events like its lang sibling */
-.command-bar--lang-only .theme-toggle {
-  pointer-events: auto;
-}
-
 .command-bar--lang-only .lang-switcher {
   pointer-events: auto;
 }

@@ -100,8 +100,9 @@ export function useAppState() {
   }, [conventionsForCategory, objectSearch, i18n.language]);
 
   const selectedConvention =
-    conventionsForCategory.find((item) => item.id === selectedConventionId) ??
+    filteredConventions.find((item) => item.id === selectedConventionId) ??
     filteredConventions[0] ??
+    conventionsForCategory.find((item) => item.id === selectedConventionId) ??
     conventionsForCategory[0] ??
     allConventions[0];
 

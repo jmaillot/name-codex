@@ -2,7 +2,7 @@ import { useAppState } from "./hooks/useAppState";
 import { tl } from "./lib/i18n-utils";
 import { setLanguage } from "./i18n";
 import NavPanel from "./components/NavPanel";
-import LangSwitcher from "./components/LangSwitcher";
+import CommandBar from "./components/CommandBar";
 import ConfigureCard from "./components/ConfigureCard";
 import ResultCard from "./components/ResultCard";
 import BuilderCard from "./components/BuilderCard";
@@ -62,19 +62,18 @@ export default function App() {
   }
 
   return (
-    <div className="app-shell">
-      <NavPanel
-        categories={categories}
-        selectedCategory={selectedCategory}
-        categoryCounts={categoryCounts}
-        onSelectCategory={setSelectedCategory}
-      />
-      <main className="main-panel">
-        <LangSwitcher language={language} onSelectLanguage={setLanguage} />
+    <>
+      <CommandBar language={language} onSelectLanguage={setLanguage} />
+      <div className="app-shell">
+        <NavPanel
+          categories={categories}
+          selectedCategory={selectedCategory}
+          categoryCounts={categoryCounts}
+          onSelectCategory={setSelectedCategory}
+        />
+        <main className="main-panel">
         <section className="workspace-stack">
           <ConfigureCard
-            objectSearch={objectSearch}
-            onObjectSearchChange={setObjectSearch}
             filteredConventions={filteredConventions}
             selectedConvention={selectedConvention}
             hasPatterns={hasPatterns}
@@ -84,6 +83,8 @@ export default function App() {
             activeDescriptionLabel={activeDescriptionLabel}
             selectedExample={selectedExample}
             generatedName={generatedName}
+            objectSearch={objectSearch}
+            onObjectSearchChange={setObjectSearch}
           />
           <ResultCard
             generatedName={generatedName}
@@ -116,7 +117,8 @@ export default function App() {
           <HistoryCard history={history} onClearHistory={clearHistory} />
         </section>
         <footer className="footer">{tl("ui.footer", "Name Codex · Microsoft 365 & Azure Naming Standards · by jmaillot")} · v{pkg.version}</footer>
-      </main>
-    </div>
+        </main>
+      </div>
+    </>
   );
 }

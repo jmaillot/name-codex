@@ -63,7 +63,7 @@ export default function NavPanel({ categories, selectedCategory, categoryCounts,
   return (
     <aside className="nav-panel">
       <div className="brand-card">
-        <img src={logo} alt="Name Codex" />
+        <img src={logo} alt="Name Codex" className="brand-logo" />
         <div className="brand-divider" />
         <div>
           <div className="brand-title">Name Codex</div>
@@ -75,11 +75,7 @@ export default function NavPanel({ categories, selectedCategory, categoryCounts,
       <div className="nav-list">
         {categories.map((c) => (
           <button key={c} className={`nav-item ${selectedCategory === c ? "active" : ""}`} onClick={() => onSelectCategory(c)}>
-            <span
-              className={`nav-icon ${getCategoryClass(c)}`}
-            >
-              {getCategoryIcon(c)}
-            </span>
+            <span className={`nav-icon ${getCategoryClass(c)}`}>{getCategoryIcon(c)}</span>
             <span className="nav-label">{c}</span>
             <span className="nav-count">{categoryCounts[c]}</span>
           </button>

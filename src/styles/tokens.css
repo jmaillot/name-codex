@@ -1,0 +1,76 @@
+/* =========================================================
+   Design Tokens — single source of truth (Phase 8, D-01/D-02)
+   All color values live HERE and nowhere else.
+   Light theme later = fill the :root[data-theme="light"] block.
+   ========================================================= */
+
+:root {
+  color-scheme: dark;
+  font-family: "Segoe UI", Arial, sans-serif;
+
+  /* Surfaces — navy layer hierarchy, never pure black */
+  --surface-canvas: #090d18;
+  --surface-raised: #0d1320;
+  --surface-panel: #141b2b;
+  --surface-overlay: #1c273d;
+  --surface-inset: #020617;
+  --surface-hover: rgba(255, 255, 255, 0.06);
+
+  /* Text */
+  --text-primary: #f8fafc;
+  --text-secondary: #9aa8bd;
+  --text-on-accent: #ffffff;
+
+  /* Border & focus */
+  --border-subtle: rgba(148, 163, 184, 0.18);
+  --border-strong: rgba(148, 163, 184, 0.32);
+  --border-focus: var(--accent);
+
+  /* Accent — THE single accent system */
+  --accent: #4f8cff;
+  /* AA-safe fill for controls carrying --text-on-accent text (#fff ≥ 4.5:1) */
+  --accent-strong: #366fdf;
+  --accent-hover: rgba(79, 140, 255, 0.55);
+  --accent-soft: rgba(79, 140, 255, 0.14);
+
+  /* Status */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --danger-soft: rgba(239, 68, 68, 0.15);
+  /* Precomputed tints of status colors toward white (replaces inline color-mix literals) */
+  --warning-text: #f7b13c;
+  --danger-text: #f47c7c;
+
+  /* Category palette (data-viz, exempt from 60/30/10) */
+  --cat-azure: #3b82f6;
+  --cat-entra: #8b5cf6;
+  --cat-exchange: #f59e0b;
+  --cat-groups: #22c55e;
+  --cat-intune: #06b6d4;
+  --cat-defender: #e11d48;
+  --cat-link: #70a5ff;
+  --cat-label: #8cb6ff;
+
+  /* Elevation — exactly one shadow level */
+  --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.32);
+
+  /* Typography (mono declared now for Phase 10 consumption) */
+  --font-mono: "Cascadia Code", "Consolas", ui-monospace, monospace;
+
+  /* Spacing scale — DECLARED ONLY, frozen this phase (Phase 10 tightens) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+}
+
+/* Light theme override point (D-02) — intentionally EMPTY in Phase 8.
+   Future light mode populates ONLY this block; swapping these values
+   alone must produce a coherent alternate theme (Roadmap SC 1). */
+:root[data-theme="light"] {
+  /* reserved */
+}

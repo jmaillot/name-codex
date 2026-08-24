@@ -2,6 +2,10 @@
   "ui": {
     "appTagline": "Naming Governance App",
     "categories": "Categories",
+    "collapseNav": "Collapse navigation",
+    "commandBarLabel": "Command bar",
+    "expandNav": "Expand navigation",
+    "toggleNav": "Toggle navigation",
     "configure": "Configure",
     "configureInfo": "Filter and select an object type from the current category.",
     "filter": "Filter",

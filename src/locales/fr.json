@@ -5,6 +5,8 @@
     "collapseNav": "Réduire la navigation",
     "commandBarLabel": "Barre de commandes",
     "expandNav": "Déployer la navigation",
+    "themeSwitchToDark": "Passer en mode sombre",
+    "themeSwitchToLight": "Passer en mode clair",
     "toggleNav": "Basculer la navigation",
     "configure": "Configuration",
     "configureInfo": "Filtrez et sélectionnez un type d'objet dans la catégorie courante.",

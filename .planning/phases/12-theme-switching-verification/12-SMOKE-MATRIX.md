@@ -165,3 +165,24 @@ Enter/Space activation, accent focus ring, `name-codex-theme-v14-0` localStorage
 falling back to OS preference) were covered by the user's blanket approval — no issues reported.
 
 **SMOKE MATRIX: APPROVED** *(user-approved 2026-08-24)*
+
+---
+
+## THEME-L-04 Verdict
+
+**Requirement:** THEME-L-04 — prove the milestone is behavior-neutral beyond theming before ship.
+
+| Evidence stream | Result |
+|-----------------|--------|
+| Mechanical gates | ✅ ALL GREEN — check:tokens 18/18 pairs + 0 literal violations; locale parity 374=374; vitest exactly 137 passed (D-11 lock held, no test manipulation per T-12-09); build green (6.49s); lint exit 0 (pre-existing warnings only, out of scope) |
+| PERF re-proofs (D-11 criterion-check + grep) | ✅ INTACT — PERF-01 Map-indexed lookups via `Map.get()` in data.ts; PERF-02 memoized/capped(100)/persona-narrowed reference list in useAppState.ts; PERF-03 stable code/value-based keys in SegmentEditor.tsx (no index keys) |
+| Dual-theme smoke matrix (D-10 user-run) | ✅ APPROVED — 18/18 cells PASS across 9 workflows × dark/light, explicitly **user-approved 2026-08-24**; zero FAIL cells reported |
+
+**Behavior-neutrality confirmation:** Zero behavior change beyond theming was confirmed end-to-end.
+All three evidence streams agree: token-driven styling only, D-11 test lock respected, and the
+user's full manual pass found no functional divergence between dark and light themes.
+
+## Milestone v1.4: PROVEN DONE
+
+Phase 12 success criterion 4 met: 137 tests green, build/lint green, PERF-01..03 intact,
+dual-theme smoke matrix approved by user.

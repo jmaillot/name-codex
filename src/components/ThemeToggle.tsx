@@ -24,8 +24,8 @@ import { tl } from "../lib/i18n-utils";
  */
 
 const THEME_ANIM_CLASS = "theme-anim";
-// Fallback removal timer — slightly above the 175ms fade so a missed
-// transitionend event can never orphan the class on <html> (T-12-07).
+// Fallback removal timer — the transient class is removed solely via this
+// timeout; 250ms gives headroom above the 175ms fade (T-12-07).
 const THEME_ANIM_FALLBACK_MS = 250;
 
 export default function ThemeToggle() {

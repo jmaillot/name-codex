@@ -119,11 +119,10 @@ select {
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.03em;
-  /* brand-lockup exception: documented grep-gate allowlist (08-03) */
   background: linear-gradient(
     135deg,
-    #ffffff 0%,
-    #adc6ff 100%
+    var(--brand-title-from) 0%,
+    var(--brand-title-to) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

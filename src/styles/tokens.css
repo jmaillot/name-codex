@@ -52,6 +52,10 @@
   --cat-link: #70a5ff;
   --cat-label: #8cb6ff;
 
+  /* Brand title gradient stops (moved from App.css brand-lockup exception) */
+  --brand-title-from: #ffffff;
+  --brand-title-to: #adc6ff;
+
   /* Elevation — exactly one shadow level */
   --shadow-card: 0 2px 4px rgba(0, 0, 0, 0.32);
 
@@ -115,6 +119,10 @@
   --cat-defender: #be123c;
   --cat-link: #3563c9;
   --cat-label: #4c74cc;
+
+  /* Brand title gradient — inverted for white surfaces */
+  --brand-title-from: #17203a;
+  --brand-title-to: #2e6fe0;
 
   /* Elevation — softened navy-gray shadow, one shadow level as in dark */
   --shadow-card: 0 2px 4px rgba(15, 23, 42, 0.08);

@@ -63,6 +63,47 @@ Raw evidence: `/tmp/opencode/p10-diag.out`.
 
 **Verdict: root cause = selection-resolution precedence at useAppState.ts:102-106.** The wiring and the hook are otherwise byte-identical to v1.2 (`git diff v1.2..HEAD` for the hook is empty). Per D-12 honesty note: static code shows v1.2 shipped the same resolution order — the fix implements the verifier-recorded expected behavior ("typing a CommandBar filter query updates the object list AND refreshes the segment builder selection"), it does not revert a hidden v1.2 difference.
 
+## Task 2: Filter-Aware Selection Fix (D-14 Exception) + IN-01 Cleanup
+
+### The fix
+
+`src/hooks/useAppState.ts` lines 102-106 ONLY — selection resolution reordered to filter-aware precedence:
+
+```ts
+const selectedConvention =
+  filteredConventions.find((item) => item.id === selectedConventionId) ??
+  filteredConventions[0] ??
+  conventionsForCategory.find((item) => item.id === selectedConventionId) ??
+  conventionsForCategory[0] ??
+  allConventions[0];
+```
+
+Behavior matrix (matches plan `<behavior>` block):
+
+| Condition | Outcome |
+|-----------|---------|
+| Query active + selection matches filter | First clause resolves — selection unchanged |
+| Query active + selection filtered out | Falls to `filteredConventions[0]` → `selectedConvention` identity changes → builder-rebuild effect (:193) fires → **builder refreshes** (verified-expected workflow 8) |
+| Query empty (`""`) | Memo returns `conventionsForCategory` directly (:91), so resolution is byte-equivalent to the previous code path (proven by Test C) |
+| Query matches 0 conventions | `filteredConventions` is `[]` → falls through to `conventionsForCategory.find(...)` → previous selection retained, no crash (proven by Test D; also satisfies T-10b-01 — chain still terminates at `allConventions[0]`, never undefined) |
+
+### D-14 exception record
+
+| Field | Value |
+|-------|-------|
+| File | `src/hooks/useAppState.ts` |
+| Lines | **102-106 ONLY** |
+| Rationale | Lines 102-106 are selection resolution — NEITHER memoization nor stable-key logic. Those PERF-guard surfaces live at :89-100 (filter memo), :193-209 (builder effect), :313-332 (referenceEntries memo), :319 (slice(0,100) cap), :439 (custom-segment key). All left untouched pending task 3 re-proof per D-16. |
+
+### REVIEW IN-01 cleanup (src/App.css)
+
+Both stale commented-out rule blocks deleted; every ACTIVE rule byte-identical:
+
+- Lines ~301-303: commented `.compact-config { padding: 12px 14px 10px; }` (pre-density values contradicting live rule at now-adjacent site)
+- Lines ~920-923: commented duplicate `.score-pill { margin-left: auto; flex-shrink: 0; }`
+
+Diff stat after task 2: `src/App.css | 9 ---------` (deletions only), `src/hooks/useAppState.ts | 3 ++-`. `node scripts/check-tokens.mjs` → TOKEN GATE PASS re-run after deletion.
+
 ## Deviations from Plan
 
 None — plan executed exactly as written so far.

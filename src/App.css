@@ -298,10 +298,6 @@ body.scrolled .glass-card {
   margin-top: 0;
 }
 
-/* .compact-config {
-  padding: 12px 14px 10px;
-} */
-
 .compact-config {
   padding: var(--space-sm) 10px 6px;
 }
@@ -916,11 +912,6 @@ summary:focus-visible {
 .score-card .card-title-line {
   flex: 1;
 }
-
-/* .score-pill {
-  margin-left: auto;
-  flex-shrink: 0;
-} */
 
 .check-list,
 .history-card ul,

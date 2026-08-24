@@ -32,12 +32,16 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<ThemePreference>(() => currentDocumentTheme());
   const animTimerRef = useRef<number | null>(null);
 
-  // Clear any pending fallback timer on unmount so we never touch the DOM after teardown.
+  // On unmount: clear any pending fallback timer and remove the transient
+  // theme-anim class so the global fade rule can never outlive this component
+  // and override transitions app-wide.
   useEffect(() => {
     return () => {
       if (animTimerRef.current !== null) {
         window.clearTimeout(animTimerRef.current);
+        animTimerRef.current = null;
       }
+      document.documentElement.classList.remove(THEME_ANIM_CLASS);
     };
   }, []);
 

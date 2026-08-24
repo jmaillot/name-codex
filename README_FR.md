@@ -2,7 +2,7 @@
 
 **Application de gouvernance de nommage** — standards de nommage Microsoft 365 & Azure, rendus visuels.
 
-**[Voir la démo en direct →](https://name-codex.jeremymaillot.fr/)** — l'application est déployée et accessible sur https://name-codex.jeremymaillot.fr/.
+L'application est déployée et accessible sur https://name-codex.jeremymaillot.fr/.
 
 Name Codex est une application monopage qui vous aide à définir, explorer et gouverner les conventions de nommage pour Azure, Microsoft 365, Intune, Defender, Exchange et les groupes. Choisissez un type d'objet, assemblez ses segments, et l'application génère, valide et documente le nom final en temps réel.
 

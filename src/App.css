@@ -1421,3 +1421,52 @@ summary:focus-visible {
     height: 34px;
   }
 }
+
+/* ── Theme toggle pill (Phase 12) — mirrors .command-bar .lang-switcher chrome ── */
+.command-bar .theme-toggle {
+  display: flex;
+  align-items: center;
+  background: var(--surface-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 4px;
+  pointer-events: auto;
+}
+
+.command-bar .theme-btn {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.command-bar .theme-btn:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+/* Global theme fade (D-04, locked: 175ms ease-out, color properties ONLY) */
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition: background-color 175ms ease-out,
+    border-color 175ms ease-out,
+    color 175ms ease-out,
+    fill 175ms ease-out,
+    stroke 175ms ease-out,
+    box-shadow 175ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.theme-anim *,
+  html.theme-anim *::before,
+  html.theme-anim *::after {
+    transition-duration: 0s;
+  }
+}

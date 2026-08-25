@@ -1,0 +1,7 @@
+{
+  "name": "GroupPrefix",
+  "values": [
+    { "value": "INTUNE-DEV", "description": "Device assignment group" },
+    { "value": "INTUNE-USR", "description": "User assignment group" }
+  ]
+}

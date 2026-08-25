@@ -1,0 +1,46 @@
+{
+  "id": "m365-group-naming-policy",
+  "category": "Teams",
+  "name": "M365 Group Naming Policy",
+  "description": "Entra ID group naming policy format applied to Microsoft 365 groups (and therefore Teams). Prefix and suffix strings are restricted at policy creation; blocked words (list up to 5000) are rejected automatically.",
+  "pattern": "GRP_[GroupName]_[Department]",
+  "fields": [
+    {
+      "name": "GroupName",
+      "type": "text",
+      "defaultValue": "",
+      "examples": [
+        "Sales Reporting"
+      ],
+      "allowCustomValue": true,
+      "tip": "Avoid emojis. Blocked words configured in the Entra naming policy are rejected automatically."
+    },
+    {
+      "name": "Department",
+      "library": "teams/entra-attributes",
+      "defaultValue": "[Department]",
+      "allowCustomValue": true,
+      "tip": "Supported Entra attributes: [Department] [Company] [Office] [StateOrProvince] [CountryOrRegion] [Title]. Real values resolve from your tenant's directory."
+    }
+  ],
+  "examples": [
+    "GRP_Sales Reporting_[Department]"
+  ],
+  "builder": {
+    "separator": "_",
+    "defaultSegments": [
+      "GroupName",
+      "Department"
+    ],
+    "availableSegments": [],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 64,
+    "allowedPattern": "^[A-Za-z0-9 _\\[\\]-]+$",
+    "caseMode": "preserve"
+  }
+}

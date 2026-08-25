@@ -1,0 +1,13 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "st", "description": "Storage Account" },
+    { "value": "kv", "description": "Key Vault" },
+    { "value": "nsg", "description": "Network Security Group" },
+    { "value": "pip", "description": "Public IP" },
+    { "value": "vm", "description": "Virtual Machine" },
+    { "value": "vnet", "description": "Virtual Network" },
+    { "value": "nic", "description": "Network Interface" },
+    { "value": "app", "description": "App Service" }
+  ]
+}

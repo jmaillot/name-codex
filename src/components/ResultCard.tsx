@@ -23,6 +23,9 @@ export default function ResultCard({ generatedName, actionFeedback, onCopyName, 
 
         <button className="ghost-button" onClick={onCopyMarkdown}>{tl("ui.copyMarkdown", "Copy Markdown")}</button>
         {actionFeedback === "markdown" && <span className="action-success">{tl("ui.copied", "✓ Copied")}</span>}
+        {actionFeedback === "copy-failed" && (
+          <span className="action-warning">{tl("ui.copyFailed", "⚠ Copy failed — clipboard unavailable")}</span>
+        )}
 
         <button className="ghost-button" onClick={onAddFavorite}>{tl("ui.addFavorite", "Add Favorite")}</button>
         {actionFeedback === "favorite" && <span className="action-success">{tl("ui.added", "★ Added")}</span>}
@@ -44,6 +47,10 @@ export default function ResultCard({ generatedName, actionFeedback, onCopyName, 
 
         {actionFeedback === "fixed-last" && (
           <span className="action-warning">{tl("ui.fixedLastWarn", "📌 This segment must remain in last position")}</span>
+        )}
+
+        {actionFeedback === "locked" && (
+          <span className="action-warning">{tl("ui.lockedWarn", "🔒 This segment is locked and cannot be moved")}</span>
         )}
       </div>
     </div>

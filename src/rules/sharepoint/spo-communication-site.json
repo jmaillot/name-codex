@@ -1,0 +1,36 @@
+{
+  "id": "spo-communication-site",
+  "category": "SharePoint",
+  "name": "Communication Site",
+  "description": "SharePoint Communication site provisioned at /sites/<url>. The title can be renamed later independently of the URL.",
+  "pattern": "[SiteName]",
+  "fields": [
+    {
+      "name": "SiteName",
+      "type": "text",
+      "defaultValue": "",
+      "examples": [
+        "comms-finance-portal"
+      ],
+      "allowCustomValue": true,
+      "tip": "URL name: lowercase, hyphenated, no spaces. Title can be renamed later independently of the URL."
+    }
+  ],
+  "examples": [
+    "comms-finance-portal"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": [
+      "SiteName"
+    ],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "forceLowercase": true,
+    "allowedPattern": "^[a-z0-9-]+$"
+  }
+}

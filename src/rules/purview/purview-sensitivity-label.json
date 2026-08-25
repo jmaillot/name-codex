@@ -1,0 +1,81 @@
+{
+  "id": "purview-sensitivity-label",
+  "category": "Purview",
+  "name": "Sensitivity Label",
+  "description": "Microsoft Purview sensitivity label from the classification taxonomy, with optional sublabel variant.",
+  "pattern": "[Classification]",
+  "patterns": [
+    {
+      "id": "parent-label",
+      "name": "Parent Label",
+      "description": "Top-level label from the classification taxonomy",
+      "pattern": "[Classification]",
+      "defaultSegments": [
+        "Classification"
+      ],
+      "examples": [
+        "Confidential"
+      ]
+    },
+    {
+      "id": "sublabel",
+      "name": "Sublabel",
+      "description": "Sublabel nested under a parent label",
+      "pattern": "[Classification]-[Sublabel]",
+      "defaultSegments": [
+        "Classification",
+        "Sublabel"
+      ],
+      "examples": [
+        "Confidential-Payroll"
+      ]
+    }
+  ],
+  "fields": [
+    {
+      "name": "Classification",
+      "library": "purview/classification",
+      "defaultValue": "General",
+      "allowCustomValue": false,
+      "tip": "Use your tenant's published taxonomy order: Personal > Public > General > Confidential > Highly Confidential."
+    },
+    {
+      "name": "Sublabel",
+      "type": "text",
+      "defaultValue": "",
+      "examples": [
+        "Payroll",
+        "M&A"
+      ],
+      "allowCustomValue": true,
+      "allowedPattern": "^[A-Za-z0-9&/-]+$",
+      "tip": "Sublabels inherit the parent label's settings; keep names short, stable, and space-free."
+    }
+  ],
+  "examples": [
+    "General",
+    "Confidential-Payroll"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": [
+      "Classification"
+    ],
+    "availableSegments": [
+      "Sublabel"
+    ],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [
+      "Classification"
+    ],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "removeCharacters": [
+      "\""
+    ],
+    "allowedPattern": "^[A-Za-z0-9 &/-]+$",
+    "caseMode": "preserve"
+  }
+}

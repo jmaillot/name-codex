@@ -1,0 +1,48 @@
+{
+  "id": "spo-hub-site",
+  "category": "SharePoint",
+  "name": "Hub Site",
+  "description": "SharePoint hub site. Microsoft recommends a consistent, discoverable naming convention for hub sites, e.g. '<Function> Hub'.",
+  "pattern": "[Function] Hub",
+  "fields": [
+    {
+      "name": "Function",
+      "library": "core/function",
+      "defaultValue": "",
+      "allowCustomValue": true,
+      "tip": "Use one consistent '<Function> Hub' formula across all hubs for discoverability."
+    },
+    {
+      "name": "Hub",
+      "type": "text",
+      "defaultValue": "Hub",
+      "allowedValues": [
+        "Hub"
+      ],
+      "allowCustomValue": false
+    }
+  ],
+  "examples": [
+    "Finance Hub"
+  ],
+  "builder": {
+    "separator": " ",
+    "defaultSegments": [
+      "Function",
+      "Hub"
+    ],
+    "availableSegments": [],
+    "recommendedSegments": [],
+    "lockedSegments": [
+      "Hub"
+    ],
+    "fixedFirstSegments": [
+      "Function"
+    ],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Za-z0-9 ]+$",
+    "caseMode": "preserve"
+  }
+}

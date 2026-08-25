@@ -1,10 +1,48 @@
 import { allConventions, caNumberingRanges, getGeneratorFile, getSegmentFile, segmentCatalog } from './data'
 import { parsePattern } from './parse'
 import { fieldByName } from "./segments"
+import { validateName } from './validation'
+import type { BuilderSegment } from './segments'
+import en from "../locales/en.json"
+import fr from "../locales/fr.json"
 
 describe("data integrity", () => {
   it("allConventions is non-empty", () => {
     expect(allConventions.length).toBeGreaterThan(0)
+  })
+
+  it("azure-storage-account rejects names shorter than the Azure 3-character minimum (WR-02)", () => {
+    const conv = allConventions.find((c) => c.id === "azure-storage-account")
+    expect(conv, "azure-storage-account convention exists").toBeDefined()
+    const seg = (name: string, value: string): BuilderSegment =>
+      ({ key: `${name}-0`, sourceName: name, label: name, value })
+    // "st" is only 2 characters — Azure requires 3–24, so the allowed-pattern row must fail
+    const rows = validateName("st", conv!, [seg("Workload", "app")])
+    expect(rows.length).toBe(5) // empty / filled / length / allowed / recommended-present
+    expect(rows[3].label).toContain("Allowed characters")
+    expect(rows[3].valid, `"st" (2 chars) must fail the allowedPattern row`).toBe(false)
+  })
+
+  it("azure-storage-account still accepts a compliant name like stappprod001 (WR-02 regression guard)", () => {
+    const conv = allConventions.find((c) => c.id === "azure-storage-account")
+    expect(conv).toBeDefined()
+    const seg = (name: string, value: string): BuilderSegment =>
+      ({ key: `${name}-0`, sourceName: name, label: name, value })
+    const rows = validateName(
+      "stappprod001",
+      conv!,
+      [seg("Workload", "app"), seg("Environment", "prod"), seg("Instance", "001")],
+    )
+    for (const row of rows) expect(row.valid, `${row.label} should pass`).toBe(true)
+  })
+
+  it("intune-autopilot-device-name description matches shipped behavior — flags %RAND:n% over-budget expansion (WR-03)", () => {
+    const conv = allConventions.find((c) => c.id === "intune-autopilot-device-name")
+    expect(conv, "intune-autopilot-device-name convention exists").toBeDefined()
+    expect(conv!.description).toContain(
+      "flags templates whose %RAND:n% expansion would exceed the 15-character limit",
+    )
+    expect(conv!.description).not.toContain("typed length only")
   })
 
   it("every field library resolves to a real segment file with values", () => {
@@ -32,6 +70,11 @@ describe("data integrity", () => {
   })
 
   it("every pattern token maps to a known segment", () => {
+    // WR-05: explicit, frozen exemptions only — generator-only tokens and
+    // documented CA generator prefixes. No substring escape hatch (e.g. any
+    // token containing "Policy"), so a typo like "GroupPolicyNmae" fails loudly.
+    const EXEMPT_TOKENS = new Set(["PolicyId"])
+    const EXEMPT_PREFIXES = ["CA-"]
     for (const conv of allConventions) {
       const allPatternFields = [...(conv.fields ?? []), ...(conv.patterns?.flatMap((p) => p.fields ?? []) ?? [])]
       const patterns = [conv.pattern, ...(conv.patterns?.map((p) => p.pattern) ?? [])].filter(Boolean) as string[]
@@ -39,14 +82,14 @@ describe("data integrity", () => {
         const tokens = parsePattern(pattern)
         for (const token of tokens) {
           if (token.type !== "segment") continue
-          const fields = [...allPatternFields, ...segmentCatalog]
-          const resolved = fieldByName(fields, token.value)
-          const fallbackOk = token.value === "PolicyId" || token.value.startsWith("CA-") || token.value.includes("Policy")
-          if (!resolved && !fallbackOk) {
-            const catalogNames = segmentCatalog.map((f) => f.name)
-            const allNames = [...catalogNames, ...allPatternFields.map((f) => f.name)]
-            expect(allNames.includes(token.value) || fallbackOk, `${conv.id} pattern token ${token.value} should map to known segment`).toBe(true)
-          }
+          const resolved = fieldByName([...allPatternFields, ...segmentCatalog], token.value)
+          const exempt =
+            EXEMPT_TOKENS.has(token.value) ||
+            EXEMPT_PREFIXES.some((prefix) => token.value.startsWith(prefix))
+          expect(
+            resolved !== undefined || exempt,
+            `${conv.id} pattern token ${token.value} should map to known segment`,
+          ).toBe(true)
         }
       }
     }
@@ -98,5 +141,75 @@ describe("data integrity", () => {
 
   it("getGeneratorFile returns undefined for unknown generator", () => {
     expect(getGeneratorFile("nonexistent-generator-xyz")).toBeUndefined()
+  })
+
+  it("catalog contains exactly 45 conventions (25 existing + 20 new)", () => {
+    expect(allConventions.length).toBe(45)
+  })
+
+  it("catalog spans exactly 11 categories with expected counts", () => {
+    const counts: Record<string, number> = {}
+    for (const conv of allConventions) counts[conv.category] = (counts[conv.category] ?? 0) + 1
+    expect(counts).toEqual({
+      "Azure": 12,
+      "Conditional Access": 2,
+      "Defender for M365": 3,
+      "Entra ID": 1,
+      "Exchange": 2,
+      "Groups": 4,
+      "Intune": 9,
+      "Power Platform": 1,
+      "Purview": 4,
+      "SharePoint": 3,
+      "Teams": 4,
+    })
+  })
+
+  const NEW_CONVENTION_IDS = [
+    "teams-project-team", "teams-department-team", "teams-service-team",
+    "m365-group-naming-policy", "spo-team-site", "spo-communication-site", "spo-hub-site",
+    "pp-environment", "purview-sensitivity-label", "purview-retention-label",
+    "purview-retention-policy", "purview-dlp-policy",
+    "azure-storage-account", "azure-key-vault", "azure-network-security-group", "azure-public-ip",
+    "intune-autopilot-device-name", "intune-group-tag", "intune-update-ring", "intune-assignment-group",
+  ]
+
+  it("every new convention is reachable via global-search (name/description/id/pattern match)", () => {
+    expect(NEW_CONVENTION_IDS.length).toBe(20)
+    // WR-04: mirror the exact predicate used by filteredConventions in
+    // useAppState (name/description/id/pattern) and query with a PARTIAL
+    // id fragment, so the test exercises real substring matching instead
+    // of the tautological c.id.includes(c.id).
+    const matchesSearch = (
+      c: { name: string; description: string; id: string; pattern?: string },
+      query: string,
+    ): boolean =>
+      c.name.toLowerCase().includes(query) ||
+      c.description.toLowerCase().includes(query) ||
+      c.id.toLowerCase().includes(query) ||
+      (c.pattern ?? "").toLowerCase().includes(query)
+    for (const id of NEW_CONVENTION_IDS) {
+      const conv = allConventions.find((c) => c.id === id)
+      expect(conv, `${id} should exist`).toBeDefined()
+      const fragment = id.toLowerCase().replace(/^[a-z]+-/, "")
+      expect(fragment.length, `${id} should yield a non-empty search fragment`).toBeGreaterThan(0)
+      expect(
+        matchesSearch(conv!, fragment),
+        `${id} should be reachable by searching its partial id "${fragment}"`,
+      ).toBe(true)
+    }
+  })
+
+  function flattenKeys(obj: Record<string, unknown>, prefix = ""): string[] {
+    return Object.entries(obj).flatMap(([k, v]) => {
+      const key = prefix ? `${prefix}.${k}` : k
+      return v !== null && typeof v === "object" ? flattenKeys(v as Record<string, unknown>, key) : [key]
+    })
+  }
+
+  it("en.json and fr.json have identical flat key sets (both directions)", () => {
+    const enKeys = flattenKeys(en).sort()
+    const frKeys = flattenKeys(fr).sort()
+    expect(enKeys).toEqual(frKeys)
   })
 })

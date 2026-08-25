@@ -1,0 +1,21 @@
+{
+  "name": "Macro",
+  "values": [
+    { "value": "%SERIAL%", "description": "Device serial number, expanded at enrollment" },
+    { "value": "%RAND:1%", "description": "1 random character" },
+    { "value": "%RAND:2%", "description": "2 random characters" },
+    { "value": "%RAND:3%", "description": "3 random characters" },
+    { "value": "%RAND:4%", "description": "4 random characters" },
+    { "value": "%RAND:5%", "description": "5 random characters" },
+    { "value": "%RAND:6%", "description": "6 random characters" },
+    { "value": "%RAND:7%", "description": "7 random characters" },
+    { "value": "%RAND:8%", "description": "8 random characters" },
+    { "value": "%RAND:9%", "description": "9 random characters" },
+    { "value": "%RAND:10%", "description": "10 random characters" },
+    { "value": "%RAND:11%", "description": "11 random characters" },
+    { "value": "%RAND:12%", "description": "12 random characters" },
+    { "value": "%RAND:13%", "description": "13 random characters" },
+    { "value": "%RAND:14%", "description": "14 random characters" },
+    { "value": "%RAND:15%", "description": "15 random characters" }
+  ]
+}

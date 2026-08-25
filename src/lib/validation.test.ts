@@ -131,6 +131,68 @@ describe("validateName", () => {
     const results = validateName("x-1", conv, [seg("A", "x"), seg("B", "1")])
     expect(results.length).toBe(4)
   })
+
+  it("per-field allowedPattern: value with space fails the field row", () => {
+    const conv = makeConvention({
+      fields: [
+        { name: "A", type: "text", allowedPattern: "^[^ ]+$" },
+        { name: "B", values: ["1", "2"] },
+      ],
+    })
+    const results = validateName("x y-1", conv, [seg("A", "x y"), seg("B", "1")])
+    expect(results.length).toBe(5)
+    const fieldRow = results.find((r) => r.label.includes("Segment A"))
+    expect(fieldRow).toBeDefined()
+    expect(fieldRow!.valid).toBe(false)
+  })
+
+  it("per-field allowedPattern: value without space passes the field row", () => {
+    const conv = makeConvention({
+      fields: [
+        { name: "A", type: "text", allowedPattern: "^[^ ]+$" },
+        { name: "B", values: ["1", "2"] },
+      ],
+    })
+    const results = validateName("xy-1", conv, [seg("A", "xy"), seg("B", "1")])
+    const fieldRow = results.find((r) => r.label.includes("Segment A"))
+    expect(fieldRow).toBeDefined()
+    expect(fieldRow!.valid).toBe(true)
+  })
+
+  it("per-field allowedPattern: empty segment value bypasses the field row", () => {
+    const conv = makeConvention({
+      fields: [{ name: "A", type: "text", allowedPattern: "^[^ ]+$" }],
+    })
+    const results = validateName("", conv, [seg("A", "")])
+    const fieldRow = results.find((r) => r.label.includes("Segment A"))
+    expect(fieldRow).toBeDefined()
+    expect(fieldRow!.valid).toBe(true)
+  })
+
+  it("per-field allowedPattern: other rows unaffected (base rows at indices 0-3)", () => {
+    const convWithPattern = makeConvention({
+      fields: [{ name: "A", type: "text", allowedPattern: "^[^ ]+$" }],
+    })
+    const convWithout = makeConvention()
+    const withResults = validateName("x-1", convWithPattern, [seg("A", "x"), seg("B", "1")])
+    const withoutResults = validateName("x-1", convWithout, [seg("A", "x"), seg("B", "1")])
+    expect(withResults.length).toBe(withoutResults.length + 1)
+    expect(withResults.slice(0, 4)).toEqual(withoutResults)
+  })
+
+  it("convention without field patterns produces identical results to before (no extra rows)", () => {
+    const conv = makeConvention()
+    const results = validateName("x-1", conv, [seg("A", "x y"), seg("B", "1")])
+    expect(results.length).toBe(4)
+  })
+
+  it("segment whose sourceName matches no field adds no field-pattern row", () => {
+    const conv = makeConvention({
+      fields: [{ name: "A", type: "text", allowedPattern: "^[^ ]+$" }],
+    })
+    const results = validateName("z-1", conv, [seg("Zed", "z"), seg("B", "1")])
+    expect(results.length).toBe(4)
+  })
 })
 
 describe("governanceScore", () => {

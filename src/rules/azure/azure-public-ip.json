@@ -1,0 +1,48 @@
+{
+  "id": "azure-public-ip",
+  "category": "Azure",
+  "name": "Public IP",
+  "description": "Azure public IP naming per CAF: pip-<workload>-<environment>-<region>-<instance>.",
+  "pattern": "pip-[Workload]-[Environment]-[Region]-[Instance]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/caf-workloads",
+      "defaultValue": "app",
+      "allowCustomValue": true,
+      "allowedValues": ["st", "kv", "nsg", "vm", "vnet", "nic", "app"]
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["PIP-APP-PROD-FRC-001"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Workload"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
+  }
+}

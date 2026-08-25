@@ -3,11 +3,14 @@ import { useTranslation } from "react-i18next";
 import { allConventions, getGeneratorFile } from "../lib/data";
 import { tl } from "../lib/i18n-utils";
 import { parsePattern, patternToSegments } from "../lib/parse";
+import { randWidth } from "../lib/macros";
 import {
+  assembleRawName,
   buildSegments,
   conventionDescription,
   conventionName,
   fieldByName,
+  fieldLabel,
   optionValue,
   optionsForSegment,
   valueDescription,
@@ -201,13 +204,19 @@ export function useAppState() {
         fields: activeFields,
       })
     );
-  }, [
-    selectedConvention,
-    activeDefaultSegments,
-    activeFields,
-    activeFixedValues,
-    i18n.language,
-  ]);
+  }, [selectedConvention, activeDefaultSegments, activeFields, activeFixedValues]);
+
+  // WR-01: a language switch must only refresh segment labels, not rebuild
+  // every segment from its default (which wipes user-edited values).
+  useEffect(() => {
+    setBuilderSegments((prev) =>
+      prev.map((s) => {
+        const field = fieldByName(activeFields, s.sourceName);
+        return { ...s, label: fieldLabel(field, field?.label ?? s.sourceName) };
+      })
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [i18n.language]);
 
   useEffect(() => {
     const h = loadJSONArray(STORAGE_KEYS.history);
@@ -242,21 +251,30 @@ export function useAppState() {
   const patternSuffix = pendingLiteral;
   const lastPatternSegment = patternSegmentOrder[patternSegmentOrder.length - 1];
 
-  const rawName = normalizeName(
-    patternTokens
-      .map((token) => {
-        if (token.type === "literal") return token.value;
-        const seg = builderSegments.find((s) => s.sourceName === token.value);
-        return seg?.value.trim().toUpperCase() ?? "";
-      })
-      .join("")
-      .replace(/^[-.\s]+/, "")
-      .replace(/[-.\s]+$/, "")
-      .replace(/([-.\s])\1+/g, "$1"),
-    selectedConvention
-  );
+  const rawAssembled = assembleRawName(builderSegments, {
+    literalPrefixes,
+    patternSuffix,
+    lastPatternSegment,
+    separator,
+    // Only force casing when explicitly configured; "preserve"/unset must
+    // leave segment value casing untouched (assembleRawName no-ops then).
+    caseMode:
+      selectedConvention.validation?.caseMode === "lower"
+        ? "lower"
+        : selectedConvention.validation?.caseMode === "upper"
+          ? "upper"
+          : undefined,
+  });
 
-  const generatedName = normalizeName(rawName, selectedConvention);
+  // CR-01: validation runs on the normalized-but-UNTRUNCATED assembly so the
+  // length row can actually fail and a truncated %RAND:n% macro fragment is
+  // still visible to (and flagged by) the macro-expansion check. The second
+  // normalizeName call below applies truncation for display/copy only.
+  const validatedName = normalizeName(rawAssembled, selectedConvention, {
+    truncate: false,
+  });
+
+  const generatedName = normalizeName(validatedName, selectedConvention);
 
   const dynamicPattern = builderSegments
     .map((segment, index) => {
@@ -272,7 +290,7 @@ export function useAppState() {
 
   const patternModified = dynamicPattern !== activePattern;
 
-  const validationResults = validateName(generatedName, selectedConvention, builderSegments);
+  const validationResults = validateName(validatedName, selectedConvention, builderSegments, activeFields);
   const namingScore = governanceScore(validationResults);
 
   const markdown = [
@@ -314,7 +332,7 @@ export function useAppState() {
   const referenceEntries = useMemo(() => builderSegments
     .map((segment) => {
       const field = fieldByName(activeFields, segment.sourceName);
-      const valuesFromField = optionsForSegment(field, builderSegments);
+      const valuesFromField = optionsForSegment(field, builderSegments, selectedConvention);
       let entriesToShow = valuesFromField;
       if (entriesToShow.length > 100 && field?.generator) {
         entriesToShow = entriesToShow.slice(0, 100);
@@ -330,7 +348,7 @@ export function useAppState() {
         }),
       };
     })
-    .filter((item) => item.entries.length > 0), [builderSegments, activeFields, i18n.language]);
+    .filter((item) => item.entries.length > 0), [builderSegments, activeFields, selectedConvention, i18n.language]);
 
   const updateSegmentValue = (key: string, value: string) =>
     setBuilderSegments((prev) => {
@@ -354,6 +372,31 @@ export function useAppState() {
                 : s
             );
           }
+        }
+      }
+
+      // maxLengthBudget clamp (mirrors the caPolicyId reactive reset above):
+      // when a segment referenced by some field's maxLengthBudget.dependsOn
+      // changes, shrink an oversized dependent RAND macro to the largest
+      // width that still fits within the convention budget. If nothing fits
+      // (remaining < 1), leave the value — validation flags it instead.
+      const maxLen = selectedConvention.validation?.maxLength;
+      if (maxLen !== undefined) {
+        const dependentFields = activeFields.filter(
+          (f) => f.maxLengthBudget?.dependsOn === changed?.sourceName
+        );
+        if (dependentFields.length > 0) {
+          const depValue =
+            next.find((d) => d.sourceName === changed?.sourceName)?.value.trim() ?? "";
+          const remaining = maxLen - depValue.length;
+          return next.map((s) => {
+            if (!dependentFields.some((f) => f.name === s.sourceName)) return s;
+            const width = randWidth(s.value);
+            if (width !== null && remaining >= 1 && width > remaining) {
+              return { ...s, value: `%RAND:${remaining}%` };
+            }
+            return s;
+          });
         }
       }
 
@@ -385,6 +428,13 @@ export function useAppState() {
       }
 
       const targetSegment = prev[target];
+
+      // WR-02: the swap would displace a locked target segment — guard it
+      // symmetrically with the source-segment lock check above.
+      if (isLocked(selectedConvention, targetSegment.sourceName)) {
+        showFeedback("locked");
+        return prev;
+      }
 
       if (
         direction === -1 &&
@@ -481,8 +531,11 @@ export function useAppState() {
   };
 
   const copyMarkdown = async () => {
-    await writeClipboard(markdown);
-    showFeedback("markdown");
+    // WR-03: mirror copyName — only report success when the clipboard write
+    // actually succeeded; surface a failure feedback key otherwise.
+    const ok = await writeClipboard(markdown);
+    if (ok) showFeedback("markdown");
+    else showFeedback("copy-failed");
   };
 
   const addFavorite = () => {

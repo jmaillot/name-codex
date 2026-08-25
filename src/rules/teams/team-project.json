@@ -1,0 +1,48 @@
+{
+  "id": "teams-project-team",
+  "category": "Teams",
+  "name": "Project Team",
+  "description": "Microsoft Teams project team. Team name is the M365 group display name — keep it <=30 characters (the Teams client truncates around 30-36), use '-' or '_' after the prefix, spaces inside the name are allowed.",
+  "pattern": "PRJ-[Workload]-[Function]",
+  "fields": [
+    {
+      "name": "Workload",
+      "type": "text",
+      "defaultValue": "",
+      "examples": [
+        "Atlas",
+        "Portal",
+        "Migration"
+      ],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Function",
+      "library": "core/function",
+      "defaultValue": "",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": [
+    "PRJ-Atlas-Finance"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": [
+      "Workload",
+      "Function"
+    ],
+    "availableSegments": [],
+    "recommendedSegments": [
+      "Function"
+    ],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 30,
+    "allowedPattern": "^[A-Za-z0-9 _-]+$",
+    "caseMode": "preserve"
+  }
+}

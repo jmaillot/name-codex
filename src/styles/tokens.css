@@ -49,6 +49,10 @@
   --cat-groups: #22c55e;
   --cat-intune: #06b6d4;
   --cat-defender: #e11d48;
+  --cat-teams: #8087f0;
+  --cat-sharepoint: #14a8ae;
+  --cat-power-platform: #b579c5;
+  --cat-purview: #6f7bd9;
   --cat-link: #70a5ff;
   --cat-label: #8cb6ff;
 
@@ -117,6 +121,10 @@
   --cat-groups: #16a34a;
   --cat-intune: #0891b2;
   --cat-defender: #be123c;
+  --cat-teams: #6264a7;
+  --cat-sharepoint: #03787c;
+  --cat-power-platform: #742774;
+  --cat-purview: #3d4fa1;
   --cat-link: #3563c9;
   --cat-label: #4c74cc;
 

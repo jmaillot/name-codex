@@ -2,17 +2,5 @@
   "default": {
     "maxLength": 128,
     "allowedPattern": "^[A-Za-z0-9_.-]+$"
-  },
-  "Azure": {
-    "Storage Account": {
-      "maxLength": 24,
-      "allowedPattern": "^[a-z0-9]+$",
-      "forceLowercase": true,
-      "removeCharacters": [
-        "-",
-        "_",
-        "."
-      ]
-    }
   }
 }

@@ -1,0 +1,75 @@
+{
+  "id": "intune-autopilot-device-name",
+  "category": "Intune",
+  "name": "Autopilot Device Name",
+  "description": "Autopilot device-name template. Hard limit: 15 characters total — Windows enforces it AFTER %SERIAL% / %RAND:n% macros expand at enrollment, so keep static text well under budget. Allowed characters: letters, numbers, hyphens. Note: this app checks allowed characters and typed length, and also flags templates whose %RAND:n% expansion would exceed the 15-character limit — you must still ensure the final name is not all numbers.",
+  "pattern": "[Prefix][Macro]",
+  "patterns": [
+    {
+      "id": "prefix-serial",
+      "name": "Prefix + Serial",
+      "description": "Static prefix plus the %SERIAL% macro (e.g. DT-%SERIAL%)",
+      "pattern": "[Prefix][Macro]",
+      "defaultSegments": ["Prefix", "Macro"],
+      "examples": ["DT-%SERIAL%"]
+    },
+    {
+      "id": "prefix-random",
+      "name": "Prefix + Random",
+      "description": "Static prefix plus a %RAND:n% macro",
+      "pattern": "[Prefix][Macro]",
+      "defaultSegments": ["Prefix", "Macro"],
+      "fixedValues": { "Macro": "%RAND:12%" },
+      "examples": ["LT-%RAND:6%"]
+    },
+    {
+      "id": "custom-template",
+      "name": "Custom Template",
+      "description": "Free-form template mixing static text and macros",
+      "pattern": "[Template]",
+      "defaultSegments": ["Template"],
+      "examples": ["DT-%RAND:4%"]
+    }
+  ],
+  "fields": [
+    {
+      "name": "Prefix",
+      "type": "text",
+      "defaultValue": "DT-",
+      "examples": ["DT-", "LT-", "WKS-"],
+      "allowCustomValue": true,
+      "allowedPattern": "^[A-Za-z0-9-]+$",
+      "tip": "Letters, numbers and hyphens only. Static text counts toward the 15-character limit — %SERIAL% expands to the real serial at enrollment, so leave room."
+    },
+    {
+      "name": "Macro",
+      "library": "intune/autopilot-macros",
+      "defaultValue": "%SERIAL%",
+      "maxLengthBudget": { "dependsOn": "Prefix" },
+      "allowCustomValue": true,
+      "tip": "Pick the macro from the list to avoid typos; custom macro strings are allowed. Macros expand AFTER the app checks your name against the 15-character limit."
+    },
+    {
+      "name": "Template",
+      "type": "text",
+      "defaultValue": "",
+      "allowCustomValue": true,
+      "allowedPattern": "^[A-Za-z0-9%:-]+$",
+      "tip": "Mix static text and macros (%SERIAL%, %RAND:n%). Count every character as typed — %SERIAL% is 8 characters today but grows at enrollment. The name may not be all numbers; this is not checked automatically."
+    }
+  ],
+  "examples": ["DT-%SERIAL%"],
+  "builder": {
+    "separator": "",
+    "defaultSegments": ["Prefix", "Macro"],
+    "availableSegments": ["Macro", "Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Prefix"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 15,
+    "allowedPattern": "^[A-Za-z0-9%:-]+$"
+  }
+}

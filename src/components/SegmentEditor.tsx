@@ -34,7 +34,7 @@ type SegmentEditorProps = {
 
 export default function SegmentEditor({ segment, index, convention, fields, segments, onUpdate, onMove, onRemove }: SegmentEditorProps) {
   const field = fieldByName(fields, segment.sourceName);
-  const options = optionsForSegment(field, segments);
+  const options = optionsForSegment(field, segments, convention);
 
   const caRange = (() => {
     if (!field?.customOnly || !field.generator) return undefined;
@@ -102,7 +102,7 @@ export default function SegmentEditor({ segment, index, convention, fields, segm
 
       <div className="builder-label">
         {segment.label}
-        {field?.tip && <InfoIcon text={fieldTip(field, field.tip)} />}
+        {field?.tip && <InfoIcon text={fieldTip(field, field.tip, convention.id)} />}
       </div>
 
       <div className="builder-editor">
@@ -162,9 +162,9 @@ export default function SegmentEditor({ segment, index, convention, fields, segm
               <input
                 inputMode="numeric"
                 value={
-                  (segment.value.startsWith(caPrefix)
+                  segment.value.startsWith(caPrefix)
                     ? segment.value.slice(caPrefix.length)
-                    : segment.value) || caDefaultNumber
+                    : segment.value
                 }
                 onChange={(e) => {
                   const digits = e.target.value.replace(/\D/g, "").slice(0, caDigits);
@@ -201,6 +201,11 @@ export default function SegmentEditor({ segment, index, convention, fields, segm
             value={segment.value}
             onChange={(e) => onUpdate(segment.key, e.target.value)}
           >
+            {options.some((o) => optionValue(o) === segment.value) ? null : (
+              <option disabled value={segment.value}>
+                {tl("ui.segmentStaleValue", segment.value)}
+              </option>
+            )}
             {options.map((v) => (
               <option key={optionValue(v)} value={optionValue(v)}>
                 {optionLabel(v, field)}

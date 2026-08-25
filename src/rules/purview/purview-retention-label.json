@@ -1,0 +1,40 @@
+{
+  "id": "purview-retention-label",
+  "category": "Purview",
+  "name": "Retention Label",
+  "description": "Microsoft Purview retention label. The name CANNOT be changed after save — validate the name carefully before creating it.",
+  "pattern": "[LabelName]",
+  "fields": [
+    {
+      "name": "LabelName",
+      "type": "text",
+      "defaultValue": "",
+      "examples": [
+        "Legal Hold 7Y",
+        "Finance Records 10Y"
+      ],
+      "allowCustomValue": true,
+      "tip": "Immutable after save: the name cannot be changed later. Double quotes (\") are not supported. Label policies can take up to 7 days to apply — get the name right first time."
+    }
+  ],
+  "examples": [
+    "Legal Hold 7Y"
+  ],
+  "builder": {
+    "separator": " ",
+    "defaultSegments": [
+      "LabelName"
+    ],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "removeCharacters": [
+      "\""
+    ],
+    "allowedPattern": "^[A-Za-z0-9 &/_()-]+$",
+    "caseMode": "preserve"
+  }
+}

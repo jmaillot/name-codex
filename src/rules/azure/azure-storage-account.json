@@ -1,0 +1,45 @@
+{
+  "id": "azure-storage-account",
+  "category": "Azure",
+  "name": "Storage Account",
+  "description": "Azure storage account naming per CAF. The storage account name IS the public endpoint (e.g. stappprod001.blob.core.windows.net) and must be globally unique across all Azure tenants — uniqueness itself cannot be checked here. Lowercase letters and numbers only, no hyphens, maximum 24 characters.",
+  "pattern": "st[Workload][Environment][Instance]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/caf-workloads",
+      "defaultValue": "app",
+      "allowCustomValue": true,
+      "allowedValues": ["kv", "nsg", "pip", "vm", "vnet", "nic", "app"],
+      "tip": "Use a short workload code such as app, vm, or your own — it concatenates directly into the endpoint hostname."
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "prod",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["stappprod001"],
+  "builder": {
+    "separator": "",
+    "defaultSegments": ["Workload", "Environment", "Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Workload"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 24,
+    "forceLowercase": true,
+    "removeCharacters": ["-", "_", "."],
+    "allowedPattern": "^[a-z0-9][a-z0-9]{1,22}[a-z0-9]$"
+  }
+}

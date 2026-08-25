@@ -1,0 +1,29 @@
+{
+  "name": "Entra Attribute",
+  "values": [
+    {
+      "value": "[Department]",
+      "description": "Department attribute from Entra ID"
+    },
+    {
+      "value": "[Company]",
+      "description": "Company attribute from Entra ID"
+    },
+    {
+      "value": "[Office]",
+      "description": "Office location attribute from Entra ID"
+    },
+    {
+      "value": "[StateOrProvince]",
+      "description": "State or province attribute from Entra ID"
+    },
+    {
+      "value": "[CountryOrRegion]",
+      "description": "Country or region attribute from Entra ID"
+    },
+    {
+      "value": "[Title]",
+      "description": "Job title attribute from Entra ID"
+    }
+  ]
+}

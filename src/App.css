@@ -1326,6 +1326,22 @@ summary:focus-visible {
   color:var(--cat-defender);
 }
 
+.teams-icon{
+  color:var(--cat-teams);
+}
+
+.sharepoint-icon{
+  color:var(--cat-sharepoint);
+}
+
+.power-platform-icon{
+  color:var(--cat-power-platform);
+}
+
+.purview-icon{
+  color:var(--cat-purview);
+}
+
 .nav-item:hover .nav-icon{
   transform:translateY(-2px) scale(1.05);
 }

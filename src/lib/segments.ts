@@ -1,6 +1,7 @@
 import { tl } from "./i18n-utils";
 import { getGeneratorFile, getSegmentFile, segmentCatalog } from "./data";
 import { caPolicyIdOptionsForRange, generateValues, normalizeSegmentValues, personaRangeKeyForField } from "./generators";
+import { expandedLength } from "./macros";
 import { patternToSegments } from "./parse";
 import type { DropdownValue, NamingConvention, NamingField, NamingFieldOption } from "../types/Rule";
 
@@ -15,6 +16,35 @@ export type SegmentFile = {
 };
 
 export type BuilderSegment = { key: string; sourceName: string; label: string; value: string; custom?: boolean };
+
+export function assembleRawName(
+  segments: BuilderSegment[],
+  opts: {
+    literalPrefixes: Map<string, string>;
+    patternSuffix: string;
+    lastPatternSegment?: string;
+    separator: string;
+    caseMode?: "upper" | "lower";
+  }
+): string {
+  const cased = (v: string) =>
+    opts.caseMode === "lower" ? v.toLowerCase()
+    : opts.caseMode === "upper" ? v.toUpperCase()
+    : v;
+  return segments
+    .map((segment, index) => {
+      const prefix = opts.literalPrefixes.get(segment.sourceName) ?? opts.separator;
+      const suffix =
+        index === segments.length - 1 && segment.sourceName === opts.lastPatternSegment
+          ? opts.patternSuffix
+          : "";
+      return `${prefix}${cased(segment.value.trim())}${suffix}`;
+    })
+    .join("")
+    .replace(/^[-.\s]+/, "")
+    .replace(/[-.\s]+$/, "")
+    .replace(/([-.\s])\1+/g, "$1");
+}
 
 export function isDropdownValue(value: NamingFieldOption): value is DropdownValue {
   return typeof value === "object" && value !== null && "value" in value;
@@ -37,8 +67,18 @@ export function fieldLabel(field: NamingField | undefined, fallback: string): st
   return tl(`data.field.${field.name}.label`, fallback);
 }
 
-export function fieldTip(field: NamingField | undefined, fallback: string): string {
+export function fieldTip(
+  field: NamingField | undefined,
+  fallback: string,
+  conventionId?: string
+): string {
   if (!field?.tip) return fallback;
+  // Rule-scoped keys win so a rule-specific tip can never be silently
+  // overridden by another rule gaining a same-named field (IN-01).
+  if (conventionId) {
+    const scoped = tl(`data.rule.${conventionId}.field.${field.name}.tip`, "");
+    if (scoped) return scoped;
+  }
   return tl(`data.field.${field.name}.tip`, fallback);
 }
 
@@ -154,9 +194,10 @@ export function buildSegments(
 
 export function optionsForSegment(
   field: NamingField | undefined,
-  segments: BuilderSegment[]
+  segments: BuilderSegment[],
+  convention?: NamingConvention
 ): NamingFieldOption[] {
-  const options = valuesForField(field);
+  let options = valuesForField(field);
 
   const byField = field?.allowedValuesByField;
   if (byField) {
@@ -172,10 +213,25 @@ export function optionsForSegment(
   }
 
   const rangeKey = personaRangeKeyForField(field, segments);
-  if (!rangeKey) return options;
-
   const generatorFile = field?.generator ? getGeneratorFile(field.generator) : undefined;
-  if (!generatorFile || generatorFile.type !== "caPolicyId") return options;
+  if (rangeKey && generatorFile && generatorFile.type === "caPolicyId") {
+    options = caPolicyIdOptionsForRange(generatorFile, rangeKey);
+  }
 
-  return caPolicyIdOptionsForRange(generatorFile, rangeKey);
+  // maxLengthBudget: cap macro widths so prefix + expansion stays within the
+  // convention's maxLength (e.g. Autopilot DT- caps %RAND:n% at n <= 12).
+  // Unknowable expansions (%SERIAL%) are kept — validation flags over-budget
+  // RAND templates instead (T-14-04-02).
+  const budget = field?.maxLengthBudget;
+  const maxLen = convention?.validation?.maxLength;
+  if (budget && maxLen) {
+    const depVal = segments.find((s) => s.sourceName === budget.dependsOn)?.value.trim() ?? "";
+    const remaining = maxLen - depVal.length;
+    options = options.filter((o) => {
+      const el = expandedLength(optionValue(o));
+      return el === null || el <= remaining; // %SERIAL% unknowable → keep
+    });
+  }
+
+  return options;
 }

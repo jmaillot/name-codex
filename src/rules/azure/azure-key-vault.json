@@ -1,0 +1,44 @@
+{
+  "id": "azure-key-vault",
+  "category": "Azure",
+  "name": "Key Vault",
+  "description": "Azure key vault naming per CAF. Vault names are publicly resolvable and globally unique: 3–24 characters, must start with a letter, end with a letter or number, and never contain consecutive hyphens.",
+  "pattern": "kv-[Workload]-[Environment]-[Region]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/caf-workloads",
+      "defaultValue": "app",
+      "examples": ["payroll"],
+      "allowCustomValue": true,
+      "allowedValues": ["st", "nsg", "pip", "vm", "vnet", "nic", "app"],
+      "tip": "Use your application or workload identifier; CAF abbreviations (st, vm…) are suggested."
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["KV-APP-PROD-FRC"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment", "Region"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Workload"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 24,
+    "allowedPattern": "^(?!.*--)[A-Za-z][A-Za-z0-9-]{1,22}[A-Za-z0-9]$"
+  }
+}

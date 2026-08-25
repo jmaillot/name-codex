@@ -1,0 +1,40 @@
+{
+  "id": "purview-retention-policy",
+  "category": "Purview",
+  "name": "Retention Policy",
+  "description": "Microsoft Purview retention policy, applied org-wide or to selected locations. Policy names apply after up to a 7-day lead time and cannot be renamed casually — plan names before creation.",
+  "pattern": "[PolicyName]",
+  "fields": [
+    {
+      "name": "PolicyName",
+      "type": "text",
+      "defaultValue": "",
+      "examples": [
+        "Finance Retention EU",
+        "Email 7Y Default"
+      ],
+      "allowCustomValue": true,
+      "tip": "Policy names apply after up to a 7-day lead time and cannot be renamed casually — plan names before creation."
+    }
+  ],
+  "examples": [
+    "Finance Retention EU"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": [
+      "PolicyName"
+    ],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "removeCharacters": [
+      "\""
+    ],
+    "allowedPattern": "^[A-Za-z0-9 &/_()-]+$",
+    "caseMode": "preserve"
+  }
+}

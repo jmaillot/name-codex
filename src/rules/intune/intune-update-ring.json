@@ -1,0 +1,35 @@
+{
+  "id": "intune-update-ring",
+  "category": "Intune",
+  "name": "Update Ring",
+  "description": "Windows Update ring naming using the fixed deployment-ring taxonomy: Pilot, Dev, Broad, Production.",
+  "pattern": "[UpdateRing]-[Descriptor]",
+  "fields": [
+    {
+      "name": "UpdateRing",
+      "library": "intune/update-rings",
+      "defaultValue": "Pilot",
+      "allowCustomValue": false,
+      "tip": "Deployment ring is locked to Microsoft's four-ring Windows Update taxonomy: Pilot, Dev, Broad, Production — pick the ring; custom values are not allowed."
+    },
+    {
+      "name": "Descriptor",
+      "type": "text",
+      "defaultValue": "",
+      "examples": ["Windows11", "FeatureUpdates"],
+      "allowCustomValue": true,
+      "allowedPattern": "^[A-Za-z0-9-]+$"
+    }
+  ],
+  "examples": ["Pilot-Windows11"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["UpdateRing", "Descriptor"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Descriptor"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["UpdateRing"],
+    "fixedLastSegments": []
+  },
+  "validation": { "maxLength": 128, "allowedPattern": "^[A-Za-z0-9_.-]+$" }
+}

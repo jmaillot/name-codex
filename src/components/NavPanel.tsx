@@ -7,6 +7,10 @@ import iconGroups from "../assets/icons/groups.svg";
 import iconIntune from "../assets/icons/intune.svg";
 import iconConditionalAccess from "../assets/icons/conditional-access.svg";
 import iconDefender from "../assets/icons/defender.svg";
+import iconTeams from "../assets/icons/teams.svg";
+import iconSharePoint from "../assets/icons/sharepoint.svg";
+import iconPowerPlatform from "../assets/icons/power-platform.svg";
+import iconPurview from "../assets/icons/purview.svg";
 
 type NavPanelProps = {
   categories: string[];
@@ -15,48 +19,28 @@ type NavPanelProps = {
   onSelectCategory: (category: string) => void;
 };
 
+const CATEGORY_META: Record<string, { icon: string; cls: string }> = {
+  Azure: { icon: iconAzure, cls: "azure-icon" },
+  "Entra ID": { icon: iconEntraId, cls: "entra-icon" },
+  Exchange: { icon: iconExchange, cls: "exchange-icon" },
+  Groups: { icon: iconGroups, cls: "groups-icon" },
+  Intune: { icon: iconIntune, cls: "intune-icon" },
+  "Conditional Access": { icon: iconConditionalAccess, cls: "ca-icon" },
+  Defender: { icon: iconDefender, cls: "defender-icon" },
+  "Defender for M365": { icon: iconDefender, cls: "defender-icon" },
+  Teams: { icon: iconTeams, cls: "teams-icon" },
+  SharePoint: { icon: iconSharePoint, cls: "sharepoint-icon" },
+  "Power Platform": { icon: iconPowerPlatform, cls: "power-platform-icon" },
+  Purview: { icon: iconPurview, cls: "purview-icon" },
+};
+
 function getCategoryIcon(category: string) {
-  const icons: Record<string, string> = {
-    Azure: iconAzure,
-    "Entra ID": iconEntraId,
-    Exchange: iconExchange,
-    Groups: iconGroups,
-    Intune: iconIntune,
-    "Conditional Access": iconConditionalAccess,
-    Defender: iconDefender,
-    "Defender for M365": iconDefender,
-  };
-  const src = icons[category] ?? iconAzure;
+  const src = CATEGORY_META[category]?.icon ?? iconAzure;
   return <img src={src} alt="" className="category-icon" />;
 }
 
 function getCategoryClass(category: string): string {
-  switch (category) {
-    case "Azure":
-      return "azure-icon";
-
-    case "Entra ID":
-      return "entra-icon";
-
-    case "Exchange":
-      return "exchange-icon";
-
-    case "Groups":
-      return "groups-icon";
-
-    case "Intune":
-      return "intune-icon";
-
-    case "Conditional Access":
-      return "ca-icon";
-
-    case "Defender":
-    case "Defender for M365":
-      return "defender-icon";
-
-    default:
-      return "";
-  }
+  return CATEGORY_META[category]?.cls ?? "";
 }
 
 export default function NavPanel({ categories, selectedCategory, categoryCounts, onSelectCategory }: NavPanelProps) {

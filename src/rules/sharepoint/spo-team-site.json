@@ -1,0 +1,37 @@
+{
+  "id": "spo-team-site",
+  "category": "SharePoint",
+  "name": "Team Site (Group-Connected)",
+  "description": "Group-connected SharePoint Team site provisioned at /teams/<url>. The site name becomes the M365 group display name and inherits the Entra group naming policy.",
+  "pattern": "[SiteName]",
+  "fields": [
+    {
+      "name": "SiteName",
+      "type": "text",
+      "defaultValue": "",
+      "examples": [
+        "sales-eu",
+        "hr-onboarding"
+      ],
+      "allowCustomValue": true,
+      "tip": "URL name: lowercase, hyphenated, no spaces. Group-connected sites inherit the M365 group naming policy (see Teams category). Total file path stays under 400 chars — keep URLs short."
+    }
+  ],
+  "examples": [
+    "sales-eu"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": [
+      "SiteName"
+    ],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "forceLowercase": true,
+    "allowedPattern": "^[a-z0-9-]+$"
+  }
+}

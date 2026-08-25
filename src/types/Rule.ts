@@ -22,6 +22,8 @@ export interface NamingField {
   generator?: string;
   allowedValues?: string[];
   allowedValuesByField?: Record<string, Record<string, string[]>>;
+  maxLengthBudget?: { dependsOn: string };
+  allowedPattern?: string;
   examples?: string[];
   tip?: string;
 }
@@ -41,6 +43,7 @@ export interface NamingValidationConfig {
   allowedPattern?: string;
   forceLowercase?: boolean;
   removeCharacters?: string[];
+  caseMode?: "upper" | "lower" | "preserve";
 }
 
 export interface NamingPatternOption {

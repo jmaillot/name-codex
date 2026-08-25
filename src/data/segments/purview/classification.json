@@ -1,0 +1,25 @@
+{
+  "name": "Classification",
+  "values": [
+    {
+      "value": "Personal",
+      "description": "Minimal personal data"
+    },
+    {
+      "value": "Public",
+      "description": "Approved for public release"
+    },
+    {
+      "value": "General",
+      "description": "Default level, not public"
+    },
+    {
+      "value": "Confidential",
+      "description": "Sensitive business data"
+    },
+    {
+      "value": "Highly Confidential",
+      "description": "Most sensitive business data"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-import { defaultValueForField, fieldByName, optionsForSegment, valuesForField } from './segments'
+import { assembleRawName, defaultValueForField, fieldByName, optionsForSegment, valuesForField } from './segments'
 import type { BuilderSegment } from './segments'
 import type { NamingField } from "../types/Rule"
 
@@ -195,5 +195,93 @@ describe("fieldByName", () => {
   it("returns convention field when not in catalog", () => {
     const convFields: NamingField[] = [{ name: "CustomOnly", values: ["a"] }]
     expect(fieldByName(convFields, "CustomOnly")?.values).toEqual(["a"])
+  })
+})
+
+describe("assembleRawName", () => {
+  const opts = (over: Partial<Parameters<typeof assembleRawName>[1]> = {}) => ({
+    literalPrefixes: new Map<string, string>(),
+    patternSuffix: "",
+    separator: "-",
+    caseMode: "upper" as "upper" | "lower",
+    ...over,
+  })
+
+  it("custom segment contributes at its list position with builder separator prefix", () => {
+    const segments = [seg("Workload", "app"), seg("Owner", "jdoe")]
+    const result = assembleRawName(segments, opts({
+      literalPrefixes: new Map([["Workload", "kv-"]]),
+      lastPatternSegment: "Region",
+    }))
+    expect(result).toBe("kv-APP-JDOE")
+  })
+
+  it("full Key Vault shape with trailing custom segment", () => {
+    const segments = [
+      seg("Workload", "app"),
+      seg("Environment", "prod"),
+      seg("Region", "frc"),
+      { key: "Owner-3", sourceName: "Owner", label: "Owner", value: "jdoe", custom: true },
+    ]
+    const result = assembleRawName(segments, opts({
+      literalPrefixes: new Map([
+        ["Workload", "kv-"],
+        ["Environment", "-"],
+        ["Region", "-"],
+      ]),
+    }))
+    expect(result).toBe("kv-APP-PROD-FRC-JDOE")
+  })
+
+  it("empty trailing custom value leaves no dangling separator", () => {
+    const segments = [
+      seg("Workload", "app"),
+      seg("Environment", "prod"),
+      seg("Region", "frc"),
+      { key: "Owner-3", sourceName: "Owner", label: "Owner", value: "", custom: true },
+    ]
+    const result = assembleRawName(segments, opts({
+      literalPrefixes: new Map([
+        ["Workload", "kv-"],
+        ["Environment", "-"],
+        ["Region", "-"],
+      ]),
+    }))
+    expect(result).toBe("kv-APP-PROD-FRC")
+  })
+
+  it("literal prefix preserved for first token; patternSuffix appended when last segment is the last pattern segment", () => {
+    const segments = [seg("Region", "frc")]
+    const result = assembleRawName(segments, opts({
+      literalPrefixes: new Map([["Region", "kv-"]]),
+      patternSuffix: "-vault",
+      lastPatternSegment: "Region",
+    }))
+    expect(result).toBe("kv-FRC-vault")
+  })
+
+  it("patternSuffix NOT appended when last segment is a custom segment", () => {
+    const segments = [seg("Region", "frc"), { key: "Owner-1", sourceName: "Owner", label: "Owner", value: "jdoe", custom: true }]
+    const result = assembleRawName(segments, opts({
+      literalPrefixes: new Map([["Region", "kv-"]]),
+      patternSuffix: "-vault",
+      lastPatternSegment: "Region",
+    }))
+    expect(result).toBe("kv-FRC-JDOE")
+  })
+
+  it("caseMode undefined/preserve keeps mixed-case values untouched", () => {
+    const segments = [seg("Workload", "Atlas"), seg("Function", "Finance")]
+    const result = assembleRawName(segments, opts({ caseMode: undefined }))
+    expect(result).toBe("Atlas-Finance")
+  })
+
+  it("caseMode lower lowercases values only, literals untouched", () => {
+    const segments = [{ key: "Workload-0", sourceName: "Workload", label: "Workload", value: "App" }]
+    const result = assembleRawName(segments, opts({
+      literalPrefixes: new Map([["Workload", "ST"]]),
+      caseMode: "lower",
+    }))
+    expect(result).toBe("STapp")
   })
 })

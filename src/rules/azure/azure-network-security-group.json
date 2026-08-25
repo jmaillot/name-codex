@@ -1,0 +1,36 @@
+{
+  "id": "azure-network-security-group",
+  "category": "Azure",
+  "name": "Network Security Group",
+  "description": "Azure network security group naming per CAF: nsg-<workload>-<instance>.",
+  "pattern": "nsg-[Workload]-[Instance]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/caf-workloads",
+      "defaultValue": "app",
+      "allowCustomValue": true,
+      "allowedValues": ["st", "kv", "pip", "vm", "vnet", "nic", "app"]
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["NSG-APP-001"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Workload"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
+  }
+}

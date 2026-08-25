@@ -1,0 +1,27 @@
+{
+  "id": "intune-group-tag",
+  "category": "Intune",
+  "name": "Group Tag",
+  "description": "Autopilot Group Tag: a department or site code that drives dynamic group membership and per-group naming profiles. Values are tenant-specific — samples provided, custom codes expected.",
+  "pattern": "[GroupTag]",
+  "fields": [
+    {
+      "name": "GroupTag",
+      "library": "intune/group-tags",
+      "defaultValue": "DEV",
+      "allowCustomValue": true,
+      "tip": "Group Tags are tenant-specific: use your own department/site codes. One tag per device feeds dynamic group rules."
+    }
+  ],
+  "examples": ["DEV"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["GroupTag"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": { "maxLength": 128, "allowedPattern": "^[A-Za-z0-9_.-]+$" }
+}

@@ -157,14 +157,12 @@ const themes = [
   { tag: 'light', own: lightMap, fallback: darkMap },
 ];
 
-const textTokens = ['--text-primary', '--text-secondary'];
 const surfaces = [
   '--surface-canvas',
   '--surface-raised',
   '--surface-panel',
   '--surface-overlay',
 ];
-const thresholds = { '--text-primary': 7, '--text-secondary': 4.5 };
 
 // (foreground, background, minimum ratio). Rule per WR-01 + UI-SPEC D-2
 // (#4f8cff stays the accent): any fill carrying --text-on-accent text MUST use

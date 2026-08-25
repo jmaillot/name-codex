@@ -100,6 +100,9 @@ export function useAppState() {
         item.id.toLowerCase().includes(query) ||
         (item.pattern ?? "").toLowerCase().includes(query)
     );
+    // i18n.language is not referenced directly but IS required: conventionName/
+    // conventionDescription resolve translations at call time via tl().
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conventionsForCategory, objectSearch, i18n.language]);
 
   const selectedConvention =
@@ -348,7 +351,10 @@ export function useAppState() {
         }),
       };
     })
-    .filter((item) => item.entries.length > 0), [builderSegments, activeFields, selectedConvention, i18n.language]);
+    .filter((item) => item.entries.length > 0),
+    // i18n.language drives re-memoization: valueDescription translates at call time via tl().
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [builderSegments, activeFields, selectedConvention, i18n.language]);
 
   const updateSegmentValue = (key: string, value: string) =>
     setBuilderSegments((prev) => {

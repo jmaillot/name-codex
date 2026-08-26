@@ -229,7 +229,7 @@ describe('validateSegment', () => {
       expect(violations.length, 'collect-all within the declaration').toBeGreaterThanOrEqual(3);
     });
 
-    it('valid declaration coexists with a legacy value defect — both reported', () => {
+    it('valid declaration coexists with a legacy value defect — both paths run', () => {
       const violations = validateSegment(
         constrainedSegFile(
           { allowedPattern: '^[A-Z]+$', minLength: 1 },
@@ -239,7 +239,10 @@ describe('validateSegment', () => {
       );
       const dupes = violations.filter((v) => v.reason.includes('duplicated'));
       expect(dupes.length, 'duplicate-value violation still present').toBe(1);
-      expect(violations.length, 'declaration checks do not suppress legacy checks').toBeGreaterThanOrEqual(2);
+      expect(
+        violations.some((v) => v.reason.includes('constraints.')),
+        'valid declaration adds no constraint violations next to the legacy defect',
+      ).toBe(false);
     });
 
     it('absence of constraints key leaves legacy path untouched', () => {

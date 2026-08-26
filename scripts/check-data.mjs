@@ -8,10 +8,14 @@
 //    values array; an intentional empty string is allowed as a blank-value
 //    sentinel, e.g. defender/def-notification.json "no notification"),
 //    description (non-empty string, D-01/D-02 — never relaxed).
+//    When present: constraints must be an object whose allowedPattern (string)
+//    compiles as a RegExp and minLength/maxLength are non-negative integers
+//    with min <= max (Phase 17, DATA-02).
 // 3. Generators gate: src/data/generators/*.json — required keys: name (string),
 //    type (string). When present: personaSource must be a string;
 //    personaRanges must be an object whose values are strings.
-// Unknown keys are IGNORED everywhere (D-10 — keeps Phase 17 additive).
+// Unknown keys are IGNORED everywhere (D-10) except that segment-file
+// `constraints`, once declared, IS structurally validated (Phase 17).
 // Collect-all semantics (D-04): every file scanned, all errors reported.
 // Uniqueness scope: per-file values array — src/lib/data.ts loads each file
 // independently via import.meta.glob, no cross-file namespace merge.
@@ -153,6 +157,47 @@ export function validateSegment(json, filePath) {
         file: filePath,
         reason: `values[${i}].description must be a non-empty string`,
       });
+    }
+  }
+  // --- Constraints vocabulary (Phase 17, DATA-02 / D-01..D-07) ---
+  // Declaration well-formedness ONLY (D-06): the gate never audits whether
+  // values satisfy their library's own declared constraints, and it never
+  // EXECUTES declared patterns (.test/.exec forbidden) — compile-only, so
+  // catastrophic-backtracking regexes cannot run against any input (T-17-01).
+  if (hasOwn(json ?? {}, 'constraints')) {
+    const c = json.constraints;
+    if (c === null || typeof c !== 'object' || Array.isArray(c)) {
+      violations.push({ file: filePath, reason: 'constraints must be an object' });
+    } else {
+      // Fixed allowlist iteration — NEVER Object.entries/Object.keys over
+      // hostile JSON (T-17-02: {"__proto__": ...} own-property safety).
+      if (hasOwn(c, 'allowedPattern')) {
+        if (typeof c.allowedPattern !== 'string') {
+          violations.push({ file: filePath, reason: 'constraints.allowedPattern must be a string' });
+        } else {
+          try {
+            new RegExp(c.allowedPattern);
+          } catch {
+            violations.push({
+              file: filePath,
+              reason: `constraints.allowedPattern "${c.allowedPattern}" is not a compilable regular expression`,
+            });
+          }
+        }
+      }
+      for (const lenKey of ['minLength', 'maxLength']) {
+        if (hasOwn(c, lenKey) && !(Number.isInteger(c[lenKey]) && c[lenKey] >= 0)) {
+          violations.push({ file: filePath, reason: `constraints.${lenKey} must be a non-negative integer` });
+        }
+      }
+      if (
+        hasOwn(c, 'minLength') && hasOwn(c, 'maxLength') &&
+        Number.isInteger(c.minLength) && c.minLength >= 0 &&
+        Number.isInteger(c.maxLength) && c.maxLength >= 0 &&
+        c.minLength > c.maxLength
+      ) {
+        violations.push({ file: filePath, reason: 'constraints.minLength must be <= constraints.maxLength' });
+      }
     }
   }
   return violations;

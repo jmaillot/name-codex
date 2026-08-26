@@ -42,7 +42,7 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["NSG-PROD-FRC-WEB-001"],
+  "examples": ["nsg-prod-frc-web-001"],
   "builder": {
     "separator": "-",
     "defaultSegments": ["Environment", "Region", "Workload", "Instance"],
@@ -54,6 +54,7 @@
   },
   "validation": {
     "maxLength": 128,
+    "forceLowercase": true,
     "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

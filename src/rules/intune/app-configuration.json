@@ -78,7 +78,6 @@
   "builder": {
     "separator": "-",
     "defaultSegments": [
-      "IntPrefix",
       "Scope",
       "EnrollmentType",
       "Platform",
@@ -88,7 +87,7 @@
     "availableSegments": ["Custom"],
     "recommendedSegments": ["Descriptor"],
     "lockedSegments": [],
-    "fixedFirstSegments": ["IntPrefix"],
+    "fixedFirstSegments": [],
     "fixedLastSegments": []
   },
   "validation": {

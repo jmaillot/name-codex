@@ -41,7 +41,7 @@ Name Codex est une application monopage qui vous aide à définir, explorer et g
 - **Référence des conventions** : un dictionnaire de valeurs pour chaque segment utilisé
 
 ### Basé sur les données
-Toutes les conventions, bibliothèques de segments et générateurs sont en JSON brut sous `src/rules`, `src/data/segments`, `src/data/generators` — ajoutez ou ajustez un standard de nommage sans toucher au code. Les définitions de segments partagées se trouvent dans `segment-catalog.json` ; chaque règle référence des bibliothèques et peut les restreindre ou les remodeler avec `allowedValues`, des exclusions mutuelles et des littéraux de modèle.
+Toutes les conventions, bibliothèques de segments et générateurs sont en JSON brut sous `src/rules`, `src/data/segments`, `src/data/generators` — ajoutez ou ajustez un standard de nommage sans toucher au code. Les définitions de segments partagées se trouvent dans `segment-catalog.json` ; chaque règle référence des bibliothèques et peut les restreindre ou les remodeler avec `allowedValues`, des exclusions mutuelles et des littéraux de modèle. Les bibliothèques de segments peuvent déclarer des contraintes de valeurs — voir [docs/DATA-FORMAT_FR.md](docs/DATA-FORMAT_FR.md) pour le format et ses règles de validation.
 
 ## Pile technique
 

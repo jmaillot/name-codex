@@ -41,7 +41,7 @@ Name Codex is a single-page application that helps you define, explore and gover
 - **Convention Reference**: a value dictionary for every segment used
 
 ### Data-driven
-All conventions, segment libraries and generators are plain JSON under `src/rules`, `src/data/segments`, `src/data/generators` — add or adjust a naming standard without touching the code. Shared segment definitions live in `segment-catalog.json`; individual rules reference libraries and can restrict or reshape them with `allowedValues`, mutual exclusions and pattern literals.
+All conventions, segment libraries and generators are plain JSON under `src/rules`, `src/data/segments`, `src/data/generators` — add or adjust a naming standard without touching the code. Shared segment definitions live in `segment-catalog.json`; individual rules reference libraries and can restrict or reshape them with `allowedValues`, mutual exclusions and pattern literals. Segment libraries can declare value constraints — see [docs/DATA-FORMAT.md](docs/DATA-FORMAT.md) for the format and its validation rules.
 
 ## Tech stack
 

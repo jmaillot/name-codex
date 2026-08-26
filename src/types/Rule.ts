@@ -46,6 +46,15 @@ export interface NamingValidationConfig {
   caseMode?: "upper" | "lower" | "preserve";
 }
 
+// Segment-library `constraints` vocabulary (Phase 17, DATA-02).
+// Machine-readable documentation only — validated by check:data;
+// consumed by builder wiring from a later milestone onward.
+export interface SegmentConstraints {
+  allowedPattern?: string;
+  minLength?: number;
+  maxLength?: number;
+}
+
 export interface NamingPatternOption {
   id: string;
   name: string;

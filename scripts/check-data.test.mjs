@@ -19,6 +19,14 @@ const SCRIPT_PATH = join(fileURLToPath(new URL('.', import.meta.url)), 'check-da
 // Inline helper-object construction per repo test conventions.
 const seg = (value, description) => ({ value, description });
 
+// Constraint-bearing segment factory (in-memory only — no fixtures, D-05).
+const constrainedSegFile = (constraints, extra = {}) => ({
+  name: 'X',
+  constraints,
+  values: [seg('A', 'Alpha')],
+  ...extra,
+});
+
 describe('validateSegment', () => {
   it('accepts a valid segment with zero violations', () => {
     const violations = validateSegment(
@@ -122,6 +130,125 @@ describe('validateSegment', () => {
       't.json',
     );
     expect(violations.length, 'collect-all: >= 3 violations together').toBeGreaterThanOrEqual(3);
+  });
+
+  describe('constraints (Phase 17, DATA-02 / D-01..D-07)', () => {
+    it('accepts a valid full declaration with zero violations', () => {
+      const violations = validateSegment(
+        constrainedSegFile({ allowedPattern: '^[A-Z]+$', minLength: 2, maxLength: 8 }),
+        't.json',
+      );
+      expect(violations.length, 'well-formed constraints must pass clean').toBe(0);
+    });
+
+    it('empty constraints object is a valid no-op (D-07)', () => {
+      const violations = validateSegment(constrainedSegFile({}), 't.json');
+      expect(violations.length, 'empty constraints must produce zero violations').toBe(0);
+    });
+
+    it('non-compilable allowedPattern → violation naming constraints.allowedPattern', () => {
+      const violations = validateSegment(
+        constrainedSegFile({ allowedPattern: '[' }),
+        't.json',
+      );
+      expect(violations.length, 'non-compilable pattern must violate').toBeGreaterThanOrEqual(1);
+      expect(violations[0].reason, 'reason must name constraints.allowedPattern').toContain(
+        'constraints.allowedPattern',
+      );
+    });
+
+    it('non-string allowedPattern → violation mentioning constraints.allowedPattern', () => {
+      const violations = validateSegment(constrainedSegFile({ allowedPattern: 42 }), 't.json');
+      expect(violations.length, 'numeric allowedPattern must violate').toBe(1);
+      expect(violations[0].reason, 'reason must mention constraints.allowedPattern').toContain(
+        'constraints.allowedPattern',
+      );
+    });
+
+    it('negative minLength → violation containing constraints.minLength', () => {
+      const violations = validateSegment(constrainedSegFile({ minLength: -1 }), 't.json');
+      expect(violations.length, 'negative minLength must violate').toBe(1);
+      expect(violations[0].reason, 'reason must contain constraints.minLength').toContain(
+        'constraints.minLength',
+      );
+    });
+
+    it('non-integer maxLength → violation containing constraints.maxLength', () => {
+      const violations = validateSegment(constrainedSegFile({ maxLength: 1.5 }), 't.json');
+      expect(violations.length, 'float maxLength must violate').toBe(1);
+      expect(violations[0].reason, 'reason must contain constraints.maxLength').toContain(
+        'constraints.maxLength',
+      );
+    });
+
+    it('string-typed minLength → violation containing constraints.minLength', () => {
+      const violations = validateSegment(constrainedSegFile({ minLength: '2' }), 't.json');
+      expect(violations.length, 'string minLength must violate').toBe(1);
+      expect(violations[0].reason, 'reason must contain constraints.minLength').toContain(
+        'constraints.minLength',
+      );
+    });
+
+    it('minLength > maxLength → exactly one cross-key violation naming both', () => {
+      const violations = validateSegment(
+        constrainedSegFile({ minLength: 5, maxLength: 2 }),
+        't.json',
+      );
+      expect(violations.length, 'individually-valid inverted lengths yield exactly one violation').toBe(1);
+      const reason = violations[0].reason;
+      expect(reason, 'reason mentions minLength').toContain('minLength');
+      expect(reason, 'reason mentions maxLength').toContain('maxLength');
+    });
+
+    it('constraints as string instead of object → violation', () => {
+      const violations = validateSegment(constrainedSegFile('^[A-Z]+$'), 't.json');
+      expect(violations[0].reason, 'string constraints rejected').toContain(
+        'constraints must be an object',
+      );
+    });
+
+    it('constraints as array → violation', () => {
+      const violations = validateSegment(constrainedSegFile([]), 't.json');
+      expect(violations[0].reason, 'array constraints rejected').toContain(
+        'constraints must be an object',
+      );
+    });
+
+    it('constraints as null → violation', () => {
+      const violations = validateSegment(constrainedSegFile(null), 't.json');
+      expect(violations[0].reason, 'null constraints rejected').toContain(
+        'constraints must be an object',
+      );
+    });
+
+    it('collect-all across constraint keys: three simultaneous defects ≥3 violations', () => {
+      const violations = validateSegment(
+        constrainedSegFile({ allowedPattern: '[', minLength: -1, maxLength: 'x' }),
+        't.json',
+      );
+      expect(violations.length, 'collect-all within the declaration').toBeGreaterThanOrEqual(3);
+    });
+
+    it('valid declaration coexists with a legacy value defect — both reported', () => {
+      const violations = validateSegment(
+        constrainedSegFile(
+          { allowedPattern: '^[A-Z]+$', minLength: 1 },
+          { values: [seg('A', 'first'), seg('A', 'again')] }, // duplicate value
+        ),
+        't.json',
+      );
+      const dupes = violations.filter((v) => v.reason.includes('duplicated'));
+      expect(dupes.length, 'duplicate-value violation still present').toBe(1);
+      expect(violations.length, 'declaration checks do not suppress legacy checks').toBeGreaterThanOrEqual(2);
+    });
+
+    it('absence of constraints key leaves legacy path untouched', () => {
+      const violations = validateSegment(
+        { name: 'X', values: [seg('A', 'Alpha')] },
+        't.json',
+      );
+      expect(violations.length, 'plain segment without constraints passes clean').toBe(0);
+    });
   });
 });
 

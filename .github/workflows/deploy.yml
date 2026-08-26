@@ -51,8 +51,19 @@ jobs:
       - run: npm ci
       - run: npm test
 
+  data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check:data
+
   deploy:
-    needs: [build, lint, test]
+    needs: [build, lint, test, data]
     runs-on: ubuntu-latest
     environment:
       name: github-pages

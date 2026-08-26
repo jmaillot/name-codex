@@ -252,6 +252,22 @@ describe('validateSegment', () => {
       );
       expect(violations.length, 'plain segment without constraints passes clean').toBe(0);
     });
+
+    it('malformed values does not suppress constraint defects (WR-01 collect-all)', () => {
+      const violations = validateSegment(
+        constrainedSegFile({ minLength: 5, maxLength: 2 }, { values: 'nope' }),
+        't.json',
+      );
+      expect(violations.length, 'both defects must be reported in one pass').toBeGreaterThanOrEqual(2);
+      expect(
+        violations.some((v) => v.reason.includes('values must be an array')),
+        'malformed values still violates',
+      ).toBe(true);
+      expect(
+        violations.some((v) => v.reason.includes('constraints.minLength must be <= constraints.maxLength')),
+        'inverted-length constraint defect must surface despite broken values',
+      ).toBe(true);
+    });
   });
 });
 

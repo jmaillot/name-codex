@@ -120,43 +120,49 @@ export function validateSegment(json, filePath) {
   if (!isNonEmptyString(json?.name)) {
     violations.push({ file: filePath, reason: 'name must be a non-empty string' });
   }
-  if (!Array.isArray(json?.values)) {
+  // D-04 collect-all semantics (WR-01): a missing/non-array `values`
+  // reports its own violation but must NOT suppress downstream checks.
+  // Constraint well-formedness below is independent of `values`, so only
+  // the per-entry loop is skipped when `values` is malformed.
+  const valuesOk = Array.isArray(json?.values);
+  if (!valuesOk) {
     violations.push({ file: filePath, reason: 'values must be an array' });
-    return violations;
   }
-  const seenValues = new Set();
-  for (let i = 0; i < json.values.length; i++) {
-    const entry = json.values[i];
-    if (entry === null || typeof entry !== 'object' || Array.isArray(entry)) {
-      violations.push({ file: filePath, reason: `values[${i}] must be an object` });
-      continue;
-    }
-    // Value rule (relaxed per checkpoint decision on Plan 16-02): any string
-    // is accepted, including the intentional empty-string blank-value
-    // sentinel. Non-strings and whitespace-only strings still violate.
-    if (typeof entry.value !== 'string') {
-      violations.push({ file: filePath, reason: `values[${i}].value must be a string` });
-    } else if (entry.value.trim().length === 0 && entry.value !== '') {
-      violations.push({
-        file: filePath,
-        reason: `values[${i}].value must be a non-empty string or an intentional empty string`,
-      });
-    } else if (seenValues.has(entry.value)) {
-      // Uniqueness scope: per-file values array (src/lib/data.ts loads each
-      // segment file independently — no cross-file namespace merge).
-      violations.push({
-        file: filePath,
-        reason: `values[${i}].value "${entry.value}" is duplicated in this file's values array`,
-      });
-    } else {
-      seenValues.add(entry.value);
-    }
-    // D-01/D-02: empty string, whitespace-only, and non-string all violate.
-    if (!isNonEmptyString(entry.description)) {
-      violations.push({
-        file: filePath,
-        reason: `values[${i}].description must be a non-empty string`,
-      });
+  if (valuesOk) {
+    const seenValues = new Set();
+    for (let i = 0; i < json.values.length; i++) {
+      const entry = json.values[i];
+      if (entry === null || typeof entry !== 'object' || Array.isArray(entry)) {
+        violations.push({ file: filePath, reason: `values[${i}] must be an object` });
+        continue;
+      }
+      // Value rule (relaxed per checkpoint decision on Plan 16-02): any string
+      // is accepted, including the intentional empty-string blank-value
+      // sentinel. Non-strings and whitespace-only strings still violate.
+      if (typeof entry.value !== 'string') {
+        violations.push({ file: filePath, reason: `values[${i}].value must be a string` });
+      } else if (entry.value.trim().length === 0 && entry.value !== '') {
+        violations.push({
+          file: filePath,
+          reason: `values[${i}].value must be a non-empty string or an intentional empty string`,
+        });
+      } else if (seenValues.has(entry.value)) {
+        // Uniqueness scope: per-file values array (src/lib/data.ts loads each
+        // segment file independently — no cross-file namespace merge).
+        violations.push({
+          file: filePath,
+          reason: `values[${i}].value "${entry.value}" is duplicated in this file's values array`,
+        });
+      } else {
+        seenValues.add(entry.value);
+      }
+      // D-01/D-02: empty string, whitespace-only, and non-string all violate.
+      if (!isNonEmptyString(entry.description)) {
+        violations.push({
+          file: filePath,
+          reason: `values[${i}].description must be a non-empty string`,
+        });
+      }
     }
   }
   // --- Constraints vocabulary (Phase 17, DATA-02 / D-01..D-07) ---

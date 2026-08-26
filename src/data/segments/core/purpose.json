@@ -3,15 +3,15 @@
   "values": [
     {
       "value": "Alerts",
-      "description": ""
+      "description": "Alert notifications"
     },
     {
       "value": "Invoices",
-      "description": ""
+      "description": "Invoice processing"
     },
     {
       "value": "Admins",
-      "description": ""
+      "description": "Administrators"
     },
     {
       "value": "LIC",

@@ -3,15 +3,15 @@
   "values": [
     {
       "value": "Intune",
-      "description": ""
+      "description": "Microsoft Intune"
     },
     {
       "value": "Veeam",
-      "description": ""
+      "description": "Veeam backup platform"
     },
     {
       "value": "Dynamics",
-      "description": ""
+      "description": "Microsoft Dynamics"
     }
   ]
 }

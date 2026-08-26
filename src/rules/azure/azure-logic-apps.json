@@ -38,11 +38,11 @@
         },
         {
           "value": "002",
-          "description": ""
+          "description": "Instance 002"
         },
         {
           "value": "003",
-          "description": ""
+          "description": "Instance 003"
         }
       ],
       "defaultValue": "001",

@@ -3,23 +3,23 @@
   "values": [
     {
       "value": "Alerts",
-      "description": ""
+      "description": "Alert notifications"
     },
     {
       "value": "Info",
-      "description": ""
+      "description": "Informational"
     },
     {
       "value": "Backup",
-      "description": ""
+      "description": "Backup workloads"
     },
     {
       "value": "Reporting",
-      "description": ""
+      "description": "Reporting workloads"
     },
     {
       "value": "Invoices",
-      "description": ""
+      "description": "Invoice processing"
     },
     {
       "value": "SSO",

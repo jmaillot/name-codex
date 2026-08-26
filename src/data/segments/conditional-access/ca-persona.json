@@ -3,59 +3,59 @@
   "values": [
     {
       "value": "AllUsers",
-      "description": ""
+      "description": "All users in the tenant"
     },
     {
       "value": "Employees",
-      "description": ""
+      "description": "Regular workforce employees"
     },
     {
       "value": "Admins",
-      "description": ""
+      "description": "Privileged administrative accounts"
     },
     {
       "value": "Guests",
-      "description": ""
+      "description": "External guest (B2B) accounts"
     },
     {
       "value": "GuestsAdmins",
-      "description": ""
+      "description": "Guest accounts with administrative roles"
     },
     {
       "value": "BYOD",
-      "description": ""
+      "description": "Personally owned (BYOD) devices"
     },
     {
       "value": "BreakGlass",
-      "description": ""
+      "description": "Emergency break-glass administrator accounts"
     },
     {
       "value": "Internals",
-      "description": ""
+      "description": "Internal workforce accounts"
     },
     {
       "value": "Externals",
-      "description": ""
+      "description": "External collaborator accounts"
     },
     {
       "value": "ServiceAccounts",
-      "description": ""
+      "description": "Non-interactive service accounts"
     },
     {
       "value": "AzureServiceAccounts",
-      "description": ""
+      "description": "Azure-managed workload identities (managed identities)"
     },
     {
       "value": "CorpServiceAccounts",
-      "description": ""
+      "description": "Corporate-managed service accounts"
     },
     {
       "value": "Workloads",
-      "description": ""
+      "description": "Application workload identities"
     },
     {
       "value": "Developers",
-      "description": ""
+      "description": "Developer personnel accounts"
     }
   ]
 }

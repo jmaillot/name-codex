@@ -4,15 +4,15 @@
 
     {
       "value": "GlobalAdmin",
-      "description": ""
+      "description": "Global Administrator role"
     },
     {
       "value": "ExchangeAdmin",
-      "description": ""
+      "description": "Exchange Administrator role"
     },
     {
       "value": "SharepointAdmin",
-      "description": ""
+      "description": "SharePoint Administrator role"
     }
   ]
 }

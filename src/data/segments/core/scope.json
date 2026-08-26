@@ -3,19 +3,19 @@
   "values": [
     {
       "value": "AllUsers",
-      "description": ""
+      "description": "All users in the tenant"
     },
     {
       "value": "IT",
-      "description": ""
+      "description": "IT department"
     },
     {
       "value": "Finance",
-      "description": ""
+      "description": "Finance department"
     },
     {
       "value": "Guests",
-      "description": ""
+      "description": "External guest (B2B) accounts"
     }
   ]
 }

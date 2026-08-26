@@ -3,27 +3,27 @@
   "values": [
     {
       "value": "V1",
-      "description": ""
+      "description": "Version 1"
     },
     {
       "value": "V2",
-      "description": ""
+      "description": "Version 2"
     },
     {
       "value": "V3",
-      "description": ""
+      "description": "Version 3"
     },
     {
       "value": "V4",
-      "description": ""
+      "description": "Version 4"
     },
     {
       "value": "V5",
-      "description": ""
+      "description": "Version 5"
     },
     {
       "value": "V10",
-      "description": ""
+      "description": "Version 10"
     }
   ]
 }

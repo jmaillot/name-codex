@@ -56,11 +56,11 @@
         },
         {
           "value": "002",
-          "description": ""
+          "description": "Room / equipment 002"
         },
         {
           "value": "003",
-          "description": ""
+          "description": "Room / equipment 003"
         }
       ],
       "defaultValue": "001"

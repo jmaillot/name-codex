@@ -3,23 +3,23 @@
   "values": [
     {
       "value": "AllPlatforms",
-      "description": ""
+      "description": "All device platforms"
     },
     {
       "value": "Windows",
-      "description": ""
+      "description": "Windows devices"
     },
     {
       "value": "iOS",
-      "description": ""
+      "description": "Apple iOS devices"
     },
     {
       "value": "macOS",
-      "description": ""
+      "description": "Apple macOS devices"
     },
     {
       "value": "Linux",
-      "description": ""
+      "description": "Linux devices"
     }
   ]
 }

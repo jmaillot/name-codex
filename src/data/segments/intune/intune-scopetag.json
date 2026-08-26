@@ -3,11 +3,11 @@
   "values": [
     {
       "value": "Global",
-      "description": ""
+      "description": "Global scope tag"
     },
     {
       "value": "EMEA",
-      "description": ""
+      "description": "EMEA region scope tag"
     },
     {
       "value": "FR",

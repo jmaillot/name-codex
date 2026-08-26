@@ -3,23 +3,23 @@
   "values": [
     {
       "value": "AllApps",
-      "description": ""
+      "description": "All cloud applications"
     },
     {
       "value": "Office365",
-      "description": ""
+      "description": "Office 365 suite"
     },
     {
       "value": "ExchangeOnline",
-      "description": ""
+      "description": "Exchange Online"
     },
     {
       "value": "SharepointOnline",
-      "description": ""
+      "description": "SharePoint Online"
     },
     {
       "value": "Teams",
-      "description": ""
+      "description": "Microsoft Teams"
     }
   ]
 }

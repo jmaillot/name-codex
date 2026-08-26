@@ -11,7 +11,7 @@
     },
     {
       "value": "IOS",
-      "description": ""
+      "description": "iOS"
     },
     {
       "value": "IPOS",
@@ -27,7 +27,7 @@
     },
     {
       "value": "AllPlatforms",
-      "description": ""
+      "description": "All platforms"
     }
   ]
 }

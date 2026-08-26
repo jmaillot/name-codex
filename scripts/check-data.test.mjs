@@ -49,9 +49,24 @@ describe('validateSegment', () => {
     expect(violations[0].reason, 'reason must mention values').toContain('values');
   });
 
-  it('empty-string value → violation naming values[0].value', () => {
-    const violations = validateSegment({ name: 'X', values: [seg('', 'd')] }, 't.json');
-    expect(violations.length, 'empty value must violate').toBe(1);
+  it('intentional empty-string value with non-empty description is accepted (Option A relax)', () => {
+    // Blank-value sentinel as shipped in defender/def-notification.json.
+    const violations = validateSegment(
+      { name: 'Notification', values: [seg('', 'No notification'), seg('WithNotification', 'Enabled')] },
+      't.json',
+    );
+    expect(violations.length, 'empty-string value must be accepted').toBe(0);
+  });
+
+  it('whitespace-only value → violation naming values[0].value', () => {
+    const violations = validateSegment({ name: 'X', values: [seg('   ', 'd')] }, 't.json');
+    expect(violations.length, 'whitespace-only value must violate').toBe(1);
+    expect(violations[0].reason, 'locator form').toContain('values[0].value');
+  });
+
+  it('non-string value → violation naming values[0].value', () => {
+    const violations = validateSegment({ name: 'X', values: [seg(42, 'd')] }, 't.json');
+    expect(violations.length, 'non-string value must violate').toBe(1);
     expect(violations[0].reason, 'locator form').toContain('values[0].value');
   });
 
@@ -77,6 +92,19 @@ describe('validateSegment', () => {
     const dupes = violations.filter((v) => v.reason.includes('duplicated'));
     expect(dupes.length, 'exactly one duplication violation').toBe(1);
     expect(dupes[0].reason, 'duplication reason names the repeated value').toContain('"A"');
+  });
+
+  it('duplicate empty-string sentinels are still flagged as duplicated values', () => {
+    const violations = validateSegment(
+      { name: 'X', values: [seg('', 'first blank'), seg('', 'second blank')] },
+      't.json',
+    );
+    const dupes = violations.filter((v) => v.reason.includes('duplicated'));
+    expect(dupes.length, 'exactly one duplication violation for repeated sentinel').toBe(1);
+    expect(
+      violations.some((v) => v.reason.includes('description')),
+      'both descriptions remain valid so no description violations',
+    ).toBe(false);
   });
 
   it('duplicate entries still get their descriptions validated', () => {
@@ -240,12 +268,23 @@ describe('scanData end-to-end (D-06)', () => {
       }),
     );
 
-    // Happy path root: one valid segment only.
+    // Happy path root: one valid segment + one with an intentional
+    // empty-string blank-value sentinel (Option A relax on Plan 16-02).
     tmpHappy = await mkdtemp(join(tmpdir(), 'check-data-pass-'));
     await mkdir(join(tmpHappy, 'src', 'data', 'segments'), { recursive: true });
     await writeFile(
       join(tmpHappy, 'src', 'data', 'segments', 'good-segment.json'),
       JSON.stringify({ name: 'Good', values: [{ value: 'A', description: 'fine' }] }),
+    );
+    await writeFile(
+      join(tmpHappy, 'src', 'data', 'segments', 'blank-sentinel-segment.json'),
+      JSON.stringify({
+        name: 'Notification',
+        values: [
+          { value: '', description: 'No notification' },
+          { value: 'WithNotification', description: 'Notifications enabled' },
+        ],
+      }),
     );
   });
 
@@ -281,7 +320,7 @@ describe('scanData end-to-end (D-06)', () => {
     expect(output, 'summary line present').toMatch(/\d+ files?, \d+ errors?/);
   });
 
-  it('CLI exits 0 with DATA GATE PASS on a clean tree', () => {
+  it('CLI exits 0 with DATA GATE PASS on a clean tree (incl. empty-value sentinel)', () => {
     const res = spawnSync(process.execPath, [SCRIPT_PATH], { cwd: tmpHappy, encoding: 'utf8' });
     expect(res.status, 'clean tree exits 0').toBe(0);
     expect(res.stdout + res.stderr, 'explicit pass line printed (T-16-04)').toContain(

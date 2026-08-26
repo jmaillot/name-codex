@@ -4,8 +4,10 @@
 //    When present: fields[].library must be a string "category/name";
 //    builder/validation objects validated structurally (D-10).
 // 2. Segments gate: src/data/segments/**/*.json — required keys: name (string),
-//    values (array). Each entry: value (non-empty string, unique within the
-//    file's values array), description (non-empty string, D-01/D-02).
+//    values (array). Each entry: value (string, unique within the file's
+//    values array; an intentional empty string is allowed as a blank-value
+//    sentinel, e.g. defender/def-notification.json "no notification"),
+//    description (non-empty string, D-01/D-02 — never relaxed).
 // 3. Generators gate: src/data/generators/*.json — required keys: name (string),
 //    type (string). When present: personaSource must be a string;
 //    personaRanges must be an object whose values are strings.
@@ -125,8 +127,16 @@ export function validateSegment(json, filePath) {
       violations.push({ file: filePath, reason: `values[${i}] must be an object` });
       continue;
     }
-    if (!isNonEmptyString(entry.value)) {
-      violations.push({ file: filePath, reason: `values[${i}].value must be a non-empty string` });
+    // Value rule (relaxed per checkpoint decision on Plan 16-02): any string
+    // is accepted, including the intentional empty-string blank-value
+    // sentinel. Non-strings and whitespace-only strings still violate.
+    if (typeof entry.value !== 'string') {
+      violations.push({ file: filePath, reason: `values[${i}].value must be a string` });
+    } else if (entry.value.trim().length === 0 && entry.value !== '') {
+      violations.push({
+        file: filePath,
+        reason: `values[${i}].value must be a non-empty string or an intentional empty string`,
+      });
     } else if (seenValues.has(entry.value)) {
       // Uniqueness scope: per-file values array (src/lib/data.ts loads each
       // segment file independently — no cross-file namespace merge).

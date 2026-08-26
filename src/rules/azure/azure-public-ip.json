@@ -22,16 +22,7 @@
       "type": "dropdown",
       "defaultValue": "VM",
       "allowCustomValue": true,
-      "allowedValues": [
-        "APPGW",
-        "AZFW",
-        "VPNGW",
-        "BASTION",
-        "NATGW",
-        "LB",
-        "VM",
-        "AKS"
-      ]
+      "library": "azure/publicip-workload"
     },
     {
       "name": "Instance",

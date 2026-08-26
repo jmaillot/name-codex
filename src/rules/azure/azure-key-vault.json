@@ -22,18 +22,7 @@
       "type": "dropdown",
       "defaultValue": "APP",
       "allowCustomValue": true,
-      "allowedValues": [
-        "IDENTITY",
-        "SHARED",
-        "APP",
-        "WEB",
-        "DATA",
-        "DEVOPS",
-        "NETWORK",
-        "SECURITY",
-        "MONITORING",
-        "BACKUP"
-      ],
+      "library": "azure/keyvault-workload",
       "tip": "IDENTITY: Entra ID, App Registrations, Managed Identities · SHARED: platform secrets shared by multiple apps · APP: single application secrets · WEB: web certificates/secrets · DATA: SQL/Storage/Cosmos keys · DEVOPS: CI/CD secrets · NETWORK: VPN/ExpressRoute/Firewall certs · SECURITY: PKI, encryption keys · MONITORING: Log Analytics/Sentinel · BACKUP: recovery vault."
     },
     {

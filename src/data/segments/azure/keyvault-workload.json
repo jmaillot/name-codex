@@ -1,0 +1,15 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "IDENTITY", "description": "Identity & Access Management" },
+    { "value": "SHARED", "description": "Shared Services" },
+    { "value": "APP", "description": "Application" },
+    { "value": "WEB", "description": "Web Frontend" },
+    { "value": "DATA", "description": "Data Services" },
+    { "value": "DEVOPS", "description": "DevOps & CI/CD" },
+    { "value": "NETWORK", "description": "Networking" },
+    { "value": "SECURITY", "description": "Security" },
+    { "value": "MONITORING", "description": "Monitoring & Observability" },
+    { "value": "BACKUP", "description": "Backup & Recovery" }
+  ]
+}

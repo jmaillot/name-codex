@@ -1,0 +1,13 @@
+{
+  "name": "Country",
+  "values": [
+    { "value": "FR", "description": "France" },
+    { "value": "BE", "description": "Belgium" },
+    { "value": "LU", "description": "Luxembourg" },
+    { "value": "UK", "description": "United Kingdom" },
+    { "value": "ES", "description": "Spain" },
+    { "value": "EU", "description": "European Union" },
+    { "value": "EMEA", "description": "Europe, Middle East & Africa" },
+    { "value": "GLOBAL", "description": "Global" }
+  ]
+}

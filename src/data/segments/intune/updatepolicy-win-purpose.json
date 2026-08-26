@@ -1,0 +1,9 @@
+{
+  "name": "Purpose",
+  "values": [
+    { "value": "QUALITY", "description": "Quality Update" },
+    { "value": "FEATURE", "description": "Feature Update" },
+    { "value": "DRIVER", "description": "Driver Update" },
+    { "value": "HOTPATCH", "description": "Hotpatch Update" }
+  ]
+}

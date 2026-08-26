@@ -1,0 +1,15 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "BACKUP", "description": "Backup Storage" },
+    { "value": "LOGS", "description": "Log Storage" },
+    { "value": "DATA", "description": "Data Storage" },
+    { "value": "MEDIA", "description": "Media & Assets" },
+    { "value": "FILES", "description": "File Shares" },
+    { "value": "ARCHIVE", "description": "Archival Storage" },
+    { "value": "CONFIG", "description": "Configuration" },
+    { "value": "APP", "description": "Application Storage" },
+    { "value": "SHARED", "description": "Shared Storage" },
+    { "value": "TFSTATE", "description": "Terraform State" }
+  ]
+}

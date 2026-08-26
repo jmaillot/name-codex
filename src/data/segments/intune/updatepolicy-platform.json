@@ -1,0 +1,10 @@
+{
+  "name": "Platform",
+  "values": [
+    { "value": "IOS", "description": "iOS (iPhone/iPad)" },
+    { "value": "MAC", "description": "macOS" },
+    { "value": "AND", "description": "Android" },
+    { "value": "EDGE", "description": "Microsoft Edge" },
+    { "value": "M365", "description": "Microsoft 365 Apps" }
+  ]
+}

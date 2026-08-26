@@ -1,0 +1,15 @@
+{
+  "name": "Service",
+  "values": [
+    { "value": "SUPPORT", "description": "IT Support" },
+    { "value": "WORKPLACE", "description": "Workplace Services" },
+    { "value": "PACKAGING", "description": "App Packaging" },
+    { "value": "SECURITY", "description": "Security Operations" },
+    { "value": "MOBILE", "description": "Mobile Device Management" },
+    { "value": "AUTOPILOT", "description": "Windows Autopilot" },
+    { "value": "APPLICATIONS", "description": "Application Management" },
+    { "value": "COMPLIANCE", "description": "Compliance & Policy" },
+    { "value": "ENGINEERING", "description": "Engineering" },
+    { "value": "OPERATIONS", "description": "IT Operations" }
+  ]
+}

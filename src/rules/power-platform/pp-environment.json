@@ -17,23 +17,7 @@
           "type": "dropdown",
           "defaultValue": "POWERAPPS",
           "allowCustomValue": true,
-          "allowedValues": [
-            "HR",
-            "FINANCE",
-            "CRM",
-            "SALES",
-            "ITSM",
-            "HELPDESK",
-            "TIMESHEET",
-            "ONBOARDING",
-            "ASSETMGMT",
-            "D365",
-            "COPILOT",
-            "POWERAPPS",
-            "POWERAUTOMATE",
-            "POWERPAGES",
-            "CORP"
-          ]
+          "library": "power-platform/pp-workload"
         },
         {
           "name": "Environment",
@@ -74,23 +58,7 @@
           "type": "dropdown",
           "defaultValue": "POWERAPPS",
           "allowCustomValue": true,
-          "allowedValues": [
-            "HR",
-            "FINANCE",
-            "CRM",
-            "SALES",
-            "ITSM",
-            "HELPDESK",
-            "TIMESHEET",
-            "ONBOARDING",
-            "ASSETMGMT",
-            "D365",
-            "COPILOT",
-            "POWERAPPS",
-            "POWERAUTOMATE",
-            "POWERPAGES",
-            "CORP"
-          ]
+          "library": "power-platform/pp-workload"
         },
         {
           "name": "Environment",
@@ -108,23 +76,7 @@
       "type": "dropdown",
       "defaultValue": "POWERAPPS",
       "allowCustomValue": true,
-      "allowedValues": [
-        "HR",
-        "FINANCE",
-        "CRM",
-        "SALES",
-        "ITSM",
-        "HELPDESK",
-        "TIMESHEET",
-        "ONBOARDING",
-        "ASSETMGMT",
-        "D365",
-        "COPILOT",
-        "POWERAPPS",
-        "POWERAUTOMATE",
-        "POWERPAGES",
-        "CORP"
-      ]
+      "library": "power-platform/pp-workload"
     },
     {
       "name": "Environment",

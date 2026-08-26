@@ -10,16 +10,7 @@
       "type": "dropdown",
       "defaultValue": "FR",
       "allowCustomValue": true,
-      "allowedValues": [
-        "FR",
-        "BE",
-        "LU",
-        "UK",
-        "ES",
-        "EU",
-        "EMEA",
-        "GLOBAL"
-      ]
+      "library": "intune/scopetag-country"
     },
     {
       "name": "Department",
@@ -32,18 +23,7 @@
       "type": "dropdown",
       "defaultValue": "SUPPORT",
       "allowCustomValue": true,
-      "allowedValues": [
-        "SUPPORT",
-        "WORKPLACE",
-        "PACKAGING",
-        "SECURITY",
-        "MOBILE",
-        "AUTOPILOT",
-        "APPLICATIONS",
-        "COMPLIANCE",
-        "ENGINEERING",
-        "OPERATIONS"
-      ]
+      "library": "intune/scopetag-service"
     }
   ],
   "examples": ["ST-FR-IT-SUPPORT"],

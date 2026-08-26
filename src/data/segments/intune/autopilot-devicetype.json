@@ -1,0 +1,9 @@
+{
+  "name": "DeviceType",
+  "values": [
+    { "value": "LAPTOP", "description": "Laptop" },
+    { "value": "DESKTOP", "description": "Desktop PC" },
+    { "value": "KIOSK", "description": "Kiosk Device" },
+    { "value": "SHARED", "description": "Shared Device" }
+  ]
+}

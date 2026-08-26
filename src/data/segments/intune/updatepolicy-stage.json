@@ -1,0 +1,10 @@
+{
+  "name": "Stage",
+  "values": [
+    { "value": "VALIDATION", "description": "Validation Testing" },
+    { "value": "PILOT", "description": "Pilot Deployment" },
+    { "value": "EARLYADOPTERS", "description": "Early Adopters" },
+    { "value": "PRODUCTION", "description": "Production Deployment" },
+    { "value": "VIP", "description": "VIP Users" }
+  ]
+}

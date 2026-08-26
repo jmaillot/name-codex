@@ -27,13 +27,7 @@
           "type": "dropdown",
           "defaultValue": "IOS",
           "allowCustomValue": false,
-          "allowedValues": [
-            "IOS",
-            "MAC",
-            "AND",
-            "EDGE",
-            "M365"
-          ],
+          "library": "intune/updatepolicy-platform",
           "tip": "Windows has its own sub-type: pick the 'Windows + Stage + Purpose' variant when naming Windows Update Policies."
         },
         {
@@ -41,13 +35,7 @@
           "type": "dropdown",
           "defaultValue": "PRODUCTION",
           "allowCustomValue": true,
-          "allowedValues": [
-            "VALIDATION",
-            "PILOT",
-            "EARLYADOPTERS",
-            "PRODUCTION",
-            "VIP"
-          ]
+          "library": "intune/updatepolicy-stage"
         }
       ],
       "examples": ["UPD-IOS-PRODUCTION"]
@@ -74,25 +62,14 @@
           "type": "dropdown",
           "defaultValue": "PRODUCTION",
           "allowCustomValue": true,
-          "allowedValues": [
-            "VALIDATION",
-            "PILOT",
-            "EARLYADOPTERS",
-            "PRODUCTION",
-            "VIP"
-          ]
+          "library": "intune/updatepolicy-stage"
         },
         {
           "name": "Purpose",
           "type": "dropdown",
           "defaultValue": "QUALITY",
           "allowCustomValue": false,
-          "allowedValues": [
-            "QUALITY",
-            "FEATURE",
-            "DRIVER",
-            "HOTPATCH"
-          ]
+          "library": "intune/updatepolicy-win-purpose"
         }
       ],
       "examples": ["UPD-WIN-PILOT-FEATURE"]
@@ -114,26 +91,14 @@
       "type": "dropdown",
       "defaultValue": "IOS",
       "allowCustomValue": false,
-      "allowedValues": [
-        "IOS",
-        "MAC",
-        "AND",
-        "EDGE",
-        "M365"
-      ]
+      "library": "intune/updatepolicy-platform"
     },
     {
       "name": "Stage",
       "type": "dropdown",
       "defaultValue": "PRODUCTION",
       "allowCustomValue": true,
-      "allowedValues": [
-        "VALIDATION",
-        "PILOT",
-        "EARLYADOPTERS",
-        "PRODUCTION",
-        "VIP"
-      ]
+      "library": "intune/updatepolicy-stage"
     }
   ],
   "builder": {

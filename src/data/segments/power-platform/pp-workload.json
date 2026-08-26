@@ -1,0 +1,20 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "HR", "description": "Human Resources" },
+    { "value": "FINANCE", "description": "Finance" },
+    { "value": "CRM", "description": "Customer Relationship Management" },
+    { "value": "SALES", "description": "Sales" },
+    { "value": "ITSM", "description": "IT Service Management" },
+    { "value": "HELPDESK", "description": "Helpdesk" },
+    { "value": "TIMESHEET", "description": "Timesheet Management" },
+    { "value": "ONBOARDING", "description": "Employee Onboarding" },
+    { "value": "ASSETMGMT", "description": "Asset Management" },
+    { "value": "D365", "description": "Dynamics 365" },
+    { "value": "COPILOT", "description": "Microsoft Copilot" },
+    { "value": "POWERAPPS", "description": "Power Apps" },
+    { "value": "POWERAUTOMATE", "description": "Power Automate" },
+    { "value": "POWERPAGES", "description": "Power Pages" },
+    { "value": "CORP", "description": "Corporate" }
+  ]
+}

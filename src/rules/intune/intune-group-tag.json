@@ -16,24 +16,14 @@
       "type": "dropdown",
       "defaultValue": "LAPTOP",
       "allowCustomValue": true,
-      "allowedValues": [
-        "LAPTOP",
-        "DESKTOP",
-        "KIOSK",
-        "SHARED"
-      ]
+      "library": "intune/autopilot-devicetype"
     },
     {
       "name": "Purpose",
       "type": "dropdown",
       "defaultValue": "STANDARD",
       "allowCustomValue": true,
-      "allowedValues": [
-        "STANDARD",
-        "VIP",
-        "DEVELOPER",
-        "PILOT"
-      ]
+      "library": "intune/autopilot-purpose-group"
     }
   ],
   "examples": ["AGT-FR-LAPTOP-STANDARD"],

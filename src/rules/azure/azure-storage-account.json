@@ -10,18 +10,7 @@
       "type": "dropdown",
       "defaultValue": "DATA",
       "allowCustomValue": true,
-      "allowedValues": [
-        "BACKUP",
-        "LOGS",
-        "DATA",
-        "MEDIA",
-        "FILES",
-        "ARCHIVE",
-        "CONFIG",
-        "APP",
-        "SHARED",
-        "TFSTATE"
-      ]
+      "library": "azure/storageaccount-workload"
     },
     {
       "name": "Environment",

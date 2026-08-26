@@ -1,0 +1,10 @@
+{
+  "name": "Purpose",
+  "values": [
+    { "value": "STANDARD", "description": "Standard User" },
+    { "value": "VIP", "description": "VIP User" },
+    { "value": "PILOT", "description": "Pilot Group" },
+    { "value": "DEV", "description": "Developer" },
+    { "value": "FRONTLINE", "description": "Frontline Worker" }
+  ]
+}

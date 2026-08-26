@@ -2,64 +2,153 @@
   "id": "pp-environment",
   "category": "Power Platform",
   "name": "Power Platform Environment",
-  "description": "Power Platform environment named per ALM environment strategy: <lifecycle>-<region>-<business unit>-<purpose>. Maintain at minimum Dev/Test/Prod. When creating an environment, choose its type explicitly (Sandbox vs Production) — the lifecycle token should match that type. Rename the default environment ('{tenant} (default)') to a descriptive name.",
-  "pattern": "[Lifecycle]-[Region]-[BusinessUnit]-[Purpose]",
+  "description": "Power Platform environment naming: PPE-<workload>-<environment> for typed environments, PPE-DEV-<user> for personal developer environments, and PPE-SHARED-<workload>-<environment> for shared workloads. Maintain at minimum Dev/Test/Prod. When creating an environment, choose its type explicitly (Sandbox vs Production). Rename the default environment ('{tenant} (default)') to a descriptive name.",
+  "pattern": "PPE-[Workload]-[Environment]",
+  "patterns": [
+    {
+      "id": "environment",
+      "name": "Environment",
+      "description": "Typed environment for a workload: PPE-<workload>-<environment> (e.g. PPE-HR-PROD)",
+      "pattern": "PPE-[Workload]-[Environment]",
+      "defaultSegments": ["Workload", "Environment"],
+      "fields": [
+        {
+          "name": "Workload",
+          "type": "dropdown",
+          "defaultValue": "POWERAPPS",
+          "allowCustomValue": true,
+          "allowedValues": [
+            "HR",
+            "FINANCE",
+            "CRM",
+            "SALES",
+            "ITSM",
+            "HELPDESK",
+            "TIMESHEET",
+            "ONBOARDING",
+            "ASSETMGMT",
+            "D365",
+            "COPILOT",
+            "POWERAPPS",
+            "POWERAUTOMATE",
+            "POWERPAGES",
+            "CORP"
+          ]
+        },
+        {
+          "name": "Environment",
+          "library": "core/environment",
+          "defaultValue": "DEV",
+          "allowCustomValue": true
+        }
+      ],
+      "examples": ["PPE-HR-PROD"]
+    },
+    {
+      "id": "developer",
+      "name": "Developer",
+      "description": "Personal developer environment: PPE-DEV-<user> (e.g. PPE-DEV-JDOE)",
+      "pattern": "PPE-DEV-[User]",
+      "defaultSegments": ["User"],
+      "fields": [
+        {
+          "name": "User",
+          "type": "text",
+          "examples": [
+            "JDOE"
+          ],
+          "allowCustomValue": true
+        }
+      ],
+      "examples": ["PPE-DEV-JDOE"]
+    },
+    {
+      "id": "shared",
+      "name": "Shared",
+      "description": "Shared environment for a workload: PPE-SHARED-<workload>-<environment> (e.g. PPE-SHARED-CRM-UAT)",
+      "pattern": "PPE-SHARED-[Workload]-[Environment]",
+      "defaultSegments": ["Workload", "Environment"],
+      "fields": [
+        {
+          "name": "Workload",
+          "type": "dropdown",
+          "defaultValue": "POWERAPPS",
+          "allowCustomValue": true,
+          "allowedValues": [
+            "HR",
+            "FINANCE",
+            "CRM",
+            "SALES",
+            "ITSM",
+            "HELPDESK",
+            "TIMESHEET",
+            "ONBOARDING",
+            "ASSETMGMT",
+            "D365",
+            "COPILOT",
+            "POWERAPPS",
+            "POWERAUTOMATE",
+            "POWERPAGES",
+            "CORP"
+          ]
+        },
+        {
+          "name": "Environment",
+          "library": "core/environment",
+          "defaultValue": "UAT",
+          "allowCustomValue": true
+        }
+      ],
+      "examples": ["PPE-SHARED-CRM-UAT"]
+    }
+  ],
   "fields": [
     {
-      "name": "Lifecycle",
-      "library": "power-platform/lifecycle",
-      "defaultValue": "dev",
+      "name": "Workload",
+      "type": "dropdown",
+      "defaultValue": "POWERAPPS",
       "allowCustomValue": true,
-      "tip": "Match the lifecycle token to the environment TYPE chosen in the Power Platform admin center: Sandbox types (Dev/Test/Sandbox) vs Production."
-    },
-    {
-      "name": "Region",
-      "library": "core/region",
-      "defaultValue": "",
-      "allowCustomValue": true
-    },
-    {
-      "name": "BusinessUnit",
-      "library": "core/department",
-      "defaultValue": "",
-      "allowCustomValue": true,
-      "examples": [
-        "IT",
-        "FIN",
-        "OPS"
+      "allowedValues": [
+        "HR",
+        "FINANCE",
+        "CRM",
+        "SALES",
+        "ITSM",
+        "HELPDESK",
+        "TIMESHEET",
+        "ONBOARDING",
+        "ASSETMGMT",
+        "D365",
+        "COPILOT",
+        "POWERAPPS",
+        "POWERAUTOMATE",
+        "POWERPAGES",
+        "CORP"
       ]
     },
     {
-      "name": "Purpose",
-      "library": "core/purpose",
-      "defaultValue": "",
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "DEV",
       "allowCustomValue": true
     }
   ],
   "examples": [
-    "dev-westeurope-it-sandbox",
-    "prod-eastus-fin-reporting"
+    "PPE-HR-PROD",
+    "PPE-DEV-JDOE",
+    "PPE-SHARED-CRM-UAT"
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": [
-      "Lifecycle",
-      "Region",
-      "BusinessUnit",
-      "Purpose"
-    ],
+    "defaultSegments": ["Workload", "Environment"],
     "availableSegments": [],
-    "recommendedSegments": [
-      "BusinessUnit"
-    ],
+    "recommendedSegments": [],
     "lockedSegments": [],
-    "fixedFirstSegments": [
-      "Lifecycle"
-    ],
+    "fixedFirstSegments": [],
     "fixedLastSegments": []
   },
   "validation": {
-    "forceLowercase": true,
-    "allowedPattern": "^[a-z0-9-]+$"
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

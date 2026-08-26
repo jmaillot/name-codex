@@ -2,21 +2,37 @@
   "id": "azure-storage-account",
   "category": "Azure",
   "name": "Storage Account",
-  "description": "Azure storage account naming per CAF. The storage account name IS the public endpoint (e.g. stappprod001.blob.core.windows.net) and must be globally unique across all Azure tenants — uniqueness itself cannot be checked here. Lowercase letters and numbers only, no hyphens, maximum 24 characters.",
-  "pattern": "st[Workload][Environment][Instance]",
+  "description": "Azure storage account naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The storage account name IS the public endpoint (e.g. stdataprodfrc001.blob.core.windows.net) and must be globally unique across all Azure tenants — uniqueness itself cannot be checked here. Lowercase letters and numbers only, no hyphens or underscores, 3–24 characters.",
+  "pattern": "st[Workload][Environment][Region][Instance]",
   "fields": [
     {
       "name": "Workload",
-      "library": "azure/caf-workloads",
-      "defaultValue": "app",
+      "type": "dropdown",
+      "defaultValue": "DATA",
       "allowCustomValue": true,
-      "allowedValues": ["kv", "nsg", "pip", "vm", "vnet", "nic", "app"],
-      "tip": "Use a short workload code such as app, vm, or your own — it concatenates directly into the endpoint hostname."
+      "allowedValues": [
+        "BACKUP",
+        "LOGS",
+        "DATA",
+        "MEDIA",
+        "FILES",
+        "ARCHIVE",
+        "CONFIG",
+        "APP",
+        "SHARED",
+        "TFSTATE"
+      ]
     },
     {
       "name": "Environment",
       "library": "core/environment",
-      "defaultValue": "prod",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
       "allowCustomValue": true
     },
     {
@@ -26,10 +42,10 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["stappprod001"],
+  "examples": ["stdatafrcprod001"],
   "builder": {
     "separator": "",
-    "defaultSegments": ["Workload", "Environment", "Instance"],
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
     "availableSegments": ["Custom"],
     "recommendedSegments": ["Workload"],
     "lockedSegments": [],

@@ -1,9 +1,9 @@
 {
-  "id": "intune-group-tag",
+  "id": "intune-autopilot-profile",
   "category": "Intune",
-  "name": "Autopilot Group Tag",
-  "description": "Autopilot Group Tag: drives dynamic group membership and per-group Autopilot profile assignment: AGT-<country>-<device type>-<purpose>.",
-  "pattern": "AGT-[Country]-[DeviceType]-[Purpose]",
+  "name": "Autopilot Profile",
+  "description": "Windows Autopilot deployment profile naming: APT-<country>-<device type>-<purpose>.",
+  "pattern": "APT-[Country]-[DeviceType]-[Purpose]",
   "fields": [
     {
       "name": "Country",
@@ -31,12 +31,13 @@
       "allowedValues": [
         "STANDARD",
         "VIP",
-        "DEVELOPER",
-        "PILOT"
+        "PILOT",
+        "DEV",
+        "FRONTLINE"
       ]
     }
   ],
-  "examples": ["AGT-FR-LAPTOP-STANDARD"],
+  "examples": ["APT-FR-LAPTOP-STANDARD"],
   "builder": {
     "separator": "-",
     "defaultSegments": ["Country", "DeviceType", "Purpose"],

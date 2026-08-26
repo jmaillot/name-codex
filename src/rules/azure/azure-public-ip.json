@@ -2,16 +2,9 @@
   "id": "azure-public-ip",
   "category": "Azure",
   "name": "Public IP",
-  "description": "Azure public IP naming per CAF: pip-<workload>-<environment>-<region>-<instance>.",
-  "pattern": "pip-[Workload]-[Environment]-[Region]-[Instance]",
+  "description": "Azure Public IP naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): pip-<environment>-<region>-<workload>-<instance>.",
+  "pattern": "pip-[Environment]-[Region]-[Workload]-[Instance]",
   "fields": [
-    {
-      "name": "Workload",
-      "library": "azure/caf-workloads",
-      "defaultValue": "app",
-      "allowCustomValue": true,
-      "allowedValues": ["st", "kv", "nsg", "vm", "vnet", "nic", "app"]
-    },
     {
       "name": "Environment",
       "library": "core/environment",
@@ -25,20 +18,36 @@
       "allowCustomValue": true
     },
     {
+      "name": "Workload",
+      "type": "dropdown",
+      "defaultValue": "VM",
+      "allowCustomValue": true,
+      "allowedValues": [
+        "APPGW",
+        "AZFW",
+        "VPNGW",
+        "BASTION",
+        "NATGW",
+        "LB",
+        "VM",
+        "AKS"
+      ]
+    },
+    {
       "name": "Instance",
       "library": "core/instance",
       "defaultValue": "001",
       "allowCustomValue": true
     }
   ],
-  "examples": ["PIP-APP-PROD-FRC-001"],
+  "examples": ["PIP-PROD-FRC-VM-001"],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
+    "defaultSegments": ["Environment", "Region", "Workload", "Instance"],
     "availableSegments": ["Custom"],
     "recommendedSegments": ["Workload"],
     "lockedSegments": [],
-    "fixedFirstSegments": ["Workload"],
+    "fixedFirstSegments": ["Environment"],
     "fixedLastSegments": []
   },
   "validation": {

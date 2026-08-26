@@ -2,34 +2,32 @@
   "id": "intune-app-configuration",
   "category": "Intune",
   "name": "Application Configuration Policy",
-  "description": "App configuration policy that pre-configures settings inside a managed app for enrolled devices or managed apps.",
-  "pattern": "[IntPrefix]-[ScopeTag]-[EnrollmentType]-[Target]-[Descriptor]-[Environment]-[Version]",
+  "description": "App configuration policy that pre-configures settings inside a managed app for enrolled devices or managed apps: ACP-<scope>-<enrollment type>-<platform>-<application>-<descriptor>.",
+  "pattern": "ACP-[Scope]-[EnrollmentType]-[Platform]-[Application]-[Descriptor]",
   "fields": [
     {
       "name": "IntPrefix",
       "label": "Prefix",
       "library": "intune/intune-prefix",
-      "defaultValue": "MACFG",
+      "defaultValue": "ACP",
       "allowedValues": [
-        "MACFG"
+        "ACP"
       ]
     },
     {
-      "name": "ScopeTag",
-      "defaultValue": "",
-      "examples": [
-        "Global",
-        "EMEA",
-        "FR",
-        "HR",
-        "IT"
-      ],
-      "allowCustomValue": true
+      "name": "Scope",
+      "type": "dropdown",
+      "defaultValue": "CORP",
+      "allowCustomValue": false,
+      "allowedValues": [
+        "CORP",
+        "BYOD"
+      ]
     },
     {
       "name": "EnrollmentType",
-      "defaultValue": "",
       "type": "dropdown",
+      "defaultValue": "ManagedDevices",
       "allowedValues": [
         "ManagedDevices",
         "ManagedApps"
@@ -37,63 +35,60 @@
       "allowCustomValue": false
     },
     {
-      "name": "Target",
-      "defaultValue": "",
-      "library": "core/operating-system",
+      "name": "Platform",
+      "type": "dropdown",
+      "defaultValue": "IOS",
+      "allowCustomValue": false,
       "allowedValues": [
         "IOS",
-        "AND"
-      ],
-      "allowCustomValue": false
+        "AND",
+        "WIN"
+      ]
+    },
+    {
+      "name": "Application",
+      "type": "dropdown",
+      "defaultValue": "OUTLOOK",
+      "allowCustomValue": true,
+      "allowedValues": [
+        "OUTLOOK",
+        "TEAMS",
+        "EDGE",
+        "ONEDRIVE",
+        "M365",
+        "EXCEL",
+        "WORD",
+        "POWERPOINT"
+      ]
     },
     {
       "name": "Descriptor",
+      "type": "text",
       "examples": [
         "OutlookFocusedInbox",
         "TeamsConfig",
         "VPNSettings"
       ],
       "allowCustomValue": true
-    },
-    {
-      "name": "Environment",
-      "defaultValue": "PROD",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Version"
     }
   ],
   "examples": [
-    "MACFG-GLOBAL-MANAGEDAPPS-IOS-TEAMSCONFIG-PROD-V1"
+    "ACP-CORP-ManagedDevices-IOS-OUTLOOK-FocusedInbox"
   ],
   "builder": {
     "separator": "-",
     "defaultSegments": [
       "IntPrefix",
-      "ScopeTag",
+      "Scope",
       "EnrollmentType",
-      "Target",
-      "Descriptor",
-      "Environment",
-      "Version"
-    ],
-    "availableSegments": [
-      "Custom"
-    ],
-    "recommendedSegments": [
-      "EnrollmentType",
-      "Environment",
-      "Version"
-    ],
-    "lockedSegments": [
-      "Target",
+      "Platform",
+      "Application",
       "Descriptor"
     ],
-    "fixedFirstSegments": [
-      "IntPrefix",
-      "ScopeTag"
-    ],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Descriptor"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["IntPrefix"],
     "fixedLastSegments": []
   },
   "validation": {

@@ -1,9 +1,0 @@
-{
-  "name": "UpdateRing",
-  "values": [
-    { "value": "Pilot", "description": "Pilot ring — early adopters" },
-    { "value": "Dev", "description": "Development devices" },
-    { "value": "Broad", "description": "Broad deployment" },
-    { "value": "Production", "description": "Production devices" }
-  ]
-}

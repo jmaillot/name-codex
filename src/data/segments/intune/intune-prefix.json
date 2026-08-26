@@ -14,8 +14,12 @@
       "description": "Mobile Application Management"
     },
     {
-      "value": "MACFG",
-      "description": "Mobile Application Configuration Policy"
+      "value": "ACP",
+      "description": "Application Configuration Policy"
+    },
+    {
+      "value": "UPD",
+      "description": "Update Policy"
     }
   ]
 }

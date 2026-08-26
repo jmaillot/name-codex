@@ -1,0 +1,152 @@
+{
+  "id": "intune-update-policy",
+  "category": "Intune",
+  "name": "Update Policy",
+  "description": "Intune Update Policy naming (replaces the classic Update Ring taxonomy): UPD-<platform>-<stage>, with a dedicated Windows sub-type UPD-WIN-<stage>-<purpose> covering Quality/Feature/Driver/Hotpatch updates.",
+  "pattern": "UPD-[Platform]-[Stage]",
+  "patterns": [
+    {
+      "id": "platform-stage",
+      "name": "Platform + Stage",
+      "description": "Generic platforms: UPD-<platform>-<stage> (e.g. UPD-IOS-PRODUCTION)",
+      "pattern": "UPD-[Platform]-[Stage]",
+      "defaultSegments": ["Platform", "Stage"],
+      "fields": [
+        {
+          "name": "IntPrefix",
+          "label": "Prefix",
+          "library": "intune/intune-prefix",
+          "defaultValue": "UPD",
+          "allowCustomValue": false,
+          "allowedValues": [
+            "UPD"
+          ]
+        },
+        {
+          "name": "Platform",
+          "type": "dropdown",
+          "defaultValue": "IOS",
+          "allowCustomValue": false,
+          "allowedValues": [
+            "IOS",
+            "MAC",
+            "AND",
+            "EDGE",
+            "M365"
+          ],
+          "tip": "Windows has its own sub-type: pick the 'Windows + Stage + Purpose' variant when naming Windows Update Policies."
+        },
+        {
+          "name": "Stage",
+          "type": "dropdown",
+          "defaultValue": "PRODUCTION",
+          "allowCustomValue": true,
+          "allowedValues": [
+            "VALIDATION",
+            "PILOT",
+            "EARLYADOPTERS",
+            "PRODUCTION",
+            "VIP"
+          ]
+        }
+      ],
+      "examples": ["UPD-IOS-PRODUCTION"]
+    },
+    {
+      "id": "win-stage-purpose",
+      "name": "Windows + Stage + Purpose",
+      "description": "Windows only: UPD-WIN-<stage>-<purpose> where purpose is QUALITY, FEATURE, DRIVER or HOTPATCH",
+      "pattern": "UPD-WIN-[Stage]-[Purpose]",
+      "defaultSegments": ["Stage", "Purpose"],
+      "fields": [
+        {
+          "name": "IntPrefix",
+          "label": "Prefix",
+          "library": "intune/intune-prefix",
+          "defaultValue": "UPD",
+          "allowCustomValue": false,
+          "allowedValues": [
+            "UPD"
+          ]
+        },
+        {
+          "name": "Stage",
+          "type": "dropdown",
+          "defaultValue": "PRODUCTION",
+          "allowCustomValue": true,
+          "allowedValues": [
+            "VALIDATION",
+            "PILOT",
+            "EARLYADOPTERS",
+            "PRODUCTION",
+            "VIP"
+          ]
+        },
+        {
+          "name": "Purpose",
+          "type": "dropdown",
+          "defaultValue": "QUALITY",
+          "allowCustomValue": false,
+          "allowedValues": [
+            "QUALITY",
+            "FEATURE",
+            "DRIVER",
+            "HOTPATCH"
+          ]
+        }
+      ],
+      "examples": ["UPD-WIN-PILOT-FEATURE"]
+    }
+  ],
+  "fields": [
+    {
+      "name": "IntPrefix",
+      "label": "Prefix",
+      "library": "intune/intune-prefix",
+      "defaultValue": "UPD",
+      "allowCustomValue": false,
+      "allowedValues": [
+        "UPD"
+      ]
+    },
+    {
+      "name": "Platform",
+      "type": "dropdown",
+      "defaultValue": "IOS",
+      "allowCustomValue": false,
+      "allowedValues": [
+        "IOS",
+        "MAC",
+        "AND",
+        "EDGE",
+        "M365"
+      ]
+    },
+    {
+      "name": "Stage",
+      "type": "dropdown",
+      "defaultValue": "PRODUCTION",
+      "allowCustomValue": true,
+      "allowedValues": [
+        "VALIDATION",
+        "PILOT",
+        "EARLYADOPTERS",
+        "PRODUCTION",
+        "VIP"
+      ]
+    }
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Platform", "Stage"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
+  }
+}

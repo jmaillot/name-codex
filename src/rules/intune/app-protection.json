@@ -2,8 +2,8 @@
   "id": "intune-app-protection",
   "category": "Intune",
   "name": "Application Protection Policy",
-  "description": "App protection policy that protects organizational data within managed apps, independent of device enrollment.",
-  "pattern": "[IntPrefix]-[ScopeTag]-[CA-Platforms]-[Assignments]-[Descriptor]-[Environment]-[Version]",
+  "description": "App protection policy (MAM) that protects organizational data within managed apps, independent of device enrollment: MAM-<scope>-<platform>-<target>-<purpose>.",
+  "pattern": "MAM-[Scope]-[Platform]-[Target]-[Purpose]",
   "fields": [
     {
       "name": "IntPrefix",
@@ -15,83 +15,68 @@
       ]
     },
     {
-      "name": "ScopeTag",
-      "defaultValue": "",
-      "examples": [
-        "Global",
-        "EMEA",
-        "FR",
-        "HR",
-        "IT"
-      ],
-      "allowCustomValue": true
-    },
-    {
-      "name": "CA-Platforms",
-      "label": "Plaform",
-      "defaultValue": "W"
-    },
-    {
-      "name": "Assignments",
-      "library": "intune/assignments",
-      "defaultValue": "BYODUsers",
+      "name": "Scope",
+      "type": "dropdown",
+      "defaultValue": "CORP",
+      "allowCustomValue": false,
       "allowedValues": [
-        "BYODUsers",
-        "ExternalContractors"
-      ],
-      "examples": [
-        "FrontlineUsers"
-      ],
-      "allowCustomValue": true
+        "CORP",
+        "BYOD"
+      ]
     },
     {
-      "name": "Descriptor",
+      "name": "Platform",
+      "type": "dropdown",
+      "defaultValue": "IOS",
+      "allowCustomValue": false,
+      "allowedValues": [
+        "IOS",
+        "AND",
+        "WIN"
+      ]
+    },
+    {
+      "name": "Target",
+      "type": "dropdown",
+      "defaultValue": "M365",
+      "allowCustomValue": true,
+      "allowedValues": [
+        "M365",
+        "OUTLOOK",
+        "TEAMS",
+        "ONEDRIVE",
+        "EDGE",
+        "ALLAPPS"
+      ]
+    },
+    {
+      "name": "Purpose",
+      "type": "text",
       "examples": [
         "DataProtectionoutlook",
         "BlockCopyPaste",
-        "BlockDownload"
+        "BlockDownload",
+        "Baseline"
       ],
       "allowCustomValue": true
-    },
-    {
-      "name": "Environment",
-      "defaultValue": "PROD",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Version"
     }
   ],
   "examples": [
-    "MAM-W-BYODUSERS-BLOCKCOPYPASTE-PROD-V1"
+    "MAM-CORP-IOS-OUTLOOK-DataProtection"
   ],
   "builder": {
     "separator": "-",
     "defaultSegments": [
       "IntPrefix",
-      "ScopeTag",
-      "CA-Platforms",
-      "Assignments",
-      "Descriptor",
-      "Environment",
-      "Version"
+      "Scope",
+      "Platform",
+      "Target",
+      "Purpose"
     ],
-    "availableSegments": [
-      "Custom"
-    ],
-    "recommendedSegments": [
-      "CA-Platforms",
-      "Environment",
-      "Version"
-    ],
-    "lockedSegments": [
-      "Assignments",
-      "Descriptor"
-    ],
-    "fixedFirstSegments": [
-      "IntPrefix",
-      "ScopeTag"
-    ],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Purpose"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["IntPrefix"],
     "fixedLastSegments": []
   },
   "validation": {

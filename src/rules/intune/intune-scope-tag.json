@@ -1,0 +1,63 @@
+{
+  "id": "intune-scope-tag",
+  "category": "Intune",
+  "name": "Scope Tag",
+  "description": "Intune Scope Tag naming for scoping administrative access to devices and policies: ST-<country>-<department>-<service>.",
+  "pattern": "ST-[Country]-[Department]-[Service]",
+  "fields": [
+    {
+      "name": "Country",
+      "type": "dropdown",
+      "defaultValue": "FR",
+      "allowCustomValue": true,
+      "allowedValues": [
+        "FR",
+        "BE",
+        "LU",
+        "UK",
+        "ES",
+        "EU",
+        "EMEA",
+        "GLOBAL"
+      ]
+    },
+    {
+      "name": "Department",
+      "library": "core/department",
+      "defaultValue": "IT",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Service",
+      "type": "dropdown",
+      "defaultValue": "SUPPORT",
+      "allowCustomValue": true,
+      "allowedValues": [
+        "SUPPORT",
+        "WORKPLACE",
+        "PACKAGING",
+        "SECURITY",
+        "MOBILE",
+        "AUTOPILOT",
+        "APPLICATIONS",
+        "COMPLIANCE",
+        "ENGINEERING",
+        "OPERATIONS"
+      ]
+    }
+  ],
+  "examples": ["ST-FR-IT-SUPPORT"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Country", "Department", "Service"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Service"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Country"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
+  }
+}

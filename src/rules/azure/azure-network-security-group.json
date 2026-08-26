@@ -2,15 +2,38 @@
   "id": "azure-network-security-group",
   "category": "Azure",
   "name": "Network Security Group",
-  "description": "Azure network security group naming per CAF: nsg-<workload>-<instance>.",
-  "pattern": "nsg-[Workload]-[Instance]",
+  "description": "Azure Network Security Group naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): nsg-<environment>-<region>-<workload>-<instance>.",
+  "pattern": "nsg-[Environment]-[Region]-[Workload]-[Instance]",
   "fields": [
     {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
       "name": "Workload",
-      "library": "azure/caf-workloads",
-      "defaultValue": "app",
+      "type": "dropdown",
+      "defaultValue": "APP",
       "allowCustomValue": true,
-      "allowedValues": ["st", "kv", "pip", "vm", "vnet", "nic", "app"]
+      "allowedValues": [
+        "WEB",
+        "APP",
+        "DB",
+        "MGMT",
+        "VPN",
+        "DMZ",
+        "AKS",
+        "PE",
+        "BASTION",
+        "SHARED"
+      ]
     },
     {
       "name": "Instance",
@@ -19,14 +42,14 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["NSG-APP-001"],
+  "examples": ["NSG-PROD-FRC-WEB-001"],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Instance"],
+    "defaultSegments": ["Environment", "Region", "Workload", "Instance"],
     "availableSegments": ["Custom"],
     "recommendedSegments": ["Workload"],
     "lockedSegments": [],
-    "fixedFirstSegments": ["Workload"],
+    "fixedFirstSegments": ["Environment"],
     "fixedLastSegments": []
   },
   "validation": {

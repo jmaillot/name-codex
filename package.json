@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "check:tokens": "node scripts/check-tokens.mjs",
+    "check:data": "node scripts/check-data.mjs",
     "preview": "vite preview",
     "pretest": "npm run check:tokens",
     "test": "vitest run",

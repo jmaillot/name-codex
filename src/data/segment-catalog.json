@@ -13,13 +13,6 @@
     "library": "core/country",
     "tip": "Country or market in which the resource is deployed."
   },
-    {
-    "name": "Location",
-    "label": "Location",
-    "type": "dropdown",
-    "library": "core/location",
-    "tip": "Physical or logical location of the resource."
-  },
   {
     "name": "Environment",
     "label": "Environment",
@@ -35,137 +28,11 @@
     "tip": "Owning department or business unit."
   },
   {
-    "name": "Purpose",
-    "label": "Purpose",
-    "type": "dropdown",
-    "library": "core/purpose",
-    "tip": "Business purpose or intended usage of the resource."
-  },
-  {
-    "name": "Function",
-    "label": "Function",
-    "type": "dropdown",
-    "library": "core/function",
-    "tip": "Functional area the resource supports."
-  },
-  {
-    "name": "Scope",
-    "label": "Scope",
-    "type": "dropdown",
-    "library": "core/scope",
-    "tip": "Scope of the resource, e.g. global, subscription, resource group."
-  },
-  {
-    "name": "Tool",
-    "label": "Tool",
-    "type": "dropdown",
-    "library": "entra/tool",
-    "tip": "Tool or product involved, e.g. Power BI, Defender."
-  },
-  {
-    "name": "AccessLevel",
-    "label": "AccessLevel",
-    "type": "dropdown",
-    "library": "entra/accesslevel",
-    "tip": "Access level granted, e.g. read, write, owner."
-  },
-  {
-    "name": "PimRoles",
-    "label": "PimRoles",
-    "type": "dropdown",
-    "library": "groups/roles-pim",
-    "tip": "PIM role the resource is associated with."
-  },
-  {
-    "name": "IP",
-    "label": "IP",
-    "type": "dropdown",
-    "library": "azure/ip",
-    "tip": "IP address or CIDR range for the resource."
-  },
-  {
-    "name": "MembershipType",
-    "label": "MembershipType",
-    "type": "dropdown",
-    "library": "groups/membership-type",
-    "tip": "Group membership type, e.g. assigned, dynamic."
-  },
-  {
-    "name": "MembershipTypeM365",
-    "label": "MembershipType",
-    "type": "dropdown",
-    "library": "groups/membership-type-m365",
-    "tip": "Membership type for Microsoft 365 groups."
-  },
-  {
-    "name": "OS",
-    "label": "OS",
-    "type": "dropdown",
-    "library": "core/operating-system",
-    "tip": "Target operating system, e.g. Win11, macOS."
-  },
-  {
-    "name": "Role",
-    "label": "Role",
-    "type": "dropdown",
-    "library": "core/role",
-    "tip": "Role of the resource in the naming convention."
-  },
-  {
-    "name": "Sensitivity",
-    "label": "Sensitivity",
-    "type": "dropdown",
-    "library": "groups/sensitivity",
-    "tip": "Sensitivity label applied to the resource."
-  },
-  {
-    "name": "Type",
-    "label": "Type",
-    "type": "dropdown",
-    "library": "core/type",
-    "tip": "Type of the object, e.g. app, group, policy."
-  },
-  {
-    "name": "Workload",
-    "label": "Workload",
-    "type": "dropdown",
-    "library": "core/workload",
-    "tip": "Workload hosting the resource, e.g. Azure, M365."
-  },
-  {
-    "name": "MailboxType",
-    "label": "MailboxType",
-    "type": "dropdown",
-    "library": "exchange/mailbox-type",
-    "tip": "Type of mailbox, e.g. user, shared, room, equipment."
-  },
-  {
     "name": "IntPrefix",
     "label": "Prefix",
     "type": "dropdown",
     "library": "intune/intune-prefix",
     "tip": "Prefix used for Intune policies."
-  },
-  {
-    "name": "ScopeTag",
-    "label": "ScopeTag",
-    "type": "dropdown",
-    "library": "intune/intune-scopetag",
-    "tip": "Intune scope tag assigned to the policy."
-  },
-  {
-    "name": "IntProfileType",
-    "label": "IntProfileType",
-    "type": "dropdown",
-    "library": "intune/intune-endpointprofiletype",
-    "tip": "Intune endpoint security profile."
-  },
-  {
-    "name": "DefPolicyType",
-    "label": "DefPolicyType",
-    "type": "dropdown",
-    "library": "defender/def-policytype",
-    "tip": "Microsoft Defender policy type."
   },
   {
     "name": "CA-Persona",
@@ -215,15 +82,6 @@
     "type": "dropdown",
     "library": "conditional-access/ca-emergencyapps",
     "tip": "The application or group of applications this contingency policy applies to"
-  },
-  {
-    "name": "Version",
-    "label": "Version",
-    "type": "dropdown",
-    "library": "core/version",
-    "defaultValue": "V1",
-    "allowCustomValue": true,
-    "tip": "Policy version, e.g. V1."
   },
   {
     "name": "Instance",
@@ -303,5 +161,3 @@
     "tip": "Entra attribute, e.g. [Department], [Company]."
   }
 ]
-
-

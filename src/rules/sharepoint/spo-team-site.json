@@ -20,7 +20,6 @@
     },
     {
       "name": "Name",
-      "type": "dropdown",
       "allowCustomValue": true,
       "allowedValuesByField": {
         "Type": {

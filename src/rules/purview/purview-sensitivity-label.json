@@ -22,7 +22,6 @@
     {
       "name": "Category",
       "type": "dropdown",
-      "defaultValue": "",
       "allowCustomValue": false,
       "values": [
         { "value": "HR", "description": "Human Resources" },
@@ -42,7 +41,8 @@
   "builder": {
     "separator": "-",
     "defaultSegments": [
-      "Classification"
+      "Classification",
+      "Category"
     ],
     "availableSegments": [
       "Category"

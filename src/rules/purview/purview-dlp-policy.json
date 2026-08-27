@@ -10,17 +10,17 @@
       "type": "dropdown",
       "defaultValue": "PII",
       "allowCustomValue": true,
-      "allowedValues": [
-        "PII",
-        "PCI",
-        "PHI",
-        "FINANCIAL",
-        "HR",
-        "LEGAL",
-        "GDPR",
-        "CONFIDENTIAL",
-        "SECRET",
-        "CUSTOM"
+      "values": [
+        { "value": "PII", "description": "Personally Identifiable Information" },
+        { "value": "PCI", "description": "Payment Card Industry data" },
+        { "value": "PHI", "description": "Protected Health Information" },
+        { "value": "FINANCIAL", "description": "Financial data" },
+        { "value": "HR", "description": "Human Resources data" },
+        { "value": "LEGAL", "description": "Legal data" },
+        { "value": "GDPR", "description": "GDPR-regulated data" },
+        { "value": "CONFIDENTIAL", "description": "Confidential business data" },
+        { "value": "SECRET", "description": "Highly confidential / secret" },
+        { "value": "CUSTOM", "description": "Custom data type" }
       ]
     },
     {
@@ -28,14 +28,14 @@
       "type": "dropdown",
       "defaultValue": "ALL",
       "allowCustomValue": true,
-      "allowedValues": [
-        "ALL",
-        "EXO",
-        "SPO",
-        "OD",
-        "TEAMS",
-        "ENDPOINT",
-        "CUSTOM"
+      "values": [
+        { "value": "ALL", "description": "All locations" },
+        { "value": "EXO", "description": "Exchange Online" },
+        { "value": "SPO", "description": "SharePoint Online" },
+        { "value": "OD", "description": "OneDrive for Business" },
+        { "value": "TEAMS", "description": "Microsoft Teams" },
+        { "value": "ENDPOINT", "description": "Endpoint devices" },
+        { "value": "CUSTOM", "description": "Custom scope" }
       ]
     },
     {
@@ -43,12 +43,12 @@
       "type": "dropdown",
       "defaultValue": "AUDIT",
       "allowCustomValue": true,
-      "allowedValues": [
-        "AUDIT",
-        "WARN",
-        "BLOCK",
-        "BLOCKOVERRIDE",
-        "CUSTOM"
+      "values": [
+        { "value": "AUDIT", "description": "Audit only" },
+        { "value": "WARN", "description": "Warn with policy tip" },
+        { "value": "BLOCK", "description": "Block action" },
+        { "value": "BLOCKOVERRIDE", "description": "Block with override" },
+        { "value": "CUSTOM", "description": "Custom action" }
       ]
     }
   ],

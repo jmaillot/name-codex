@@ -406,6 +406,51 @@ export function useAppState() {
         }
       }
 
+      // allowedValuesByField dependency: when Type changes, reset Name if stale
+      // e.g. SPT Type DEPT->PRJ should switch Name HR->M365MIGRATION, CUS->"" (custom input)
+      if (changed?.sourceName) {
+        let mutated = false;
+        let mutatedNext = next;
+        for (const field of activeFields) {
+          const byField = field.allowedValuesByField;
+          if (!byField || !(changed.sourceName in byField)) continue;
+          const depSeg = mutatedNext.find((s) => s.sourceName === field.name);
+          if (!depSeg) continue;
+          const newTypeVal = mutatedNext.find((s) => s.sourceName === changed.sourceName)?.value.trim() ?? "";
+          const map = byField[changed.sourceName] as Record<string, string[]>;
+          // case-insensitive lookup (optionsForSegment uppercases)
+          let allowed: string[] | undefined;
+          if (newTypeVal in map) allowed = map[newTypeVal];
+          else {
+            const upper = newTypeVal.toUpperCase();
+            for (const [k, v] of Object.entries(map)) {
+              if (k.toUpperCase() === upper) {
+                allowed = v;
+                break;
+              }
+            }
+          }
+          if (allowed === undefined) continue;
+          const currentUpper = depSeg.value.trim().toUpperCase();
+          const allowedSet = new Set(allowed.map((v) => v.toUpperCase()));
+          if (allowed.length === 0) {
+            if (depSeg.value !== "") {
+              mutatedNext = mutatedNext.map((s) =>
+                s.sourceName === field.name ? { ...s, value: "" } : s
+              );
+              mutated = true;
+            }
+          } else if (!allowedSet.has(currentUpper)) {
+            const newVal = allowed[0] ?? "";
+            mutatedNext = mutatedNext.map((s) =>
+              s.sourceName === field.name ? { ...s, value: newVal } : s
+            );
+            mutated = true;
+          }
+        }
+        if (mutated) return mutatedNext;
+      }
+
       return next;
     });
 

@@ -73,7 +73,7 @@
     }
   ],
   "examples": [
-    "ACP-CORP-ManagedDevices-IOS-OUTLOOK-FocusedInbox"
+    "ACP-CORP-MANAGEDDEVICES-IOS-OUTLOOK-FOCUSEDINBOX"
   ],
   "builder": {
     "separator": "-",
@@ -92,6 +92,7 @@
   },
   "validation": {
     "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$"
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper"
   }
 }

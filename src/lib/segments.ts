@@ -111,10 +111,28 @@ export function fieldByName(fields: NamingField[], name: string): NamingField | 
     return undefined;
   }
 
-  return {
+  const merged = {
     ...(catalogField ?? {}),
     ...(conventionField ?? {}),
   } as NamingField;
+
+  // Text-intended fields must not inherit a catalog dropdown library.
+  // e.g. MAM "Purpose" is type:text with examples, but catalog Purpose is dropdown core/purpose (Alerts/Invoices).
+  // Without this, the text field would incorrectly render as a dropdown with library values.
+  if (
+    conventionField &&
+    conventionField.type === "text" &&
+    !conventionField.library &&
+    !conventionField.values &&
+    !conventionField.generator &&
+    !conventionField.allowedValues
+  ) {
+    delete (merged as Record<string, unknown>).library;
+    delete (merged as Record<string, unknown>).values;
+    delete (merged as Record<string, unknown>).generator;
+  }
+
+  return merged;
 }
 
 export function valuesForField(field?: NamingField): NamingFieldOption[] {
@@ -145,7 +163,10 @@ export function valuesForField(field?: NamingField): NamingFieldOption[] {
       options = [...field.allowedValues];
     } else {
       const allowed = new Set(field.allowedValues);
-      options = options.filter((option) => allowed.has(optionValue(option)));
+      const filtered = options.filter((option) => allowed.has(optionValue(option)));
+      // Convention inline values disjoint from catalog library (e.g. MAM Scope CORP/BYOD vs core/scope AllUsers/IT)
+      // would filter to 0 — treat allowedValues as the source instead of an empty dropdown.
+      options = filtered.length > 0 ? filtered : [...field.allowedValues];
     }
   }
 

@@ -22,13 +22,6 @@
           "allowCustomValue": false,
           "library": "intune/updatepolicy-platform",
           "tip": "Windows has its own sub-type: pick the 'Windows + Stage + Purpose' variant when naming Windows Update Policies."
-        },
-        {
-          "name": "Stage",
-          "type": "dropdown",
-          "defaultValue": "PRODUCTION",
-          "allowCustomValue": true,
-          "library": "intune/updatepolicy-stage"
         }
       ],
       "examples": [
@@ -45,13 +38,6 @@
         "Purpose"
       ],
       "fields": [
-        {
-          "name": "Stage",
-          "type": "dropdown",
-          "defaultValue": "PRODUCTION",
-          "allowCustomValue": true,
-          "library": "intune/updatepolicy-stage"
-        },
         {
           "name": "Purpose",
           "type": "dropdown",

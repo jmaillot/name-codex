@@ -42,6 +42,13 @@
     "tip": "Membership type for Microsoft 365 groups."
   },
   {
+    "name": "Sensitivity",
+    "label": "Sensitivity",
+    "type": "dropdown",
+    "library": "groups/sensitivity",
+    "tip": "Sensitivity label applied to the resource."
+  },
+  {
     "name": "Function",
     "label": "Function",
     "type": "dropdown",

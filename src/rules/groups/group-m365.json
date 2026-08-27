@@ -49,6 +49,7 @@
     },
     {
       "name": "Sensitivity",
+      "library": "groups/sensitivity",
       "defaultValue": "PRIVATE",
       "allowCustomValue": true
     },

@@ -18,10 +18,13 @@
     {
       "name": "Workload",
       "defaultValue": "Subnet",
-      "allowedValues": [
-        "Subnet"
-      ],
-      "allowCustomValue": true
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "Subnet",
+          "description": "Subnet"
+        }
+      ]
     },
     {
       "name": "Instance",

@@ -10,30 +10,51 @@
       "type": "dropdown",
       "defaultValue": "CORP",
       "allowCustomValue": false,
-      "allowedValues": [
-        "CORP",
-        "BYOD"
+      "values": [
+        {
+          "value": "CORP",
+          "description": "Corporate"
+        },
+        {
+          "value": "BYOD",
+          "description": "Bring Your Own Device"
+        }
       ]
     },
     {
       "name": "EnrollmentType",
       "type": "dropdown",
       "defaultValue": "ManagedDevices",
-      "allowedValues": [
-        "ManagedDevices",
-        "ManagedApps"
-      ],
-      "allowCustomValue": false
+      "allowCustomValue": false,
+      "values": [
+        {
+          "value": "ManagedDevices",
+          "description": "Managed devices"
+        },
+        {
+          "value": "ManagedApps",
+          "description": "Managed apps"
+        }
+      ]
     },
     {
       "name": "Platform",
       "type": "dropdown",
       "defaultValue": "IOS",
       "allowCustomValue": false,
-      "allowedValues": [
-        "IOS",
-        "AND",
-        "WIN"
+      "values": [
+        {
+          "value": "IOS",
+          "description": "iOS"
+        },
+        {
+          "value": "AND",
+          "description": "Android"
+        },
+        {
+          "value": "WIN",
+          "description": "Windows"
+        }
       ]
     },
     {
@@ -41,15 +62,39 @@
       "type": "dropdown",
       "defaultValue": "OUTLOOK",
       "allowCustomValue": true,
-      "allowedValues": [
-        "OUTLOOK",
-        "TEAMS",
-        "EDGE",
-        "ONEDRIVE",
-        "M365",
-        "EXCEL",
-        "WORD",
-        "POWERPOINT"
+      "values": [
+        {
+          "value": "OUTLOOK",
+          "description": "Outlook"
+        },
+        {
+          "value": "TEAMS",
+          "description": "Teams"
+        },
+        {
+          "value": "EDGE",
+          "description": "Edge"
+        },
+        {
+          "value": "ONEDRIVE",
+          "description": "OneDrive"
+        },
+        {
+          "value": "M365",
+          "description": "Microsoft 365"
+        },
+        {
+          "value": "EXCEL",
+          "description": "Excel"
+        },
+        {
+          "value": "WORD",
+          "description": "Word"
+        },
+        {
+          "value": "POWERPOINT",
+          "description": "PowerPoint"
+        }
       ]
     },
     {

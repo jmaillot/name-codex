@@ -19,10 +19,13 @@
       "name": "Workload",
       "label": "Workload",
       "defaultValue": "VNET",
-      "allowedValues": [
-        "VNET"
-      ],
-      "allowCustomValue": true
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "VNET",
+          "description": "Virtual Network"
+        }
+      ]
     },
     {
       "name": "Instance",

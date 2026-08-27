@@ -18,16 +18,37 @@
     {
       "name": "Workload",
       "defaultValue": "AD",
-      "allowedValues": [
-        "AD",
-        "VNET",
-        "WEBAPP",
-        "LOGS",
-        "BACKUP",
-        "ERP",
-        "CRM"
-      ],
-      "allowCustomValue": true
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "AD",
+          "description": "Active Directory"
+        },
+        {
+          "value": "VNET",
+          "description": "Virtual Network"
+        },
+        {
+          "value": "WEBAPP",
+          "description": "Web Application"
+        },
+        {
+          "value": "LOGS",
+          "description": "Logging"
+        },
+        {
+          "value": "BACKUP",
+          "description": "Backup"
+        },
+        {
+          "value": "ERP",
+          "description": "ERP"
+        },
+        {
+          "value": "CRM",
+          "description": "Customer Relationship Management"
+        }
+      ]
     }
   ],
   "examples": [

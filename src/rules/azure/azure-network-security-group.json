@@ -22,17 +22,47 @@
       "type": "dropdown",
       "defaultValue": "APP",
       "allowCustomValue": true,
-      "allowedValues": [
-        "WEB",
-        "APP",
-        "DB",
-        "MGMT",
-        "VPN",
-        "DMZ",
-        "AKS",
-        "PE",
-        "BASTION",
-        "SHARED"
+      "values": [
+        {
+          "value": "WEB",
+          "description": "Web tier"
+        },
+        {
+          "value": "APP",
+          "description": "Application tier"
+        },
+        {
+          "value": "DB",
+          "description": "Database tier"
+        },
+        {
+          "value": "MGMT",
+          "description": "Management"
+        },
+        {
+          "value": "VPN",
+          "description": "VPN Gateway"
+        },
+        {
+          "value": "DMZ",
+          "description": "Demilitarized zone"
+        },
+        {
+          "value": "AKS",
+          "description": "Azure Kubernetes Service"
+        },
+        {
+          "value": "PE",
+          "description": "Private Endpoint"
+        },
+        {
+          "value": "BASTION",
+          "description": "Azure Bastion"
+        },
+        {
+          "value": "SHARED",
+          "description": "Shared"
+        }
       ]
     },
     {

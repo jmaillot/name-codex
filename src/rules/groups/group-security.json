@@ -8,8 +8,11 @@
     {
       "name": "Location",
       "defaultValue": "AAD",
-      "allowedValues": [
-        "AAD"
+      "values": [
+        {
+          "value": "AAD",
+          "description": "Entra ID"
+        }
       ]
     },
     {

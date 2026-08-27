@@ -36,14 +36,29 @@
         "Alerts",
         "Info"
       ],
-      "allowedValues": [
-        "Alerts",
-        "Info",
-        "Backup",
-        "Reporting",
-        "Invoices"
-      ],
-      "allowCustomValue": true
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "Alerts",
+          "description": "Alert notifications"
+        },
+        {
+          "value": "Info",
+          "description": "Informational"
+        },
+        {
+          "value": "Backup",
+          "description": "Backup"
+        },
+        {
+          "value": "Reporting",
+          "description": "Reporting"
+        },
+        {
+          "value": "Invoices",
+          "description": "Invoice processing"
+        }
+      ]
     },
     {
       "name": "City",

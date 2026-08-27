@@ -10,9 +10,15 @@
       "type": "dropdown",
       "defaultValue": "CORP",
       "allowCustomValue": false,
-      "allowedValues": [
-        "CORP",
-        "BYOD"
+      "values": [
+        {
+          "value": "CORP",
+          "description": "Corporate"
+        },
+        {
+          "value": "BYOD",
+          "description": "Bring Your Own Device"
+        }
       ]
     },
     {
@@ -20,10 +26,19 @@
       "type": "dropdown",
       "defaultValue": "IOS",
       "allowCustomValue": false,
-      "allowedValues": [
-        "IOS",
-        "AND",
-        "WIN"
+      "values": [
+        {
+          "value": "IOS",
+          "description": "iOS"
+        },
+        {
+          "value": "AND",
+          "description": "Android"
+        },
+        {
+          "value": "WIN",
+          "description": "Windows"
+        }
       ]
     },
     {
@@ -31,13 +46,31 @@
       "type": "dropdown",
       "defaultValue": "M365",
       "allowCustomValue": true,
-      "allowedValues": [
-        "M365",
-        "OUTLOOK",
-        "TEAMS",
-        "ONEDRIVE",
-        "EDGE",
-        "ALLAPPS"
+      "values": [
+        {
+          "value": "M365",
+          "description": "Microsoft 365"
+        },
+        {
+          "value": "OUTLOOK",
+          "description": "Outlook"
+        },
+        {
+          "value": "TEAMS",
+          "description": "Teams"
+        },
+        {
+          "value": "ONEDRIVE",
+          "description": "OneDrive"
+        },
+        {
+          "value": "EDGE",
+          "description": "Edge"
+        },
+        {
+          "value": "ALLAPPS",
+          "description": "All apps"
+        }
       ]
     },
     {

@@ -26,22 +26,37 @@
       "name": "Scope",
       "label": "Scope",
       "defaultValue": "Tier1",
-      "allowedValues": [
-        "Tier1",
-        "Partner",
-        "Audit"
-      ],
-      "allowCustomValue": true
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "Tier1",
+          "description": "Tier 1"
+        },
+        {
+          "value": "Partner",
+          "description": "Partner"
+        },
+        {
+          "value": "Audit",
+          "description": "Audit"
+        }
+      ]
     },
     {
       "name": "AccessType",
       "label": "AccessType",
       "defaultValue": "Eligible",
-      "allowedValues": [
-        "Eligible",
-        "Active"
-      ],
-      "allowCustomValue": true
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "Eligible",
+          "description": "Eligible"
+        },
+        {
+          "value": "Active",
+          "description": "Active"
+        }
+      ]
     },
     {
       "name": "Environment",

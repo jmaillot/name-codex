@@ -59,3 +59,28 @@ const ruleModules = import.meta.glob("../rules/**/*.json", {
 export const allConventions = Object.entries(ruleModules)
   .map(([path, convention]) => ({ ...convention, sourcePath: path }))
   .sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name));
+
+// S12 pattern inheritance: merge top-level fields into each pattern's fields (pattern overrides by name)
+// Only merge base fields that are actually referenced in the pattern's pattern string
+// e.g. pp-environment developer pattern PPE-DEV-[User] should not inherit Workload/Environment
+for (const conv of allConventions) {
+  if (!conv.patterns?.length) continue;
+  const baseFields = conv.fields ?? [];
+  if (baseFields.length === 0) continue;
+  for (const pat of conv.patterns) {
+    const patternStr = pat.pattern ?? "";
+    const baseForPat = baseFields.filter((f) => patternStr.includes(`[${f.name}]`));
+    if (baseForPat.length === 0) continue;
+    if (!pat.fields) {
+      pat.fields = [...baseForPat];
+    } else {
+      const merged: NamingField[] = [...baseForPat];
+      for (const pf of pat.fields) {
+        const idx = merged.findIndex((f) => f.name === pf.name);
+        if (idx >= 0) merged[idx] = { ...merged[idx], ...pf } as NamingField;
+        else merged.push(pf as NamingField);
+      }
+      pat.fields = merged;
+    }
+  }
+}

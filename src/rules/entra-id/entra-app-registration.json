@@ -4,6 +4,41 @@
   "name": "Application Registration",
   "description": "Microsoft Entra App Registration naming.",
   "pattern": "[Tool]-[Function]-[AccessLevel]-[Environment]-[Version]",
+  "fields": [
+    {
+      "name": "Tool",
+      "library": "entra/tool",
+      "examples": [
+        "Intune",
+        "Veeam",
+        "Dynamics"
+      ],
+      "defaultValue": "",
+      "allowCustomValue": true
+    },
+    {
+      "name": "AccessLevel",
+      "library": "entra/accesslevel",
+      "examples": [
+        "RO",
+        "RW",
+        "ADMIN"
+      ],
+      "defaultValue": "RO",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Version",
+      "type": "text",
+      "defaultValue": "V1"
+    }
+  ],
   "patterns": [
     {
       "id": "generic",
@@ -12,48 +47,15 @@
       "pattern": "[Tool]-[Function]-[AccessLevel]-[Environment]-[Version]",
       "fields": [
         {
-          "name": "Tool",
-          "examples": [
-            "Intune",
-            "Veeam",
-            "Dynamics"
-          ],
-          "defaultValue": "",
-          "allowCustomValue": true,
-          "library": "entra/tool"
-        },
-        {
           "name": "Function",
+          "library": "core/function",
           "examples": [
             "Backup",
             "Reporting",
             "SSO"
           ],
           "defaultValue": "Backup",
-          "allowCustomValue": true,
-          "library": "core/function"
-        },
-        {
-          "name": "AccessLevel",
-          "examples": [
-            "RO",
-            "RW",
-            "ADMIN"
-          ],
-          "defaultValue": "RO",
-          "allowCustomValue": true,
-          "library": "entra/accesslevel"
-        },
-        {
-          "name": "Environment",
-          "defaultValue": "PROD",
-          "allowCustomValue": true,
-          "library": "core/environment"
-        },
-        {
-          "name": "Version",
-          "type": "text",
-          "defaultValue": "V1"
+          "allowCustomValue": true
         }
       ],
       "examples": [
@@ -77,48 +79,15 @@
           "allowCustomValue": true
         },
         {
-          "name": "Tool",
-          "examples": [
-            "Intune",
-            "Veeam",
-            "Dynamics"
-          ],
-          "defaultValue": "",
-          "allowCustomValue": true,
-          "library": "entra/tool"
-        },
-        {
           "name": "Function",
+          "library": "core/function",
           "examples": [
             "Backup",
             "Reporting",
             "SSO"
           ],
           "defaultValue": "",
-          "allowCustomValue": true,
-          "library": "core/function"
-        },
-        {
-          "name": "AccessLevel",
-          "examples": [
-            "RO",
-            "RW",
-            "ADMIN"
-          ],
-          "defaultValue": "RO",
-          "allowCustomValue": true,
-          "library": "entra/accesslevel"
-        },
-        {
-          "name": "Environment",
-          "defaultValue": "PROD",
-          "allowCustomValue": true,
-          "library": "core/environment"
-        },
-        {
-          "name": "Version",
-          "type": "text",
-          "defaultValue": "V1"
+          "allowCustomValue": true
         }
       ],
       "examples": [
@@ -137,48 +106,15 @@
           "defaultValue": "PRODWARE"
         },
         {
-          "name": "Tool",
-          "examples": [
-            "Intune",
-            "Veeam",
-            "Dynamics"
-          ],
-          "defaultValue": "",
-          "allowCustomValue": true,
-          "library": "entra/tool"
-        },
-        {
           "name": "Function",
+          "library": "core/function",
           "examples": [
             "Backup",
             "Reporting",
             "SSO"
           ],
           "defaultValue": "",
-          "allowCustomValue": true,
-          "library": "core/function"
-        },
-        {
-          "name": "AccessLevel",
-          "examples": [
-            "RO",
-            "RW",
-            "ADMIN"
-          ],
-          "defaultValue": "RO",
-          "allowCustomValue": true,
-          "library": "entra/accesslevel"
-        },
-        {
-          "name": "Environment",
-          "defaultValue": "PROD",
-          "allowCustomValue": true,
-          "library": "core/environment"
-        },
-        {
-          "name": "Version",
-          "type": "text",
-          "defaultValue": "V1"
+          "allowCustomValue": true
         }
       ],
       "examples": [
@@ -195,39 +131,6 @@
           "name": "Project",
           "type": "text",
           "defaultValue": "ProjERP"
-        },
-        {
-          "name": "Tool",
-          "examples": [
-            "Intune",
-            "Veeam",
-            "Dynamics"
-          ],
-          "defaultValue": "",
-          "allowCustomValue": true,
-          "library": "entra/tool"
-        },
-        {
-          "name": "AccessLevel",
-          "examples": [
-            "RO",
-            "RW",
-            "ADMIN"
-          ],
-          "defaultValue": "RO",
-          "allowCustomValue": true,
-          "library": "entra/accesslevel"
-        },
-        {
-          "name": "Environment",
-          "defaultValue": "PROD",
-          "allowCustomValue": true,
-          "library": "core/environment"
-        },
-        {
-          "name": "Version",
-          "type": "text",
-          "defaultValue": "V1"
         }
       ],
       "examples": [
@@ -235,7 +138,6 @@
       ]
     }
   ],
-  "fields": [],
   "examples": [],
   "builder": {
     "separator": "-",

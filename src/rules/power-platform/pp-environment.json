@@ -14,21 +14,6 @@
         "Workload",
         "Environment"
       ],
-      "fields": [
-        {
-          "name": "Workload",
-          "type": "dropdown",
-          "defaultValue": "POWERAPPS",
-          "allowCustomValue": true,
-          "library": "power-platform/pp-workload"
-        },
-        {
-          "name": "Environment",
-          "library": "core/environment",
-          "defaultValue": "DEV",
-          "allowCustomValue": true
-        }
-      ],
       "examples": [
         "PPE-HR-PROD"
       ]
@@ -66,17 +51,8 @@
       ],
       "fields": [
         {
-          "name": "Workload",
-          "type": "dropdown",
-          "defaultValue": "POWERAPPS",
-          "allowCustomValue": true,
-          "library": "power-platform/pp-workload"
-        },
-        {
           "name": "Environment",
-          "library": "core/environment",
-          "defaultValue": "UAT",
-          "allowCustomValue": true
+          "defaultValue": "UAT"
         }
       ],
       "examples": [

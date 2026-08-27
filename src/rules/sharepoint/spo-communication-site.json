@@ -11,14 +11,38 @@
       "defaultValue": "CORP",
       "allowCustomValue": true,
       "values": [
-        { "value": "CORP", "description": "Corporate" },
-        { "value": "HR", "description": "Human Resources" },
-        { "value": "IT", "description": "Information Technology" },
-        { "value": "FINANCE", "description": "Finance" },
-        { "value": "LEGAL", "description": "Legal" },
-        { "value": "SECURITY", "description": "Security" },
-        { "value": "MARKETING", "description": "Marketing" },
-        { "value": "OPERATIONS", "description": "Operations" }
+        {
+          "value": "CORP",
+          "description": "Corporate"
+        },
+        {
+          "value": "HR",
+          "description": "Human Resources"
+        },
+        {
+          "value": "IT",
+          "description": "Information Technology"
+        },
+        {
+          "value": "FINANCE",
+          "description": "Finance"
+        },
+        {
+          "value": "LEGAL",
+          "description": "Legal"
+        },
+        {
+          "value": "SECURITY",
+          "description": "Security"
+        },
+        {
+          "value": "MARKETING",
+          "description": "Marketing"
+        },
+        {
+          "value": "OPERATIONS",
+          "description": "Operations"
+        }
       ]
     },
     {
@@ -27,13 +51,34 @@
       "defaultValue": "INTRANET",
       "allowCustomValue": true,
       "values": [
-        { "value": "INTRANET", "description": "Intranet" },
-        { "value": "PORTAL", "description": "Portal" },
-        { "value": "NEWS", "description": "News" },
-        { "value": "KNOWLEDGEBASE", "description": "Knowledge base" },
-        { "value": "DOCUMENTATION", "description": "Documentation" },
-        { "value": "AWARENESS", "description": "Awareness" },
-        { "value": "SUPPORT", "description": "Support" }
+        {
+          "value": "INTRANET",
+          "description": "Intranet"
+        },
+        {
+          "value": "PORTAL",
+          "description": "Portal"
+        },
+        {
+          "value": "NEWS",
+          "description": "News"
+        },
+        {
+          "value": "KNOWLEDGEBASE",
+          "description": "Knowledge base"
+        },
+        {
+          "value": "DOCUMENTATION",
+          "description": "Documentation"
+        },
+        {
+          "value": "AWARENESS",
+          "description": "Awareness"
+        },
+        {
+          "value": "SUPPORT",
+          "description": "Support"
+        }
       ]
     }
   ],
@@ -52,7 +97,6 @@
     "fixedLastSegments": []
   },
   "validation": {
-    "maxLength": 128,
     "allowedPattern": "^[A-Z0-9_.-]+$",
     "caseMode": "upper"
   }

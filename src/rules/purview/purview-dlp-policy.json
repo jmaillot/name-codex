@@ -11,15 +11,42 @@
       "defaultValue": "PII",
       "allowCustomValue": true,
       "values": [
-        { "value": "PII", "description": "Personally Identifiable Information" },
-        { "value": "PCI", "description": "Payment Card Industry data" },
-        { "value": "PHI", "description": "Protected Health Information" },
-        { "value": "FINANCIAL", "description": "Financial data" },
-        { "value": "HR", "description": "Human Resources data" },
-        { "value": "LEGAL", "description": "Legal data" },
-        { "value": "GDPR", "description": "GDPR-regulated data" },
-        { "value": "CONFIDENTIAL", "description": "Confidential business data" },
-        { "value": "SECRET", "description": "Highly confidential / secret" }
+        {
+          "value": "PII",
+          "description": "Personally Identifiable Information"
+        },
+        {
+          "value": "PCI",
+          "description": "Payment Card Industry data"
+        },
+        {
+          "value": "PHI",
+          "description": "Protected Health Information"
+        },
+        {
+          "value": "FINANCIAL",
+          "description": "Financial data"
+        },
+        {
+          "value": "HR",
+          "description": "Human Resources data"
+        },
+        {
+          "value": "LEGAL",
+          "description": "Legal data"
+        },
+        {
+          "value": "GDPR",
+          "description": "GDPR-regulated data"
+        },
+        {
+          "value": "CONFIDENTIAL",
+          "description": "Confidential business data"
+        },
+        {
+          "value": "SECRET",
+          "description": "Highly confidential / secret"
+        }
       ]
     },
     {
@@ -28,12 +55,30 @@
       "defaultValue": "ALL",
       "allowCustomValue": true,
       "values": [
-        { "value": "ALL", "description": "All locations" },
-        { "value": "EXO", "description": "Exchange Online" },
-        { "value": "SPO", "description": "SharePoint Online" },
-        { "value": "OD", "description": "OneDrive for Business" },
-        { "value": "TEAMS", "description": "Microsoft Teams" },
-        { "value": "ENDPOINT", "description": "Endpoint devices" }
+        {
+          "value": "ALL",
+          "description": "All locations"
+        },
+        {
+          "value": "EXO",
+          "description": "Exchange Online"
+        },
+        {
+          "value": "SPO",
+          "description": "SharePoint Online"
+        },
+        {
+          "value": "OD",
+          "description": "OneDrive for Business"
+        },
+        {
+          "value": "TEAMS",
+          "description": "Microsoft Teams"
+        },
+        {
+          "value": "ENDPOINT",
+          "description": "Endpoint devices"
+        }
       ]
     },
     {
@@ -42,10 +87,22 @@
       "defaultValue": "AUDIT",
       "allowCustomValue": true,
       "values": [
-        { "value": "AUDIT", "description": "Audit only" },
-        { "value": "WARN", "description": "Warn with policy tip" },
-        { "value": "BLOCK", "description": "Block action" },
-        { "value": "BLOCKOVERRIDE", "description": "Block with override" }
+        {
+          "value": "AUDIT",
+          "description": "Audit only"
+        },
+        {
+          "value": "WARN",
+          "description": "Warn with policy tip"
+        },
+        {
+          "value": "BLOCK",
+          "description": "Block action"
+        },
+        {
+          "value": "BLOCKOVERRIDE",
+          "description": "Block with override"
+        }
       ]
     }
   ],
@@ -65,7 +122,6 @@
     "fixedLastSegments": []
   },
   "validation": {
-    "maxLength": 128,
     "allowedPattern": "^[A-Z0-9_.-]+$",
     "caseMode": "upper"
   }

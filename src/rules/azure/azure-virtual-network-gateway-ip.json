@@ -70,9 +70,5 @@
       "Role",
       "IP"
     ]
-  },
-  "validation": {
-    "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

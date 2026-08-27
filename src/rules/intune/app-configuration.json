@@ -84,14 +84,17 @@
       "Application",
       "Descriptor"
     ],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Descriptor"],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Descriptor"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []
   },
   "validation": {
-    "maxLength": 128,
     "allowedPattern": "^[A-Z0-9_.-]+$",
     "caseMode": "upper"
   }

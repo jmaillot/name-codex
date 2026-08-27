@@ -10,7 +10,10 @@
       "name": "Environment",
       "description": "Typed environment for a workload: PPE-<workload>-<environment> (e.g. PPE-HR-PROD)",
       "pattern": "PPE-[Workload]-[Environment]",
-      "defaultSegments": ["Workload", "Environment"],
+      "defaultSegments": [
+        "Workload",
+        "Environment"
+      ],
       "fields": [
         {
           "name": "Workload",
@@ -26,14 +29,18 @@
           "allowCustomValue": true
         }
       ],
-      "examples": ["PPE-HR-PROD"]
+      "examples": [
+        "PPE-HR-PROD"
+      ]
     },
     {
       "id": "developer",
       "name": "Developer",
       "description": "Personal developer environment: PPE-DEV-<user> (e.g. PPE-DEV-JDOE)",
       "pattern": "PPE-DEV-[User]",
-      "defaultSegments": ["User"],
+      "defaultSegments": [
+        "User"
+      ],
       "fields": [
         {
           "name": "User",
@@ -44,14 +51,19 @@
           "allowCustomValue": true
         }
       ],
-      "examples": ["PPE-DEV-JDOE"]
+      "examples": [
+        "PPE-DEV-JDOE"
+      ]
     },
     {
       "id": "shared",
       "name": "Shared",
       "description": "Shared environment for a workload: PPE-SHARED-<workload>-<environment> (e.g. PPE-SHARED-CRM-UAT)",
       "pattern": "PPE-SHARED-[Workload]-[Environment]",
-      "defaultSegments": ["Workload", "Environment"],
+      "defaultSegments": [
+        "Workload",
+        "Environment"
+      ],
       "fields": [
         {
           "name": "Workload",
@@ -67,7 +79,9 @@
           "allowCustomValue": true
         }
       ],
-      "examples": ["PPE-SHARED-CRM-UAT"]
+      "examples": [
+        "PPE-SHARED-CRM-UAT"
+      ]
     }
   ],
   "fields": [
@@ -92,15 +106,14 @@
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment"],
+    "defaultSegments": [
+      "Workload",
+      "Environment"
+    ],
     "availableSegments": [],
     "recommendedSegments": [],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []
-  },
-  "validation": {
-    "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

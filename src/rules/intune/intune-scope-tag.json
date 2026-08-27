@@ -26,18 +26,26 @@
       "library": "intune/scopetag-service"
     }
   ],
-  "examples": ["ST-FR-IT-SUPPORT"],
+  "examples": [
+    "ST-FR-IT-SUPPORT"
+  ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Country", "Department", "Service"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Service"],
+    "defaultSegments": [
+      "Country",
+      "Department",
+      "Service"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Service"
+    ],
     "lockedSegments": [],
-    "fixedFirstSegments": ["Country"],
+    "fixedFirstSegments": [
+      "Country"
+    ],
     "fixedLastSegments": []
-  },
-  "validation": {
-    "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

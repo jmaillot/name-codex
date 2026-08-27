@@ -11,15 +11,42 @@
       "defaultValue": "GENERAL",
       "allowCustomValue": true,
       "values": [
-        { "value": "GENERAL", "description": "General retention" },
-        { "value": "HR", "description": "Human Resources" },
-        { "value": "FINANCE", "description": "Finance" },
-        { "value": "LEGAL", "description": "Legal" },
-        { "value": "CONTRACT", "description": "Contracts" },
-        { "value": "PROJECT", "description": "Projects" },
-        { "value": "EMAIL", "description": "Email messages" },
-        { "value": "INVOICE", "description": "Invoices" },
-        { "value": "RECORD", "description": "Records management" }
+        {
+          "value": "GENERAL",
+          "description": "General retention"
+        },
+        {
+          "value": "HR",
+          "description": "Human Resources"
+        },
+        {
+          "value": "FINANCE",
+          "description": "Finance"
+        },
+        {
+          "value": "LEGAL",
+          "description": "Legal"
+        },
+        {
+          "value": "CONTRACT",
+          "description": "Contracts"
+        },
+        {
+          "value": "PROJECT",
+          "description": "Projects"
+        },
+        {
+          "value": "EMAIL",
+          "description": "Email messages"
+        },
+        {
+          "value": "INVOICE",
+          "description": "Invoices"
+        },
+        {
+          "value": "RECORD",
+          "description": "Records management"
+        }
       ]
     },
     {
@@ -28,14 +55,38 @@
       "defaultValue": "7Y",
       "allowCustomValue": true,
       "values": [
-        { "value": "1Y", "description": "1 year" },
-        { "value": "3Y", "description": "3 years" },
-        { "value": "5Y", "description": "5 years" },
-        { "value": "7Y", "description": "7 years" },
-        { "value": "10Y", "description": "10 years" },
-        { "value": "15Y", "description": "15 years" },
-        { "value": "25Y", "description": "25 years" },
-        { "value": "PERMANENT", "description": "Permanent retention" }
+        {
+          "value": "1Y",
+          "description": "1 year"
+        },
+        {
+          "value": "3Y",
+          "description": "3 years"
+        },
+        {
+          "value": "5Y",
+          "description": "5 years"
+        },
+        {
+          "value": "7Y",
+          "description": "7 years"
+        },
+        {
+          "value": "10Y",
+          "description": "10 years"
+        },
+        {
+          "value": "15Y",
+          "description": "15 years"
+        },
+        {
+          "value": "25Y",
+          "description": "25 years"
+        },
+        {
+          "value": "PERMANENT",
+          "description": "Permanent retention"
+        }
       ]
     },
     {
@@ -44,9 +95,18 @@
       "defaultValue": "REVIEW",
       "allowCustomValue": true,
       "values": [
-        { "value": "DELETE", "description": "Delete after retention" },
-        { "value": "REVIEW", "description": "Review before disposition" },
-        { "value": "RECORD", "description": "Declare as record" }
+        {
+          "value": "DELETE",
+          "description": "Delete after retention"
+        },
+        {
+          "value": "REVIEW",
+          "description": "Review before disposition"
+        },
+        {
+          "value": "RECORD",
+          "description": "Declare as record"
+        }
       ]
     }
   ],
@@ -66,7 +126,6 @@
     "fixedLastSegments": []
   },
   "validation": {
-    "maxLength": 128,
     "allowedPattern": "^[A-Z0-9_.-]+$",
     "caseMode": "upper"
   }

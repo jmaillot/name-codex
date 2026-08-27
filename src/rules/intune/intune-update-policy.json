@@ -10,7 +10,10 @@
       "name": "Platform + Stage",
       "description": "Generic platforms: UPD-<platform>-<stage> (e.g. UPD-IOS-PRODUCTION)",
       "pattern": "UPD-[Platform]-[Stage]",
-      "defaultSegments": ["Platform", "Stage"],
+      "defaultSegments": [
+        "Platform",
+        "Stage"
+      ],
       "fields": [
         {
           "name": "IntPrefix",
@@ -38,14 +41,19 @@
           "library": "intune/updatepolicy-stage"
         }
       ],
-      "examples": ["UPD-IOS-PRODUCTION"]
+      "examples": [
+        "UPD-IOS-PRODUCTION"
+      ]
     },
     {
       "id": "win-stage-purpose",
       "name": "Windows + Stage + Purpose",
       "description": "Windows only: UPD-WIN-<stage>-<purpose> where purpose is QUALITY, FEATURE, DRIVER or HOTPATCH",
       "pattern": "UPD-WIN-[Stage]-[Purpose]",
-      "defaultSegments": ["Stage", "Purpose"],
+      "defaultSegments": [
+        "Stage",
+        "Purpose"
+      ],
       "fields": [
         {
           "name": "IntPrefix",
@@ -72,7 +80,9 @@
           "library": "intune/updatepolicy-win-purpose"
         }
       ],
-      "examples": ["UPD-WIN-PILOT-FEATURE"]
+      "examples": [
+        "UPD-WIN-PILOT-FEATURE"
+      ]
     }
   ],
   "fields": [
@@ -103,15 +113,16 @@
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Platform", "Stage"],
-    "availableSegments": ["Custom"],
+    "defaultSegments": [
+      "Platform",
+      "Stage"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
     "recommendedSegments": [],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []
-  },
-  "validation": {
-    "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

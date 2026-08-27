@@ -42,18 +42,30 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["nsg-prod-frc-web-001"],
+  "examples": [
+    "nsg-prod-frc-web-001"
+  ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Environment", "Region", "Workload", "Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Workload"],
+    "defaultSegments": [
+      "Environment",
+      "Region",
+      "Workload",
+      "Instance"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Workload"
+    ],
     "lockedSegments": [],
-    "fixedFirstSegments": ["Environment"],
+    "fixedFirstSegments": [
+      "Environment"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
-    "maxLength": 128,
     "forceLowercase": true,
     "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }

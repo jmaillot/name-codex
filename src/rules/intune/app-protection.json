@@ -72,14 +72,14 @@
       "Target",
       "Purpose"
     ],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Purpose"],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Purpose"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []
-  },
-  "validation": {
-    "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

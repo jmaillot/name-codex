@@ -11,12 +11,30 @@
       "defaultValue": "ALL",
       "allowCustomValue": true,
       "values": [
-        { "value": "EXO", "description": "Exchange Online" },
-        { "value": "SPO", "description": "SharePoint Online" },
-        { "value": "OD", "description": "OneDrive for Business" },
-        { "value": "TEAMS", "description": "Microsoft Teams" },
-        { "value": "M365", "description": "Microsoft 365" },
-        { "value": "ALL", "description": "All locations" }
+        {
+          "value": "EXO",
+          "description": "Exchange Online"
+        },
+        {
+          "value": "SPO",
+          "description": "SharePoint Online"
+        },
+        {
+          "value": "OD",
+          "description": "OneDrive for Business"
+        },
+        {
+          "value": "TEAMS",
+          "description": "Microsoft Teams"
+        },
+        {
+          "value": "M365",
+          "description": "Microsoft 365"
+        },
+        {
+          "value": "ALL",
+          "description": "All locations"
+        }
       ]
     },
     {
@@ -25,15 +43,42 @@
       "defaultValue": "1Y",
       "allowCustomValue": true,
       "values": [
-        { "value": "30D", "description": "30 days" },
-        { "value": "90D", "description": "90 days" },
-        { "value": "180D", "description": "180 days" },
-        { "value": "1Y", "description": "1 year" },
-        { "value": "3Y", "description": "3 years" },
-        { "value": "5Y", "description": "5 years" },
-        { "value": "7Y", "description": "7 years" },
-        { "value": "10Y", "description": "10 years" },
-        { "value": "PERMANENT", "description": "Permanent retention" }
+        {
+          "value": "30D",
+          "description": "30 days"
+        },
+        {
+          "value": "90D",
+          "description": "90 days"
+        },
+        {
+          "value": "180D",
+          "description": "180 days"
+        },
+        {
+          "value": "1Y",
+          "description": "1 year"
+        },
+        {
+          "value": "3Y",
+          "description": "3 years"
+        },
+        {
+          "value": "5Y",
+          "description": "5 years"
+        },
+        {
+          "value": "7Y",
+          "description": "7 years"
+        },
+        {
+          "value": "10Y",
+          "description": "10 years"
+        },
+        {
+          "value": "PERMANENT",
+          "description": "Permanent retention"
+        }
       ]
     },
     {
@@ -42,9 +87,18 @@
       "defaultValue": "DELETE",
       "allowCustomValue": true,
       "values": [
-        { "value": "DELETE", "description": "Delete after retention" },
-        { "value": "RETAIN", "description": "Retain" },
-        { "value": "RETAINDELETE", "description": "Retain and then delete" }
+        {
+          "value": "DELETE",
+          "description": "Delete after retention"
+        },
+        {
+          "value": "RETAIN",
+          "description": "Retain"
+        },
+        {
+          "value": "RETAINDELETE",
+          "description": "Retain and then delete"
+        }
       ]
     }
   ],
@@ -64,7 +118,6 @@
     "fixedLastSegments": []
   },
   "validation": {
-    "maxLength": 128,
     "allowedPattern": "^[A-Z0-9_.-]+$",
     "caseMode": "upper"
   }

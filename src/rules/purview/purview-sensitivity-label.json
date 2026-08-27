@@ -11,12 +11,30 @@
       "defaultValue": "INTERNAL",
       "allowCustomValue": true,
       "values": [
-        { "value": "PUBLIC", "description": "Public data" },
-        { "value": "INTERNAL", "description": "Internal use only" },
-        { "value": "CONFIDENTIAL", "description": "Confidential" },
-        { "value": "HIGHLYCONFIDENTIAL", "description": "Highly confidential" },
-        { "value": "SECRET", "description": "Secret" },
-        { "value": "TOPSECRET", "description": "Top secret" }
+        {
+          "value": "PUBLIC",
+          "description": "Public data"
+        },
+        {
+          "value": "INTERNAL",
+          "description": "Internal use only"
+        },
+        {
+          "value": "CONFIDENTIAL",
+          "description": "Confidential"
+        },
+        {
+          "value": "HIGHLYCONFIDENTIAL",
+          "description": "Highly confidential"
+        },
+        {
+          "value": "SECRET",
+          "description": "Secret"
+        },
+        {
+          "value": "TOPSECRET",
+          "description": "Top secret"
+        }
       ]
     },
     {
@@ -24,13 +42,34 @@
       "type": "dropdown",
       "allowCustomValue": true,
       "values": [
-        { "value": "HR", "description": "Human Resources" },
-        { "value": "FINANCE", "description": "Finance" },
-        { "value": "LEGAL", "description": "Legal" },
-        { "value": "BOARD", "description": "Board" },
-        { "value": "MNA", "description": "Mergers and acquisitions" },
-        { "value": "EXECUTIVE", "description": "Executive" },
-        { "value": "PROJECT", "description": "Project" }
+        {
+          "value": "HR",
+          "description": "Human Resources"
+        },
+        {
+          "value": "FINANCE",
+          "description": "Finance"
+        },
+        {
+          "value": "LEGAL",
+          "description": "Legal"
+        },
+        {
+          "value": "BOARD",
+          "description": "Board"
+        },
+        {
+          "value": "MNA",
+          "description": "Mergers and acquisitions"
+        },
+        {
+          "value": "EXECUTIVE",
+          "description": "Executive"
+        },
+        {
+          "value": "PROJECT",
+          "description": "Project"
+        }
       ]
     }
   ],
@@ -57,7 +96,6 @@
     "fixedLastSegments": []
   },
   "validation": {
-    "maxLength": 128,
     "allowedPattern": "^[A-Z0-9_.-]+$",
     "caseMode": "upper"
   }

@@ -26,18 +26,26 @@
       "library": "intune/autopilot-purpose-profile"
     }
   ],
-  "examples": ["APT-FR-LAPTOP-STANDARD"],
+  "examples": [
+    "APT-FR-LAPTOP-STANDARD"
+  ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Country", "DeviceType", "Purpose"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Purpose"],
+    "defaultSegments": [
+      "Country",
+      "DeviceType",
+      "Purpose"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Purpose"
+    ],
     "lockedSegments": [],
-    "fixedFirstSegments": ["Country"],
+    "fixedFirstSegments": [
+      "Country"
+    ],
     "fixedLastSegments": []
-  },
-  "validation": {
-    "maxLength": 128,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

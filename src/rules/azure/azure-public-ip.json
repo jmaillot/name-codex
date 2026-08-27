@@ -31,18 +31,31 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["PIP-PROD-FRC-VM-001"],
+  "examples": [
+    "PIP-PROD-FRC-VM-001"
+  ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Environment", "Region", "Workload", "Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Workload"],
+    "defaultSegments": [
+      "Environment",
+      "Region",
+      "Workload",
+      "Instance"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Workload"
+    ],
     "lockedSegments": [],
-    "fixedFirstSegments": ["Environment"],
+    "fixedFirstSegments": [
+      "Environment"
+    ],
     "fixedLastSegments": []
   },
   "validation": {
-    "maxLength": 128,
+    "forceUppercase": true,
     "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

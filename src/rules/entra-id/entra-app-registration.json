@@ -19,7 +19,8 @@
             "Dynamics"
           ],
           "defaultValue": "",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "entra/tool"
         },
         {
           "name": "Function",
@@ -29,7 +30,8 @@
             "SSO"
           ],
           "defaultValue": "Backup",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "core/function"
         },
         {
           "name": "AccessLevel",
@@ -39,12 +41,14 @@
             "ADMIN"
           ],
           "defaultValue": "RO",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "entra/accesslevel"
         },
         {
           "name": "Environment",
           "defaultValue": "PROD",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "core/environment"
         },
         {
           "name": "Version",
@@ -80,7 +84,8 @@
             "Dynamics"
           ],
           "defaultValue": "",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "entra/tool"
         },
         {
           "name": "Function",
@@ -90,7 +95,8 @@
             "SSO"
           ],
           "defaultValue": "",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "core/function"
         },
         {
           "name": "AccessLevel",
@@ -100,12 +106,14 @@
             "ADMIN"
           ],
           "defaultValue": "RO",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "entra/accesslevel"
         },
         {
           "name": "Environment",
           "defaultValue": "PROD",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "core/environment"
         },
         {
           "name": "Version",
@@ -136,7 +144,8 @@
             "Dynamics"
           ],
           "defaultValue": "",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "entra/tool"
         },
         {
           "name": "Function",
@@ -146,7 +155,8 @@
             "SSO"
           ],
           "defaultValue": "",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "core/function"
         },
         {
           "name": "AccessLevel",
@@ -156,12 +166,14 @@
             "ADMIN"
           ],
           "defaultValue": "RO",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "entra/accesslevel"
         },
         {
           "name": "Environment",
           "defaultValue": "PROD",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "core/environment"
         },
         {
           "name": "Version",
@@ -192,7 +204,8 @@
             "Dynamics"
           ],
           "defaultValue": "",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "entra/tool"
         },
         {
           "name": "AccessLevel",
@@ -202,12 +215,14 @@
             "ADMIN"
           ],
           "defaultValue": "RO",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "entra/accesslevel"
         },
         {
           "name": "Environment",
           "defaultValue": "PROD",
-          "allowCustomValue": true
+          "allowCustomValue": true,
+          "library": "core/environment"
         },
         {
           "name": "Version",

@@ -139,8 +139,14 @@ export function valuesForField(field?: NamingField): NamingFieldOption[] {
   }
 
   if (field.allowedValues?.length) {
-    const allowed = new Set(field.allowedValues);
-    options = options.filter((option) => allowed.has(optionValue(option)));
+    if (options.length === 0) {
+      // Inline dropdowns define options solely via allowedValues (no library/values/generator).
+      // Missing library also falls back to allowedValues so the dropdown is never empty.
+      options = [...field.allowedValues];
+    } else {
+      const allowed = new Set(field.allowedValues);
+      options = options.filter((option) => allowed.has(optionValue(option)));
+    }
   }
 
   return options;

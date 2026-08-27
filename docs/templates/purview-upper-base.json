@@ -1,0 +1,18 @@
+{
+  "_template": "purview-upper-base",
+  "description": "Shared base for Purview uppercase conventions (dlp, retention-label, retention-policy, sensitivity-label) and SharePoint/Teams upper conventions. Keep files and share validation+builder.",
+  "builder": {
+    "separator": "-",
+    "defaultSegments": [],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper"
+  }
+}

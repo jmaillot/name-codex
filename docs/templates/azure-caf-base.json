@@ -1,0 +1,42 @@
+{
+  "_template": "azure-caf-base",
+  "description": "Shared base for Azure CAF 4-field conventions (key-vault, public-ip, network-security-group, storage-account). Keep files and share fields: Environment, Region, Instance are identical; Workload is per-convention (keyvault-workload / publicip-workload / inline 10). Validation and builder are shared.",
+  "fields": [
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "label": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": [
+      "Environment",
+      "Region",
+      "Workload",
+      "Instance"
+    ],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Environment"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
+  }
+}

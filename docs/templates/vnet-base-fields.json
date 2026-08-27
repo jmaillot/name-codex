@@ -1,0 +1,36 @@
+{
+  "_template": "vnet-base-fields",
+  "description": "Shared base for VNET progressive family (virtual-network 4 seg, gateway 5 seg + Role, gateway-ip 6 seg + IP). Keep files and share fields: Region, Country, Workload, Instance are identical; Role and IP are optional extensions.",
+  "fields": [
+    {
+      "name": "Region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Country",
+      "defaultValue": "FR",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Workload",
+      "defaultValue": "VNET",
+      "allowedValues": ["VNET"],
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "label": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Region", "Country", "Workload", "Instance"],
+    "availableSegments": ["Custom", "Role", "IP"],
+    "fixedFirstSegments": ["Region"],
+    "fixedLastSegments": ["Instance"]
+  }
+}

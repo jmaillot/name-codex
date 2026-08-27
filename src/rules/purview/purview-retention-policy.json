@@ -9,7 +9,7 @@
       "name": "Scope",
       "type": "dropdown",
       "defaultValue": "ALL",
-      "allowCustomValue": false,
+      "allowCustomValue": true,
       "values": [
         { "value": "EXO", "description": "Exchange Online" },
         { "value": "SPO", "description": "SharePoint Online" },
@@ -23,7 +23,7 @@
       "name": "Retention",
       "type": "dropdown",
       "defaultValue": "1Y",
-      "allowCustomValue": false,
+      "allowCustomValue": true,
       "values": [
         { "value": "30D", "description": "30 days" },
         { "value": "90D", "description": "90 days" },
@@ -40,7 +40,7 @@
       "name": "Action",
       "type": "dropdown",
       "defaultValue": "DELETE",
-      "allowCustomValue": false,
+      "allowCustomValue": true,
       "values": [
         { "value": "DELETE", "description": "Delete after retention" },
         { "value": "RETAIN", "description": "Retain" },

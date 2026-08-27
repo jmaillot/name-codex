@@ -9,7 +9,7 @@
       "name": "Classification",
       "type": "dropdown",
       "defaultValue": "INTERNAL",
-      "allowCustomValue": false,
+      "allowCustomValue": true,
       "values": [
         { "value": "PUBLIC", "description": "Public data" },
         { "value": "INTERNAL", "description": "Internal use only" },
@@ -22,7 +22,7 @@
     {
       "name": "Category",
       "type": "dropdown",
-      "allowCustomValue": false,
+      "allowCustomValue": true,
       "values": [
         { "value": "HR", "description": "Human Resources" },
         { "value": "FINANCE", "description": "Finance" },

@@ -3,27 +3,64 @@
   "category": "Purview",
   "name": "Retention Label",
   "description": "Microsoft Purview retention label. The name CANNOT be changed after save — validate the name carefully before creating it.",
-  "pattern": "[LabelName]",
+  "pattern": "RET-[Category]-[Retention]-[Disposition]",
   "fields": [
     {
-      "name": "LabelName",
-      "type": "text",
-      "defaultValue": "",
-      "examples": [
-        "Legal Hold 7Y",
-        "Finance Records 10Y"
-      ],
+      "name": "Category",
+      "type": "dropdown",
+      "defaultValue": "GENERAL",
       "allowCustomValue": true,
-      "tip": "Immutable after save: the name cannot be changed later. Double quotes (\") are not supported. Label policies can take up to 7 days to apply — get the name right first time."
+      "allowedValues": [
+        "GENERAL",
+        "HR",
+        "FINANCE",
+        "LEGAL",
+        "CONTRACT",
+        "PROJECT",
+        "EMAIL",
+        "INVOICE",
+        "RECORD",
+        "CUSTOM"
+      ]
+    },
+    {
+      "name": "Retention",
+      "type": "dropdown",
+      "defaultValue": "7Y",
+      "allowCustomValue": true,
+      "allowedValues": [
+        "1Y",
+        "3Y",
+        "5Y",
+        "7Y",
+        "10Y",
+        "15Y",
+        "25Y",
+        "PERMANENT",
+        "CUSTOM"
+      ]
+    },
+    {
+      "name": "Disposition",
+      "type": "dropdown",
+      "defaultValue": "REVIEW",
+      "allowCustomValue": true,
+      "allowedValues": [
+        "DELETE",
+        "REVIEW",
+        "RECORD"
+      ]
     }
   ],
   "examples": [
-    "Legal Hold 7Y"
+    "RET-GENERAL-7Y-REVIEW"
   ],
   "builder": {
-    "separator": " ",
+    "separator": "-",
     "defaultSegments": [
-      "LabelName"
+      "Category",
+      "Retention",
+      "Disposition"
     ],
     "recommendedSegments": [],
     "lockedSegments": [],
@@ -31,10 +68,8 @@
     "fixedLastSegments": []
   },
   "validation": {
-    "removeCharacters": [
-      "\""
-    ],
-    "allowedPattern": "^[A-Za-z0-9 &/_()-]+$",
-    "caseMode": "preserve"
+    "maxLength": 128,
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper"
   }
 }

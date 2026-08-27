@@ -13,9 +13,7 @@
       "values": [
         { "value": "DEPT", "description": "Department" },
         { "value": "PRJ", "description": "Project" },
-        { "value": "CUS", "description": "Customer" },
         { "value": "COE", "description": "Center of Excellence" },
-        { "value": "COM", "description": "Communication" },
         { "value": "APP", "description": "Application" }
       ]
     },
@@ -27,9 +25,7 @@
           "DEPT": ["HR", "FINANCE", "IT", "LEGAL", "MARKETING", "SALES", "OPERATIONS", "SECURITY"],
           "COE": ["M365", "AZURE", "POWERPLATFORM", "COPILOT", "SECURITY", "DATA"],
           "APP": ["HELPDESK", "ITSM", "CRM", "D365"],
-          "PRJ": [],
-          "CUS": [],
-          "COM": []
+          "PRJ": []
         }
       },
       "values": [

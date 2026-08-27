@@ -8,6 +8,7 @@
     {
       "name": "DefPolicyType",
       "label": "PolicyType",
+      "library": "defender/def-policytype",
       "defaultValue": "AntiPhish",
       "allowedValues": [
         "AntiPhish",

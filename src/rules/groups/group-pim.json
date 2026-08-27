@@ -18,6 +18,7 @@
     },
     {
       "name": "PimRoles",
+      "library": "groups/roles-pim",
       "defaultValue": "GlobalAdmin",
       "allowCustomValue": true
     },

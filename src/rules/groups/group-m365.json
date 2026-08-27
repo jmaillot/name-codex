@@ -19,7 +19,13 @@
     },
     {
       "name": "MembershipTypeM365",
-      "defaultValue": "ASS"
+      "library": "groups/membership-type",
+      "defaultValue": "ASS",
+      "allowedValues": [
+        "ASS",
+        "RA",
+        "DYNU"
+      ]
     },
     {
       "name": "Department",

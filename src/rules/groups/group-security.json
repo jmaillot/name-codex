@@ -26,7 +26,8 @@
     },
     {
       "name": "MembershipType",
-      "defaultValue": ""
+      "library": "groups/membership-type",
+      "defaultValue": "ASS"
     },
     {
       "name": "Department",

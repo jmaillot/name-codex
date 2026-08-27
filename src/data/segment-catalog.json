@@ -28,6 +28,20 @@
     "tip": "Owning department or business unit."
   },
   {
+    "name": "MembershipType",
+    "label": "MembershipType",
+    "type": "dropdown",
+    "library": "groups/membership-type",
+    "tip": "Group membership type, e.g. assigned, dynamic."
+  },
+  {
+    "name": "MembershipTypeM365",
+    "label": "MembershipType",
+    "type": "dropdown",
+    "library": "groups/membership-type",
+    "tip": "Membership type for Microsoft 365 groups."
+  },
+  {
     "name": "Function",
     "label": "Function",
     "type": "dropdown",

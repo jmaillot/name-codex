@@ -224,6 +224,83 @@
     "defaultValue": "V1",
     "allowCustomValue": true,
     "tip": "Policy version, e.g. V1."
+  },
+  {
+    "name": "Instance",
+    "label": "Instance",
+    "type": "dropdown",
+    "library": "core/instance",
+    "tip": "Instance number, e.g. 001, 002."
+  },
+  {
+    "name": "Prefix",
+    "label": "Prefix",
+    "type": "dropdown",
+    "library": "groups/prefix",
+    "tip": "Group prefix, e.g. M365, GSEC, TEAM."
+  },
+  {
+    "name": "Assignments",
+    "label": "Assignments",
+    "type": "dropdown",
+    "library": "intune/assignments",
+    "tip": "Intune assignment scope, e.g. AllUsers, AllDevices."
+  },
+  {
+    "name": "Direction",
+    "label": "Direction",
+    "type": "dropdown",
+    "library": "defender/def-direction",
+    "tip": "Defender direction, e.g. Inbound, Outbound."
+  },
+  {
+    "name": "DeviceType",
+    "label": "DeviceType",
+    "type": "dropdown",
+    "library": "intune/autopilot-devicetype",
+    "tip": "Autopilot device type."
+  },
+  {
+    "name": "Macro",
+    "label": "Macro",
+    "type": "dropdown",
+    "library": "intune/autopilot-macros",
+    "tip": "Autopilot macro, e.g. %SERIAL%, %RAND:n%."
+  },
+  {
+    "name": "Platform",
+    "label": "Platform",
+    "type": "dropdown",
+    "library": "intune/updatepolicy-platform",
+    "tip": "Update policy platform, e.g. IOS, AND, WIN."
+  },
+  {
+    "name": "Stage",
+    "label": "Stage",
+    "type": "dropdown",
+    "library": "intune/updatepolicy-stage",
+    "tip": "Update policy stage, e.g. Validation, Pilot, Production."
+  },
+  {
+    "name": "Service",
+    "label": "Service",
+    "type": "dropdown",
+    "library": "intune/scopetag-service",
+    "tip": "Scope tag service, e.g. APPLICATIONS, ENDPOINT."
+  },
+  {
+    "name": "Classification",
+    "label": "Classification",
+    "type": "dropdown",
+    "library": "purview/classification",
+    "tip": "Purview classification, e.g. Public, Confidential."
+  },
+  {
+    "name": "EntraAttribute",
+    "label": "EntraAttribute",
+    "type": "dropdown",
+    "library": "teams/entra-attributes",
+    "tip": "Entra attribute, e.g. [Department], [Company]."
   }
 ]
 

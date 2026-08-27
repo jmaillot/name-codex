@@ -3,26 +3,48 @@
   "category": "SharePoint",
   "name": "Communication Site",
   "description": "SharePoint Communication site provisioned at /sites/<url>. The title can be renamed later independently of the URL.",
-  "pattern": "[SiteName]",
+  "pattern": "SPC-[Department]-[Purpose]",
   "fields": [
     {
-      "name": "SiteName",
-      "type": "text",
-      "defaultValue": "",
-      "examples": [
-        "comms-finance-portal"
-      ],
+      "name": "Department",
+      "type": "dropdown",
+      "defaultValue": "CORP",
       "allowCustomValue": true,
-      "tip": "URL name: lowercase, hyphenated, no spaces. Title can be renamed later independently of the URL."
+      "values": [
+        { "value": "CORP", "description": "Corporate" },
+        { "value": "HR", "description": "Human Resources" },
+        { "value": "IT", "description": "Information Technology" },
+        { "value": "FINANCE", "description": "Finance" },
+        { "value": "LEGAL", "description": "Legal" },
+        { "value": "SECURITY", "description": "Security" },
+        { "value": "MARKETING", "description": "Marketing" },
+        { "value": "OPERATIONS", "description": "Operations" }
+      ]
+    },
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "INTRANET",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "INTRANET", "description": "Intranet" },
+        { "value": "PORTAL", "description": "Portal" },
+        { "value": "NEWS", "description": "News" },
+        { "value": "KNOWLEDGEBASE", "description": "Knowledge base" },
+        { "value": "DOCUMENTATION", "description": "Documentation" },
+        { "value": "AWARENESS", "description": "Awareness" },
+        { "value": "SUPPORT", "description": "Support" }
+      ]
     }
   ],
   "examples": [
-    "comms-finance-portal"
+    "SPC-CORP-INTRANET"
   ],
   "builder": {
     "separator": "-",
     "defaultSegments": [
-      "SiteName"
+      "Department",
+      "Purpose"
     ],
     "recommendedSegments": [],
     "lockedSegments": [],
@@ -30,7 +52,8 @@
     "fixedLastSegments": []
   },
   "validation": {
-    "forceLowercase": true,
-    "allowedPattern": "^[a-z0-9-]+$"
+    "maxLength": 128,
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper"
   }
 }

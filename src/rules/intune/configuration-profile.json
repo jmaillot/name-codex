@@ -3,17 +3,8 @@
   "category": "Intune",
   "name": "Configuration Profile",
   "description": "Configuration profile that pushes settings to enrolled devices, such as Wi-Fi, VPN, email, or endpoint protection. Can also cover Intune scripts and remediation scripts.",
-  "pattern": "[IntPrefix]-[ScopeTag]-[OS]-[Assignments]-[Descriptor]-[Environment]-[Version]",
+  "pattern": "CFG-[ScopeTag]-[OS]-[Assignments]-[Descriptor]-[Environment]-[Version]",
   "fields": [
-    {
-      "name": "IntPrefix",
-      "label": "Prefix",
-      "library": "intune/intune-prefix",
-      "defaultValue": "CFG",
-      "allowedValues": [
-        "CFG"
-      ]
-    },
     {
       "name": "ScopeTag",
       "defaultValue": "",
@@ -67,7 +58,6 @@
   "builder": {
     "separator": "-",
     "defaultSegments": [
-      "IntPrefix",
       "ScopeTag",
       "OS",
       "Assignments",
@@ -88,7 +78,6 @@
       "Descriptor"
     ],
     "fixedFirstSegments": [
-      "IntPrefix",
       "ScopeTag"
     ],
     "fixedLastSegments": []

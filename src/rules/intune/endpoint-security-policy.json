@@ -3,20 +3,8 @@
   "category": "Intune",
   "name": "Endpoint Security Policy",
   "description": "Endpoint security policies for devices, covering antivirus, firewall, attack surface reduction, and endpoint detection and response.",
-  "pattern": "[PolicyId]-[ScopeTag]-[OS]-[IntProfileType]-[Assignments]-[Descriptor]-[Environment]-[Version]",
+  "pattern": "SEC-[ScopeTag]-[OS]-[IntProfileType]-[Assignments]-[Descriptor]-[Environment]-[Version]",
   "fields": [
-    {
-      "name": "PolicyId",
-      "label": "Policy",
-      "type": "text",
-      "generator": "devsec-policy-id",
-      "customOnly": true,
-      "placeholder": "",
-      "examples": [
-        "DEVSEC is fixed. Add the number, e.g. DEVSEC + 001 = DEVSEC001"
-      ],
-      "defaultValue": "DEVSEC001"
-    },
     {
       "name": "ScopeTag",
       "label": "ScopeTag",
@@ -84,12 +72,11 @@
     }
   ],
   "examples": [
-    "DEVSEC001-GLOBAL-W-ASR-ALLUSERS-BASELINE-PROD-V1"
+    "SEC-GLOBAL-W-ASR-ALLUSERS-BASELINE-PROD-V1"
   ],
   "builder": {
     "separator": "-",
     "defaultSegments": [
-      "PolicyId",
       "ScopeTag",
       "OS",
       "IntProfileType",
@@ -109,7 +96,6 @@
       "Descriptor"
     ],
     "fixedFirstSegments": [
-      "PolicyId",
       "ScopeTag",
       "OS",
       "IntProfileType",

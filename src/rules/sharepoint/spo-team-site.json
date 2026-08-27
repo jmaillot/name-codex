@@ -3,27 +3,77 @@
   "category": "SharePoint",
   "name": "Team Site (Group-Connected)",
   "description": "Group-connected SharePoint Team site provisioned at /teams/<url>. The site name becomes the M365 group display name and inherits the Entra group naming policy.",
-  "pattern": "[SiteName]",
+  "pattern": "SPT-[Type]-[Name]",
   "fields": [
     {
-      "name": "SiteName",
-      "type": "text",
-      "defaultValue": "",
-      "examples": [
-        "sales-eu",
-        "hr-onboarding"
-      ],
+      "name": "Type",
+      "type": "dropdown",
+      "defaultValue": "DEPT",
+      "allowCustomValue": false,
+      "values": [
+        { "value": "DEPT", "description": "Department" },
+        { "value": "PRJ", "description": "Project" },
+        { "value": "CUS", "description": "Customer" },
+        { "value": "APP", "description": "Application" },
+        { "value": "COE", "description": "Center of Excellence" }
+      ]
+    },
+    {
+      "name": "Name",
+      "type": "dropdown",
       "allowCustomValue": true,
-      "tip": "URL name: lowercase, hyphenated, no spaces. Group-connected sites inherit the M365 group naming policy (see Teams category). Total file path stays under 400 chars — keep URLs short."
+      "allowedValuesByField": {
+        "Type": {
+          "DEPT": ["HR", "FINANCE", "IT", "LEGAL", "MARKETING", "SALES", "OPERATIONS", "PURCHASING", "SECURITY"],
+          "PRJ": ["M365MIGRATION", "AZURELANDINGZONE", "POWERPLATFORM", "ERP", "CRM"],
+          "APP": ["HELPDESK", "ITSM", "CRM", "D365", "POWERAPPS", "SERVICEPORTAL"],
+          "COE": ["M365", "POWERPLATFORM", "AZURE", "SECURITY", "DATA", "COPILOT"],
+          "CUS": []
+        }
+      },
+      "values": [
+        { "value": "HR", "description": "Human Resources" },
+        { "value": "FINANCE", "description": "Finance" },
+        { "value": "IT", "description": "Information Technology" },
+        { "value": "LEGAL", "description": "Legal" },
+        { "value": "MARKETING", "description": "Marketing" },
+        { "value": "SALES", "description": "Sales" },
+        { "value": "OPERATIONS", "description": "Operations" },
+        { "value": "PURCHASING", "description": "Purchasing" },
+        { "value": "SECURITY", "description": "Security" },
+        { "value": "M365MIGRATION", "description": "M365 Migration" },
+        { "value": "AZURELANDINGZONE", "description": "Azure Landing Zone" },
+        { "value": "POWERPLATFORM", "description": "Power Platform" },
+        { "value": "ERP", "description": "ERP" },
+        { "value": "CRM", "description": "Customer Relationship Management" },
+        { "value": "HELPDESK", "description": "Helpdesk" },
+        { "value": "ITSM", "description": "IT Service Management" },
+        { "value": "D365", "description": "Dynamics 365" },
+        { "value": "POWERAPPS", "description": "Power Apps" },
+        { "value": "SERVICEPORTAL", "description": "Service Portal" },
+        { "value": "M365", "description": "Microsoft 365" },
+        { "value": "AZURE", "description": "Azure" },
+        { "value": "DATA", "description": "Data" },
+        { "value": "COPILOT", "description": "Copilot" }
+      ],
+      "examples": [
+        "TOTALENERGIES",
+        "AUCHAN",
+        "WALMART",
+        "ClientName"
+      ]
     }
   ],
   "examples": [
-    "sales-eu"
+    "SPT-DEPT-HR",
+    "SPT-PRJ-M365MIGRATION",
+    "SPT-CUS-TOTALENERGIES"
   ],
   "builder": {
     "separator": "-",
     "defaultSegments": [
-      "SiteName"
+      "Type",
+      "Name"
     ],
     "recommendedSegments": [],
     "lockedSegments": [],
@@ -31,7 +81,8 @@
     "fixedLastSegments": []
   },
   "validation": {
-    "forceLowercase": true,
-    "allowedPattern": "^[a-z0-9-]+$"
+    "maxLength": 128,
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper"
   }
 }

@@ -3,27 +3,8 @@
   "category": "Groups",
   "name": "Security Group",
   "description": "General-purpose security group for access control, policy assignment, or resource scoping. Supports optional role-assignable or dynamic user/device membership.",
-  "pattern": "[Location]-[Prefix]-[MembershipType]-[Department]-[Purpose]-[Scope]-[Environment]",
+  "pattern": "AAD-GSEC-[MembershipType]-[Department]-[Purpose]-[Scope]-[Environment]",
   "fields": [
-    {
-      "name": "Location",
-      "defaultValue": "AAD",
-      "values": [
-        {
-          "value": "AAD",
-          "description": "Entra ID"
-        }
-      ]
-    },
-    {
-      "name": "Prefix",
-      "label": "Prefix",
-      "library": "groups/prefix",
-      "defaultValue": "GSEC",
-      "allowedValues": [
-        "GSEC"
-      ]
-    },
     {
       "name": "MembershipType",
       "library": "groups/membership-type",
@@ -72,8 +53,6 @@
   "builder": {
     "separator": "-",
     "defaultSegments": [
-      "Location",
-      "Prefix",
       "MembershipType",
       "Department",
       "Purpose",
@@ -91,8 +70,7 @@
       "Purpose"
     ],
     "fixedFirstSegments": [
-      "Location",
-      "Prefix"
+      "MembershipType"
     ],
     "fixedLastSegments": []
   }

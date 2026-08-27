@@ -2,20 +2,164 @@
   "name": "Country",
   "values": [
     {
-      "value": "FR",
-      "description": "France"
+      "value": "AE",
+      "description": "United Arab Emirates"
     },
     {
-      "value": "US",
-      "description": "United States"
+      "value": "AR",
+      "description": "Argentina"
+    },
+    {
+      "value": "AT",
+      "description": "Austria"
+    },
+    {
+      "value": "AU",
+      "description": "Australia"
     },
     {
       "value": "BE",
       "description": "Belgium"
     },
     {
+      "value": "BR",
+      "description": "Brazil"
+    },
+    {
+      "value": "CA",
+      "description": "Canada"
+    },
+    {
+      "value": "CH",
+      "description": "Switzerland"
+    },
+    {
+      "value": "CN",
+      "description": "China"
+    },
+    {
+      "value": "CZ",
+      "description": "Czech Republic"
+    },
+    {
+      "value": "DE",
+      "description": "Germany"
+    },
+    {
+      "value": "DK",
+      "description": "Denmark"
+    },
+    {
+      "value": "EG",
+      "description": "Egypt"
+    },
+    {
+      "value": "ES",
+      "description": "Spain"
+    },
+    {
+      "value": "FI",
+      "description": "Finland"
+    },
+    {
+      "value": "FR",
+      "description": "France"
+    },
+    {
+      "value": "GR",
+      "description": "Greece"
+    },
+    {
+      "value": "IE",
+      "description": "Ireland"
+    },
+    {
+      "value": "IN",
+      "description": "India"
+    },
+    {
+      "value": "IT",
+      "description": "Italy"
+    },
+    {
+      "value": "JP",
+      "description": "Japan"
+    },
+    {
+      "value": "KR",
+      "description": "South Korea"
+    },
+    {
+      "value": "LU",
+      "description": "Luxembourg"
+    },
+    {
+      "value": "MA",
+      "description": "Morocco"
+    },
+    {
+      "value": "MX",
+      "description": "Mexico"
+    },
+    {
+      "value": "MY",
+      "description": "Malaysia"
+    },
+    {
+      "value": "NL",
+      "description": "Netherlands"
+    },
+    {
+      "value": "NO",
+      "description": "Norway"
+    },
+    {
+      "value": "NZ",
+      "description": "New Zealand"
+    },
+    {
+      "value": "PL",
+      "description": "Poland"
+    },
+    {
+      "value": "PT",
+      "description": "Portugal"
+    },
+    {
+      "value": "QA",
+      "description": "Qatar"
+    },
+    {
+      "value": "SA",
+      "description": "Saudi Arabia"
+    },
+    {
+      "value": "SE",
+      "description": "Sweden"
+    },
+    {
+      "value": "SG",
+      "description": "Singapore"
+    },
+    {
+      "value": "TH",
+      "description": "Thailand"
+    },
+    {
+      "value": "TR",
+      "description": "Turkey"
+    },
+    {
       "value": "UK",
       "description": "United Kingdom"
+    },
+    {
+      "value": "US",
+      "description": "United States"
+    },
+    {
+      "value": "ZA",
+      "description": "South Africa"
     }
   ]
 }

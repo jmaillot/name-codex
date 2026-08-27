@@ -6,15 +6,6 @@
   "pattern": "MAM-[Scope]-[Platform]-[Target]-[Purpose]",
   "fields": [
     {
-      "name": "IntPrefix",
-      "label": "Prefix",
-      "library": "intune/intune-prefix",
-      "defaultValue": "MAM",
-      "allowedValues": [
-        "MAM"
-      ]
-    },
-    {
       "name": "Scope",
       "type": "dropdown",
       "defaultValue": "CORP",

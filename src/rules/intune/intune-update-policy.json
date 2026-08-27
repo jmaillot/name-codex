@@ -16,16 +16,6 @@
       ],
       "fields": [
         {
-          "name": "IntPrefix",
-          "label": "Prefix",
-          "library": "intune/intune-prefix",
-          "defaultValue": "UPD",
-          "allowCustomValue": false,
-          "allowedValues": [
-            "UPD"
-          ]
-        },
-        {
           "name": "Platform",
           "type": "dropdown",
           "defaultValue": "IOS",
@@ -56,16 +46,6 @@
       ],
       "fields": [
         {
-          "name": "IntPrefix",
-          "label": "Prefix",
-          "library": "intune/intune-prefix",
-          "defaultValue": "UPD",
-          "allowCustomValue": false,
-          "allowedValues": [
-            "UPD"
-          ]
-        },
-        {
           "name": "Stage",
           "type": "dropdown",
           "defaultValue": "PRODUCTION",
@@ -86,16 +66,6 @@
     }
   ],
   "fields": [
-    {
-      "name": "IntPrefix",
-      "label": "Prefix",
-      "library": "intune/intune-prefix",
-      "defaultValue": "UPD",
-      "allowCustomValue": false,
-      "allowedValues": [
-        "UPD"
-      ]
-    },
     {
       "name": "Platform",
       "type": "dropdown",

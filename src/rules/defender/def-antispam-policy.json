@@ -10,10 +10,6 @@
       "label": "Direction",
       "library": "defender/def-direction",
       "defaultValue": "Inbound",
-      "allowedValues": [
-        "Inbound",
-        "Outbound"
-      ],
       "allowCustomValue": false
     },
     {

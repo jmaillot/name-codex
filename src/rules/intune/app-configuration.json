@@ -6,15 +6,6 @@
   "pattern": "ACP-[Scope]-[EnrollmentType]-[Platform]-[Application]-[Descriptor]",
   "fields": [
     {
-      "name": "IntPrefix",
-      "label": "Prefix",
-      "library": "intune/intune-prefix",
-      "defaultValue": "ACP",
-      "allowedValues": [
-        "ACP"
-      ]
-    },
-    {
       "name": "Scope",
       "type": "dropdown",
       "defaultValue": "CORP",

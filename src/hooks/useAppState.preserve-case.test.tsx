@@ -39,7 +39,7 @@ describe("useAppState caseMode preserve wiring", () => {
       root.render(<Harness />)
     })
     await act(async () => {
-      s().setSelectedCategory("Teams")
+      s().setSelectedCategory("Groups")
     })
     await act(async () => {
       s().setSelectedConventionId("m365-group-naming-policy")

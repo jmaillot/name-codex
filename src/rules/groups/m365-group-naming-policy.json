@@ -1,6 +1,6 @@
 {
   "id": "m365-group-naming-policy",
-  "category": "Teams",
+  "category": "Groups",
   "name": "M365 Group Naming Policy",
   "description": "Entra ID group naming policy format applied to Microsoft 365 groups (and therefore Teams). Prefix and suffix strings are restricted at policy creation; blocked words (list up to 5000) are rejected automatically.",
   "pattern": "GRP_[GroupName]_[Department]",

@@ -156,12 +156,12 @@ describe("data integrity", () => {
       "Defender for M365": 3,
       "Entra ID": 1,
       "Exchange": 2,
-      "Groups": 4,
+      "Groups": 5,
       "Intune": 10,
       "Power Platform": 1,
       "Purview": 4,
       "SharePoint": 3,
-      "Teams": 2,
+      "Teams": 1,
     })
   })
 

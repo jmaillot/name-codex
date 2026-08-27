@@ -2,47 +2,61 @@
   "id": "spo-hub-site",
   "category": "SharePoint",
   "name": "Hub Site",
-  "description": "SharePoint hub site. Microsoft recommends a consistent, discoverable naming convention for hub sites, e.g. '<Function> Hub'.",
-  "pattern": "[Function] Hub",
+  "description": "SharePoint hub site. Microsoft recommends a consistent, discoverable naming convention for hub sites.",
+  "pattern": "SPH-[Type]-[Domain]",
   "fields": [
     {
-      "name": "Function",
-      "library": "core/function",
-      "defaultValue": "",
+      "name": "Type",
+      "type": "dropdown",
+      "defaultValue": "DEPT",
       "allowCustomValue": true,
-      "tip": "Use one consistent '<Function> Hub' formula across all hubs for discoverability."
+      "values": [
+        { "value": "DEPT", "description": "Department" },
+        { "value": "REG", "description": "Region" },
+        { "value": "PRG", "description": "Program" },
+        { "value": "COE", "description": "Center of Excellence" }
+      ]
     },
     {
-      "name": "Hub",
-      "type": "text",
-      "defaultValue": "Hub",
-      "allowedValues": [
-        "Hub"
-      ],
-      "allowCustomValue": false
+      "name": "Domain",
+      "type": "dropdown",
+      "defaultValue": "HR",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "HR", "description": "Human Resources" },
+        { "value": "FINANCE", "description": "Finance" },
+        { "value": "IT", "description": "Information Technology" },
+        { "value": "LEGAL", "description": "Legal" },
+        { "value": "SECURITY", "description": "Security" },
+        { "value": "OPERATIONS", "description": "Operations" },
+        { "value": "POWERPLATFORM", "description": "Power Platform" },
+        { "value": "M365", "description": "Microsoft 365" },
+        { "value": "AZURE", "description": "Azure" },
+        { "value": "COPILOT", "description": "Copilot" },
+        { "value": "DATA", "description": "Data" },
+        { "value": "FR", "description": "France" },
+        { "value": "EMEA", "description": "EMEA" },
+        { "value": "EU", "description": "European Union" }
+      ]
     }
   ],
   "examples": [
-    "Finance Hub"
+    "SPH-DEPT-HR"
   ],
   "builder": {
-    "separator": " ",
+    "separator": "-",
     "defaultSegments": [
-      "Function",
-      "Hub"
+      "Type",
+      "Domain"
     ],
-    "availableSegments": [],
     "recommendedSegments": [],
-    "lockedSegments": [
-      "Hub"
-    ],
-    "fixedFirstSegments": [
-      "Function"
-    ],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
     "fixedLastSegments": []
   },
   "validation": {
-    "allowedPattern": "^[A-Za-z0-9 ]+$",
-    "caseMode": "preserve"
+    "maxLength": 128,
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper"
   }
 }

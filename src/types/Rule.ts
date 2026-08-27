@@ -42,6 +42,7 @@ export interface NamingValidationConfig {
   maxLength?: number;
   allowedPattern?: string;
   forceLowercase?: boolean;
+  forceUppercase?: boolean;
   removeCharacters?: string[];
   caseMode?: "upper" | "lower" | "preserve";
 }

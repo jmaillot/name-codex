@@ -96,7 +96,7 @@
     "fixedLastSegments": []
   },
   "validation": {
-    "forceLowercase": true,
+    "forceUppercase": true,
     "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

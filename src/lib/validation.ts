@@ -38,6 +38,7 @@ export function normalizeName(
   const truncate = options?.truncate ?? true;
   let n = name;
   if (rule.forceLowercase) n = n.toLowerCase();
+  if (rule.forceUppercase) n = n.toUpperCase();
   if (rule.removeCharacters) {
     rule.removeCharacters.forEach((c: string) => {
       n = n.split(c).join("");

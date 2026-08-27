@@ -59,5 +59,9 @@
     "fixedLastSegments": [
       "Instance"
     ]
+  },
+  "validation": {
+    "forceUppercase": true,
+    "allowedPattern": "^[A-Za-z0-9_.-]+$"
   }
 }

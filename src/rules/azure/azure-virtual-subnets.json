@@ -26,21 +26,7 @@
     {
       "name": "Instance",
       "label": "Instance",
-      "type": "dropdown",
-      "values": [
-        {
-          "value": "001",
-          "description": "Default"
-        },
-        {
-          "value": "002",
-          "description": "Instance 002"
-        },
-        {
-          "value": "003",
-          "description": "Instance 003"
-        }
-      ],
+      "library": "core/instance",
       "defaultValue": "001",
       "allowCustomValue": true
     }

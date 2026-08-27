@@ -32,11 +32,6 @@
       "label": "Instance",
       "library": "core/instance",
       "defaultValue": "001",
-      "allowedValues": [
-        "001",
-        "002",
-        "003"
-      ],
       "allowCustomValue": true
     }
   ],

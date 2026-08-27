@@ -1,0 +1,84 @@
+{
+  "id": "teams-team",
+  "category": "Teams",
+  "name": "Team",
+  "description": "Microsoft Teams team. Team name is the M365 group display name — keep it <=30 characters (the Teams client truncates around 30-36), use '-' or '_' after the prefix, spaces inside the name are allowed.",
+  "pattern": "TEAM-[Type]-[Name]",
+  "fields": [
+    {
+      "name": "Type",
+      "type": "dropdown",
+      "defaultValue": "DEPT",
+      "allowCustomValue": false,
+      "values": [
+        { "value": "DEPT", "description": "Department" },
+        { "value": "PRJ", "description": "Project" },
+        { "value": "CUS", "description": "Customer" },
+        { "value": "COE", "description": "Center of Excellence" },
+        { "value": "COM", "description": "Communication" },
+        { "value": "APP", "description": "Application" }
+      ]
+    },
+    {
+      "name": "Name",
+      "allowCustomValue": true,
+      "allowedValuesByField": {
+        "Type": {
+          "DEPT": ["HR", "FINANCE", "IT", "LEGAL", "MARKETING", "SALES", "OPERATIONS", "SECURITY"],
+          "COE": ["M365", "AZURE", "POWERPLATFORM", "COPILOT", "SECURITY", "DATA"],
+          "APP": ["HELPDESK", "ITSM", "CRM", "D365"],
+          "PRJ": [],
+          "CUS": [],
+          "COM": []
+        }
+      },
+      "values": [
+        { "value": "HR", "description": "Human Resources" },
+        { "value": "FINANCE", "description": "Finance" },
+        { "value": "IT", "description": "Information Technology" },
+        { "value": "LEGAL", "description": "Legal" },
+        { "value": "MARKETING", "description": "Marketing" },
+        { "value": "SALES", "description": "Sales" },
+        { "value": "OPERATIONS", "description": "Operations" },
+        { "value": "SECURITY", "description": "Security" },
+        { "value": "M365", "description": "Microsoft 365" },
+        { "value": "AZURE", "description": "Azure" },
+        { "value": "POWERPLATFORM", "description": "Power Platform" },
+        { "value": "COPILOT", "description": "Copilot" },
+        { "value": "DATA", "description": "Data" },
+        { "value": "HELPDESK", "description": "Helpdesk" },
+        { "value": "ITSM", "description": "IT Service Management" },
+        { "value": "CRM", "description": "Customer Relationship Management" },
+        { "value": "D365", "description": "Dynamics 365" }
+      ],
+      "examples": [
+        "TOTALENERGIES",
+        "AUCHAN",
+        "WALMART",
+        "ClientName",
+        "ProjectName"
+      ]
+    }
+  ],
+  "examples": [
+    "TEAM-DEPT-HR",
+    "TEAM-PRJ-TOTALENERGIES",
+    "TEAM-COE-M365"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": [
+      "Type",
+      "Name"
+    ],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 30,
+    "allowedPattern": "^[A-Za-z0-9 _-]+$",
+    "caseMode": "upper"
+  }
+}

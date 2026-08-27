@@ -13,35 +13,59 @@
       "values": [
         { "value": "DEPT", "description": "Department" },
         { "value": "REG", "description": "Region" },
-        { "value": "PRG", "description": "Program" },
+        { "value": "PRJ", "description": "Project" },
         { "value": "COE", "description": "Center of Excellence" }
       ]
     },
     {
       "name": "Domain",
-      "type": "dropdown",
-      "defaultValue": "HR",
       "allowCustomValue": true,
+      "allowedValuesByField": {
+        "Type": {
+          "DEPT": ["HR", "FINANCE", "IT", "LEGAL", "MARKETING", "SALES", "OPERATIONS", "PROCUREMENT", "QUALITY", "SECURITY"],
+          "COE": ["M365", "COPILOT", "POWERPLATFORM", "AZURE", "DATA", "SECURITY", "DEVOPS", "AI"],
+          "REG": ["EMEA", "APAC", "AMER", "EU", "FR", "BE", "UK"],
+          "PRJ": ["DIGITALWORKPLACE", "M365", "MODERNWORK", "ERP", "CRM", "SAP", "TRANSFORMATION"]
+        }
+      },
       "values": [
         { "value": "HR", "description": "Human Resources" },
         { "value": "FINANCE", "description": "Finance" },
         { "value": "IT", "description": "Information Technology" },
         { "value": "LEGAL", "description": "Legal" },
-        { "value": "SECURITY", "description": "Security" },
+        { "value": "MARKETING", "description": "Marketing" },
+        { "value": "SALES", "description": "Sales" },
         { "value": "OPERATIONS", "description": "Operations" },
-        { "value": "POWERPLATFORM", "description": "Power Platform" },
+        { "value": "PROCUREMENT", "description": "Procurement" },
+        { "value": "QUALITY", "description": "Quality" },
+        { "value": "SECURITY", "description": "Security" },
         { "value": "M365", "description": "Microsoft 365" },
-        { "value": "AZURE", "description": "Azure" },
         { "value": "COPILOT", "description": "Copilot" },
+        { "value": "POWERPLATFORM", "description": "Power Platform" },
+        { "value": "AZURE", "description": "Azure" },
         { "value": "DATA", "description": "Data" },
-        { "value": "FR", "description": "France" },
+        { "value": "DEVOPS", "description": "DevOps" },
+        { "value": "AI", "description": "Artificial Intelligence" },
         { "value": "EMEA", "description": "EMEA" },
-        { "value": "EU", "description": "European Union" }
+        { "value": "APAC", "description": "Asia Pacific" },
+        { "value": "AMER", "description": "Americas" },
+        { "value": "EU", "description": "European Union" },
+        { "value": "FR", "description": "France" },
+        { "value": "BE", "description": "Belgium" },
+        { "value": "UK", "description": "United Kingdom" },
+        { "value": "DIGITALWORKPLACE", "description": "Digital Workplace" },
+        { "value": "MODERNWORK", "description": "Modern Work" },
+        { "value": "ERP", "description": "ERP" },
+        { "value": "CRM", "description": "Customer Relationship Management" },
+        { "value": "SAP", "description": "SAP" },
+        { "value": "TRANSFORMATION", "description": "Transformation" }
       ]
     }
   ],
   "examples": [
-    "SPH-DEPT-HR"
+    "SPH-DEPT-HR",
+    "SPH-REG-EMEA",
+    "SPH-PRJ-DIGITALWORKPLACE"
   ],
   "builder": {
     "separator": "-",

@@ -19,8 +19,7 @@
         { "value": "LEGAL", "description": "Legal data" },
         { "value": "GDPR", "description": "GDPR-regulated data" },
         { "value": "CONFIDENTIAL", "description": "Confidential business data" },
-        { "value": "SECRET", "description": "Highly confidential / secret" },
-        { "value": "CUSTOM", "description": "Custom data type" }
+        { "value": "SECRET", "description": "Highly confidential / secret" }
       ]
     },
     {
@@ -34,8 +33,7 @@
         { "value": "SPO", "description": "SharePoint Online" },
         { "value": "OD", "description": "OneDrive for Business" },
         { "value": "TEAMS", "description": "Microsoft Teams" },
-        { "value": "ENDPOINT", "description": "Endpoint devices" },
-        { "value": "CUSTOM", "description": "Custom scope" }
+        { "value": "ENDPOINT", "description": "Endpoint devices" }
       ]
     },
     {
@@ -47,8 +45,7 @@
         { "value": "AUDIT", "description": "Audit only" },
         { "value": "WARN", "description": "Warn with policy tip" },
         { "value": "BLOCK", "description": "Block action" },
-        { "value": "BLOCKOVERRIDE", "description": "Block with override" },
-        { "value": "CUSTOM", "description": "Custom action" }
+        { "value": "BLOCKOVERRIDE", "description": "Block with override" }
       ]
     }
   ],

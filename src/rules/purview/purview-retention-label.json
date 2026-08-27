@@ -19,8 +19,7 @@
         { "value": "PROJECT", "description": "Projects" },
         { "value": "EMAIL", "description": "Email messages" },
         { "value": "INVOICE", "description": "Invoices" },
-        { "value": "RECORD", "description": "Records management" },
-        { "value": "CUSTOM", "description": "Custom category" }
+        { "value": "RECORD", "description": "Records management" }
       ]
     },
     {
@@ -36,8 +35,7 @@
         { "value": "10Y", "description": "10 years" },
         { "value": "15Y", "description": "15 years" },
         { "value": "25Y", "description": "25 years" },
-        { "value": "PERMANENT", "description": "Permanent retention" },
-        { "value": "CUSTOM", "description": "Custom retention" }
+        { "value": "PERMANENT", "description": "Permanent retention" }
       ]
     },
     {

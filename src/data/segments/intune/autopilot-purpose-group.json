@@ -1,9 +1,0 @@
-{
-  "name": "Purpose",
-  "values": [
-    { "value": "STANDARD", "description": "Standard User" },
-    { "value": "VIP", "description": "VIP User" },
-    { "value": "DEVELOPER", "description": "Developer" },
-    { "value": "PILOT", "description": "Pilot Group" }
-  ]
-}

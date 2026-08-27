@@ -23,7 +23,7 @@
       "type": "dropdown",
       "defaultValue": "STANDARD",
       "allowCustomValue": true,
-      "library": "intune/autopilot-purpose-profile"
+      "library": "intune/autopilot-purpose"
     }
   ],
   "examples": [

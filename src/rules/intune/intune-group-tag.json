@@ -23,7 +23,13 @@
       "type": "dropdown",
       "defaultValue": "STANDARD",
       "allowCustomValue": true,
-      "library": "intune/autopilot-purpose-group"
+      "library": "intune/autopilot-purpose",
+      "allowedValues": [
+        "STANDARD",
+        "VIP",
+        "DEVELOPER",
+        "PILOT"
+      ]
     }
   ],
   "examples": [

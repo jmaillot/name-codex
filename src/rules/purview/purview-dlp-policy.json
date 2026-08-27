@@ -3,27 +3,64 @@
   "category": "Purview",
   "name": "DLP Policy",
   "description": "Microsoft Purview data loss prevention policy. The name is renamable, BUT old names persist forever in audit and alert records — choose audit-friendly names from the start.",
-  "pattern": "[PolicyName]",
+  "pattern": "DLP-[DataType]-[Scope]-[Action]",
   "fields": [
     {
-      "name": "PolicyName",
-      "type": "text",
-      "defaultValue": "",
-      "examples": [
-        "EU-PII-Protection",
-        "Source Code Exfiltration"
-      ],
+      "name": "DataType",
+      "type": "dropdown",
+      "defaultValue": "PII",
       "allowCustomValue": true,
-      "tip": "Old names persist permanently in audit/alert records even after renaming — choose audit-friendly names."
+      "allowedValues": [
+        "PII",
+        "PCI",
+        "PHI",
+        "FINANCIAL",
+        "HR",
+        "LEGAL",
+        "GDPR",
+        "CONFIDENTIAL",
+        "SECRET",
+        "CUSTOM"
+      ]
+    },
+    {
+      "name": "Scope",
+      "type": "dropdown",
+      "defaultValue": "ALL",
+      "allowCustomValue": true,
+      "allowedValues": [
+        "ALL",
+        "EXO",
+        "SPO",
+        "OD",
+        "TEAMS",
+        "ENDPOINT",
+        "CUSTOM"
+      ]
+    },
+    {
+      "name": "Action",
+      "type": "dropdown",
+      "defaultValue": "AUDIT",
+      "allowCustomValue": true,
+      "allowedValues": [
+        "AUDIT",
+        "WARN",
+        "BLOCK",
+        "BLOCKOVERRIDE",
+        "CUSTOM"
+      ]
     }
   ],
   "examples": [
-    "EU-PII-Protection"
+    "DLP-PII-ALL-AUDIT"
   ],
   "builder": {
     "separator": "-",
     "defaultSegments": [
-      "PolicyName"
+      "DataType",
+      "Scope",
+      "Action"
     ],
     "recommendedSegments": [],
     "lockedSegments": [],
@@ -31,10 +68,8 @@
     "fixedLastSegments": []
   },
   "validation": {
-    "removeCharacters": [
-      "\""
-    ],
-    "allowedPattern": "^[A-Za-z0-9 &/_()-]+$",
-    "caseMode": "preserve"
+    "maxLength": 128,
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper"
   }
 }

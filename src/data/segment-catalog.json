@@ -28,6 +28,27 @@
     "tip": "Owning department or business unit."
   },
   {
+    "name": "Function",
+    "label": "Function",
+    "type": "dropdown",
+    "library": "core/function",
+    "tip": "Functional area the resource supports."
+  },
+  {
+    "name": "Tool",
+    "label": "Tool",
+    "type": "dropdown",
+    "library": "entra/tool",
+    "tip": "Tool or product involved, e.g. Power BI, Defender."
+  },
+  {
+    "name": "AccessLevel",
+    "label": "AccessLevel",
+    "type": "dropdown",
+    "library": "entra/accesslevel",
+    "tip": "Access level granted, e.g. read, write, owner."
+  },
+  {
     "name": "IntPrefix",
     "label": "Prefix",
     "type": "dropdown",

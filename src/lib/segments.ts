@@ -127,9 +127,9 @@ export function fieldByName(fields: NamingField[], name: string): NamingField | 
     !conventionField.generator &&
     !conventionField.allowedValues
   ) {
-    delete (merged as Record<string, unknown>).library;
-    delete (merged as Record<string, unknown>).values;
-    delete (merged as Record<string, unknown>).generator;
+    delete (merged as unknown as Record<string, unknown>).library;
+    delete (merged as unknown as Record<string, unknown>).values;
+    delete (merged as unknown as Record<string, unknown>).generator;
   }
 
   return merged;

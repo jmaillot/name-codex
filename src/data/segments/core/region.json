@@ -2,12 +2,52 @@
   "name": "Region",
   "values": [
     {
-      "value": "WE",
-      "description": "West Europe"
+      "value": "AUE",
+      "description": "Australia East"
     },
     {
-      "value": "NE",
-      "description": "North Europe"
+      "value": "AUSE",
+      "description": "Australia Southeast"
+    },
+    {
+      "value": "BRS",
+      "description": "Brazil South"
+    },
+    {
+      "value": "BRSE",
+      "description": "Brazil Southeast"
+    },
+    {
+      "value": "CAC",
+      "description": "Canada Central"
+    },
+    {
+      "value": "CAE",
+      "description": "Canada East"
+    },
+    {
+      "value": "CHN",
+      "description": "Switzerland North"
+    },
+    {
+      "value": "CHW",
+      "description": "Switzerland West"
+    },
+    {
+      "value": "CUS",
+      "description": "Central US"
+    },
+    {
+      "value": "EAS",
+      "description": "East Asia"
+    },
+    {
+      "value": "EUS",
+      "description": "East US"
+    },
+    {
+      "value": "EUS2",
+      "description": "East US 2"
     },
     {
       "value": "FRC",
@@ -16,6 +56,110 @@
     {
       "value": "FRS",
       "description": "France South"
+    },
+    {
+      "value": "GWC",
+      "description": "Germany West Central"
+    },
+    {
+      "value": "ILC",
+      "description": "Israel Central"
+    },
+    {
+      "value": "INC",
+      "description": "Central India"
+    },
+    {
+      "value": "INS",
+      "description": "South India"
+    },
+    {
+      "value": "JPE",
+      "description": "Japan East"
+    },
+    {
+      "value": "JPW",
+      "description": "Japan West"
+    },
+    {
+      "value": "KRC",
+      "description": "Korea Central"
+    },
+    {
+      "value": "MXC",
+      "description": "Mexico Central"
+    },
+    {
+      "value": "NCUS",
+      "description": "North Central US"
+    },
+    {
+      "value": "NE",
+      "description": "North Europe"
+    },
+    {
+      "value": "NOE",
+      "description": "Norway East"
+    },
+    {
+      "value": "NZN",
+      "description": "New Zealand North"
+    },
+    {
+      "value": "PLC",
+      "description": "Poland Central"
+    },
+    {
+      "value": "QAC",
+      "description": "Qatar Central"
+    },
+    {
+      "value": "SAN",
+      "description": "South Africa North"
+    },
+    {
+      "value": "SCUS",
+      "description": "South Central US"
+    },
+    {
+      "value": "SEAS",
+      "description": "Southeast Asia"
+    },
+    {
+      "value": "SWC",
+      "description": "Sweden Central"
+    },
+    {
+      "value": "UAEN",
+      "description": "UAE North"
+    },
+    {
+      "value": "UKS",
+      "description": "UK South"
+    },
+    {
+      "value": "UKW",
+      "description": "UK West"
+    },
+    {
+      "value": "WCUS",
+      "description": "West Central US"
+    },
+    {
+      "value": "WE",
+      "description": "West Europe"
+    },
+    {
+      "value": "WUS",
+      "description": "West US"
+    },
+    {
+      "value": "WUS2",
+      "description": "West US 2"
+    },
+    {
+      "value": "WUS3",
+      "description": "West US 3"
     }
   ]
 }

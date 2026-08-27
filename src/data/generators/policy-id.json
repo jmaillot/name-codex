@@ -1,0 +1,30 @@
+{
+  "name": "policy-id",
+  "type": "caPolicyId",
+  "variants": {
+    "ca-policy-id": {
+      "personaSource": "CA-Persona",
+      "personaRanges": {
+        "ALLUSERS": "Global",
+        "EMPLOYEES": "Internals",
+        "INTERNALS": "Internals",
+        "ADMINS": "Admins",
+        "GUESTS": "Guests",
+        "EXTERNALS": "Externals",
+        "GUESTSADMINS": "Externals",
+        "BYOD": "Internals",
+        "BREAKGLASS": "Admins",
+        "SERVICEACCOUNTS": "ServiceAccounts",
+        "AZURESERVICEACCOUNTS": "AzureServiceAccounts",
+        "CORPSERVICEACCOUNTS": "CorpServiceAccounts",
+        "WORKLOADS": "Workloads",
+        "DEVELOPERS": "Developers"
+      }
+    },
+    "ca-emergency-policy-id": {
+      "prefix": "EM",
+      "digits": 3,
+      "defaultNumber": "001"
+    }
+  }
+}

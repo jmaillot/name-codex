@@ -17,7 +17,7 @@ const segmentModules = import.meta.glob("../data/segments/**/*.json", {
 const generatorModules = import.meta.glob("../data/generators/*.json", {
   eager: true,
   import: "default",
-}) as Record<string, SegmentGenerator>;
+}) as Record<string, SegmentGenerator & { variants?: Record<string, Omit<SegmentGenerator, "name" | "type">> }>;
 
 function moduleKeyFromName(name: string): string {
   return name.trim().toLowerCase();
@@ -43,12 +43,28 @@ const generatorModuleMap = new Map<string, SegmentGenerator>(
   })
 );
 
+// S9 unified policy-id variants: policy-id.json contains variants for ca-policy-id and ca-emergency-policy-id
+const policyIdVariants = (() => {
+  const base = generatorModuleMap.get("policy-id") as unknown as { variants?: Record<string, Record<string, unknown>> } | undefined;
+  if (!base?.variants) return new Map<string, SegmentGenerator>();
+  return new Map<string, SegmentGenerator>(
+    Object.entries(base.variants).map(([key, cfg]) => [
+      key.toLowerCase(),
+      { name: key, type: "caPolicyId", ...(cfg as object) } as SegmentGenerator,
+    ])
+  );
+})();
+
 export function getSegmentFile(libraryName: string): SegmentFile | undefined {
   return segmentModuleMap.get(moduleKeyFromName(libraryName));
 }
 
 export function getGeneratorFile(generatorName: string): SegmentGenerator | undefined {
-  return generatorModuleMap.get(moduleKeyFromName(generatorName));
+  const key = moduleKeyFromName(generatorName);
+  // Check unified variants first (S9)
+  const variant = policyIdVariants.get(key);
+  if (variant) return variant;
+  return generatorModuleMap.get(key);
 }
 
 const ruleModules = import.meta.glob("../rules/**/*.json", {

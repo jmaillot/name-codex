@@ -217,6 +217,45 @@ export function validateGenerator(json, filePath) {
   if (!isNonEmptyString(json?.type)) {
     violations.push({ file: filePath, reason: 'type must be a non-empty string' });
   }
+  // S9 unified policy-id variants: { name, type, variants: { "ca-policy-id": {...}, "ca-emergency-policy-id": {...} } }
+  if (hasOwn(json ?? {}, 'variants')) {
+    const variants = json.variants;
+    if (variants === null || typeof variants !== 'object' || Array.isArray(variants)) {
+      violations.push({ file: filePath, reason: 'variants must be an object (string→object map)' });
+    } else {
+      for (const [vName, vCfg] of Object.entries(variants)) {
+        if (vCfg === null || typeof vCfg !== 'object' || Array.isArray(vCfg)) {
+          violations.push({ file: filePath, reason: `variants.${vName} must be an object` });
+          continue;
+        }
+        if (hasOwn(vCfg, 'personaSource') && typeof vCfg.personaSource !== 'string') {
+          violations.push({ file: filePath, reason: `variants.${vName}.personaSource must be a string when present` });
+        }
+        if (hasOwn(vCfg, 'personaRanges')) {
+          const ranges = vCfg.personaRanges;
+          if (ranges === null || typeof ranges !== 'object' || Array.isArray(ranges)) {
+            violations.push({ file: filePath, reason: `variants.${vName}.personaRanges must be an object (string→string map)` });
+          } else {
+            for (const [key, value] of Object.entries(ranges)) {
+              if (typeof value !== 'string') {
+                violations.push({
+                  file: filePath,
+                  reason: `variants.${vName}.personaRanges.${key} must be a string (string→string map)`,
+                });
+              }
+            }
+          }
+        }
+        if (hasOwn(vCfg, 'prefix') && typeof vCfg.prefix !== 'string') {
+          violations.push({ file: filePath, reason: `variants.${vName}.prefix must be a string when present` });
+        }
+        if (hasOwn(vCfg, 'digits') && !(Number.isInteger(vCfg.digits) && vCfg.digits >= 0)) {
+          violations.push({ file: filePath, reason: `variants.${vName}.digits must be a non-negative integer when present` });
+        }
+      }
+    }
+    return violations;
+  }
   if (hasOwn(json ?? {}, 'personaSource') && typeof json.personaSource !== 'string') {
     violations.push({ file: filePath, reason: 'personaSource must be a string when present' });
   }

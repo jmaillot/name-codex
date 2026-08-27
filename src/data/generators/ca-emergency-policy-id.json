@@ -1,7 +1,0 @@
-{
-  "name": "ca-emergency-policy-id",
-  "type": "caPolicyId",
-  "prefix": "EM",
-  "digits": 3,
-  "defaultNumber": "001"
-}

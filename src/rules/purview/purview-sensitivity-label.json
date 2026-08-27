@@ -2,59 +2,42 @@
   "id": "purview-sensitivity-label",
   "category": "Purview",
   "name": "Sensitivity Label",
-  "description": "Microsoft Purview sensitivity label from the classification taxonomy, with optional sublabel variant.",
-  "pattern": "[Classification]",
-  "patterns": [
-    {
-      "id": "parent-label",
-      "name": "Parent Label",
-      "description": "Top-level label from the classification taxonomy",
-      "pattern": "[Classification]",
-      "defaultSegments": [
-        "Classification"
-      ],
-      "examples": [
-        "Confidential"
-      ]
-    },
-    {
-      "id": "sublabel",
-      "name": "Sublabel",
-      "description": "Sublabel nested under a parent label",
-      "pattern": "[Classification]-[Sublabel]",
-      "defaultSegments": [
-        "Classification",
-        "Sublabel"
-      ],
-      "examples": [
-        "Confidential-Payroll"
-      ]
-    }
-  ],
+  "description": "Microsoft Purview sensitivity label from the classification taxonomy, with optional category variant.",
+  "pattern": "SL-[Classification]-[Category]",
   "fields": [
     {
       "name": "Classification",
-      "library": "purview/classification",
-      "defaultValue": "General",
+      "type": "dropdown",
+      "defaultValue": "INTERNAL",
       "allowCustomValue": false,
-      "tip": "Use your tenant's published taxonomy order: Personal > Public > General > Confidential > Highly Confidential."
+      "values": [
+        { "value": "PUBLIC", "description": "Public data" },
+        { "value": "INTERNAL", "description": "Internal use only" },
+        { "value": "CONFIDENTIAL", "description": "Confidential" },
+        { "value": "HIGHLYCONFIDENTIAL", "description": "Highly confidential" },
+        { "value": "SECRET", "description": "Secret" },
+        { "value": "TOPSECRET", "description": "Top secret" }
+      ]
     },
     {
-      "name": "Sublabel",
-      "type": "text",
+      "name": "Category",
+      "type": "dropdown",
       "defaultValue": "",
-      "examples": [
-        "Payroll",
-        "M&A"
-      ],
-      "allowCustomValue": true,
-      "allowedPattern": "^[A-Za-z0-9&/-]+$",
-      "tip": "Sublabels inherit the parent label's settings; keep names short, stable, and space-free."
+      "allowCustomValue": false,
+      "values": [
+        { "value": "HR", "description": "Human Resources" },
+        { "value": "FINANCE", "description": "Finance" },
+        { "value": "LEGAL", "description": "Legal" },
+        { "value": "BOARD", "description": "Board" },
+        { "value": "MNA", "description": "Mergers and acquisitions" },
+        { "value": "EXECUTIVE", "description": "Executive" },
+        { "value": "PROJECT", "description": "Project" }
+      ]
     }
   ],
   "examples": [
-    "General",
-    "Confidential-Payroll"
+    "SL-CONFIDENTIAL",
+    "SL-CONFIDENTIAL-HR"
   ],
   "builder": {
     "separator": "-",
@@ -62,9 +45,11 @@
       "Classification"
     ],
     "availableSegments": [
-      "Sublabel"
+      "Category"
     ],
-    "recommendedSegments": [],
+    "recommendedSegments": [
+      "Category"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [
       "Classification"
@@ -72,10 +57,8 @@
     "fixedLastSegments": []
   },
   "validation": {
-    "removeCharacters": [
-      "\""
-    ],
-    "allowedPattern": "^[A-Za-z0-9 &/-]+$",
-    "caseMode": "preserve"
+    "maxLength": 128,
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper"
   }
 }

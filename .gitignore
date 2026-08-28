@@ -1,9 +1,11 @@
 # Planning docs
 .planning
 
-# Docs (local-only except screenshot)
+# Docs (local-only except screenshot + DATA-FORMAT referenced in README)
 docs/*
 !docs/screenshot.png
+!docs/DATA-FORMAT.md
+!docs/DATA-FORMAT_FR.md
 
 # Backups
 .backups

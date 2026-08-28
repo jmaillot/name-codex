@@ -55,6 +55,10 @@
     {
       "name": "Purpose",
       "defaultValue": "",
+      "examples": [
+        "Alerts",
+        "Invoices"
+      ],
       "allowCustomValue": true
     }
   ],

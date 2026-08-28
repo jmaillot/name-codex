@@ -23,10 +23,11 @@
     {
       "name": "Type",
       "defaultValue": "LA",
-      "allowCustomValue": false
+      "allowCustomValue": true
     },
     {
       "name": "Role",
+      "library": "core/role",
       "defaultValue": "SEAR",
       "allowCustomValue": true
     },

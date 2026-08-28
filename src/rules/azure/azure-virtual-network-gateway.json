@@ -19,7 +19,7 @@
       "name": "Workload",
       "label": "Workload",
       "defaultValue": "VNET",
-      "allowCustomValue": true,
+      "allowCustomValue": false,
       "values": [
         {
           "value": "VNET",
@@ -36,7 +36,14 @@
     },
     {
       "name": "Role",
-      "defaultValue": "GW"
+      "defaultValue": "GW",
+      "allowCustomValue": false,
+      "values": [
+        {
+          "value": "GW",
+          "description": "Gateway"
+        }
+      ]
     }
   ],
   "examples": [

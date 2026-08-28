@@ -47,7 +47,15 @@
       "allowCustomValue": true
     },
     {
-      "name": "Version"
+      "name": "Version",
+      "defaultValue": "V1",
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "V1",
+          "description": "Version 1"
+        }
+      ]
     }
   ],
   "examples": [

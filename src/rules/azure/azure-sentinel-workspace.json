@@ -22,11 +22,13 @@
     },
     {
       "name": "Type",
+      "library": "core/type",
       "defaultValue": "LA",
       "allowCustomValue": true
     },
     {
       "name": "Role",
+      "library": "core/role",
       "defaultValue": "SIEM",
       "allowCustomValue": true
     }

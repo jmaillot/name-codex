@@ -3,7 +3,6 @@
   "values": [
     { "value": "APPGW", "description": "Application Gateway" },
     { "value": "AZFW", "description": "Azure Firewall" },
-    { "value": "VPNGW", "description": "VPN Gateway" },
     { "value": "BASTION", "description": "Bastion Host" },
     { "value": "NATGW", "description": "NAT Gateway" },
     { "value": "LB", "description": "Load Balancer" },

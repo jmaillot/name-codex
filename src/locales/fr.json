@@ -293,7 +293,6 @@
     "data.lib.core/region.WUS": "USA Ouest",
     "data.lib.core/region.WUS2": "USA Ouest 2",
     "data.lib.core/region.WUS3": "USA Ouest 3",
-    "data.lib.core/role.AD": "Active Directory",
     "data.lib.core/role.SQL": "SQL Server",
     "data.lib.core/role.RDS": "Bureau à distance",
     "data.lib.core/role.GW": "Passerelle",

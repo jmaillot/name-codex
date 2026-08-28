@@ -2,10 +2,6 @@
   "name": "role",
   "values": [
     {
-      "value": "AD",
-      "description": "Active Directory"
-    },
-    {
       "value": "SQL",
       "description": "SQL Server"
     },

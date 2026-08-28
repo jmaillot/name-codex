@@ -293,7 +293,6 @@
     "data.lib.core/region.WUS": "West US",
     "data.lib.core/region.WUS2": "West US 2",
     "data.lib.core/region.WUS3": "West US 3",
-    "data.lib.core/role.AD": "Active Directory",
     "data.lib.core/role.SQL": "SQL Server",
     "data.lib.core/role.RDS": "Remote Desktop",
     "data.lib.core/role.GW": "Gateway",

@@ -29,7 +29,7 @@
     {
       "name": "Role",
       "library": "core/role",
-      "defaultValue": "AD",
+      "defaultValue": "DC",
       "allowCustomValue": true
     },
     {

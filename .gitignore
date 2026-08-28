@@ -1,6 +1,10 @@
 # Planning docs
 .planning
 
+# Docs (local-only except screenshot)
+docs/*
+!docs/screenshot.png
+
 # Backups
 .backups
 

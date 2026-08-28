@@ -23,7 +23,13 @@
     {
       "name": "Type",
       "defaultValue": "LA",
-      "allowCustomValue": true
+      "allowCustomValue": false,
+      "values": [
+        {
+          "value": "LA",
+          "description": "Logic App"
+        }
+      ]
     },
     {
       "name": "Role",

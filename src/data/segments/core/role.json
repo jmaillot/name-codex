@@ -36,6 +36,38 @@
     {
       "value": "APP",
       "description": "Application"
+    },
+    {
+      "value": "DC",
+      "description": "Domain Controller"
+    },
+    {
+      "value": "FS",
+      "description": "File Server"
+    },
+    {
+      "value": "WEB",
+      "description": "Web Server"
+    },
+    {
+      "value": "API",
+      "description": "API Server"
+    },
+    {
+      "value": "DB",
+      "description": "Database Server"
+    },
+    {
+      "value": "DNS",
+      "description": "DNS Server"
+    },
+    {
+      "value": "CACHE",
+      "description": "Cache Server"
+    },
+    {
+      "value": "PROXY",
+      "description": "Proxy Server"
     }
   ]
 }

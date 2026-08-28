@@ -11,7 +11,7 @@ Name Codex est une application monopage qui vous aide à définir, explorer et g
 ## Fonctionnalités
 
 ### Explorer les standards de nommage
-- Parcourez les conventions par catégorie : Azure, Entra ID, Exchange, Groups, Intune, Conditional Access, Defender
+- Parcourez les conventions par catégorie : Azure, Entra ID, Exchange, Groups, Intune, Conditional Access, Defender, Teams, SharePoint, Power Platform, Purview (11 catégories, 45 conventions)
 - Recherchez et filtrez les types d'objets, et basculez entre leurs variantes de modèle
 - Consultez la description active et un exemple pour chaque convention
 
@@ -41,7 +41,7 @@ Name Codex est une application monopage qui vous aide à définir, explorer et g
 - **Référence des conventions** : un dictionnaire de valeurs pour chaque segment utilisé
 
 ### Basé sur les données
-Toutes les conventions, bibliothèques de segments et générateurs sont en JSON brut sous `src/rules`, `src/data/segments`, `src/data/generators` — ajoutez ou ajustez un standard de nommage sans toucher au code. Les définitions de segments partagées se trouvent dans `segment-catalog.json` ; chaque règle référence des bibliothèques et peut les restreindre ou les remodeler avec `allowedValues`, des exclusions mutuelles et des littéraux de modèle. Les bibliothèques de segments peuvent déclarer des contraintes de valeurs — voir [docs/DATA-FORMAT_FR.md](docs/DATA-FORMAT_FR.md) pour le format et ses règles de validation.
+Toutes les conventions, bibliothèques de segments et générateurs sont en JSON brut sous `src/rules`, `src/data/segments`, `src/data/generators` — ajoutez ou ajustez un standard de nommage sans toucher au code. Les définitions de segments partagées se trouvent dans `segment-catalog.json` ; chaque règle référence des bibliothèques et peut les restreindre ou les remodeler avec `allowedValues`, des exclusions mutuelles et des littéraux de modèle. Les bibliothèques de segments peuvent déclarer des contraintes de valeurs (voir `docs/DATA-FORMAT_FR.md` en local — docs non publiés sur GitHub).
 
 ## Pile technique
 
@@ -50,7 +50,7 @@ React + TypeScript + Vite, avec toutes les données stockées localement en JSON
 ## Guide de l'utilisateur
 
 ### 1. Choisir une catégorie
-Choisissez une catégorie dans la barre latérale — Azure, Entra ID, Exchange, Groups, Intune, Conditional Access ou Defender. Le dernier objet sélectionné dans chaque catégorie est restauré automatiquement lors de votre prochaine visite.
+Choisissez une catégorie dans la barre latérale — Azure, Entra ID, Exchange, Groups, Intune, Conditional Access, Defender, Teams, SharePoint, Power Platform, Purview. Le dernier objet sélectionné dans chaque catégorie est restauré automatiquement lors de votre prochaine visite.
 
 ### 2. Sélectionner un type d'objet
 Utilisez le champ de recherche pour filtrer les types d'objets, et basculez entre les variantes de modèle si l'objet en propose plusieurs. Chaque convention affiche sa description active et un exemple.
@@ -119,7 +119,9 @@ Ouvrez l'URL locale affichée dans le terminal (généralement <http://localhost
 | `npm run dev`           | Lancer le serveur de développement (HMR)                   |
 | `npm run build`         | Vérifier les types et compiler pour la prod                |
 | `npm run lint`          | Exécuter oxlint                                            |
-| `npm test`              | Lancer les tests unitaires Vitest (jsdom, 137 tests)       |
+| `npm run check:data`    | Valider tous les fichiers JSON de données (96 fichiers)    |
+| `npm run check:tokens`  | Valider les tokens de design (0 littéraux, 18/18 WCAG)     |
+| `npm test`              | Lancer les tests unitaires Vitest (jsdom, 226 tests)       |
 | `npm run test:watch`    | Lancer les tests en mode watch                             |
 | `npm run test:coverage` | Lancer les tests avec couverture v8 (80% lignes sur src/lib) |
 | `npm run preview`       | Prévisualiser la compilation de production                 |

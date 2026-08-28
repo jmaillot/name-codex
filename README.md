@@ -11,7 +11,7 @@ Name Codex is a single-page application that helps you define, explore and gover
 ## Features
 
 ### Explore naming standards
-- Browse conventions by category: Azure, Entra ID, Exchange, Groups, Intune, Conditional Access, Defender
+- Browse conventions by category: Azure, Entra ID, Exchange, Groups, Intune, Conditional Access, Defender, Teams, SharePoint, Power Platform, Purview (11 categories, 45 conventions)
 - Search and filter object types, and switch between their pattern variants
 - See the active description and an example for each convention
 
@@ -41,7 +41,7 @@ Name Codex is a single-page application that helps you define, explore and gover
 - **Convention Reference**: a value dictionary for every segment used
 
 ### Data-driven
-All conventions, segment libraries and generators are plain JSON under `src/rules`, `src/data/segments`, `src/data/generators` — add or adjust a naming standard without touching the code. Shared segment definitions live in `segment-catalog.json`; individual rules reference libraries and can restrict or reshape them with `allowedValues`, mutual exclusions and pattern literals. Segment libraries can declare value constraints — see [docs/DATA-FORMAT.md](docs/DATA-FORMAT.md) for the format and its validation rules.
+All conventions, segment libraries and generators are plain JSON under `src/rules`, `src/data/segments`, `src/data/generators` — add or adjust a naming standard without touching the code. Shared segment definitions live in `segment-catalog.json`; individual rules reference libraries and can restrict or reshape them with `allowedValues`, mutual exclusions and pattern literals. Segment libraries can declare value constraints (see local `docs/DATA-FORMAT.md` — docs are local-only, not on GitHub).
 
 ## Tech stack
 
@@ -50,7 +50,7 @@ React + TypeScript + Vite, with all data stored locally as JSON (no backend).
 ## End-user guide
 
 ### 1. Pick a category
-Choose a category from the sidebar — Azure, Entra ID, Exchange, Groups, Intune, Conditional Access or Defender. The last object you selected in each category is restored automatically on your next visit.
+Choose a category from the sidebar — Azure, Entra ID, Exchange, Groups, Intune, Conditional Access, Defender, Teams, SharePoint, Power Platform, Purview. The last object you selected in each category is restored automatically on your next visit.
 
 ### 2. Select an object type
 Use the search box to filter object types, and switch between pattern variants if the object offers several. Each convention shows its active description and an example.
@@ -119,7 +119,9 @@ Open the local URL printed in the terminal (usually <http://localhost:5173/>) in
 | `npm run dev`           | Start the development server (HMR)               |
 | `npm run build`         | Type-check and build for production              |
 | `npm run lint`          | Run oxlint                                       |
-| `npm test`              | Run Vitest unit tests (jsdom, 137 tests)         |
+| `npm run check:data`    | Validate all JSON data files (96 files, `file: reason` reporting) |
+| `npm run check:tokens`  | Validate design tokens (0 literals, 18/18 WCAG)  |
+| `npm test`              | Run Vitest unit tests (jsdom, 226 tests)         |
 | `npm run test:watch`    | Run tests in watch mode                          |
 | `npm run test:coverage` | Run tests with v8 coverage (80% lines on src/lib) |
 | `npm run preview`       | Preview the production build locally             |

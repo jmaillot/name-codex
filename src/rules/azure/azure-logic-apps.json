@@ -23,7 +23,7 @@
     {
       "name": "Type",
       "defaultValue": "LA",
-      "allowCustomValue": true
+      "allowCustomValue": false
     },
     {
       "name": "Role",

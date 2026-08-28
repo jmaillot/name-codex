@@ -3,14 +3,14 @@
   "category": "Azure",
   "name": "Virtual Machine",
   "description": "Azure virtual machine naming.",
-  "pattern": "[Country][Location][OS][Role][Instance]",
+  "pattern": "[Country]AZ[OS][Role][Instance]",
   "fields": [
     {
       "name": "Country",
       "defaultValue": "FR",
       "allowCustomValue": true
     },
-    {
+    { 
       "name": "Location",
       "defaultValue": "AZ",
       "values": [

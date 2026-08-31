@@ -1,0 +1,10 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "APP", "description": "Application workload" },
+    { "value": "API", "description": "API service" },
+    { "value": "WEB", "description": "Web frontend" },
+    { "value": "DATA", "description": "Data processing" },
+    { "value": "SHARED", "description": "Shared platform" }
+  ]
+}

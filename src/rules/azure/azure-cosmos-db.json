@@ -1,0 +1,48 @@
+{
+  "id": "azure-cosmos-db",
+  "category": "Azure",
+  "name": "Cosmos DB",
+  "description": "Azure Cosmos DB naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): cosmos-[Workload]-[Environment]-[Region]-[Instance] — workload-first (workload identifies the data domain).",
+  "pattern": "cosmos-[Workload]-[Environment]-[Region]-[Instance]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/cosmos-workload",
+      "defaultValue": "ORDERS",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["cosmos-orders-prod-frc-001"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 44,
+    "forceLowercase": true,
+    "allowedPattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+  }
+}

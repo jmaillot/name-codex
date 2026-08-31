@@ -1,0 +1,48 @@
+{
+  "id": "azure-kubernetes-service",
+  "category": "Azure",
+  "name": "Kubernetes Service (AKS)",
+  "description": "Azure Kubernetes Service (AKS) naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): aks-[Environment]-[Region]-[Workload]-[Instance].",
+  "pattern": "aks-[Environment]-[Region]-[Workload]-[Instance]",
+  "fields": [
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Workload",
+      "library": "azure/aks-workload",
+      "defaultValue": "APP",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["aks-prod-frc-app-001"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Environment", "Region", "Workload", "Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 63,
+    "forceLowercase": true,
+    "allowedPattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+  }
+}

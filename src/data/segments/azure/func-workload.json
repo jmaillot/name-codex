@@ -1,0 +1,9 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "API", "description": "API functions" },
+    { "value": "PROCESSOR", "description": "Background processor" },
+    { "value": "SCHEDULER", "description": "Scheduled jobs" },
+    { "value": "INTEGRATION", "description": "Integration functions" }
+  ]
+}

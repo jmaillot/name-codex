@@ -1,0 +1,42 @@
+{
+  "id": "azure-container-registry",
+  "category": "Azure",
+  "name": "Container Registry",
+  "description": "Azure Container Registry naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The registry name is globally unique across all Azure tenants — uniqueness itself cannot be checked here. Lowercase letters and numbers only, 5–50 characters, no hyphens.",
+  "pattern": "acr-[Environment]-[Region]-[Instance]",
+  "fields": [
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["acr-prod-frc-001"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Environment", "Region", "Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 50,
+    "forceLowercase": true,
+    "allowedPattern": "^[a-z0-9]{5,50}$"
+  }
+}

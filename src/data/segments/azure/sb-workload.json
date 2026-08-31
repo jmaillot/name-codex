@@ -1,0 +1,9 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "ORDERS", "description": "Orders messaging" },
+    { "value": "EVENTS", "description": "Events messaging" },
+    { "value": "NOTIFICATIONS", "description": "Notifications" },
+    { "value": "MESSAGES", "description": "General messages" }
+  ]
+}

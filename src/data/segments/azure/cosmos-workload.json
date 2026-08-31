@@ -1,0 +1,10 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "ORDERS", "description": "Orders domain" },
+    { "value": "CATALOG", "description": "Catalog domain" },
+    { "value": "USERS", "description": "Users domain" },
+    { "value": "PAYMENTS", "description": "Payments domain" },
+    { "value": "ANALYTICS", "description": "Analytics domain" }
+  ]
+}

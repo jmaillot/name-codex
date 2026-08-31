@@ -1,0 +1,48 @@
+{
+  "id": "azure-app-service",
+  "category": "Azure",
+  "name": "App Service",
+  "description": "Azure App Service naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The name is globally unique across Azure — uniqueness itself cannot be checked here. Lowercase letters, numbers and hyphens, 2–60 characters: app-[Workload]-[Environment]-[Region]-[Instance].",
+  "pattern": "app-[Workload]-[Environment]-[Region]-[Instance]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/app-workload",
+      "defaultValue": "WEB",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["app-web-prod-frc-001"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 60,
+    "forceLowercase": true,
+    "allowedPattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+  }
+}

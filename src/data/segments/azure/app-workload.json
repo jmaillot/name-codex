@@ -1,0 +1,9 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "WEB", "description": "Web frontend" },
+    { "value": "API", "description": "API backend" },
+    { "value": "PORTAL", "description": "Customer portal" },
+    { "value": "ADMIN", "description": "Admin portal" }
+  ]
+}

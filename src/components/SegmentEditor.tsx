@@ -229,11 +229,6 @@ export default function SegmentEditor({ segment, index, convention, fields, segm
             }
           />
         )}
-        {constraints && (constraints.allowedPattern || constraints.minLength !== undefined || constraints.maxLength !== undefined) && (
-          <span className="constraint-hint" style={{ fontSize: "0.75rem", color: "var(--text-secondary)" }}>
-            {constraints.allowedPattern ? `Pattern ${constraints.allowedPattern}` : ""} {constraints.minLength !== undefined ? ` min ${constraints.minLength}` : ""} {constraints.maxLength !== undefined ? ` max ${constraints.maxLength}` : ""}
-          </span>
-        )}
       </div>
 
       <div className="builder-actions">

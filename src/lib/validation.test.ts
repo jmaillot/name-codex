@@ -193,6 +193,63 @@ describe("validateName", () => {
     const results = validateName("z-1", conv, [seg("Zed", "z"), seg("B", "1")])
     expect(results.length).toBe(4)
   })
+
+  it("constraint allowedPattern fail adds invalid row", () => {
+    const conv = makeConvention({
+      fields: [{ name: "Region", library: "core/region", constraints: { allowedPattern: "^[A-Z]+$" } } as any],
+    })
+    const results = validateName("ab-1", conv, [seg("Region", "ab"), seg("B", "1")])
+    const row = results.find((r) => r.label.includes("matches required pattern"))
+    expect(row).toBeDefined()
+    expect(row!.valid).toBe(false)
+  })
+
+  it("constraint minLength fail adds invalid row", () => {
+    const conv = makeConvention({
+      fields: [{ name: "Env", type: "text", constraints: { minLength: 3 } } as any],
+    })
+    const results = validateName("ab", conv, [seg("Env", "AB")])
+    const row = results.find((r) => r.label.includes("at least"))
+    expect(row).toBeDefined()
+    expect(row!.valid).toBe(false)
+  })
+
+  it("constraint maxLength fail adds invalid row", () => {
+    const conv = makeConvention({
+      fields: [{ name: "Instance", type: "text", constraints: { maxLength: 3 } } as any],
+    })
+    const results = validateName("ABCD", conv, [seg("Instance", "ABCD")])
+    const row = results.find((r) => r.label.includes("at most"))
+    expect(row).toBeDefined()
+    expect(row!.valid).toBe(false)
+  })
+
+  it("constraint empty sentinel bypass adds no rows", () => {
+    const conv = makeConvention({
+      fields: [{ name: "Region", type: "text", constraints: { allowedPattern: "^[A-Z]+$", minLength: 2, maxLength: 4 } } as any],
+    })
+    const results = validateName("", conv, [seg("Region", "")])
+    expect(results.filter((r) => r.label.includes("at least") || r.label.includes("at most") || r.label.includes("matches required"))).toHaveLength(0)
+  })
+
+  it("multiple constraints on same segment produce 3 rows", () => {
+    const conv = makeConvention({
+      fields: [{ name: "Region", type: "text", constraints: { allowedPattern: "^[A-Z]+$", minLength: 2, maxLength: 4 } } as any],
+    })
+    const results = validateName("ab", conv, [seg("Region", "ab")])
+    const constraintRows = results.filter((r) => r.label.includes("matches required") || r.label.includes("at least") || r.label.includes("at most"))
+    expect(constraintRows.length).toBe(3)
+  })
+
+  it("constraint allowedPattern pass adds valid row", () => {
+    const conv = makeConvention({
+      fields: [{ name: "Region", type: "text", constraints: { allowedPattern: "^[A-Z]+$" } } as any],
+    })
+    const results = validateName("ABC", conv, [seg("Region", "ABC")])
+    const row = results.find((r) => r.label.includes("matches required"))
+    expect(row).toBeDefined()
+    expect(row!.valid).toBe(true)
+  })
 })
 
 describe("governanceScore", () => {

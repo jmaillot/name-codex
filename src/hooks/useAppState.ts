@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { allConventions, getGeneratorFile } from "../lib/data";
+import { allConventions, getGeneratorFile, getSegmentFile } from "../lib/data";
+import type { SegmentConstraints } from "../types/Rule";
 import { tl } from "../lib/i18n-utils";
 import { parsePattern, patternToSegments } from "../lib/parse";
 import { randWidth } from "../lib/macros";
@@ -408,9 +409,9 @@ export function useAppState() {
 
       // allowedValuesByField dependency: when Type changes, reset Name if stale
       // e.g. SPT Type DEPT->PRJ should switch Name HR->M365MIGRATION, CUS->"" (custom input)
+      let mutated = false;
+      let mutatedNext = next;
       if (changed?.sourceName) {
-        let mutated = false;
-        let mutatedNext = next;
         for (const field of activeFields) {
           const byField = field.allowedValuesByField;
           if (!byField || !(changed.sourceName in byField)) continue;
@@ -448,9 +449,27 @@ export function useAppState() {
             mutated = true;
           }
         }
-        if (mutated) return mutatedNext;
       }
 
+      // Constraint maxLength clamp (Phase 19, WIRE-01) — display-only safety-net.
+      // Browser maxLength attr caps keystrokes natively (SegmentEditor), this guards paste/programmatic sets.
+      // Clamped value is what is stored/displayed/copied; validation still flags pre-clamp only via maxLength attr prevents over-type.
+      // minLength is validate-only, never padded. Validation for constraints lives in validateName.
+      const targetField = fieldByName(activeFields, changed?.sourceName ?? "") as unknown as { constraints?: SegmentConstraints; library?: string; type?: string; allowCustomValue?: boolean; customOnly?: boolean } | undefined;
+      const cForClamp: SegmentConstraints | undefined =
+        targetField?.constraints ??
+        (targetField?.library ? (getSegmentFile(targetField.library) as unknown as { constraints?: SegmentConstraints })?.constraints : undefined);
+      if (cForClamp?.maxLength !== undefined && typeof value === "string" && value.length > cForClamp.maxLength) {
+        const isTextLike = targetField?.type === "text" || targetField?.allowCustomValue || targetField?.customOnly;
+        if (isTextLike) {
+          const clamped = value.slice(0, cForClamp.maxLength);
+          const applyClamp = (arr: BuilderSegment[]) => arr.map((s) => (s.key === key ? { ...s, value: clamped } : s));
+          if (mutated) return applyClamp(mutatedNext);
+          return applyClamp(next);
+        }
+      }
+
+      if (mutated) return mutatedNext;
       return next;
     });
 

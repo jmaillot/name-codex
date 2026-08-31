@@ -1,7 +1,8 @@
 import { ArrowDown, ArrowUp, Lock, Pin, Star, X } from "lucide-react";
 import { tl } from "../lib/i18n-utils";
-import { getGeneratorFile } from "../lib/data";
+import { getGeneratorFile, getSegmentFile } from "../lib/data";
 import { caPolicyIdFallbackRange, caPolicyIdRange, personaRangeKeyForField } from "../lib/generators";
+import type { SegmentConstraints } from "../types/Rule";
 import {
   fieldByName,
   fieldTip,
@@ -35,6 +36,9 @@ type SegmentEditorProps = {
 export default function SegmentEditor({ segment, index, convention, fields, segments, onUpdate, onMove, onRemove }: SegmentEditorProps) {
   const field = fieldByName(fields, segment.sourceName);
   const options = optionsForSegment(field, segments, convention);
+  const constraints: SegmentConstraints | undefined =
+    (field as unknown as { constraints?: SegmentConstraints })?.constraints ??
+    (field?.library ? (getSegmentFile(field.library) as unknown as { constraints?: SegmentConstraints })?.constraints : undefined);
 
   const caRange = (() => {
     if (!field?.customOnly || !field.generator) return undefined;
@@ -186,6 +190,7 @@ export default function SegmentEditor({ segment, index, convention, fields, segm
           ) : (
             <input
               value={segment.value}
+              maxLength={constraints?.maxLength}
               onChange={(e) => onUpdate(segment.key, e.target.value)}
               placeholder={
                 field?.examples?.length
@@ -215,6 +220,7 @@ export default function SegmentEditor({ segment, index, convention, fields, segm
         ) : (
           <input
             value={segment.value}
+            maxLength={constraints?.maxLength}
             onChange={(e) => onUpdate(segment.key, e.target.value)}
             placeholder={
               field?.examples?.length
@@ -222,6 +228,11 @@ export default function SegmentEditor({ segment, index, convention, fields, segm
                 : field?.placeholder ?? segment.label
             }
           />
+        )}
+        {constraints && (constraints.allowedPattern || constraints.minLength !== undefined || constraints.maxLength !== undefined) && (
+          <span className="constraint-hint" style={{ fontSize: "0.75rem", color: "var(--text-secondary)" }}>
+            {constraints.allowedPattern ? `Pattern ${constraints.allowedPattern}` : ""} {constraints.minLength !== undefined ? ` min ${constraints.minLength}` : ""} {constraints.maxLength !== undefined ? ` max ${constraints.maxLength}` : ""}
+          </span>
         )}
       </div>
 

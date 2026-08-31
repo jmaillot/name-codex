@@ -1,5 +1,6 @@
 {
   "name": "Environment",
+  "constraints": { "allowedPattern": "^[A-Za-z]+$", "minLength": 3, "maxLength": 8 },
   "values": [
     {
       "value": "PROD",

@@ -24,6 +24,7 @@ export interface NamingField {
   allowedValuesByField?: Record<string, Record<string, string[]>>;
   maxLengthBudget?: { dependsOn: string };
   allowedPattern?: string;
+  constraints?: SegmentConstraints;
   examples?: string[];
   tip?: string;
 }

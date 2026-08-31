@@ -1,5 +1,6 @@
 {
   "name": "Instance",
+  "constraints": { "allowedPattern": "^[0-9]{3}$", "minLength": 3, "maxLength": 3 },
   "values": [
     {
       "value": "001",

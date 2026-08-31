@@ -40,7 +40,7 @@ Toute bibliothèque de segments peut déclarer UN objet `constraints` optionnel 
 
 Les clés sont indépendantes : omettez une clé pour laisser cet axe sans contrainte, et `constraints: {}` est une no-op valide.
 
-Exemple bien formé (**illustratif seulement** — aucun fichier du catalogue livré n'utilise de contraintes aujourd'hui) :
+Exemple bien formé (ex. `core/region` livre des contraintes live depuis v1.7) :
 
 ```json
 {
@@ -71,4 +71,4 @@ Les échecs sont rapportés en mode « collect-all » : le gate scanne chaque fi
 
 Le gate valide **uniquement la bonne formation de la déclaration** : il vérifie que `allowedPattern` est une string qui compile via `new RegExp()` (elle n'est jamais exécutée), et que `minLength`/`maxLength` sont des entiers non négatifs avec `minLength ≤ maxLength`.
 
-Il ne vérifie PAS si les entrées existantes de `values[]` satisfont les contraintes déclarées, et il n'exécute jamais le motif sur aucune entrée. L'application des contraintes au runtime/dans le builder est un périmètre futur.
+Il ne vérifie PAS si les entrées existantes de `values[]` satisfont les contraintes déclarées, et il n'exécute jamais le motif sur aucune entrée. Les bibliothèques de segments peuvent déclarer `constraints: { allowedPattern, minLength, maxLength }` — live depuis v1.7 (live since v1.7). `allowedPattern` est une regex brute ancrée (ex. `"^[A-Z0-9]{2,4}$"`), jamais enveloppée ; `minLength`/`maxLength` sont des entiers ≥ 0 avec `minLength <= maxLength`. Validé par `check:data` (compilation seule) et appliqué dans le builder : listes filtrées par `allowedPattern`, saisies bridées par `maxLength`, lignes de validation pour les trois.

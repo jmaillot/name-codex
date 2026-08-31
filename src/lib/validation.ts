@@ -1,7 +1,7 @@
 import { tl } from "./i18n-utils";
-import { validationRules } from "./data";
+import { getSegmentFile, validationRules } from "./data";
 import { expandedLength } from "./macros";
-import type { NamingConvention, NamingField } from "../types/Rule";
+import type { NamingConvention, NamingField, SegmentConstraints } from "../types/Rule";
 import type { BuilderSegment } from "./segments";
 
 export type ValidationResult = { label: string; valid: boolean };
@@ -85,6 +85,44 @@ export function validateName(name: string, convention: NamingConvention, segment
         label: tl("ui.valFieldPattern", `Segment ${field.name} respects its allowed characters`, { name: field.name }),
         valid: new RegExp(field.allowedPattern as string).test(segment.value) || segment.value.length === 0,
       });
+    });
+  });
+
+  // SegmentConstraints validation (Phase 19, WIRE-01) — additive rows, distinct keys
+  (fields ?? []).forEach((field) => {
+    const constraints: SegmentConstraints | undefined =
+      (field as unknown as { constraints?: SegmentConstraints }).constraints ??
+      (field.library ? (getSegmentFile(field.library) as unknown as { constraints?: SegmentConstraints })?.constraints : undefined);
+    if (!constraints) return;
+    segments.forEach((segment) => {
+      if (segment.sourceName !== field.name) return;
+      const val = segment.value;
+      if (val.length === 0) return;
+      if (constraints.allowedPattern) {
+        let passes = true;
+        try {
+          const re = new RegExp(constraints.allowedPattern);
+          passes = re.test(val.length > 256 ? val.slice(0, 256) : val);
+        } catch {
+          passes = true;
+        }
+        results.push({
+          label: tl("ui.valConstraintPattern", `Segment ${field.name} matches required pattern`, { name: field.name }),
+          valid: passes,
+        });
+      }
+      if (typeof constraints.minLength === "number") {
+        results.push({
+          label: tl("ui.valConstraintMinLength", `Segment ${field.name} is at least ${constraints.minLength} characters`, { name: field.name, min: constraints.minLength }),
+          valid: val.length >= constraints.minLength,
+        });
+      }
+      if (typeof constraints.maxLength === "number") {
+        results.push({
+          label: tl("ui.valConstraintMaxLength", `Segment ${field.name} is at most ${constraints.maxLength} characters`, { name: field.name, max: constraints.maxLength }),
+          valid: val.length <= constraints.maxLength,
+        });
+      }
     });
   });
 

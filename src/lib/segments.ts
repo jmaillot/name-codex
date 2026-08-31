@@ -3,7 +3,7 @@ import { getGeneratorFile, getSegmentFile, segmentCatalog } from "./data";
 import { caPolicyIdOptionsForRange, generateValues, normalizeSegmentValues, personaRangeKeyForField } from "./generators";
 import { expandedLength } from "./macros";
 import { patternToSegments } from "./parse";
-import type { DropdownValue, NamingConvention, NamingField, NamingFieldOption } from "../types/Rule";
+import type { DropdownValue, NamingConvention, NamingField, NamingFieldOption, SegmentConstraints } from "../types/Rule";
 
 export type SegmentValue = {
   value: string;
@@ -13,7 +13,39 @@ export type SegmentValue = {
 export type SegmentFile = {
   name: string;
   values?: SegmentValue[];
+  constraints?: SegmentConstraints;
 };
+
+const constraintPatternCache = new Map<string, RegExp>();
+export const __constraintPatternCache = constraintPatternCache;
+
+export function getConstraintsForField(field?: NamingField): SegmentConstraints | undefined {
+  if (field?.constraints) return field.constraints;
+  if (field?.library) {
+    const segFile = getSegmentFile(field.library);
+    return segFile?.constraints;
+  }
+  return undefined;
+}
+
+function matchesConstraintPattern(value: string, pattern: string): boolean {
+  if (value === "") return true;
+  const capped = value.length > 256 ? value.slice(0, 256) : value;
+  let re = constraintPatternCache.get(pattern);
+  if (!re) {
+    try {
+      re = new RegExp(pattern);
+    } catch {
+      return true;
+    }
+    constraintPatternCache.set(pattern, re);
+  }
+  try {
+    return re.test(capped);
+  } catch {
+    return true;
+  }
+}
 
 export type BuilderSegment = { key: string; sourceName: string; label: string; value: string; custom?: boolean };
 
@@ -170,6 +202,12 @@ export function valuesForField(field?: NamingField): NamingFieldOption[] {
     }
   }
 
+  const constraints = getConstraintsForField(field);
+  if (constraints?.allowedPattern) {
+    const filtered = options.filter((o) => matchesConstraintPattern(optionValue(o), constraints.allowedPattern!));
+    if (filtered.length > 0 || options.length === 0) options = filtered;
+  }
+
   return options;
 }
 
@@ -258,6 +296,12 @@ export function optionsForSegment(
       const el = expandedLength(optionValue(o));
       return el === null || el <= remaining; // %SERIAL% unknowable → keep
     });
+  }
+
+  const segConstraints = getConstraintsForField(field);
+  if (segConstraints?.allowedPattern) {
+    const filtered = options.filter((o) => matchesConstraintPattern(optionValue(o), segConstraints.allowedPattern!));
+    if (filtered.length > 0 || options.length === 0) options = filtered;
   }
 
   return options;

@@ -40,7 +40,7 @@ Any segment library may declare ONE optional top-level `constraints` object. It 
 
 The keys are independent: omit a key to leave that axis unconstrained, and `constraints: {}` is a valid no-op.
 
-Well-formed example (**illustrative only** — no shipped catalog file uses constraints today):
+Well-formed example (e.g. `core/region` ships with constraints live since v1.7):
 
 ```json
 {
@@ -71,4 +71,4 @@ Failures are reported collect-all style: the gate scans every file and prints on
 
 The gate validates **declaration well-formedness only**: it checks that `allowedPattern` is a string that compiles via `new RegExp()` (it is never executed), and that `minLength`/`maxLength` are non-negative integers with `minLength ≤ maxLength`.
 
-It does NOT check whether existing `values[]` entries satisfy the declared constraints, and it never executes the pattern against any input. Runtime/builder enforcement of constraints is future scope.
+It does NOT check whether existing `values[]` entries satisfy the declared constraints, and it never executes the pattern against any input. Segment libraries may declare `constraints: { allowedPattern, minLength, maxLength }` — live since v1.7. `allowedPattern` is a raw anchored regex (e.g. `"^[A-Z0-9]{2,4}$"`), never wrapped; `minLength`/`maxLength` are non-negative integers with `minLength <= maxLength`. Validated by `check:data` (compile-only) and enforced in the builder: dropdowns filtered by `allowedPattern`, inputs clamped by `maxLength`, validation rows for all three.

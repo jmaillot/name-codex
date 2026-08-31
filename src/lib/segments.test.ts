@@ -285,3 +285,39 @@ describe("assembleRawName", () => {
     expect(result).toBe("STapp")
   })
 })
+
+describe("valuesForField constraint filtering", () => {
+  it("filters options by allowedPattern", () => {
+    const field: NamingField = { name: "Env", values: ["AB", "ABC", "ABCDE"], constraints: { allowedPattern: "^[A-Z]{3,4}$" } } as any
+    const result = valuesForField(field)
+    expect(result).toEqual(["ABC"])
+  })
+
+  it("empty-guard keeps original when filter would empty non-empty list", () => {
+    const field: NamingField = { name: "Env", values: ["XY"], constraints: { allowedPattern: "^[0-9]+$" } } as any
+    const result = valuesForField(field)
+    expect(result).toEqual(["XY"])
+  })
+
+  it("no constraints returns unfiltered options", () => {
+    const field: NamingField = { name: "Env", values: ["a", "b", "c"] }
+    expect(valuesForField(field)).toEqual(["a", "b", "c"])
+  })
+
+  it("minLength/maxLength alone do not filter dropdowns", () => {
+    const field: NamingField = { name: "Env", values: ["a", "ab", "abc"], constraints: { minLength: 2, maxLength: 2 } } as any
+    expect(valuesForField(field)).toEqual(["a", "ab", "abc"])
+  })
+})
+
+describe("optionsForSegment constraint filtering", () => {
+  it("filters by allowedPattern", () => {
+    const field: NamingField = { name: "Env", values: ["AB", "ABC", "ABCD", "ABCDE"], constraints: { allowedPattern: "^[A-Z]{3,4}$" } } as any
+    expect(optionsForSegment(field, [])).toEqual(["ABC", "ABCD"])
+  })
+
+  it("empty-guard keeps original when filter would empty", () => {
+    const field: NamingField = { name: "Env", values: ["XY"], constraints: { allowedPattern: "^[0-9]+$" } } as any
+    expect(optionsForSegment(field, [])).toEqual(["XY"])
+  })
+})

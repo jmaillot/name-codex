@@ -1,7 +1,8 @@
 import { tl } from "../lib/i18n-utils";
+import { getSegmentFile } from "../lib/data";
 import { optionLabel, optionValue } from "../lib/segments";
 import type { BuilderSegment } from "../lib/segments";
-import type { NamingField, NamingFieldOption } from "../types/Rule";
+import type { NamingField, NamingFieldOption, SegmentConstraints } from "../types/Rule";
 
 type EditableSuggestionsProps = {
   segment: BuilderSegment;
@@ -11,6 +12,9 @@ type EditableSuggestionsProps = {
 };
 
 export default function EditableSuggestions({ segment, field, options, onUpdate }: EditableSuggestionsProps) {
+  const constraints: SegmentConstraints | undefined =
+    (field as unknown as { constraints?: SegmentConstraints })?.constraints ??
+    (field?.library ? (getSegmentFile(field.library) as unknown as { constraints?: SegmentConstraints })?.constraints : undefined);
   const availableValues = options.map(optionValue);
 
   const isCustomValue =
@@ -52,6 +56,7 @@ export default function EditableSuggestions({ segment, field, options, onUpdate 
       <div className="custom-input-wrapper">
         <input
           value={segment.value}
+          maxLength={constraints?.maxLength}
           onChange={(e) =>
             onUpdate(segment.key, e.target.value)
           }

@@ -2,7 +2,7 @@
   "id": "intune-app-configuration",
   "category": "Intune",
   "name": "Application Configuration Policy",
-  "description": "App configuration policy that pre-configures settings inside a managed app for enrolled devices or managed apps: ACP-<scope>-<enrollment type>-<platform>-<application>-<descriptor>.",
+  "description": "Intune App Configuration policy naming per governance. Policy pre-configures settings inside a managed app for enrolled devices or managed apps, with consistent naming for platform, scope and purpose.",
   "pattern": "ACP-[Scope]-[EnrollmentType]-[Platform]-[Application]-[Descriptor]",
   "fields": [
     {

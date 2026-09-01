@@ -2,7 +2,7 @@
   "id": "exchange-room-equip",
   "category": "Exchange",
   "name": "Room Mailbox / Equipment Mailbox",
-  "description": "Resource mailbox for bookable rooms or equipment, integrated with Outlook calendar scheduling.",
+  "description": "Exchange Resource Mailbox naming per governance. Resource mailbox for bookable rooms or equipment, integrated with Outlook calendar scheduling, with consistent naming for location, floor and resource identification.",
   "pattern": "[MailboxType]-[Department]-[City]-[Floor]-[Name]",
   "fields": [
     {

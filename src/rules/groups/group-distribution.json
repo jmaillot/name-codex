@@ -2,7 +2,7 @@
   "id": "exchange-distribution-group",
   "category": "Groups",
   "name": "Distribution Group",
-  "description": "Distribution list for sending email to a defined set of recipients, optionally scoped to internal-only or external senders.",
+  "description": "Distribution List naming per governance. Distribution list for sending email to a defined set of recipients, optionally scoped to internal or external senders, with consistent prefix, scope and department taxonomy for mail flow management.",
   "pattern": "[Location]-[Prefix]-[Scope]-[Department]-[Purpose]",
   "fields": [
     {

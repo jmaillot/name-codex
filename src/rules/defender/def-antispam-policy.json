@@ -2,7 +2,7 @@
   "id": "defender-antispam-policy",
   "category": "Defender for M365",
   "name": "Defender Anti-Spam Policy",
-  "description": "Anti-spam policy protecting against spam and phishing threats, directional inbound or outbound.",
+  "description": "Defender Anti-Spam policy naming per Microsoft 365 governance. Policy name identifies the anti-spam and anti-phishing protection scope, including direction (inbound or outbound) and workload. Follows Defender governance for threat protection.",
   "pattern": "DEF-ANTISPAM-[Direction]-[ScopeType]-[Descriptor]-[Environment]-[Version]",
   "fields": [
     {

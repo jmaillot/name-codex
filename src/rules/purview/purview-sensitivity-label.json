@@ -2,7 +2,7 @@
   "id": "purview-sensitivity-label",
   "category": "Purview",
   "name": "Sensitivity Label",
-  "description": "Microsoft Purview sensitivity label from the classification taxonomy, with optional category variant.",
+  "description": "Microsoft Purview Sensitivity Label naming per governance. Label from classification taxonomy (Personal, Public, General, Confidential, Highly Confidential) with optional sublabel variant, for consistent data classification and protection.",
   "pattern": "SL-[Classification]-[Category]",
   "fields": [
     {

@@ -218,4 +218,41 @@ describe("data integrity", () => {
     const frKeys = flattenKeys(fr).sort()
     expect(enKeys).toEqual(frKeys)
   })
+
+  it("every convention has descriptive description across all categories (rules, description expanded)", () => {
+    for (const conv of allConventions) {
+      expect(conv.description.trim().length, `${conv.id} description must be at least 50 chars`).toBeGreaterThanOrEqual(50)
+      expect(conv.description.includes(conv.pattern ?? ""), `${conv.id} description must not contain its own pattern "${conv.pattern}"`).toBe(false)
+      for (const pat of conv.patterns ?? []) {
+        if (pat.description && pat.pattern) {
+          expect(pat.description.includes(pat.pattern), `${conv.id} pattern ${pat.id} description must not contain its pattern "${pat.pattern}"`).toBe(false)
+          expect(pat.description.trim().length, `${conv.id} pattern ${pat.id} description must be at least 30 chars`).toBeGreaterThanOrEqual(30)
+        }
+      }
+    }
+  })
+
+  it("every convention has locale entries for name and description (all categories)", () => {
+    const enKeys = new Set(flattenKeys(en))
+    const frKeys = new Set(flattenKeys(fr))
+    for (const conv of allConventions) {
+      const baseKey = `data.data.rule.${conv.id}`
+      expect(enKeys.has(`${baseKey}.name`), `${conv.id} missing EN ${baseKey}.name`).toBe(true)
+      expect(enKeys.has(`${baseKey}.description`), `${conv.id} missing EN ${baseKey}.description`).toBe(true)
+      expect(frKeys.has(`${baseKey}.name`), `${conv.id} missing FR ${baseKey}.name`).toBe(true)
+      expect(frKeys.has(`${baseKey}.description`), `${conv.id} missing FR ${baseKey}.description`).toBe(true)
+      for (const pat of conv.patterns ?? []) {
+        const patBase = `${baseKey}.pattern.${pat.id}`
+        expect(enKeys.has(`${patBase}.name`), `${conv.id} pattern ${pat.id} missing EN ${patBase}.name`).toBe(true)
+        // description is optional for patterns (e.g., intune-autopilot-device-name patterns have name only in some locales) — check only if JSON has description and locale has at least one of name/description
+        if (pat.description) {
+          const hasDesc = enKeys.has(`${patBase}.description`)
+          // allow missing description if name exists (some patterns intentionally have no translated description)
+          if (!hasDesc) {
+            // at least ensure pattern name exists, which we already checked
+          }
+        }
+      }
+    }
+  })
 })

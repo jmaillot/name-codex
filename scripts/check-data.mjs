@@ -62,6 +62,26 @@ export function validateRule(json, filePath) {
   // D-02: top-level rule description must exist and be non-empty.
   if (!isNonEmptyString(json?.description)) {
     violations.push({ file: filePath, reason: 'description must be a non-empty string' });
+  } else {
+    // Expanded check for all categories (rules, description): description must be descriptive, not basic one-liner
+    if (json.description.trim().length < 50) {
+      violations.push({ file: filePath, reason: `description must be at least 50 characters (got ${json.description.trim().length}) — expand to CAF/governance detail` });
+    }
+    if (json.pattern && typeof json.pattern === 'string' && json.description.includes(json.pattern)) {
+      violations.push({ file: filePath, reason: `description must not contain pattern string "${json.pattern}" — keep pattern separate from description` });
+    }
+    // Also check patterns[] descriptions if present
+    if (Array.isArray(json.patterns)) {
+      for (let pi = 0; pi < json.patterns.length; pi++) {
+        const pat = json.patterns[pi];
+        if (pat && typeof pat.description === 'string' && typeof pat.pattern === 'string' && pat.description.includes(pat.pattern)) {
+          violations.push({ file: filePath, reason: `patterns[${pi}].description must not contain pattern string "${pat.pattern}"` });
+        }
+        if (pat && typeof pat.description === 'string' && pat.description.trim().length > 0 && pat.description.trim().length < 30) {
+          violations.push({ file: filePath, reason: `patterns[${pi}].description must be at least 30 characters (got ${pat.description.trim().length}) — expand from basic one-liner` });
+        }
+      }
+    }
   }
   if (!isNonEmptyString(json?.pattern)) {
     violations.push({ file: filePath, reason: 'pattern must be a non-empty string' });

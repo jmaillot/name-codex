@@ -2,7 +2,7 @@
   "id": "groups-pim",
   "category": "Groups",
   "name": "PIM / JIT Group",
-  "description": "Privileged Identity Management group for just-in-time access to privileged roles and resources.",
+  "description": "Privileged Identity Management (PIM) Group naming per governance. PIM group for just-in-time access to privileged roles and resources, with consistent naming for audit, eligibility and access reviews.",
   "pattern": "[Prefix]-[PimRoles]-[Scope]-[AccessType]-[Environment]",
   "fields": [
     {

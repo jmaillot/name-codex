@@ -2,7 +2,7 @@
   "id": "defender-quarantine-policy",
   "category": "Defender for M365",
   "name": "Defender Quarantine Policy",
-  "description": "Quarantine policy controlling end-user access and notifications for quarantined messages.",
+  "description": "Defender Quarantine policy naming per governance. Policy controls end-user access and notification behavior for quarantined messages, with consistent naming for security operations and user communication.",
   "pattern": "QUARANTINE-[QuarantineScope]-[AccessLevel]-[Notify]",
   "fields": [
     {

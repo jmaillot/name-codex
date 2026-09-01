@@ -2,7 +2,7 @@
   "id": "intune-autopilot-profile",
   "category": "Intune",
   "name": "Autopilot Profile",
-  "description": "Windows Autopilot deployment profile naming: APT-<country>-<device type>-<purpose>.",
+  "description": "Windows Autopilot Deployment Profile naming per governance. Profile name encodes country, device type and purpose taxonomy (APT-<country>-<device type>-<purpose>) for consistent device provisioning and dynamic group assignment.",
   "pattern": "APT-[Country]-[DeviceType]-[Purpose]",
   "fields": [
     {

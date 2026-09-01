@@ -277,7 +277,7 @@ describe('validateRule', () => {
     id: 'azure-key-vault',
     category: 'Azure',
     name: 'Key Vault',
-    description: 'Azure key vault naming per CAF.',
+    description: 'Azure Key Vault naming per CAF (Microsoft Cloud Adoption Framework). Vault names are publicly resolvable and globally unique: 3–24 characters, lowercase, hyphens only.',
     pattern: 'kv-[Workload]-[Environment]',
     fields: [
       {

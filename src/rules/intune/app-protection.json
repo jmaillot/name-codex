@@ -2,7 +2,7 @@
   "id": "intune-app-protection",
   "category": "Intune",
   "name": "Application Protection Policy",
-  "description": "App protection policy (MAM) that protects organizational data within managed apps, independent of device enrollment: MAM-<scope>-<platform>-<target>-<purpose>.",
+  "description": "Intune App Protection policy (MAM) naming per governance. Policy protects organizational data within managed apps independent of device enrollment, with consistent naming for platform, scope and data protection level.",
   "pattern": "MAM-[Scope]-[Platform]-[Target]-[Purpose]",
   "fields": [
     {

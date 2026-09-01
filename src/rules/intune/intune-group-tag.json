@@ -2,7 +2,7 @@
   "id": "intune-group-tag",
   "category": "Intune",
   "name": "Autopilot Group Tag",
-  "description": "Autopilot Group Tag: drives dynamic group membership and per-group Autopilot profile assignment: AGT-<country>-<device type>-<purpose>.",
+  "description": "Intune Autopilot Group Tag naming per governance. Group tag drives dynamic group membership and per-group Autopilot profile assignment, with consistent naming for model, purpose and scope.",
   "pattern": "AGT-[Country]-[DeviceType]-[Purpose]",
   "fields": [
     {

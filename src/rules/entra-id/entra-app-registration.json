@@ -2,7 +2,7 @@
   "id": "entra-app-registration",
   "category": "Entra ID",
   "name": "Application Registration",
-  "description": "Microsoft Entra App Registration naming.",
+  "description": "Microsoft Entra App Registration naming per Microsoft identity governance. App registration name encodes organization, workload, environment and purpose taxonomy for consistent identity lifecycle management and access control.",
   "pattern": "[Tool]-[Function]-[AccessLevel]-[Environment]-[Version]",
   "fields": [
     {

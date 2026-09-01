@@ -2,7 +2,7 @@
   "id": "intune-compliance-policy",
   "category": "Intune",
   "name": "Compliance Policy",
-  "description": "Device compliance policy that evaluates whether a device meets your organization's security requirements.",
+  "description": "Intune Device Compliance policy naming per governance. Policy evaluates whether a device meets organizational security and compliance requirements, with consistent naming for platform, scope and compliance baseline.",
   "pattern": "CMP-[ScopeTag]-[OS]-[Assignments]-[Descriptor]-[Environment]-[Version]",
   "fields": [
     {

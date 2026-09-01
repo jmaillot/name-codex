@@ -2,7 +2,7 @@
   "id": "exchange-shared-mailbox",
   "category": "Exchange",
   "name": "Shared Mailbox",
-  "description": "Shared mailbox accessible by multiple users for monitoring and sending from a common email address.",
+  "description": "Exchange Shared Mailbox naming per governance. Shared mailbox accessible by multiple users for monitoring and sending from a common email address, with consistent naming for ownership and purpose.",
   "pattern": "[MailboxType]-[Department]-[Function]-[City]",
   "fields": [
     {

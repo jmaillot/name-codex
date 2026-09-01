@@ -2,7 +2,7 @@
   "id": "defender-m365-policy",
   "category": "Defender for M365",
   "name": "Defender for M365 - Other Policies Type",
-  "description": "Protects against impersonation, spoofing, and phishing attacks targeting your recipients.",
+  "description": "Defender for Microsoft 365 policy naming per governance. Policy protects against impersonation, spoofing, and phishing attacks targeting recipients, with consistent naming for audit and operational management.",
   "pattern": "DEF-[DefPolicyType]-[ScopeType]-[Descriptor]-[Environment]-[Version]",
   "fields": [
     {

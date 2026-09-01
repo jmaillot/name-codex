@@ -2,7 +2,7 @@
   "id": "endpoint-security-policy",
   "category": "Intune",
   "name": "Endpoint Security Policy",
-  "description": "Endpoint security policies for devices, covering antivirus, firewall, attack surface reduction, and endpoint detection and response.",
+  "description": "Intune Endpoint Security policy naming per governance. Policy covers antivirus, firewall, attack surface reduction and endpoint detection and response for device security, with consistent naming for profile type and scope.",
   "pattern": "SEC-[ScopeTag]-[OS]-[IntProfileType]-[Assignments]-[Descriptor]-[Environment]-[Version]",
   "fields": [
     {

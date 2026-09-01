@@ -1,0 +1,42 @@
+{
+  "name": "Purpose",
+  "constraints": {
+    "allowedPattern": "^[A-Z]+$",
+    "minLength": 2,
+    "maxLength": 14
+  },
+  "values": [
+    {
+      "value": "INTEGRATION",
+      "description": "Integration"
+    },
+    {
+      "value": "IOT",
+      "description": "IoT"
+    },
+    {
+      "value": "TELEMETRY",
+      "description": "Telemetry"
+    },
+    {
+      "value": "ANALYTICS",
+      "description": "Analytics"
+    },
+    {
+      "value": "PLATFORM",
+      "description": "Platform"
+    },
+    {
+      "value": "DATA",
+      "description": "Data"
+    },
+    {
+      "value": "EVENTING",
+      "description": "Eventing"
+    },
+    {
+      "value": "SHARED",
+      "description": "Shared"
+    }
+  ]
+}

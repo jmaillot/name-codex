@@ -6,11 +6,45 @@
     "maxLength": 14
   },
   "values": [
-    { "value": "ORDERS", "description": "Orders" },
-    { "value": "PAYMENTS", "description": "Payments" },
-    { "value": "TELEMETRY", "description": "Telemetry" },
-    { "value": "EVENTS", "description": "Events" },
-    { "value": "NOTIFICATIONS", "description": "Notifications" },
-    { "value": "ANALYTICS", "description": "Analytics" }
+    {
+      "value": "ORDERS",
+      "description": "Orders"
+    },
+    {
+      "value": "CUSTOMERS",
+      "description": "Customers"
+    },
+    {
+      "value": "AUDIT",
+      "description": "Audit"
+    },
+    {
+      "value": "LOGGING",
+      "description": "Logging"
+    },
+    {
+      "value": "TELEMETRY",
+      "description": "Telemetry"
+    },
+    {
+      "value": "METRICS",
+      "description": "Metrics"
+    },
+    {
+      "value": "DEVICES",
+      "description": "Devices"
+    },
+    {
+      "value": "NOTIFICATIONS",
+      "description": "Notifications"
+    },
+    {
+      "value": "EVENTS",
+      "description": "Events"
+    },
+    {
+      "value": "SECURITY",
+      "description": "Security"
+    }
   ]
 }

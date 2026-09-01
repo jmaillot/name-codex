@@ -2,13 +2,13 @@
   "id": "azure-event-hub",
   "category": "Azure",
   "name": "Event Hub",
-  "description": "Azure Event Hub naming per CAF \u2014 Namespace 6\u201350 characters and Event Hub (entity) 1\u201350 characters, lowercase letters, numbers and hyphens, start letter, no consecutive hyphens. File exposes two patterns: namespace evh-[Workload]-[Environment]-[Region]-[Instance] and hub evh-[Purpose].",
-  "pattern": "evh-[Workload]-[Environment]-[Region]-[Instance]",
+  "description": "Azure Event Hub naming per CAF \u2014 Namespace EVHNS-[Purpose]-[Environment] (6\u201350 chars) and Event Hub EVH-[Workload]-[Purpose]-[Environment] (1\u201350 chars), lowercase letters, numbers and hyphens, start letter, no consecutive hyphens.",
+  "pattern": "evhns-[Purpose]-[Environment]",
   "fields": [
     {
-      "name": "Workload",
-      "library": "azure/evh-workload",
-      "defaultValue": "INGEST",
+      "name": "Purpose",
+      "library": "azure/evh-ns-purpose",
+      "defaultValue": "INTEGRATION",
       "allowCustomValue": true
     },
     {
@@ -16,50 +16,67 @@
       "library": "core/environment",
       "defaultValue": "PROD",
       "allowCustomValue": true
-    },
-    {
-      "name": "Region",
-      "library": "core/region",
-      "defaultValue": "FRC",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Instance",
-      "library": "core/instance",
-      "defaultValue": "001",
-      "allowCustomValue": true
     }
   ],
   "patterns": [
     {
       "id": "namespace",
       "name": "Namespace",
-      "description": "Event Hub Namespace. Globally unique, 6\u201350 characters, lowercase, hyphenated.",
-      "pattern": "evh-[Workload]-[Environment]-[Region]-[Instance]",
-      "examples": ["evh-ingest-prod-frc-001"]
+      "description": "Event Hub Namespace. Globally unique, 6\u201350 characters, lowercase, hyphenated. Pattern EVHNS-[Purpose]-[Environment].",
+      "pattern": "evhns-[Purpose]-[Environment]",
+      "examples": [
+        "evhns-integration-prod"
+      ]
     },
     {
       "id": "hub",
       "name": "Event Hub",
-      "description": "Event Hub entity within a namespace. Name identifies the streaming hub purpose.",
-      "pattern": "evh-[Purpose]",
+      "description": "Event Hub entity within a namespace. Pattern EVH-[Workload]-[Purpose]-[Environment].",
+      "pattern": "evh-[Workload]-[Purpose]-[Environment]",
       "fields": [
+        {
+          "name": "Workload",
+          "library": "azure/evh-workload",
+          "defaultValue": "CRM",
+          "allowCustomValue": true
+        },
         {
           "name": "Purpose",
           "library": "azure/evh-hub-purpose",
           "defaultValue": "ORDERS",
           "allowCustomValue": true
+        },
+        {
+          "name": "Environment",
+          "library": "core/environment",
+          "defaultValue": "PROD",
+          "allowCustomValue": true
         }
       ],
-      "examples": ["evh-orders"]
+      "examples": [
+        "evh-crm-orders-prod"
+      ]
     }
   ],
-  "examples": ["evh-ingest-prod-frc-001"],
+  "examples": [
+    "evhns-integration-prod"
+  ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Workload", "Purpose", "Environment", "Region", "Instance", "Custom"],
-    "recommendedSegments": ["Workload", "Purpose"],
+    "defaultSegments": [
+      "Purpose",
+      "Environment"
+    ],
+    "availableSegments": [
+      "Workload",
+      "Purpose",
+      "Environment",
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Workload",
+      "Purpose"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []

@@ -10,7 +10,7 @@
 - ✅ **v1.5 Naming Convention Expansion** — Phases 13-15 (shipped 2026-08-25)
 - ✅ **v1.6 Data Integrity** — Phases 16-18 (shipped 2026-08-28)
 - ✅ **v1.7 Constraint Wiring & CAF Expansion** — Phases 19-20 (shipped 2026-08-31)
-- 🚧 **v1.8 Data Tier + Observability + Network Edge** — Phases 21-23 (planned, validated 1-3 + dept)
+- ✅ **v1.8 Data Tier + Observability + Network Edge** — Phases 21-23 (shipped 2026-09-01, 59 conventions, Azure 27, 128 files PASS)
 
 ## Phases
 
@@ -130,13 +130,13 @@ Shipped: 50 conventions (111 files, EN 628 FR 628), Service Bus/AKS/VNet GW grou
 
 **Plans:** TBD by plan-phase (coarse granularity — six rule files + workload libs + locale keys batched, sequential for review or parallel after W-01).
 
-### 🚧 v1.8 Data Tier + Observability + Network Edge (Phases 21-23) — PLANNED 2026-09-01 (validated 1-3 + dept)
+### ✅ v1.8 Data Tier + Observability + Network Edge (Phases 21-23) — SHIPPED 2026-09-01 (59 conventions, Azure 27, 11 categories, 128 files PASS)
 
-**Goal:** Expand Azure CAF catalog with 10 high-demand data/network conventions + department taxonomy — all data-driven JSON, no code.
+**Goal:** Expand Azure CAF catalog with 10 high-demand data/network conventions + department taxonomy — all data-driven JSON, no code. Shipped: Phase 21 (sql/sqlsrv/apim/adf 53), Phase 22 (log/appi/evh 56), Phase 23 (lb/agw/afw + dept 5→9 59). Gates green.
 
 #### Phase 21: Data Tier — SQL + API Management + Data Factory (SQL-01..04)
 
-- [ ] **Status:** Planned — validated #1 (you approved 1-3 + dept)
+- [x] **Status:** Shipped 2026-09-01 (53 conventions, Azure 21, 115 files PASS, 238 tests) — validated #1
 - **Requirements:** SQL-01 (sql-server), SQL-02 (sql-db), APIM-01 (api-mgmt), ADF-01 (data-factory)
 - **Goal:** Ship `sqlsrv`/`sql` pair + `apim` + `adf` as CAF `sqlsrv/sql-[Workload]-[Env]-[Region]-[Instance]`, `apim-...`, `adf-...` with workload libs.
 
@@ -159,21 +159,21 @@ Shipped: 50 conventions (111 files, EN 628 FR 628), Service Bus/AKS/VNet GW grou
 
 #### Phase 23: Network Edge + Department Taxonomy (NET-01..03 + DEPT-01)
 
-- [ ] **Status:** Planned
-- **Requirements:** NET-01 (lb), NET-02 (agw), NET-03 (afw/bas), DEPT-01 (department 4→9)
-- **Goal:** Ship `lb`/`agw`/`afw` + expand `src/data/segments/core/department.json:3` with `LEGAL`/`MARKETING`/`SALES`/`SECURITY`/`RESEARCH` (dept 4→9).
+- [x] **Status:** Shipped 2026-09-01 (59 conventions, Azure 27, 128 files PASS, 238 tests, parity 816=816)
+- **Requirements:** NET-01 (lb), NET-02 (agw), NET-03 (afw), DEPT-01 (department 5→9)
+- **Goal:** Ship `lb`/`agw`/`afw` (`lb/agw/afw-[Workload]-[Environment]-[Region]-[Instance]` 80 strict lowercase) + expand `src/data/segments/core/department.json` 5→9 with `LEGAL`/`SALES`/`SECURITY`/`RESEARCH` (+Marketing, dept 5→9).
 
 | # | Deliverable | Success Criteria |
 |---|-------------|------------------|
-| 23a | Three network conventions | `lb`/`agw`/`afw` selectable. |
-| 23b | Department | `core/department` 4→9, `data.lib.core/department.*` EN/FR. |
-| 23c | Gates | 60→63 conventions, parity, gates green — milestone v1.8 shipped. |
+| 23a | Three network conventions | `lb`/`agw`/`afw` selectable, 80 strict `^(?!.*--)[a-z][a-z0-9-]{2,78}[a-z0-9]$` forceLowercase, inline Workload WEB/APP/API/SHARED — actual 56→59 (roadmap shorthand 60→63, Phase 22 landed 56; department is not a convention). |
+| 23b | Department | `core/department` 5→9, `data.lib.core/department.*` EN/FR 9 keys (Marketing+IT/HR/FIN/OPS+LEGAL/SALES/SECURITY/RESEARCH) parity 816=816. |
+| 23c | Gates | 128 files PASS, build/lint/tsc green, 238 tests — milestone v1.8 shipped. |
 
 ---
 
 _Requirements coverage: 7/7 REQ-IDs mapped — Phase 19 (WIRE-01), Phase 20 (CAF-01..06). See traceability table in `.planning/REQUIREMENTS.md`._
 
 _Milestone v1.7: 2 phases (19-20) | 7 requirements mapped | All covered._
-_Milestone v1.8: 3 phases (21-23) | 11 requirements mapped | Planned (validated 1-3 + dept)._
+_Milestone v1.8: 3 phases (21-23) | 11 requirements mapped | Shipped 2026-09-01 (53→56→59, Azure 21→24→27)._
 
 _Previous milestones archived under .planning/milestones/ (v1.0–v1.6). v1.7 to be archived on next close._

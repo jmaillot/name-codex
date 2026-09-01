@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { allConventions, getGeneratorFile, getSegmentFile } from "../lib/data";
+import { allConventions, getGeneratorFile, getSegmentFile, validationRules } from "../lib/data";
 import type { SegmentConstraints } from "../types/Rule";
 import { tl } from "../lib/i18n-utils";
 import { parsePattern, patternToSegments } from "../lib/parse";
@@ -331,9 +331,45 @@ export function useAppState() {
         } |`,
     ),
     "",
+    `## ${tl("ui.mdScore", "Governance Score")}`,
+    `${namingScore}/100`,
+    "",
     `## ${tl("ui.mdValidation", "Validation")}`,
     ...validationResults.map((r) => `- ${r.valid ? tl("ui.mdOk", "OK") : tl("ui.mdWarn", "WARN")} ${r.label}`),
   ].join("\n");
+
+  const jsonExport = JSON.stringify(
+    {
+      conventionId: selectedConvention.id,
+      conventionName: conventionName(selectedConvention),
+      pattern: activePattern,
+      dynamicPattern,
+      segments: builderSegments.map((s) => ({
+        name: s.sourceName,
+        label: s.label,
+        value: s.value,
+        custom: !!s.custom,
+        status: isFixedFirst(selectedConvention, s.sourceName)
+          ? "Fixed"
+          : isFixedLast(selectedConvention, s.sourceName)
+            ? "Fixed"
+            : isLocked(selectedConvention, s.sourceName)
+              ? "Locked"
+              : isRecommended(selectedConvention, s.sourceName)
+                ? "Recommended"
+                : s.custom
+                  ? "Custom"
+                  : "Optional",
+      })),
+      validation: (selectedConvention.validation as unknown) ?? (validationRules as Record<string, Record<string, unknown>>)[selectedConvention.category]?.[selectedConvention.name] ?? (validationRules as Record<string, unknown>).default ?? null,
+      fields: activeFields.map((f) => ({ name: f.name, label: fieldLabel(f, f.name) })),
+      generatedName,
+      namingScore,
+      validationResults,
+    },
+    null,
+    2,
+  );
 
   const referenceEntries = useMemo(() => builderSegments
     .map((segment) => {
@@ -610,6 +646,12 @@ export function useAppState() {
     else showFeedback("copy-failed");
   };
 
+  const copyJson = async () => {
+    const ok = await writeClipboard(jsonExport);
+    if (ok) showFeedback("json");
+    else showFeedback("copy-failed");
+  };
+
   const addFavorite = () => {
     if (!generatedName) return;
     const next = [generatedName, ...favorites].filter((v, i, a) => a.indexOf(v) === i).slice(0, 20);
@@ -668,6 +710,8 @@ export function useAppState() {
     namingScore,
     validationResults,
     markdown,
+    jsonExport,
+    copyJson,
     referenceEntries,
     favorites,
     clearFavorites,

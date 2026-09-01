@@ -36,6 +36,7 @@ export default function App() {
     actionFeedback,
     copyName,
     copyMarkdown,
+    copyJson,
     addFavorite,
     resetBuilder,
     patternModified,
@@ -50,6 +51,7 @@ export default function App() {
     namingScore,
     validationResults,
     markdown,
+    jsonExport,
     referenceEntries,
     favorites,
     clearFavorites,
@@ -91,6 +93,7 @@ export default function App() {
             actionFeedback={actionFeedback}
             onCopyName={copyName}
             onCopyMarkdown={copyMarkdown}
+            onCopyJson={copyJson}
             onAddFavorite={addFavorite}
             onResetBuilder={resetBuilder}
           />
@@ -110,8 +113,8 @@ export default function App() {
             onMoveSegment={moveSegment}
             onRemoveSegment={removeSegment}
           />
-          <ScoreCard namingScore={namingScore} validationResults={validationResults} />
-          <DocumentationCard markdown={markdown} />
+          <ScoreCard namingScore={namingScore} validationResults={validationResults} segments={builderSegments} fields={activeFields} convention={selectedConvention} generatedName={generatedName} onNavigateToSegment={(name) => { const el = document.querySelector(`[data-segment="${name}"]`); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); }} />
+          <DocumentationCard markdown={markdown} jsonExport={jsonExport} />
           <ReferenceCard referenceEntries={referenceEntries} />
           <FavoritesCard favorites={favorites} onClearFavorites={clearFavorites} />
           <HistoryCard history={history} onClearHistory={clearHistory} />

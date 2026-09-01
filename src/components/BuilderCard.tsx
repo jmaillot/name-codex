@@ -62,7 +62,7 @@ export default function BuilderCard({
         <code>{dynamicPattern}</code>
       </div>
 
-      <div className="builder-list">{segments.map((s, i) => <SegmentEditor key={s.key} segment={s} index={i} convention={convention} fields={fields} segments={segments} onUpdate={onUpdateSegment} onMove={onMoveSegment} onRemove={onRemoveSegment} />)}</div>
+      <div className="builder-list">{segments.map((s, i) => <div key={s.key} data-segment={s.sourceName} id={`segment-${s.sourceName}`}><SegmentEditor segment={s} index={i} convention={convention} fields={fields} segments={segments} onUpdate={onUpdateSegment} onMove={onMoveSegment} onRemove={onRemoveSegment} /></div>)}</div>
       <div className="add-segment-row">
         <input
           value={customSegmentName}

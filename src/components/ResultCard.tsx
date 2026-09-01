@@ -6,11 +6,12 @@ type ResultCardProps = {
   actionFeedback: string | null;
   onCopyName: () => void;
   onCopyMarkdown: () => void;
+  onCopyJson: () => void;
   onAddFavorite: () => void;
   onResetBuilder: () => void;
 };
 
-export default function ResultCard({ generatedName, actionFeedback, onCopyName, onCopyMarkdown, onAddFavorite, onResetBuilder }: ResultCardProps) {
+export default function ResultCard({ generatedName, actionFeedback, onCopyName, onCopyMarkdown, onCopyJson, onAddFavorite, onResetBuilder }: ResultCardProps) {
   return (
     <div className="glass-card result-card">
       <div className="card-header">
@@ -23,6 +24,9 @@ export default function ResultCard({ generatedName, actionFeedback, onCopyName, 
 
         <button className="ghost-button" onClick={onCopyMarkdown}>{tl("ui.copyMarkdown", "Copy Markdown")}</button>
         {actionFeedback === "markdown" && <span className="action-success">{tl("ui.copied", "✓ Copied")}</span>}
+
+        <button className="ghost-button" onClick={onCopyJson}>{tl("ui.copyJson", "Copy JSON")}</button>
+        {actionFeedback === "json" && <span className="action-success">{tl("ui.copied", "✓ Copied")}</span>}
         {actionFeedback === "copy-failed" && (
           <span className="action-warning">{tl("ui.copyFailed", "⚠ Copy failed — clipboard unavailable")}</span>
         )}

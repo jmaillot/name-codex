@@ -146,3 +146,70 @@ export function governanceScore(results: ValidationResult[]): number {
   if (results.length === 0) return 0;
   return Math.round((results.filter((r) => r.valid).length / results.length) * 100);
 }
+
+export function getValidationHint(
+  result: ValidationResult,
+  ctx?: { segments?: BuilderSegment[]; fields?: NamingField[]; convention?: NamingConvention; generatedName?: string },
+): string | null {
+  if (result.valid) return null;
+  const label = result.label;
+  const lower = label.toLowerCase();
+  const segments = ctx?.segments ?? [];
+  const convention = ctx?.convention;
+  const generatedName = ctx?.generatedName ?? "";
+
+  function extractSegmentName(): string | null {
+    const m1 = label.match(/Segment (\w+)/i);
+    if (m1) return m1[1];
+    const m2 = label.match(/:\s*(\w+)\s*$/);
+    if (m2) return m2[1];
+    const m3 = label.match(/:\s*(\w+)/);
+    if (m3) return m3[1];
+    return null;
+  }
+
+  const segName = extractSegmentName();
+
+  if (lower.includes("not empty")) {
+    return tl("ui.hintAddSegments", "Add segments to generate a name");
+  }
+  if (lower.includes("all segments are filled")) {
+    const empty = segments.find((s) => s.value.trim() === "");
+    if (empty) return tl("ui.hintAddSegment", "Add {{name}}", { name: empty.sourceName });
+    return tl("ui.hintFillSegments", "Fill all empty segments");
+  }
+  if (lower.includes("length is")) {
+    const max = convention?.validation?.maxLength ?? 128;
+    return tl("ui.hintAdjustLength", "Shorten name — exceeds {{max}} characters", { max });
+  }
+  if (lower.includes("expanded macros")) {
+    return tl("ui.hintReduceMacro", "Reduce macro width — expanded length exceeds limit");
+  }
+  if (lower.includes("allowed characters are respected")) {
+    if (generatedName.includes("--")) {
+      return tl("ui.hintFixDoubleHyphen", "Fix double hyphen — remove consecutive hyphens");
+    }
+    return tl("ui.hintFixChars", "Remove invalid characters");
+  }
+  if (lower.includes("respects its allowed characters") || lower.includes("matches required pattern")) {
+    const name = segName ?? "segment";
+    return tl("ui.hintFixSegmentPattern", "Fix {{name}} — matches required pattern", { name });
+  }
+  if (lower.includes("at least")) {
+    const name = segName ?? "segment";
+    return tl("ui.hintMinLength", "Add characters to {{name}} — too short", { name });
+  }
+  if (lower.includes("at most")) {
+    const name = segName ?? "segment";
+    return tl("ui.hintMaxLength", "Shorten {{name}} — too long", { name });
+  }
+  if (lower.includes("locked segment present")) {
+    const name = segName ?? "";
+    return tl("ui.hintAddLocked", "Add locked segment: {{name}}", { name });
+  }
+  if (lower.includes("recommended segment present")) {
+    const name = segName ?? "";
+    return tl("ui.hintAddRecommended", "Add recommended segment: {{name}}", { name });
+  }
+  return tl("ui.hintGeneric", "Fix this rule to improve score");
+}

@@ -1,9 +1,18 @@
 {
-  "name": "Workload",
+  "name": "Purpose",
   "values": [
     { "value": "API", "description": "API functions" },
-    { "value": "PROCESSOR", "description": "Background processor" },
+    { "value": "AUTH", "description": "Authentication" },
+    { "value": "WEBHOOK", "description": "Webhook" },
+    { "value": "SYNC", "description": "Synchronization" },
+    { "value": "IMPORT", "description": "Import" },
+    { "value": "EXPORT", "description": "Export" },
+    { "value": "ETL", "description": "Extract transform load" },
+    { "value": "INTEGRATION", "description": "Integration functions" },
+    { "value": "NOTIFICATION", "description": "Notification" },
     { "value": "SCHEDULER", "description": "Scheduled jobs" },
-    { "value": "INTEGRATION", "description": "Integration functions" }
+    { "value": "AUTOMATION", "description": "Automation" },
+    { "value": "PROCESSOR", "description": "Background processor" },
+    { "value": "WORKER", "description": "Worker" }
   ]
 }

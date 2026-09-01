@@ -24,6 +24,7 @@
     "copyName": "Copy Name",
     "copied": "✓ Copied",
     "copyMarkdown": "Copy Markdown",
+    "copyJson": "Copy JSON",
     "copyFailed": "⚠ Copy failed — clipboard unavailable",
     "addFavorite": "Add Favorite",
     "added": "★ Added",
@@ -110,6 +111,7 @@
     "mdCustom": "Custom",
     "mdOptional": "Optional",
     "mdValidation": "Validation",
+    "mdScore": "Governance Score",
     "mdOk": "OK",
     "mdWarn": "WARN"
   },

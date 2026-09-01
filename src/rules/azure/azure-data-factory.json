@@ -2,13 +2,13 @@
   "id": "azure-data-factory",
   "category": "Azure",
   "name": "Data Factory",
-  "description": "Azure Data Factory naming per CAF. Factory name 3–63 characters, alphanumeric and hyphens, must start with letter.",
-  "pattern": "adf-[Workload]-[Environment]-[Region]-[Instance]",
+  "description": "Azure Data Factory naming per CAF. Factory name 3\u201363 characters, alphanumeric and hyphens, must start with letter. Pattern adf-[Workload]-[Environment].",
+  "pattern": "adf-[Workload]-[Environment]",
   "fields": [
     {
       "name": "Workload",
       "library": "azure/adf-workload",
-      "defaultValue": "PIPE",
+      "defaultValue": "CRM",
       "allowCustomValue": true
     },
     {
@@ -16,26 +16,23 @@
       "library": "core/environment",
       "defaultValue": "PROD",
       "allowCustomValue": true
-    },
-    {
-      "name": "Region",
-      "library": "core/region",
-      "defaultValue": "FRC",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Instance",
-      "library": "core/instance",
-      "defaultValue": "001",
-      "allowCustomValue": true
     }
   ],
-  "examples": ["adf-pipe-prod-frc-001"],
+  "examples": [
+    "adf-crm-prod"
+  ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Workload"],
+    "defaultSegments": [
+      "Workload",
+      "Environment"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Workload"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []

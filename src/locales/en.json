@@ -730,11 +730,6 @@
     "data.lib.azure/sql-workload.ANALYTICS": "Analytics",
     "data.lib.azure/sql-workload.ORDERS": "Orders domain",
     "data.lib.azure/sql-workload.PAYMENTS": "Payments domain",
-    "data.lib.azure/adf-workload.ETL": "Extract transform load",
-    "data.lib.azure/adf-workload.INGEST": "Data ingestion",
-    "data.lib.azure/adf-workload.PIPE": "Pipeline",
-    "data.lib.azure/adf-workload.ANALYTICS": "Analytics",
-    "data.lib.azure/adf-workload.SYNC": "Synchronization",
     "data.lib.azure/log-workload.ERP": "Enterprise resource planning",
     "data.lib.azure/log-workload.CRM": "Customer relationship management",
     "data.lib.azure/log-workload.HR": "Human resources",
@@ -834,6 +829,20 @@
     "data.lib.azure/afw-workload.INTERNAL": "Internal firewall",
     "data.lib.azure/afw-workload.EXTERNAL": "External firewall",
     "data.lib.azure/afw-workload.CONNECTIVITY": "Connectivity firewall",
-    "data.lib.azure/afw-workload.SHARED": "Shared firewall"
+    "data.lib.azure/afw-workload.SHARED": "Shared firewall",
+    "data.lib.azure/adf-workload.CRM": "Customer relationship management",
+    "data.lib.azure/adf-workload.ERP": "Enterprise resource planning",
+    "data.lib.azure/adf-workload.HR": "Human resources",
+    "data.lib.azure/adf-workload.FINANCE": "Finance",
+    "data.lib.azure/adf-workload.SALES": "Sales",
+    "data.lib.azure/adf-workload.ITSM": "IT service management",
+    "data.lib.azure/adf-workload.HELPDESK": "Helpdesk",
+    "data.lib.azure/adf-workload.D365": "Dynamics 365",
+    "data.lib.azure/adf-workload.COPILOT": "Copilot",
+    "data.lib.azure/adf-workload.POWERBI": "Power BI",
+    "data.lib.azure/adf-workload.DATA": "Data",
+    "data.lib.azure/adf-workload.ANALYTICS": "Analytics",
+    "data.lib.azure/adf-workload.LAKEHOUSE": "Lakehouse",
+    "data.lib.azure/adf-workload.INTEGRATION": "Integration"
   }
 }

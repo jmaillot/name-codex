@@ -1,10 +1,61 @@
 {
   "name": "Workload",
   "values": [
-    { "value": "ETL", "description": "Extract transform load" },
-    { "value": "INGEST", "description": "Data ingestion" },
-    { "value": "PIPE", "description": "Pipeline" },
-    { "value": "ANALYTICS", "description": "Analytics" },
-    { "value": "SYNC", "description": "Synchronization" }
+    {
+      "value": "CRM",
+      "description": "Customer relationship management"
+    },
+    {
+      "value": "ERP",
+      "description": "Enterprise resource planning"
+    },
+    {
+      "value": "HR",
+      "description": "Human resources"
+    },
+    {
+      "value": "FINANCE",
+      "description": "Finance"
+    },
+    {
+      "value": "SALES",
+      "description": "Sales"
+    },
+    {
+      "value": "ITSM",
+      "description": "IT service management"
+    },
+    {
+      "value": "HELPDESK",
+      "description": "Helpdesk"
+    },
+    {
+      "value": "D365",
+      "description": "Dynamics 365"
+    },
+    {
+      "value": "COPILOT",
+      "description": "Copilot"
+    },
+    {
+      "value": "POWERBI",
+      "description": "Power BI"
+    },
+    {
+      "value": "DATA",
+      "description": "Data"
+    },
+    {
+      "value": "ANALYTICS",
+      "description": "Analytics"
+    },
+    {
+      "value": "LAKEHOUSE",
+      "description": "Lakehouse"
+    },
+    {
+      "value": "INTEGRATION",
+      "description": "Integration"
+    }
   ]
 }

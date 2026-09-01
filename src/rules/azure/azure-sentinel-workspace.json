@@ -2,7 +2,7 @@
   "id": "azure-sentinel-workspace",
   "category": "Azure",
   "name": "Sentinel Workspace",
-  "description": "Azure Sentinel Workspace naming.",
+  "description": "Azure Sentinel Workspace naming per CAF. Workspace name 1\u201363 characters, alphanumeric and hyphens, must start with letter or number.",
   "pattern": "[Country][Location][Type][Role]",
   "fields": [
     {

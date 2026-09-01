@@ -2,7 +2,7 @@
   "id": "azure-service-bus",
   "category": "Azure",
   "name": "Service Bus",
-  "description": "Azure Service Bus naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources).",
+  "description": "Azure Service Bus naming per CAF (Microsoft Cloud Adoption Framework \u2014 Microsoft's guidance collection for structuring and naming cloud resources).",
   "pattern": "SBNS-[Workload]-[Environment]-[Region]-[Instance]",
   "fields": [
     {
@@ -34,14 +34,16 @@
     {
       "id": "namespace",
       "name": "Namespace (Standard)",
-      "description": "Standard Service Bus namespace.",
+      "description": "Service Bus Standard namespace. Globally unique, 6\u201350 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens. Used for messaging and integration.",
       "pattern": "SBNS-[Workload]-[Environment]-[Region]-[Instance]",
-      "examples": ["SBNS-orders-prod-frc-001"]
+      "examples": [
+        "SBNS-orders-prod-frc-001"
+      ]
     },
     {
       "id": "queue",
       "name": "Queue",
-      "description": "Service Bus Queue. Queue name identifies the message queue purpose within a namespace.",
+      "description": "Service Bus Queue. Queue name identifies the message queue purpose within a namespace. 1\u2013260 characters, lowercase, hyphenated.",
       "pattern": "SBQ-[Purpose]",
       "fields": [
         {
@@ -51,12 +53,14 @@
           "allowCustomValue": true
         }
       ],
-      "examples": ["SBQ-orders"]
+      "examples": [
+        "SBQ-orders"
+      ]
     },
     {
       "id": "topic",
       "name": "Topic",
-      "description": "Service Bus Topic. Topic name identifies the publish/subscribe topic purpose.",
+      "description": "Service Bus Topic. Topic name identifies the publish/subscribe topic purpose within a namespace. 1\u2013260 characters, lowercase, hyphenated.",
       "pattern": "SBT-[Purpose]",
       "fields": [
         {
@@ -66,12 +70,14 @@
           "allowCustomValue": true
         }
       ],
-      "examples": ["SBT-orderevents"]
+      "examples": [
+        "SBT-orderevents"
+      ]
     },
     {
       "id": "subscription",
       "name": "Subscription",
-      "description": "Service Bus Subscription. Subscription name identifies the consumer of a topic.",
+      "description": "Service Bus Subscription. Subscription name identifies the consumer of a topic within a subscription. 1\u201350 characters, lowercase, hyphenated.",
       "pattern": "SBTS-[Consumer]",
       "fields": [
         {
@@ -81,15 +87,36 @@
           "allowCustomValue": true
         }
       ],
-      "examples": ["SBTS-crm"]
+      "examples": [
+        "SBTS-crm"
+      ]
     }
   ],
-  "examples": ["SBNS-orders-prod-frc-001"],
+  "examples": [
+    "SBNS-orders-prod-frc-001"
+  ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Workload", "Purpose", "Consumer", "Environment", "Region", "Instance", "Custom"],
-    "recommendedSegments": ["Workload", "Purpose", "Consumer"],
+    "defaultSegments": [
+      "Workload",
+      "Environment",
+      "Region",
+      "Instance"
+    ],
+    "availableSegments": [
+      "Workload",
+      "Purpose",
+      "Consumer",
+      "Environment",
+      "Region",
+      "Instance",
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Workload",
+      "Purpose",
+      "Consumer"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []

@@ -2,7 +2,7 @@
   "id": "azure-virtual-network-gateway",
   "category": "Azure",
   "name": "Virtual Network Gateway",
-  "description": "Azure Virtual Network Gateway naming.",
+  "description": "Azure Virtual Network Gateway naming per CAF. Gateway provides cross-premises connectivity via VPN or ExpressRoute.",
   "pattern": "[Region]-[Country]-[Workload]-[Instance]-[Role]",
   "fields": [
     {
@@ -50,14 +50,16 @@
     {
       "id": "gateway",
       "name": "Gateway",
-      "description": "Virtual Network Gateway.",
+      "description": "Virtual Network Gateway. Gateway name 1\u201380 characters, alphanumeric, hyphens, underscores and periods, must start with letter or number.",
       "pattern": "[Region]-[Country]-[Workload]-[Instance]-[Role]",
-      "examples": ["FRC-FR-VNET-001-GW"]
+      "examples": [
+        "FRC-FR-VNET-001-GW"
+      ]
     },
     {
       "id": "gateway-ip",
       "name": "Gateway IP",
-      "description": "Virtual Network Gateway IP address.",
+      "description": "Virtual Network Gateway IP. Public IP name for the gateway, 1\u201380 characters, alphanumeric, hyphens, underscores and periods.",
       "pattern": "[Region]-[Country]-[Workload]-[Instance]-[Role]-[IP]",
       "fields": [
         {
@@ -72,21 +74,48 @@
           ]
         }
       ],
-      "examples": ["FRC-FR-VNET-001-GW-IP"]
+      "examples": [
+        "FRC-FR-VNET-001-GW-IP"
+      ]
     }
   ],
-  "examples": ["FRC-FR-VNET-001-GW"],
+  "examples": [
+    "FRC-FR-VNET-001-GW"
+  ],
   "validation": {
     "maxLength": 80,
     "allowedPattern": "^[A-Za-z0-9_.-]{1,80}$"
   },
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Region", "Country", "Workload", "Instance", "Role"],
-    "availableSegments": ["Region", "Country", "Workload", "Instance", "Role", "IP", "Custom"],
-    "recommendedSegments": ["Country", "Instance"],
-    "lockedSegments": ["Workload"],
-    "fixedFirstSegments": ["Region"],
-    "fixedLastSegments": ["Role"]
+    "defaultSegments": [
+      "Region",
+      "Country",
+      "Workload",
+      "Instance",
+      "Role"
+    ],
+    "availableSegments": [
+      "Region",
+      "Country",
+      "Workload",
+      "Instance",
+      "Role",
+      "IP",
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Country",
+      "Instance"
+    ],
+    "lockedSegments": [
+      "Workload"
+    ],
+    "fixedFirstSegments": [
+      "Region"
+    ],
+    "fixedLastSegments": [
+      "Role"
+    ]
   }
 }

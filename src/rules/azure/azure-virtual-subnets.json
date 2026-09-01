@@ -2,7 +2,7 @@
   "id": "azure-virtual-subnets",
   "category": "Azure",
   "name": "Virtual Subnets",
-  "description": "Azure Subnet naming.",
+  "description": "Azure Subnet naming per CAF. Subnet name 1\u201380 characters, alphanumeric, hyphens, underscores and periods, must start with letter or number.",
   "pattern": "[Country]-[Environment]-[Workload]-[Instance]",
   "fields": [
     {

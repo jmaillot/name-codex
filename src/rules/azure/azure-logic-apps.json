@@ -2,7 +2,7 @@
   "id": "azure-logic-apps",
   "category": "Azure",
   "name": "Logic Apps",
-  "description": "Azure Logic Apps naming.",
+  "description": "Azure Logic Apps naming per CAF. Logic app name 1\u201343 characters, alphanumeric, hyphens, underscores, periods and parentheses, must start with letter or number.",
   "pattern": "[Country][Location][Type][Role][Instance]",
   "fields": [
     {

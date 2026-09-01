@@ -2,7 +2,7 @@
   "id": "azure-virtual-network",
   "category": "Azure",
   "name": "Virtual Network",
-  "description": "Virtual Network naming.",
+  "description": "Azure Virtual Network naming per CAF. Virtual network name 2\u201364 characters, alphanumeric, hyphens, underscores and periods, cannot start or end with underscore, cannot contain consecutive special characters.",
   "pattern": "[Region]-[Country]-[Workload]-[Instance]",
   "fields": [
     {

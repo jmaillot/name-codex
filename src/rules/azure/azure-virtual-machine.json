@@ -2,7 +2,7 @@
   "id": "azure-virtual-machine",
   "category": "Azure",
   "name": "Virtual Machine",
-  "description": "Azure virtual machine naming.",
+  "description": "Azure Virtual Machine naming per CAF. Virtual machine name 1\u201315 characters (Windows) or 1\u201364 characters (Linux), alphanumeric and hyphens, cannot contain only numbers, cannot end with period or hyphen.",
   "pattern": "[Country][Location][OS][Role][Instance]",
   "fields": [
     {

@@ -2,7 +2,7 @@
   "id": "azure-resource-group",
   "category": "Azure",
   "name": "Resource Group",
-  "description": "Azure resource group naming.",
+  "description": "Azure Resource Group naming per CAF. Resource group name 1\u201390 characters, alphanumeric, hyphens, underscores, periods and parentheses, cannot end with period.",
   "pattern": "RG-[Region]-[Environment]-[Workload]",
   "fields": [
     {

@@ -22,7 +22,7 @@
     {
       "id": "namespace",
       "name": "Namespace",
-      "description": "Event Hub Namespace. Globally unique, 6\u201350 characters, lowercase, hyphenated.",
+      "description": "Event Hub Namespace. Globally unique, 6\u201350 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens.",
       "pattern": "evhns-[Purpose]-[Environment]",
       "examples": [
         "evhns-integration-prod"
@@ -31,7 +31,7 @@
     {
       "id": "hub",
       "name": "Event Hub",
-      "description": "Event Hub entity within a namespace.",
+      "description": "Event Hub entity within a namespace. Hub name 1\u201350 characters, lowercase, hyphenated, identifies the streaming topic.",
       "pattern": "evh-[Workload]-[Purpose]-[Environment]",
       "fields": [
         {

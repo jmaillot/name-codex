@@ -2,7 +2,7 @@
   "id": "azure-kubernetes-service",
   "category": "Azure",
   "name": "Kubernetes Service (AKS)",
-  "description": "Azure Kubernetes Service naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources).",
+  "description": "Azure Kubernetes Service naming per CAF (Microsoft Cloud Adoption Framework). AKS cluster and node pools provide managed Kubernetes for container workloads.",
   "pattern": "aks-[Workload]-[Environment]-[Region]-[Instance]",
   "fields": [
     {
@@ -34,14 +34,16 @@
     {
       "id": "cluster",
       "name": "Cluster",
-      "description": "AKS cluster.",
+      "description": "AKS cluster. Cluster name 1\u201363 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens. Represents the managed Kubernetes cluster.",
       "pattern": "aks-[Workload]-[Environment]-[Region]-[Instance]",
-      "examples": ["aks-shared-prod-frc-001"]
+      "examples": [
+        "aks-shared-prod-frc-001"
+      ]
     },
     {
       "id": "nodepool",
       "name": "Node Pool",
-      "description": "AKS node pool. Role identifies the node pool purpose.",
+      "description": "AKS node pool. Node pool name 1\u201312 characters, lowercase letters and numbers, must start with letter. Role identifies the node pool purpose (system, workload, spot).",
       "pattern": "AKNP-[Role]",
       "fields": [
         {
@@ -51,15 +53,34 @@
           "allowCustomValue": true
         }
       ],
-      "examples": ["AKNP-system"]
+      "examples": [
+        "AKNP-system"
+      ]
     }
   ],
-  "examples": ["aks-shared-prod-frc-001"],
+  "examples": [
+    "aks-shared-prod-frc-001"
+  ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Workload", "Role", "Environment", "Region", "Instance", "Custom"],
-    "recommendedSegments": ["Workload", "Role"],
+    "defaultSegments": [
+      "Workload",
+      "Environment",
+      "Region",
+      "Instance"
+    ],
+    "availableSegments": [
+      "Workload",
+      "Role",
+      "Environment",
+      "Region",
+      "Instance",
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Workload",
+      "Role"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []

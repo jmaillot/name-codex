@@ -22,7 +22,7 @@
     {
       "id": "internal",
       "name": "Internal",
-      "description": "Internal load balancer for private traffic within a virtual network.",
+      "description": "Internal load balancer for private traffic within a virtual network. Name 4\u201380 characters, lowercase, hyphenated, internal-facing.",
       "pattern": "lbi-[Purpose]-[Environment]",
       "fields": [
         {
@@ -45,7 +45,7 @@
     {
       "id": "external",
       "name": "External",
-      "description": "External load balancer for public-facing traffic.",
+      "description": "External load balancer for public-facing traffic. Name 4\u201380 characters, lowercase, hyphenated, internet-facing.",
       "pattern": "lbe-[Purpose]-[Environment]",
       "fields": [
         {

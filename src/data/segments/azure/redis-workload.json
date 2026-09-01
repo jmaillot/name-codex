@@ -1,0 +1,15 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "SHARED", "description": "Shared platform" },
+    { "value": "PLATFORM", "description": "Platform" },
+    { "value": "APP", "description": "Application" },
+    { "value": "API", "description": "API service" },
+    { "value": "WEB", "description": "Web workload" },
+    { "value": "DATA", "description": "Data workload" },
+    { "value": "CACHE", "description": "Cache workload" },
+    { "value": "SESSION", "description": "Session store" },
+    { "value": "QUEUE", "description": "Queue backing" },
+    { "value": "ANALYTICS", "description": "Analytics cache" }
+  ]
+}

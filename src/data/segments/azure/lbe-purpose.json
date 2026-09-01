@@ -1,0 +1,33 @@
+{
+  "name": "Purpose",
+  "values": [
+    {
+      "value": "WEB",
+      "description": "Web tier"
+    },
+    {
+      "value": "API",
+      "description": "API tier"
+    },
+    {
+      "value": "PORTAL",
+      "description": "Portal"
+    },
+    {
+      "value": "PARTNER",
+      "description": "Partner"
+    },
+    {
+      "value": "EXTERNAL",
+      "description": "External"
+    },
+    {
+      "value": "PUBLIC",
+      "description": "Public"
+    },
+    {
+      "value": "DMZ",
+      "description": "Demilitarized zone"
+    }
+  ]
+}

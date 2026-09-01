@@ -1,0 +1,37 @@
+{
+  "name": "Purpose",
+  "values": [
+    {
+      "value": "AKS",
+      "description": "AKS internal load balancer"
+    },
+    {
+      "value": "APPS",
+      "description": "Applications"
+    },
+    {
+      "value": "INTERNAL",
+      "description": "Internal"
+    },
+    {
+      "value": "SHARED",
+      "description": "Shared"
+    },
+    {
+      "value": "HUB",
+      "description": "Hub"
+    },
+    {
+      "value": "PLATFORM",
+      "description": "Platform"
+    },
+    {
+      "value": "BACKEND",
+      "description": "Backend"
+    },
+    {
+      "value": "DATABASE",
+      "description": "Database"
+    }
+  ]
+}

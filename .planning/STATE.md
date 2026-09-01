@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v1.8
 milestone_name: Data Tier + Observability + Network Edge
-status: executing
-last_updated: "2026-09-01T11:55:00Z"
-last_activity: 2026-09-01 -- Phase 23 network-edge plan 23-01 complete (3 conventions, 59 total, 128 files PASS)
+status: Awaiting next milestone
+last_updated: "2026-09-01T10:06:58.817Z"
+last_activity: 2026-09-01 — Milestone v1.8 completed and archived
 progress:
   total_phases: 3
   completed_phases: 3
@@ -24,10 +24,10 @@ See: .planning/PROJECT.md (updated 2026-09-01 at v1.8 start)
 
 ## Current Position
 
-Phase: 23 (network-edge-department-taxonomy-net-01-03-dept-01) — COMPLETE (2026-09-01)
-Plan: 1 of 1 complete (73150a9, a023322, 7d4e1d5)
-Status: Phase 23 complete — milestone v1.8 ready to close
-Last activity: 2026-09-01 -- Phase 23 plan 23-01 complete (59 conventions, Azure 27, 128 files PASS, 238 tests)
+Phase: Milestone v1.8 complete
+Plan: —
+Status: Awaiting next milestone
+Last activity: 2026-09-01 — Milestone v1.8 completed and archived
 
 ## Performance Metrics
 
@@ -144,5 +144,4 @@ Next action: /gsd-verify-work 23 or /gsd-complete-milestone v1.8 — Network Edg
 
 ## Operator Next Steps
 
-- Run /gsd-verify-work 23 or /gsd-complete-milestone v1.8 to ship milestone
-- Catalog at 59 conventions / Azure 27, 128 files PASS, parity 816=816, gates green
+- Start the next milestone with /gsd-new-milestone

@@ -43,6 +43,7 @@
   "validation": {
     "maxLength": 50,
     "forceLowercase": true,
+    "removeCharacters": ["-"],
     "allowedPattern": "^[a-z0-9]{5,50}$"
   }
 }

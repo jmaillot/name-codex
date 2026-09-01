@@ -1,0 +1,48 @@
+{
+  "id": "azure-sql-database",
+  "category": "Azure",
+  "name": "SQL Database",
+  "description": "Azure SQL Database naming per CAF. Database name 1–128 characters, lowercase letters, numbers and hyphens. Paired with SQL Server logical server (sqlsrv). Pattern sql-[Workload]-[Environment]-[Region]-[Instance].",
+  "pattern": "sql-[Workload]-[Environment]-[Region]-[Instance]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/sql-workload",
+      "defaultValue": "APP",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["sql-app-prod-frc-001"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 128,
+    "forceLowercase": true,
+    "allowedPattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+  }
+}

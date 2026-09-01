@@ -1,0 +1,10 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "ETL", "description": "Extract transform load" },
+    { "value": "INGEST", "description": "Data ingestion" },
+    { "value": "PIPE", "description": "Pipeline" },
+    { "value": "ANALYTICS", "description": "Analytics" },
+    { "value": "SYNC", "description": "Synchronization" }
+  ]
+}

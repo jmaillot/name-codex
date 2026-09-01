@@ -148,14 +148,14 @@ Shipped: 50 conventions (111 files, EN 628 FR 628), Service Bus/AKS/VNet GW grou
 
 #### Phase 22: Observability — Log Analytics + App Insights + Event Hub (OBS-01..03)
 
-- [ ] **Status:** Planned
+- [x] **Status:** Shipped 2026-09-01 (56 conventions, Azure 24, 125 files PASS, 238 tests)
 - **Requirements:** OBS-01 (log-analytics `log`), OBS-02 (app-insights `appi`), OBS-03 (event-hub `evh`)
-- **Goal:** Ship `log`/`appi`/`evh` as `log/appi/evh-[Workload]-[Env]-[Region]-[Instance]`.
+- **Goal:** Ship `log`/`appi`/`evh` as `log/appi/evh-[Workload]-[Env]-[Region]-[Instance]` (evh hub `evh-[Purpose]`).
 
 | # | Deliverable | Success Criteria |
 |---|-------------|------------------|
-| 22a | Three observability conventions | `log`, `appi`, `evh` selectable, `maxLength` 63, lowercase. |
-| 22b | Gates | 57→60 conventions, parity, gates green. |
+| 22a | Three observability conventions | `log`, `appi`, `evh` selectable, `maxLength` 63 (log/appi) / 50 (evh namespace+hub strict), lowercase `^(?!.*--)` no --, filtered workload libs via getConstraintsForField — actual 53→56 (roadmap shorthand 57→60, Phase 21 landed 53). |
+| 22b | Gates | 125 files PASS, 805=805 parity, build/lint/tsc green, 238 tests. |
 
 #### Phase 23: Network Edge + Department Taxonomy (NET-01..03 + DEPT-01)
 

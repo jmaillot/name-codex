@@ -1,10 +1,16 @@
 {
   "name": "Workload",
   "values": [
-    { "value": "APP", "description": "Application workload" },
+    { "value": "SHARED", "description": "Shared platform" },
+    { "value": "PLATFORM", "description": "Platform" },
+    { "value": "APPS", "description": "Applications" },
+    { "value": "MICROSVC", "description": "Microservices" },
     { "value": "API", "description": "API service" },
-    { "value": "WEB", "description": "Web frontend" },
+    { "value": "INTEGRATION", "description": "Integration" },
+    { "value": "AI", "description": "AI workload" },
+    { "value": "COPILOT", "description": "Copilot" },
     { "value": "DATA", "description": "Data processing" },
-    { "value": "SHARED", "description": "Shared platform" }
+    { "value": "DEVOPS", "description": "DevOps" },
+    { "value": "CICD", "description": "CI/CD" }
   ]
 }

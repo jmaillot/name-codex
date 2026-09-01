@@ -1,0 +1,14 @@
+{
+  "name": "Role",
+  "values": [
+    { "value": "SYSTEM", "description": "System node pool" },
+    { "value": "WEB", "description": "Web node pool" },
+    { "value": "API", "description": "API node pool" },
+    { "value": "GENERAL", "description": "General purpose" },
+    { "value": "GPU", "description": "GPU accelerated" },
+    { "value": "DATA", "description": "Data workload" },
+    { "value": "SPOT", "description": "Spot instances" },
+    { "value": "BUILD", "description": "Build agents" },
+    { "value": "DEVOPS", "description": "DevOps" }
+  ]
+}

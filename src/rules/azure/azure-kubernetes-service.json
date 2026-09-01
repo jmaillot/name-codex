@@ -2,9 +2,15 @@
   "id": "azure-kubernetes-service",
   "category": "Azure",
   "name": "Kubernetes Service (AKS)",
-  "description": "Azure Kubernetes Service (AKS) naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): aks-[Environment]-[Region]-[Workload]-[Instance].",
-  "pattern": "aks-[Environment]-[Region]-[Workload]-[Instance]",
+  "description": "Azure Kubernetes Service naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): Cluster aks-[Workload]-[Environment]-[Region]-[Instance] plus sub-object Node Pool AKNP-[Role].",
+  "pattern": "aks-[Workload]-[Environment]-[Region]-[Instance]",
   "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/aks-workload",
+      "defaultValue": "SHARED",
+      "allowCustomValue": true
+    },
     {
       "name": "Environment",
       "library": "core/environment",
@@ -18,24 +24,42 @@
       "allowCustomValue": true
     },
     {
-      "name": "Workload",
-      "library": "azure/aks-workload",
-      "defaultValue": "APP",
-      "allowCustomValue": true
-    },
-    {
       "name": "Instance",
       "library": "core/instance",
       "defaultValue": "001",
       "allowCustomValue": true
     }
   ],
-  "examples": ["aks-prod-frc-app-001"],
+  "patterns": [
+    {
+      "id": "cluster",
+      "name": "Cluster",
+      "description": "AKS cluster: aks-[Workload]-[Environment]-[Region]-[Instance].",
+      "pattern": "aks-[Workload]-[Environment]-[Region]-[Instance]",
+      "examples": ["aks-shared-prod-frc-001"]
+    },
+    {
+      "id": "nodepool",
+      "name": "Node Pool",
+      "description": "AKS node pool: AKNP-[Role]. Role identifies the node pool purpose.",
+      "pattern": "AKNP-[Role]",
+      "fields": [
+        {
+          "name": "Role",
+          "library": "azure/aks-nodepool-role",
+          "defaultValue": "SYSTEM",
+          "allowCustomValue": true
+        }
+      ],
+      "examples": ["AKNP-system"]
+    }
+  ],
+  "examples": ["aks-shared-prod-frc-001"],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Environment", "Region", "Workload", "Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Workload"],
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
+    "availableSegments": ["Workload", "Role", "Environment", "Region", "Instance", "Custom"],
+    "recommendedSegments": ["Workload", "Role"],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []

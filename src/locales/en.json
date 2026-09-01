@@ -138,7 +138,7 @@
     "data.field.Type.label": "Type",
     "data.field.Type.tip": "Type of the object, e.g. app, group, policy.",
     "data.field.Workload.label": "Workload",
-    "data.field.Workload.tip": "Workload hosting the resource, e.g. Azure, M365.",
+    "data.field.Workload.tip": "Workload or application identifier the resource belongs to.",
     "data.field.MailboxType.label": "MailboxType",
     "data.field.MailboxType.tip": "Type of mailbox, e.g. user, shared, room, equipment.",
     "data.field.IntPrefix.label": "Prefix",
@@ -730,11 +730,6 @@
     "data.lib.azure/sql-workload.ANALYTICS": "Analytics",
     "data.lib.azure/sql-workload.ORDERS": "Orders domain",
     "data.lib.azure/sql-workload.PAYMENTS": "Payments domain",
-    "data.lib.azure/apim-workload.API": "API gateway",
-    "data.lib.azure/apim-workload.GATEWAY": "Gateway",
-    "data.lib.azure/apim-workload.ORDERS": "Orders API",
-    "data.lib.azure/apim-workload.PAYMENTS": "Payments API",
-    "data.lib.azure/apim-workload.SHARED": "Shared services",
     "data.lib.azure/adf-workload.ETL": "Extract transform load",
     "data.lib.azure/adf-workload.INGEST": "Data ingestion",
     "data.lib.azure/adf-workload.PIPE": "Pipeline",
@@ -783,7 +778,6 @@
     "data.lib.azure/evh-hub-purpose.NOTIFICATIONS": "Notifications",
     "data.lib.azure/evh-hub-purpose.ANALYTICS": "Analytics",
     "data.rule.azure-key-vault.field.Workload.tip": "IDENTITY: Entra ID, App Registrations, Managed Identities · SHARED: platform secrets shared by multiple apps · APP: single application secrets · WEB: web certificates/secrets · DATA: SQL/Storage/Cosmos keys · DEVOPS: CI/CD secrets · NETWORK: VPN/ExpressRoute/Firewall certs · SECURITY: PKI, encryption keys · MONITORING: Log Analytics/Sentinel · BACKUP: recovery vault.",
-    "data.field.Workload.tip": "Workload or application identifier the resource belongs to.",
     "data.field.Instance.tip": "Instance number or suffix distinguishing duplicate resources, e.g. 001, 002.",
     "data.rule.intune-autopilot-device-name.name": "Autopilot Device Name",
     "data.rule.intune-autopilot-device-name.description": "Autopilot device-name template. Hard limit: 15 characters total — Windows enforces it AFTER %SERIAL% / %RAND:n% macros expand at enrollment, so keep static text well under budget. Allowed characters: letters, numbers, hyphens. Note: this app checks allowed characters and typed length, and also flags templates whose %RAND:n% expansion would exceed the 15-character limit — you must still ensure the final name is not all numbers.",
@@ -818,6 +812,13 @@
     "data.lib.intune/autopilot-macros.%RAND:12%": "12 random characters",
     "data.lib.intune/autopilot-macros.%RAND:13%": "13 random characters",
     "data.lib.intune/autopilot-macros.%RAND:14%": "14 random characters",
-    "data.lib.intune/autopilot-macros.%RAND:15%": "15 random characters"
+    "data.lib.intune/autopilot-macros.%RAND:15%": "15 random characters",
+    "data.lib.azure/apim-workload.PLATFORM": "Platform APIs",
+    "data.lib.azure/apim-workload.INTEGRATION": "Integration APIs",
+    "data.lib.azure/apim-workload.PARTNER": "Partner APIs",
+    "data.lib.azure/apim-workload.INTERNAL": "Internal APIs",
+    "data.lib.azure/apim-workload.EXTERNAL": "External APIs",
+    "data.lib.azure/apim-workload.AI": "AI APIs",
+    "data.lib.azure/apim-workload.B2B": "Business-to-business APIs"
   }
 }

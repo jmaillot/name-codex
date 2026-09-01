@@ -138,7 +138,7 @@
     "data.field.Type.label": "Type",
     "data.field.Type.tip": "Type de l'objet, ex. application, groupe, stratégie.",
     "data.field.Workload.label": "Charge de travail",
-    "data.field.Workload.tip": "Charge de travail hébergeant la ressource, ex. Azure, M365.",
+    "data.field.Workload.tip": "Identifiant de charge de travail ou d'application auquel la ressource appartient.",
     "data.field.MailboxType.label": "Type de boîte aux lettres",
     "data.field.MailboxType.tip": "Type de boîte aux lettres, ex. utilisateur, partagé, salle, équipement.",
     "data.field.IntPrefix.label": "Préfixe",
@@ -730,11 +730,6 @@
     "data.lib.azure/sql-workload.ANALYTICS": "Analytique",
     "data.lib.azure/sql-workload.ORDERS": "Domaine commandes",
     "data.lib.azure/sql-workload.PAYMENTS": "Domaine paiements",
-    "data.lib.azure/apim-workload.API": "Passerelle API",
-    "data.lib.azure/apim-workload.GATEWAY": "Passerelle",
-    "data.lib.azure/apim-workload.ORDERS": "API commandes",
-    "data.lib.azure/apim-workload.PAYMENTS": "API paiements",
-    "data.lib.azure/apim-workload.SHARED": "Services partagés",
     "data.lib.azure/adf-workload.ETL": "ETL",
     "data.lib.azure/adf-workload.INGEST": "Ingestion de données",
     "data.lib.azure/adf-workload.PIPE": "Pipeline",
@@ -783,7 +778,6 @@
     "data.lib.azure/evh-hub-purpose.NOTIFICATIONS": "Notifications",
     "data.lib.azure/evh-hub-purpose.ANALYTICS": "Analytique",
     "data.rule.azure-key-vault.field.Workload.tip": "IDENTITY : Entra ID, inscriptions d'applications, identités managées · SHARED : secrets de plateforme partagés par plusieurs applications · APP : secrets d'une seule application · WEB : certificats/secrets web · DATA : clés SQL/Stockage/Cosmos · DEVOPS : secrets CI/CD · NETWORK : certificats VPN/ExpressRoute/Pare-feu · SECURITY : PKI, clés de chiffrement · MONITORING : Log Analytics/Sentinel · BACKUP : coffre de récupération.",
-    "data.field.Workload.tip": "Identifiant de charge de travail ou d'application auquel la ressource appartient.",
     "data.field.Instance.tip": "Numéro ou suffixe d'instance distinguant les ressources en double, ex. 001, 002.",
     "data.rule.intune-autopilot-device-name.name": "Nom d'appareil Autopilot",
     "data.rule.intune-autopilot-device-name.description": "Modèle de nom d'appareil Autopilot. Limite stricte : 15 caractères au total — Windows l'applique APRÈS le développement des macros %SERIAL% / %RAND:n% à l'inscription, donc gardez le texte statique bien en dessous du budget. Caractères autorisés : lettres, chiffres, tirets. Remarque : l'app vérifie les caractères autorisés et la longueur saisie, et signale aussi les modèles dont le développement de %RAND:n% dépasserait la limite de 15 caractères — assurez-vous toujours que le nom final n'est pas composé uniquement de chiffres.",
@@ -818,6 +812,13 @@
     "data.lib.intune/autopilot-macros.%RAND:12%": "12 caractères aléatoires",
     "data.lib.intune/autopilot-macros.%RAND:13%": "13 caractères aléatoires",
     "data.lib.intune/autopilot-macros.%RAND:14%": "14 caractères aléatoires",
-    "data.lib.intune/autopilot-macros.%RAND:15%": "15 caractères aléatoires"
+    "data.lib.intune/autopilot-macros.%RAND:15%": "15 caractères aléatoires",
+    "data.lib.azure/apim-workload.PLATFORM": "API plateforme",
+    "data.lib.azure/apim-workload.INTEGRATION": "API intégration",
+    "data.lib.azure/apim-workload.PARTNER": "API partenaire",
+    "data.lib.azure/apim-workload.INTERNAL": "API interne",
+    "data.lib.azure/apim-workload.EXTERNAL": "API externe",
+    "data.lib.azure/apim-workload.AI": "API IA",
+    "data.lib.azure/apim-workload.B2B": "API B2B"
   }
 }

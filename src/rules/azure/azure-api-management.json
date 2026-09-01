@@ -2,13 +2,13 @@
   "id": "azure-api-management",
   "category": "Azure",
   "name": "API Management",
-  "description": "Azure API Management naming per CAF. Service name is globally unique, 1–50 characters, alphanumeric and hyphens, must start with letter, end with letter or number.",
-  "pattern": "apim-[Workload]-[Environment]-[Region]-[Instance]",
+  "description": "Azure API Management naming per CAF. Service name is globally unique, 1\u201350 characters, alphanumeric and hyphens, must start with letter, end with letter or number.",
+  "pattern": "apim-[Purpose]-[Environment]",
   "fields": [
     {
-      "name": "Workload",
+      "name": "Purpose",
       "library": "azure/apim-workload",
-      "defaultValue": "API",
+      "defaultValue": "PLATFORM",
       "allowCustomValue": true
     },
     {
@@ -16,26 +16,23 @@
       "library": "core/environment",
       "defaultValue": "PROD",
       "allowCustomValue": true
-    },
-    {
-      "name": "Region",
-      "library": "core/region",
-      "defaultValue": "FRC",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Instance",
-      "library": "core/instance",
-      "defaultValue": "001",
-      "allowCustomValue": true
     }
   ],
-  "examples": ["apim-app-prod-frc-001"],
+  "examples": [
+    "apim-platform-prod"
+  ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Workload"],
+    "defaultSegments": [
+      "Purpose",
+      "Environment"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Purpose"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []

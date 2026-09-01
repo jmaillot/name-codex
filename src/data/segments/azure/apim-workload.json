@@ -1,10 +1,33 @@
 {
-  "name": "Workload",
+  "name": "Purpose",
   "values": [
-    { "value": "API", "description": "API gateway" },
-    { "value": "GATEWAY", "description": "Gateway" },
-    { "value": "ORDERS", "description": "Orders API" },
-    { "value": "PAYMENTS", "description": "Payments API" },
-    { "value": "SHARED", "description": "Shared services" }
+    {
+      "value": "PLATFORM",
+      "description": "Platform APIs"
+    },
+    {
+      "value": "INTEGRATION",
+      "description": "Integration APIs"
+    },
+    {
+      "value": "PARTNER",
+      "description": "Partner APIs"
+    },
+    {
+      "value": "INTERNAL",
+      "description": "Internal APIs"
+    },
+    {
+      "value": "EXTERNAL",
+      "description": "External APIs"
+    },
+    {
+      "value": "AI",
+      "description": "AI APIs"
+    },
+    {
+      "value": "B2B",
+      "description": "Business-to-business APIs"
+    }
   ]
 }

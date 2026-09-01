@@ -1,0 +1,22 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "CRM", "description": "Customer relationship management" },
+    { "value": "ERP", "description": "Enterprise resource planning" },
+    { "value": "HR", "description": "Human resources" },
+    { "value": "FINANCE", "description": "Finance" },
+    { "value": "SALES", "description": "Sales" },
+    { "value": "MARKETING", "description": "Marketing" },
+    { "value": "ITSM", "description": "IT service management" },
+    { "value": "HELPDESK", "description": "Helpdesk" },
+    { "value": "PLATFORM", "description": "Platform" },
+    { "value": "SHARED", "description": "Shared services" },
+    { "value": "COMMON", "description": "Common services" },
+    { "value": "CORP", "description": "Corporate" },
+    { "value": "AKS", "description": "Azure Kubernetes Service" },
+    { "value": "K8S", "description": "Kubernetes" },
+    { "value": "MICROSVC", "description": "Microservices" },
+    { "value": "DEVOPS", "description": "DevOps" },
+    { "value": "CICD", "description": "CI/CD" }
+  ]
+}

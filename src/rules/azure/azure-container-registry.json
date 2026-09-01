@@ -2,9 +2,15 @@
   "id": "azure-container-registry",
   "category": "Azure",
   "name": "Container Registry",
-  "description": "Azure Container Registry naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The registry name is globally unique across all Azure tenants — uniqueness itself cannot be checked here. Lowercase letters and numbers only, 5–50 characters, no hyphens.",
-  "pattern": "acr-[Environment]-[Region]-[Instance]",
+  "description": "Azure Container Registry naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The registry name is globally unique across all Azure tenants — uniqueness itself cannot be checked here. Lowercase letters and numbers only, 5–50 characters, no hyphens: acr-[Workload]-[Environment]-[Region]-[Instance].",
+  "pattern": "acr-[Workload]-[Environment]-[Region]-[Instance]",
   "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/acr-workload",
+      "defaultValue": "SHARED",
+      "allowCustomValue": true
+    },
     {
       "name": "Environment",
       "library": "core/environment",
@@ -24,10 +30,10 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["acr-prod-frc-001"],
+  "examples": ["acr-shared-prod-frc-001"],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Environment", "Region", "Instance"],
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
     "availableSegments": ["Custom"],
     "recommendedSegments": [],
     "lockedSegments": [],

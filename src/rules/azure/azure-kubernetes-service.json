@@ -2,7 +2,7 @@
   "id": "azure-kubernetes-service",
   "category": "Azure",
   "name": "Kubernetes Service (AKS)",
-  "description": "Azure Kubernetes Service naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): Cluster aks-[Workload]-[Environment]-[Region]-[Instance] plus sub-object Node Pool AKNP-[Role].",
+  "description": "Azure Kubernetes Service naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources).",
   "pattern": "aks-[Workload]-[Environment]-[Region]-[Instance]",
   "fields": [
     {
@@ -34,14 +34,14 @@
     {
       "id": "cluster",
       "name": "Cluster",
-      "description": "AKS cluster: aks-[Workload]-[Environment]-[Region]-[Instance].",
+      "description": "AKS cluster.",
       "pattern": "aks-[Workload]-[Environment]-[Region]-[Instance]",
       "examples": ["aks-shared-prod-frc-001"]
     },
     {
       "id": "nodepool",
       "name": "Node Pool",
-      "description": "AKS node pool: AKNP-[Role]. Role identifies the node pool purpose.",
+      "description": "AKS node pool. Role identifies the node pool purpose.",
       "pattern": "AKNP-[Role]",
       "fields": [
         {

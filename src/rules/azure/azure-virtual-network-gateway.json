@@ -2,7 +2,7 @@
   "id": "azure-virtual-network-gateway",
   "category": "Azure",
   "name": "Virtual Network Gateway",
-  "description": "Azure Virtual Network Gateway naming: Gateway [Region]-[Country]-[Workload]-[Instance]-[Role] plus sub-object Gateway IP [Region]-[Country]-[Workload]-[Instance]-[Role]-[IP].",
+  "description": "Azure Virtual Network Gateway naming.",
   "pattern": "[Region]-[Country]-[Workload]-[Instance]-[Role]",
   "fields": [
     {
@@ -50,14 +50,14 @@
     {
       "id": "gateway",
       "name": "Gateway",
-      "description": "Virtual Network Gateway: [Region]-[Country]-[Workload]-[Instance]-[Role].",
+      "description": "Virtual Network Gateway.",
       "pattern": "[Region]-[Country]-[Workload]-[Instance]-[Role]",
       "examples": ["FRC-FR-VNET-001-GW"]
     },
     {
       "id": "gateway-ip",
       "name": "Gateway IP",
-      "description": "Virtual Network Gateway IP: [Region]-[Country]-[Workload]-[Instance]-[Role]-[IP].",
+      "description": "Virtual Network Gateway IP address.",
       "pattern": "[Region]-[Country]-[Workload]-[Instance]-[Role]-[IP]",
       "fields": [
         {

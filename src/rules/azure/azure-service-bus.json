@@ -2,7 +2,7 @@
   "id": "azure-service-bus",
   "category": "Azure",
   "name": "Service Bus",
-  "description": "Azure Service Bus naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): Namespace SBNS-[Workload]-[Environment]-[Region]-[Instance] (Standard) plus sub-objects Queue SBQ-[Purpose], Topic SBT-[Purpose], Subscription SBTS-[Consumer].",
+  "description": "Azure Service Bus naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources).",
   "pattern": "SBNS-[Workload]-[Environment]-[Region]-[Instance]",
   "fields": [
     {
@@ -34,14 +34,14 @@
     {
       "id": "namespace",
       "name": "Namespace (Standard)",
-      "description": "Standard Service Bus namespace: SBNS-[Workload]-[Environment]-[Region]-[Instance].",
+      "description": "Standard Service Bus namespace.",
       "pattern": "SBNS-[Workload]-[Environment]-[Region]-[Instance]",
       "examples": ["SBNS-orders-prod-frc-001"]
     },
     {
       "id": "queue",
       "name": "Queue",
-      "description": "Service Bus Queue: SBQ-[Purpose]. Queue name identifies the message queue purpose within a namespace.",
+      "description": "Service Bus Queue. Queue name identifies the message queue purpose within a namespace.",
       "pattern": "SBQ-[Purpose]",
       "fields": [
         {
@@ -56,7 +56,7 @@
     {
       "id": "topic",
       "name": "Topic",
-      "description": "Service Bus Topic: SBT-[Purpose]. Topic name identifies the publish/subscribe topic purpose.",
+      "description": "Service Bus Topic. Topic name identifies the publish/subscribe topic purpose.",
       "pattern": "SBT-[Purpose]",
       "fields": [
         {
@@ -71,7 +71,7 @@
     {
       "id": "subscription",
       "name": "Subscription",
-      "description": "Service Bus Subscription: SBTS-[Consumer]. Subscription name identifies the consumer of a topic.",
+      "description": "Service Bus Subscription. Subscription name identifies the consumer of a topic.",
       "pattern": "SBTS-[Consumer]",
       "fields": [
         {

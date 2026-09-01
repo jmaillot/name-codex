@@ -11,7 +11,7 @@ Name Codex is a single-page application that helps you define, explore and gover
 ## Features
 
 ### Explore naming standards
-- Browse conventions by category: Azure, Entra ID, Exchange, Groups, Intune, Conditional Access, Defender, Teams, SharePoint, Power Platform, Purview (11 categories, 45 conventions)
+- Browse conventions by category: Azure, Entra ID, Exchange, Groups, Intune, Conditional Access, Defender, Teams, SharePoint, Power Platform, Purview (11 categories, 59 conventions)
 - Search and filter object types, and switch between their pattern variants
 - See the active description and an example for each convention
 
@@ -119,9 +119,9 @@ Open the local URL printed in the terminal (usually <http://localhost:5173/>) in
 | `npm run dev`           | Start the development server (HMR)               |
 | `npm run build`         | Type-check and build for production              |
 | `npm run lint`          | Run oxlint                                       |
-| `npm run check:data`    | Validate all JSON data files (96 files, `file: reason` reporting) |
+| `npm run check:data`    | Validate all JSON data files (135 files, `file: reason` reporting) |
 | `npm run check:tokens`  | Validate design tokens (0 literals, 18/18 WCAG)  |
-| `npm test`              | Run Vitest unit tests (jsdom, 226 tests)         |
+| `npm test`              | Run Vitest unit tests (jsdom, 240 tests)         |
 | `npm run test:watch`    | Run tests in watch mode                          |
 | `npm run test:coverage` | Run tests with v8 coverage (80% lines on src/lib) |
 | `npm run preview`       | Preview the production build locally             |

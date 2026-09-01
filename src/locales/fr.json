@@ -494,7 +494,7 @@
     "data.caRange.CA9xx = Workloads": "CA9xx = Charges de travail",
     "data.caRange.CA10xx = Developers": "CA10xx = Développeurs",
     "data.rule.pp-environment.name": "Environnement Power Platform",
-    "data.rule.pp-environment.description": "Nommage des environnements Power Platform avec trois sous-types : PPE-<charge de travail>-<environnement> pour les environnements typés, PPE-DEV-<utilisateur> pour les environnements de développeur personnels, PPE-SHARED-<charge de travail>-<environnement> pour les charges de travail partagées. Maintenez au minimum Dév/Test/Prod. Choisissez explicitement le type d'environnement (Bac à sable vs Production) dans le centre d'administration Power Platform et renommez l'environnement par défaut avec un nom descriptif.",
+    "data.rule.pp-environment.description": "Nommage des environnements Power Platform selon la gouvernance. Maintenez au minimum Dev/Test/Prod. Choisissez explicitement le type d'environnement lors de la création.",
     "data.rule.pp-environment.pattern.environment.name": "Environnement",
     "data.rule.pp-environment.pattern.developer.name": "Développeur",
     "data.rule.pp-environment.pattern.shared.name": "Partagé",
@@ -733,11 +733,11 @@
     "data.rule.intune-group-tag.name": "Balise de groupe Autopilot",
     "data.rule.intune-group-tag.description": "Nommage des étiquettes de groupe Autopilot Intune selon la gouvernance. L'étiquette détermine l'appartenance dynamique et l'affectation du profil, avec un nommage cohérent.",
     "data.rule.intune-autopilot-profile.name": "Profil Autopilot",
-    "data.rule.intune-autopilot-profile.description": "Nommage des profils de déploiement Windows Autopilot selon la gouvernance. Le nom encode le pays, le type d'appareil et la taxonomie d'objet pour un provisionnement cohérent.",
+    "data.rule.intune-autopilot-profile.description": "Nommage des profils de déploiement Windows Autopilot selon la gouvernance. Profil pour un provisionnement cohérent et une affectation dynamique des groupes.",
     "data.rule.intune-scope-tag.name": "Balise d'étendue",
-    "data.rule.intune-scope-tag.description": "Nommage des étiquettes de portée Intune selon la gouvernance. Étiquette pour délimiter l'accès administratif, suivant la taxonomie ST-<pays>-<portée> pour le contrôle d'accès basé sur les rôles.",
+    "data.rule.intune-scope-tag.description": "Nommage des étiquettes de portée Intune selon la gouvernance. Étiquette pour délimiter l'accès administratif.",
     "data.rule.intune-update-policy.name": "Stratégie de mise à jour",
-    "data.rule.intune-update-policy.description": "Nommage des stratégies de mise à jour Intune selon la gouvernance. La stratégie remplace la taxonomie classique Update Ring (UPD-<plateforme>-<portée>-<objet>) pour une gestion cohérente.",
+    "data.rule.intune-update-policy.description": "Nommage des stratégies de mise à jour Intune selon la gouvernance. La stratégie remplace la taxonomie classique pour une gestion cohérente.",
     "data.rule.intune-update-policy.pattern.platform-stage.name": "Plateforme + Étape",
     "data.rule.intune-update-policy.pattern.win-stage-purpose.name": "Windows + Étape + Objectif",
     "data.lib.intune/autopilot-macros.%SERIAL%": "Numéro de série de l'appareil, développé à l'inscription",
@@ -891,6 +891,11 @@
     "data.rule.azure-load-balancer.pattern.external.name": "Externe",
     "data.rule.azure-load-balancer.pattern.external.description": "Équilibreur externe pour le trafic public. Nom 4–80 caractères, minuscules, avec tirets, exposé internet.",
     "data.rule.teams-team.name": "Équipe Teams",
-    "data.rule.teams-team.description": "Nommage des équipes Microsoft Teams. Le nom d'équipe est le nom d'affichage du groupe M365 — maintenez-le à <=30 caractères (le client Teams tronque autour de 30-36), utilisez '-' ou '_' après le préfixe, les espaces dans le nom sont autorisées."
+    "data.rule.teams-team.description": "Nommage des équipes Microsoft Teams. Le nom d'équipe est le nom d'affichage du groupe M365 — maintenez-le à <=30 caractères (le client Teams tronque autour de 30-36), utilisez '-' ou '_' après le préfixe, les espaces dans le nom sont autorisées.",
+    "data.rule.pp-environment.pattern.environment.description": "Environnement typé pour une charge de travail et un environnement spécifiques.",
+    "data.rule.pp-environment.pattern.developer.description": "Environnement de développement personnel pour un utilisateur individuel.",
+    "data.rule.pp-environment.pattern.shared.description": "Environnement partagé pour une charge de travail et un environnement, pour les scénarios collaboratifs.",
+    "data.rule.intune-update-policy.pattern.platform-stage.description": "Stratégie de mise à jour générique pour les déploiements par étapes.",
+    "data.rule.intune-update-policy.pattern.win-stage-purpose.description": "Stratégie de mise à jour spécifique à Windows avec étape et objet pour les mises à jour de qualité, fonctionnalité, pilote ou correctif."
   }
 }

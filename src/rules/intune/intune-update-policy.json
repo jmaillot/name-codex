@@ -2,13 +2,13 @@
   "id": "intune-update-policy",
   "category": "Intune",
   "name": "Update Policy",
-  "description": "Intune Update Policy naming per governance. Policy replaces classic Update Ring taxonomy (UPD-<platform>-<scope>-<purpose>) for consistent update management and compliance reporting.",
+  "description": "Intune Update Policy naming per governance. Policy replaces classic Update Ring taxonomy for consistent update management and compliance reporting.",
   "pattern": "UPD-[Platform]-[Stage]",
   "patterns": [
     {
       "id": "platform-stage",
       "name": "Platform + Stage",
-      "description": "Generic platforms: UPD-<platform>-<stage> (e.g. UPD-IOS-PRODUCTION)",
+      "description": "Generic platform update policy for staged rollouts.",
       "pattern": "UPD-[Platform]-[Stage]",
       "defaultSegments": [
         "Platform",
@@ -31,7 +31,7 @@
     {
       "id": "win-stage-purpose",
       "name": "Windows + Stage + Purpose",
-      "description": "Windows only: UPD-WIN-<stage>-<purpose> where purpose is QUALITY, FEATURE, DRIVER or HOTPATCH",
+      "description": "Windows-specific update policy with stage and purpose for quality, feature, driver or hotpatch updates.",
       "pattern": "UPD-WIN-[Stage]-[Purpose]",
       "defaultSegments": [
         "Stage",

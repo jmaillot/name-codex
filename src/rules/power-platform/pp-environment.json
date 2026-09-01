@@ -2,13 +2,13 @@
   "id": "pp-environment",
   "category": "Power Platform",
   "name": "Power Platform Environment",
-  "description": "Power Platform environment naming: PPE-<workload>-<environment> for typed environments, PPE-DEV-<user> for personal developer environments, and PPE-SHARED-<workload>-<environment> for shared workloads. Maintain at minimum Dev/Test/Prod. When creating an environment, choose its type explicitly (Sandbox vs Production). Rename the default environment ('{tenant} (default)') to a descriptive name.",
+  "description": "Power Platform environment naming per governance. Maintain at minimum Dev/Test/Prod. When creating an environment, choose its type explicitly (Sandbox vs Production). Rename the default environment to a descriptive name.",
   "pattern": "PPE-[Workload]-[Environment]",
   "patterns": [
     {
       "id": "environment",
       "name": "Environment",
-      "description": "Typed environment for a workload: PPE-<workload>-<environment> (e.g. PPE-HR-PROD)",
+      "description": "Typed environment for a specific workload and environment.",
       "pattern": "PPE-[Workload]-[Environment]",
       "defaultSegments": [
         "Workload",
@@ -21,7 +21,7 @@
     {
       "id": "developer",
       "name": "Developer",
-      "description": "Personal developer environment: PPE-DEV-<user> (e.g. PPE-DEV-JDOE)",
+      "description": "Personal developer environment for an individual user.",
       "pattern": "PPE-DEV-[User]",
       "defaultSegments": [
         "User"
@@ -43,7 +43,7 @@
     {
       "id": "shared",
       "name": "Shared",
-      "description": "Shared environment for a workload: PPE-SHARED-<workload>-<environment> (e.g. PPE-SHARED-CRM-UAT)",
+      "description": "Shared environment for a workload and environment, for collaborative scenarios.",
       "pattern": "PPE-SHARED-[Workload]-[Environment]",
       "defaultSegments": [
         "Workload",

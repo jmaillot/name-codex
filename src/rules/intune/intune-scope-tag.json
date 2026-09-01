@@ -2,7 +2,7 @@
   "id": "intune-scope-tag",
   "category": "Intune",
   "name": "Scope Tag",
-  "description": "Intune Scope Tag naming per governance. Scope tag for scoping administrative access to devices and policies, following ST-<country>-<scope> taxonomy for role-based access control.",
+  "description": "Intune Scope Tag naming per governance. Scope tag for scoping administrative access to devices and policies, for role-based access control.",
   "pattern": "ST-[Country]-[Department]-[Service]",
   "fields": [
     {

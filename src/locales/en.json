@@ -494,7 +494,7 @@
     "data.caRange.CA9xx = Workloads": "CA9xx = Workloads",
     "data.caRange.CA10xx = Developers": "CA10xx = Developers",
     "data.rule.pp-environment.name": "Power Platform Environment",
-    "data.rule.pp-environment.description": "Power Platform environment naming with three sub-types: PPE-<workload>-<environment> for typed environments, PPE-DEV-<user> for personal developer environments, PPE-SHARED-<workload>-<environment> for shared workloads. Maintain at minimum Dev/Test/Prod. Choose the environment type explicitly (Sandbox vs Production) in the Power Platform admin center and rename the default environment to a descriptive name.",
+    "data.rule.pp-environment.description": "Power Platform environment naming per governance. Maintain at minimum Dev/Test/Prod. When creating an environment, choose its type explicitly (Sandbox vs Production). Rename the default environment to a descriptive name.",
     "data.rule.pp-environment.pattern.environment.name": "Environment",
     "data.rule.pp-environment.pattern.developer.name": "Developer",
     "data.rule.pp-environment.pattern.shared.name": "Shared",
@@ -733,11 +733,11 @@
     "data.rule.intune-group-tag.name": "Autopilot Group Tag",
     "data.rule.intune-group-tag.description": "Intune Autopilot Group Tag naming per governance. Group tag drives dynamic group membership and per-group Autopilot profile assignment, with consistent naming for model, purpose and scope.",
     "data.rule.intune-autopilot-profile.name": "Autopilot Profile",
-    "data.rule.intune-autopilot-profile.description": "Windows Autopilot Deployment Profile naming per governance. Profile name encodes country, device type and purpose taxonomy (APT-<country>-<device type>-<purpose>) for consistent device provisioning and dynamic group assignment.",
+    "data.rule.intune-autopilot-profile.description": "Windows Autopilot Deployment Profile naming per governance. Profile for consistent device provisioning and dynamic group assignment, with country, device type and purpose taxonomy.",
     "data.rule.intune-scope-tag.name": "Scope Tag",
-    "data.rule.intune-scope-tag.description": "Intune Scope Tag naming per governance. Scope tag for scoping administrative access to devices and policies, following ST-<country>-<scope> taxonomy for role-based access control.",
+    "data.rule.intune-scope-tag.description": "Intune Scope Tag naming per governance. Scope tag for scoping administrative access to devices and policies, for role-based access control.",
     "data.rule.intune-update-policy.name": "Update Policy",
-    "data.rule.intune-update-policy.description": "Intune Update Policy naming per governance. Policy replaces classic Update Ring taxonomy (UPD-<platform>-<scope>-<purpose>) for consistent update management and compliance reporting.",
+    "data.rule.intune-update-policy.description": "Intune Update Policy naming per governance. Policy replaces classic Update Ring taxonomy for consistent update management and compliance reporting.",
     "data.rule.intune-update-policy.pattern.platform-stage.name": "Platform + Stage",
     "data.rule.intune-update-policy.pattern.win-stage-purpose.name": "Windows + Stage + Purpose",
     "data.lib.intune/autopilot-macros.%SERIAL%": "Device serial number, expanded at enrollment",
@@ -891,6 +891,11 @@
     "data.rule.azure-load-balancer.pattern.external.name": "External",
     "data.rule.azure-load-balancer.pattern.external.description": "External load balancer for public-facing traffic. Name 4–80 characters, lowercase, hyphenated, internet-facing.",
     "data.rule.teams-team.name": "Team",
-    "data.rule.teams-team.description": "Microsoft Teams team. Team name is the M365 group display name — keep it <=30 characters (the Teams client truncates around 30-36), use '-' or '_' after the prefix, spaces inside the name are allowed."
+    "data.rule.teams-team.description": "Microsoft Teams team. Team name is the M365 group display name — keep it <=30 characters (the Teams client truncates around 30-36), use '-' or '_' after the prefix, spaces inside the name are allowed.",
+    "data.rule.pp-environment.pattern.environment.description": "Typed environment for a specific workload and environment.",
+    "data.rule.pp-environment.pattern.developer.description": "Personal developer environment for an individual user.",
+    "data.rule.pp-environment.pattern.shared.description": "Shared environment for a workload and environment, for collaborative scenarios.",
+    "data.rule.intune-update-policy.pattern.platform-stage.description": "Generic platform update policy for staged rollouts.",
+    "data.rule.intune-update-policy.pattern.win-stage-purpose.description": "Windows-specific update policy with stage and purpose for quality, feature, driver or hotpatch updates."
   }
 }

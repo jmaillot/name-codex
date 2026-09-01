@@ -2,7 +2,7 @@
   "id": "azure-container-registry",
   "category": "Azure",
   "name": "Container Registry",
-  "description": "Azure Container Registry naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The registry name is globally unique across all Azure tenants — uniqueness itself cannot be checked here. Lowercase letters and numbers only, 5–50 characters, no hyphens: acr-[Workload]-[Environment]-[Region]-[Instance].",
+  "description": "Azure Container Registry naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The registry name is globally unique across all Azure tenants — uniqueness itself cannot be checked here. Lowercase letters and numbers only, 5–50 characters, no hyphens.",
   "pattern": "acr-[Workload]-[Environment]-[Region]-[Instance]",
   "fields": [
     {

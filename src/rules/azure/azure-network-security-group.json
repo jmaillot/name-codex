@@ -2,7 +2,7 @@
   "id": "azure-network-security-group",
   "category": "Azure",
   "name": "Network Security Group",
-  "description": "Azure Network Security Group naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): nsg-<environment>-<region>-<workload>-<instance>.",
+  "description": "Azure Network Security Group naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources).",
   "pattern": "nsg-[Environment]-[Region]-[Workload]-[Instance]",
   "fields": [
     {

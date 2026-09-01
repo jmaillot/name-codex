@@ -2,7 +2,7 @@
   "id": "azure-function-app",
   "category": "Azure",
   "name": "Function App",
-  "description": "Azure Function App naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The name is globally unique across Azure — uniqueness itself cannot be checked here. Lowercase letters, numbers and hyphens, 2–60 characters: func-[Purpose]-[Environment]-[Region]-[Instance].",
+  "description": "Azure Function App naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The name is globally unique across Azure — uniqueness itself cannot be checked here. Lowercase letters, numbers and hyphens, 2–60 characters.",
   "pattern": "func-[Purpose]-[Environment]-[Region]-[Instance]",
   "fields": [
     {

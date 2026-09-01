@@ -2,7 +2,7 @@
   "id": "azure-public-ip",
   "category": "Azure",
   "name": "Public IP",
-  "description": "Azure Public IP naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): pip-<environment>-<region>-<workload>-<instance>.",
+  "description": "Azure Public IP naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources).",
   "pattern": "pip-[Environment]-[Region]-[Workload]-[Instance]",
   "fields": [
     {

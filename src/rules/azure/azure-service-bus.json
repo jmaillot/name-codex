@@ -1,8 +1,8 @@
 {
   "id": "azure-service-bus",
   "category": "Azure",
-  "name": "Service Bus Namespace",
-  "description": "Azure Service Bus Namespace (Standard) naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): SBNS-[Workload]-[Environment]-[Region]-[Instance].",
+  "name": "Service Bus",
+  "description": "Azure Service Bus naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): Namespace SBNS-[Workload]-[Environment]-[Region]-[Instance] (Standard) plus sub-objects Queue SBQ-[Purpose], Topic SBT-[Purpose], Subscription SBTS-[Consumer].",
   "pattern": "SBNS-[Workload]-[Environment]-[Region]-[Instance]",
   "fields": [
     {
@@ -30,18 +30,72 @@
       "allowCustomValue": true
     }
   ],
+  "patterns": [
+    {
+      "id": "namespace",
+      "name": "Namespace (Standard)",
+      "description": "Standard Service Bus namespace: SBNS-[Workload]-[Environment]-[Region]-[Instance].",
+      "pattern": "SBNS-[Workload]-[Environment]-[Region]-[Instance]",
+      "examples": ["SBNS-orders-prod-frc-001"]
+    },
+    {
+      "id": "queue",
+      "name": "Queue",
+      "description": "Service Bus Queue: SBQ-[Purpose]. Queue name identifies the message queue purpose within a namespace.",
+      "pattern": "SBQ-[Purpose]",
+      "fields": [
+        {
+          "name": "Purpose",
+          "library": "azure/sb-queue-purpose",
+          "defaultValue": "ORDERS",
+          "allowCustomValue": true
+        }
+      ],
+      "examples": ["SBQ-orders"]
+    },
+    {
+      "id": "topic",
+      "name": "Topic",
+      "description": "Service Bus Topic: SBT-[Purpose]. Topic name identifies the publish/subscribe topic purpose.",
+      "pattern": "SBT-[Purpose]",
+      "fields": [
+        {
+          "name": "Purpose",
+          "library": "azure/sb-topic-purpose",
+          "defaultValue": "ORDEREVENTS",
+          "allowCustomValue": true
+        }
+      ],
+      "examples": ["SBT-orderevents"]
+    },
+    {
+      "id": "subscription",
+      "name": "Subscription",
+      "description": "Service Bus Subscription: SBTS-[Consumer]. Subscription name identifies the consumer of a topic.",
+      "pattern": "SBTS-[Consumer]",
+      "fields": [
+        {
+          "name": "Consumer",
+          "library": "azure/sb-subscription-consumer",
+          "defaultValue": "CRM",
+          "allowCustomValue": true
+        }
+      ],
+      "examples": ["SBTS-crm"]
+    }
+  ],
   "examples": ["SBNS-orders-prod-frc-001"],
   "builder": {
     "separator": "-",
     "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Workload"],
+    "availableSegments": ["Workload", "Purpose", "Consumer", "Environment", "Region", "Instance", "Custom"],
+    "recommendedSegments": ["Workload", "Purpose", "Consumer"],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []
   },
   "validation": {
-    "maxLength": 50,
+    "maxLength": 260,
     "forceLowercase": true,
     "allowedPattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
   }

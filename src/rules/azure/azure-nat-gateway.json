@@ -1,0 +1,48 @@
+{
+  "id": "azure-nat-gateway",
+  "category": "Azure",
+  "name": "NAT Gateway",
+  "description": "Azure NAT Gateway naming per CAF (Microsoft Cloud Adoption Framework). NAT Gateway provides secure outbound connectivity for resources in a virtual network subnet. The name identifies the gateway associated with its subnet and resource group scope.",
+  "pattern": "ngw-[Workload]-[Environment]-[Region]-[Instance]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/ngw-workload",
+      "defaultValue": "SHARED",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["ngw-shared-prod-frc-001"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
+    "availableSegments": ["Workload", "Environment", "Region", "Instance", "Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 80,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,78}[a-z0-9]$"
+  }
+}

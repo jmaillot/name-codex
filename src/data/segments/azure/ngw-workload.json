@@ -1,0 +1,15 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "SHARED", "description": "Shared platform" },
+    { "value": "PLATFORM", "description": "Platform" },
+    { "value": "APP", "description": "Application" },
+    { "value": "API", "description": "API service" },
+    { "value": "WEB", "description": "Web workload" },
+    { "value": "DATA", "description": "Data workload" },
+    { "value": "NETWORK", "description": "Network workload" },
+    { "value": "EGRESS", "description": "Egress traffic" },
+    { "value": "HUB", "description": "Hub network" },
+    { "value": "DMZ", "description": "Demilitarized zone" }
+  ]
+}

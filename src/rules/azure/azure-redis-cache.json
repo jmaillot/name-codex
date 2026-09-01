@@ -1,0 +1,48 @@
+{
+  "id": "azure-redis-cache",
+  "category": "Azure",
+  "name": "Redis Cache",
+  "description": "Azure Redis Cache naming per CAF (Microsoft Cloud Adoption Framework). The Redis cache instance provides in-memory data store for caching and session state. The name refers to the cache instance itself and must be globally unique where applicable.",
+  "pattern": "redis-[Workload]-[Environment]-[Region]-[Instance]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/redis-workload",
+      "defaultValue": "SHARED",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["redis-shared-prod-frc-001"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
+    "availableSegments": ["Workload", "Environment", "Region", "Instance", "Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 63,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$"
+  }
+}

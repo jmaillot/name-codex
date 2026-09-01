@@ -2,7 +2,7 @@
   "id": "azure-event-hub",
   "category": "Azure",
   "name": "Event Hub",
-  "description": "Azure Event Hub naming per CAF \u2014 Namespace EVHNS-[Purpose]-[Environment] (6\u201350 chars) and Event Hub EVH-[Workload]-[Purpose]-[Environment] (1\u201350 chars), lowercase letters, numbers and hyphens, start letter, no consecutive hyphens.",
+  "description": "Azure Event Hub naming per CAF. Event Hub provides real-time data ingestion and streaming at scale.",
   "pattern": "evhns-[Purpose]-[Environment]",
   "fields": [
     {
@@ -22,7 +22,7 @@
     {
       "id": "namespace",
       "name": "Namespace",
-      "description": "Event Hub Namespace. Globally unique, 6\u201350 characters, lowercase, hyphenated. Pattern EVHNS-[Purpose]-[Environment].",
+      "description": "Event Hub Namespace. Globally unique, 6\u201350 characters, lowercase, hyphenated.",
       "pattern": "evhns-[Purpose]-[Environment]",
       "examples": [
         "evhns-integration-prod"
@@ -31,7 +31,7 @@
     {
       "id": "hub",
       "name": "Event Hub",
-      "description": "Event Hub entity within a namespace. Pattern EVH-[Workload]-[Purpose]-[Environment].",
+      "description": "Event Hub entity within a namespace.",
       "pattern": "evh-[Workload]-[Purpose]-[Environment]",
       "fields": [
         {

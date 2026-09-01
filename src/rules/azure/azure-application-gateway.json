@@ -2,7 +2,7 @@
   "id": "azure-application-gateway",
   "category": "Azure",
   "name": "Application Gateway",
-  "description": "Azure Application Gateway naming per CAF. Name 4\u201380 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens. Pattern agw-[Purpose]-[Environment].",
+  "description": "Azure Application Gateway naming per CAF. Application gateway provides application-level routing and load balancing for web traffic.",
   "pattern": "agw-[Purpose]-[Environment]",
   "fields": [
     {

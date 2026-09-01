@@ -2,7 +2,7 @@
   "id": "azure-data-factory",
   "category": "Azure",
   "name": "Data Factory",
-  "description": "Azure Data Factory naming per CAF. Factory name 3\u201363 characters, alphanumeric and hyphens, must start with letter. Pattern adf-[Workload]-[Environment].",
+  "description": "Azure Data Factory naming per CAF. Factory name 3\u201363 characters, alphanumeric and hyphens, must start with letter.",
   "pattern": "adf-[Workload]-[Environment]",
   "fields": [
     {

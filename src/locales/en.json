@@ -832,10 +832,6 @@
     "data.lib.azure/evh-hub-purpose.NOTIFICATIONS": "Notifications",
     "data.lib.azure/evh-hub-purpose.EVENTS": "Events",
     "data.lib.azure/evh-hub-purpose.SECURITY": "Security",
-    "data.rule.azure-load-balancer-internal.name": "Load Balancer (Internal)",
-    "data.rule.azure-load-balancer-internal.description": "Azure Load Balancer (Internal) naming per CAF. Name 4–80 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens. Pattern lbi-[Purpose]-[Environment].",
-    "data.rule.azure-load-balancer-external.name": "Load Balancer (External)",
-    "data.rule.azure-load-balancer-external.description": "Azure Load Balancer (External) naming per CAF. Name 4–80 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens. Pattern lbe-[Purpose]-[Environment].",
     "data.lib.azure/lbi-purpose.AKS": "AKS internal load balancer",
     "data.lib.azure/lbi-purpose.APPS": "Applications",
     "data.lib.azure/lbi-purpose.INTERNAL": "Internal",
@@ -887,6 +883,12 @@
     "data.lib.azure/sql-workload.POWERAPPS": "Power Apps",
     "data.lib.azure/sql-workload.PORTAL": "Portal",
     "data.lib.azure/sql-workload.ANALYTICS": "Analytics",
-    "data.lib.azure/sql-workload.DATA": "Data"
+    "data.lib.azure/sql-workload.DATA": "Data",
+    "data.rule.azure-load-balancer.name": "Load Balancer",
+    "data.rule.azure-load-balancer.description": "Azure Load Balancer naming per CAF. Load balancers provide high availability and network performance.",
+    "data.rule.azure-load-balancer.pattern.internal.name": "Internal",
+    "data.rule.azure-load-balancer.pattern.internal.description": "Internal load balancer for private traffic within a virtual network.",
+    "data.rule.azure-load-balancer.pattern.external.name": "External",
+    "data.rule.azure-load-balancer.pattern.external.description": "External load balancer for public-facing traffic."
   }
 }

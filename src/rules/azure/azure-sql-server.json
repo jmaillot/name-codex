@@ -2,7 +2,7 @@
   "id": "azure-sql-server",
   "category": "Azure",
   "name": "SQL Server",
-  "description": "Azure SQL Server naming per CAF (Microsoft Cloud Adoption Framework). Server name is globally unique, 1\u201363 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens. Pattern sqlsrv-[Workload]-[Environment].",
+  "description": "Azure SQL Server naming per CAF (Microsoft Cloud Adoption Framework). Server name is globally unique, 1\u201363 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens.",
   "pattern": "sqlsrv-[Workload]-[Environment]",
   "fields": [
     {

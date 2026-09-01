@@ -832,10 +832,6 @@
     "data.lib.azure/evh-hub-purpose.NOTIFICATIONS": "Notifications",
     "data.lib.azure/evh-hub-purpose.EVENTS": "Événements",
     "data.lib.azure/evh-hub-purpose.SECURITY": "Sécurité",
-    "data.rule.azure-load-balancer-internal.name": "Équilibreur de charge (interne)",
-    "data.rule.azure-load-balancer-internal.description": "Nommage d'Azure Load Balancer (interne) selon le CAF. Nom 4–80 caractères, lettres minuscules, chiffres et tirets, doit commencer par une lettre. Modèle lbi-[Purpose]-[Environment].",
-    "data.rule.azure-load-balancer-external.name": "Équilibreur de charge (externe)",
-    "data.rule.azure-load-balancer-external.description": "Nommage d'Azure Load Balancer (externe) selon le CAF. Nom 4–80 caractères, lettres minuscules, chiffres et tirets. Modèle lbe-[Purpose]-[Environment].",
     "data.lib.azure/lbi-purpose.AKS": "AKS",
     "data.lib.azure/lbi-purpose.APPS": "Applications",
     "data.lib.azure/lbi-purpose.INTERNAL": "Interne",
@@ -887,6 +883,12 @@
     "data.lib.azure/sql-workload.POWERAPPS": "Power Apps",
     "data.lib.azure/sql-workload.PORTAL": "Portail",
     "data.lib.azure/sql-workload.ANALYTICS": "Analytique",
-    "data.lib.azure/sql-workload.DATA": "Données"
+    "data.lib.azure/sql-workload.DATA": "Données",
+    "data.rule.azure-load-balancer.name": "Équilibreur de charge",
+    "data.rule.azure-load-balancer.description": "Nommage des équilibreurs de charge Azure selon le CAF. Les équilibreurs assurent haute disponibilité et performance réseau.",
+    "data.rule.azure-load-balancer.pattern.internal.name": "Interne",
+    "data.rule.azure-load-balancer.pattern.internal.description": "Équilibreur interne pour le trafic privé au sein d'un réseau virtuel.",
+    "data.rule.azure-load-balancer.pattern.external.name": "Externe",
+    "data.rule.azure-load-balancer.pattern.external.description": "Équilibreur externe pour le trafic public."
   }
 }

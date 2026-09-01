@@ -2,7 +2,7 @@
   "id": "azure-app-insights",
   "category": "Azure",
   "name": "Application Insights",
-  "description": "Azure Application Insights naming per CAF. Component name 4\u201363 characters (workspace-based) lowercase letters, numbers and hyphens, must start with letter. Pattern appi-[Workload]-[Environment].",
+  "description": "Azure Application Insights naming per CAF. Component name 4\u201363 characters (workspace-based) lowercase letters, numbers and hyphens, must start with letter.",
   "pattern": "appi-[Workload]-[Environment]",
   "fields": [
     {

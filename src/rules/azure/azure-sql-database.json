@@ -2,7 +2,7 @@
   "id": "azure-sql-database",
   "category": "Azure",
   "name": "SQL Database",
-  "description": "Azure SQL Database naming per CAF. Database name 1\u2013128 characters, lowercase letters, numbers and hyphens. Pattern sqldb-[Workload]-[Purpose]-[Environment].",
+  "description": "Azure SQL Database naming per CAF. Database name 1\u2013128 characters, lowercase letters, numbers and hyphens.",
   "pattern": "sqldb-[Workload]-[Purpose]-[Environment]",
   "fields": [
     {

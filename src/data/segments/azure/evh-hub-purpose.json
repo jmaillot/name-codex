@@ -1,0 +1,16 @@
+{
+  "name": "Purpose",
+  "constraints": {
+    "allowedPattern": "^[A-Z]+$",
+    "minLength": 2,
+    "maxLength": 14
+  },
+  "values": [
+    { "value": "ORDERS", "description": "Orders" },
+    { "value": "PAYMENTS", "description": "Payments" },
+    { "value": "TELEMETRY", "description": "Telemetry" },
+    { "value": "EVENTS", "description": "Events" },
+    { "value": "NOTIFICATIONS", "description": "Notifications" },
+    { "value": "ANALYTICS", "description": "Analytics" }
+  ]
+}

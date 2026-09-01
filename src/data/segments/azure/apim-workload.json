@@ -1,0 +1,10 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "API", "description": "API gateway" },
+    { "value": "GATEWAY", "description": "Gateway" },
+    { "value": "ORDERS", "description": "Orders API" },
+    { "value": "PAYMENTS", "description": "Payments API" },
+    { "value": "SHARED", "description": "Shared services" }
+  ]
+}

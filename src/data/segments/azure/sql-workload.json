@@ -1,0 +1,13 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "APP", "description": "Application" },
+    { "value": "API", "description": "API tier" },
+    { "value": "WEB", "description": "Web frontend" },
+    { "value": "DATA", "description": "Data workload" },
+    { "value": "SHARED", "description": "Shared services" },
+    { "value": "ANALYTICS", "description": "Analytics" },
+    { "value": "ORDERS", "description": "Orders domain" },
+    { "value": "PAYMENTS", "description": "Payments domain" }
+  ]
+}

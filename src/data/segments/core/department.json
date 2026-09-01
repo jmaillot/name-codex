@@ -20,6 +20,22 @@
     {
       "value": "OPS",
       "description": "Operations"
+    },
+    {
+      "value": "LEGAL",
+      "description": "Legal"
+    },
+    {
+      "value": "SALES",
+      "description": "Sales"
+    },
+    {
+      "value": "SECURITY",
+      "description": "Security"
+    },
+    {
+      "value": "RESEARCH",
+      "description": "Research"
     }
   ]
 }

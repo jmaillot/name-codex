@@ -1,25 +1,42 @@
 {
-  "name": "Workload",
+  "name": "Purpose",
   "constraints": {
     "allowedPattern": "^[A-Z]+$",
     "minLength": 2,
     "maxLength": 14
   },
   "values": [
-    { "value": "ERP", "description": "Enterprise resource planning" },
-    { "value": "CRM", "description": "Customer relationship management" },
-    { "value": "HR", "description": "Human resources" },
-    { "value": "ITSM", "description": "IT service management" },
-    { "value": "HELPDESK", "description": "Helpdesk" },
-    { "value": "D365", "description": "Dynamics 365" },
-    { "value": "COPILOT", "description": "Copilot" },
-    { "value": "POWERAPPS", "description": "Power Apps" },
-    { "value": "POWERAUTOMATE", "description": "Power Automate" },
-    { "value": "AZURE", "description": "Azure" },
-    { "value": "NETWORK", "description": "Network" },
-    { "value": "SECURITY", "description": "Security" },
-    { "value": "IDENTITY", "description": "Identity" },
-    { "value": "MONITORING", "description": "Monitoring" },
-    { "value": "BACKUP", "description": "Backup" }
+    {
+      "value": "MONITORING",
+      "description": "Monitoring"
+    },
+    {
+      "value": "SENTINEL",
+      "description": "Microsoft Sentinel"
+    },
+    {
+      "value": "PLATFORM",
+      "description": "Platform"
+    },
+    {
+      "value": "OPERATIONS",
+      "description": "Operations"
+    },
+    {
+      "value": "NETWORK",
+      "description": "Network"
+    },
+    {
+      "value": "IDENTITY",
+      "description": "Identity"
+    },
+    {
+      "value": "SECURITY",
+      "description": "Security"
+    },
+    {
+      "value": "SHARED",
+      "description": "Shared"
+    }
   ]
 }

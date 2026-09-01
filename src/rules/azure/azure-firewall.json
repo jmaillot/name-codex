@@ -2,7 +2,7 @@
   "id": "azure-firewall",
   "category": "Azure",
   "name": "Azure Firewall",
-  "description": "Azure Firewall naming per CAF. Firewall provides network security and threat protection for your virtual network.",
+  "description": "Azure Firewall naming per CAF. Name 4\u201380 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens.",
   "pattern": "afw-[Purpose]-[Environment]",
   "fields": [
     {

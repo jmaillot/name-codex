@@ -2,7 +2,7 @@
   "id": "azure-log-analytics",
   "category": "Azure",
   "name": "Log Analytics Workspace",
-  "description": "Azure Log Analytics Workspace naming per CAF (Microsoft Cloud Adoption Framework). Workspace collects and analyzes log data from Azure resources.",
+  "description": "Azure Log Analytics Workspace naming per CAF (Microsoft Cloud Adoption Framework). Workspace name 4\u201363 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens.",
   "pattern": "log-[Purpose]-[Environment]",
   "fields": [
     {

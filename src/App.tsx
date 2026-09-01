@@ -1,4 +1,5 @@
 import { useAppState } from "./hooks/useAppState";
+import { allConventions } from "./lib/data";
 import { tl } from "./lib/i18n-utils";
 import { setLanguage } from "./i18n";
 import NavPanel from "./components/NavPanel";
@@ -63,6 +64,14 @@ export default function App() {
     return <div className="app-shell empty-state">{tl("ui.emptyRules", "No naming rules found.")}</div>;
   }
 
+  const handleSelectConvention = (id: string) => {
+    const match = allConventions.find((c) => c.id === id);
+    if (match && match.category !== selectedCategory) {
+      setSelectedCategory(match.category);
+    }
+    setSelectedConventionId(id);
+  };
+
   return (
     <>
       <CommandBar language={language} onSelectLanguage={setLanguage} />
@@ -80,7 +89,7 @@ export default function App() {
             selectedConvention={selectedConvention}
             hasPatterns={hasPatterns}
             selectedPattern={selectedPattern}
-            onSelectConvention={setSelectedConventionId}
+            onSelectConvention={handleSelectConvention}
             onSelectPattern={setSelectedPatternId}
             activeDescriptionLabel={activeDescriptionLabel}
             selectedExample={selectedExample}

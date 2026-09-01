@@ -62,6 +62,12 @@ export default function ConfigureCard({
         </div>
       )}
 
+      {filteredConventions.length === 0 && objectSearch.trim().length > 0 && (
+        <div className="filter-empty" role="status" aria-live="polite">
+          {tl("ui.noSearchResults", "No conventions match your search.")}
+        </div>
+      )}
+
       <div className={`compact-selector-grid ${ hasPatterns ? "has-patterns" : "no-patterns" }`}>
         <div className="field-block selector-object">
           <label>{tl("ui.objectType", "Object Type")}</label>

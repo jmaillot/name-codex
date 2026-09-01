@@ -2,13 +2,13 @@
   "id": "azure-sql-server",
   "category": "Azure",
   "name": "SQL Server",
-  "description": "Azure SQL Server naming per CAF (Microsoft Cloud Adoption Framework). Server name is globally unique, 1–63 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens. Pattern sqlsrv-[Workload]-[Environment]-[Region]-[Instance].",
-  "pattern": "sqlsrv-[Workload]-[Environment]-[Region]-[Instance]",
+  "description": "Azure SQL Server naming per CAF (Microsoft Cloud Adoption Framework). Server name is globally unique, 1\u201363 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens. Pattern sqlsrv-[Workload]-[Environment].",
+  "pattern": "sqlsrv-[Workload]-[Environment]",
   "fields": [
     {
       "name": "Workload",
       "library": "azure/sql-workload",
-      "defaultValue": "APP",
+      "defaultValue": "CRM",
       "allowCustomValue": true
     },
     {
@@ -16,26 +16,23 @@
       "library": "core/environment",
       "defaultValue": "PROD",
       "allowCustomValue": true
-    },
-    {
-      "name": "Region",
-      "library": "core/region",
-      "defaultValue": "FRC",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Instance",
-      "library": "core/instance",
-      "defaultValue": "001",
-      "allowCustomValue": true
     }
   ],
-  "examples": ["sqlsrv-app-prod-frc-001"],
+  "examples": [
+    "sqlsrv-crm-prod"
+  ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Workload"],
+    "defaultSegments": [
+      "Workload",
+      "Environment"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Workload"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []

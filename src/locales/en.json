@@ -720,14 +720,6 @@
     "data.lib.azure/app-workload.MIDDLEWARE": "Middleware",
     "data.lib.azure/app-workload.INTEGRATION": "Integration",
     "data.lib.azure/app-workload.REPORTING": "Reporting",
-    "data.lib.azure/sql-workload.APP": "Application",
-    "data.lib.azure/sql-workload.API": "API tier",
-    "data.lib.azure/sql-workload.WEB": "Web frontend",
-    "data.lib.azure/sql-workload.DATA": "Data workload",
-    "data.lib.azure/sql-workload.SHARED": "Shared services",
-    "data.lib.azure/sql-workload.ANALYTICS": "Analytics",
-    "data.lib.azure/sql-workload.ORDERS": "Orders domain",
-    "data.lib.azure/sql-workload.PAYMENTS": "Payments domain",
     "data.rule.azure-key-vault.field.Workload.tip": "IDENTITY: Entra ID, App Registrations, Managed Identities · SHARED: platform secrets shared by multiple apps · APP: single application secrets · WEB: web certificates/secrets · DATA: SQL/Storage/Cosmos keys · DEVOPS: CI/CD secrets · NETWORK: VPN/ExpressRoute/Firewall certs · SECURITY: PKI, encryption keys · MONITORING: Log Analytics/Sentinel · BACKUP: recovery vault.",
     "data.field.Instance.tip": "Instance number or suffix distinguishing duplicate resources, e.g. 001, 002.",
     "data.rule.intune-autopilot-device-name.name": "Autopilot Device Name",
@@ -884,6 +876,17 @@
     "data.lib.azure/sql-db-purpose.LOGGING": "Logging database",
     "data.lib.azure/sql-db-purpose.CONFIG": "Configuration database",
     "data.lib.azure/sql-db-purpose.IDENTITY": "Identity database",
-    "data.lib.azure/sql-db-purpose.ANALYTICS": "Analytics database"
+    "data.lib.azure/sql-db-purpose.ANALYTICS": "Analytics database",
+    "data.lib.azure/sql-workload.CRM": "Customer relationship management",
+    "data.lib.azure/sql-workload.ERP": "Enterprise resource planning",
+    "data.lib.azure/sql-workload.HR": "Human resources",
+    "data.lib.azure/sql-workload.FINANCE": "Finance",
+    "data.lib.azure/sql-workload.ITSM": "IT service management",
+    "data.lib.azure/sql-workload.D365": "Dynamics 365",
+    "data.lib.azure/sql-workload.COPILOT": "Copilot",
+    "data.lib.azure/sql-workload.POWERAPPS": "Power Apps",
+    "data.lib.azure/sql-workload.PORTAL": "Portal",
+    "data.lib.azure/sql-workload.ANALYTICS": "Analytics",
+    "data.lib.azure/sql-workload.DATA": "Data"
   }
 }

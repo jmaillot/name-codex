@@ -1,13 +1,49 @@
 {
   "name": "Workload",
   "values": [
-    { "value": "APP", "description": "Application" },
-    { "value": "API", "description": "API tier" },
-    { "value": "WEB", "description": "Web frontend" },
-    { "value": "DATA", "description": "Data workload" },
-    { "value": "SHARED", "description": "Shared services" },
-    { "value": "ANALYTICS", "description": "Analytics" },
-    { "value": "ORDERS", "description": "Orders domain" },
-    { "value": "PAYMENTS", "description": "Payments domain" }
+    {
+      "value": "CRM",
+      "description": "Customer relationship management"
+    },
+    {
+      "value": "ERP",
+      "description": "Enterprise resource planning"
+    },
+    {
+      "value": "HR",
+      "description": "Human resources"
+    },
+    {
+      "value": "FINANCE",
+      "description": "Finance"
+    },
+    {
+      "value": "ITSM",
+      "description": "IT service management"
+    },
+    {
+      "value": "D365",
+      "description": "Dynamics 365"
+    },
+    {
+      "value": "COPILOT",
+      "description": "Copilot"
+    },
+    {
+      "value": "POWERAPPS",
+      "description": "Power Apps"
+    },
+    {
+      "value": "PORTAL",
+      "description": "Portal"
+    },
+    {
+      "value": "ANALYTICS",
+      "description": "Analytics"
+    },
+    {
+      "value": "DATA",
+      "description": "Data"
+    }
   ]
 }

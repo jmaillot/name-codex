@@ -110,7 +110,7 @@ export default function App() {
             onMoveSegment={moveSegment}
             onRemoveSegment={removeSegment}
           />
-          <ScoreCard namingScore={namingScore} validationResults={validationResults} />
+          <ScoreCard namingScore={namingScore} validationResults={validationResults} segments={builderSegments} fields={activeFields} convention={selectedConvention} generatedName={generatedName} onNavigateToSegment={(name) => { const el = document.querySelector(`[data-segment="${name}"]`); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); }} />
           <DocumentationCard markdown={markdown} />
           <ReferenceCard referenceEntries={referenceEntries} />
           <FavoritesCard favorites={favorites} onClearFavorites={clearFavorites} />

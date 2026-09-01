@@ -1,0 +1,37 @@
+{
+  "name": "Purpose",
+  "values": [
+    {
+      "value": "HUB",
+      "description": "Hub firewall"
+    },
+    {
+      "value": "SPOKE",
+      "description": "Spoke firewall"
+    },
+    {
+      "value": "PLATFORM",
+      "description": "Platform firewall"
+    },
+    {
+      "value": "SECURITY",
+      "description": "Security firewall"
+    },
+    {
+      "value": "INTERNAL",
+      "description": "Internal firewall"
+    },
+    {
+      "value": "EXTERNAL",
+      "description": "External firewall"
+    },
+    {
+      "value": "CONNECTIVITY",
+      "description": "Connectivity firewall"
+    },
+    {
+      "value": "SHARED",
+      "description": "Shared firewall"
+    }
+  ]
+}

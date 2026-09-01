@@ -2,13 +2,13 @@
   "id": "azure-app-insights",
   "category": "Azure",
   "name": "Application Insights",
-  "description": "Azure Application Insights naming per CAF. Component name 4\u201363 characters (workspace-based) lowercase letters, numbers and hyphens, must start with letter. Classic 260 legacy noted \u2014 this convention enforces 63 per CAF. Pattern appi-[Workload]-[Environment]-[Region]-[Instance].",
-  "pattern": "appi-[Workload]-[Environment]-[Region]-[Instance]",
+  "description": "Azure Application Insights naming per CAF. Component name 4\u201363 characters (workspace-based) lowercase letters, numbers and hyphens, must start with letter. Pattern appi-[Workload]-[Environment].",
+  "pattern": "appi-[Workload]-[Environment]",
   "fields": [
     {
       "name": "Workload",
       "library": "azure/appi-workload",
-      "defaultValue": "APP",
+      "defaultValue": "CRM",
       "allowCustomValue": true
     },
     {
@@ -16,25 +16,23 @@
       "library": "core/environment",
       "defaultValue": "PROD",
       "allowCustomValue": true
-    },
-    {
-      "name": "Region",
-      "library": "core/region",
-      "defaultValue": "FRC",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Instance",
-      "library": "core/instance",
-      "defaultValue": "001",
-      "allowCustomValue": true
     }
+  ],
+  "examples": [
+    "appi-crm-prod"
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Workload"],
+    "defaultSegments": [
+      "Workload",
+      "Environment"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Workload"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []
@@ -43,6 +41,5 @@
     "maxLength": 63,
     "forceLowercase": true,
     "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{2,61}[a-z0-9]$"
-  },
-  "examples": ["appi-app-prod-frc-001"]
+  }
 }

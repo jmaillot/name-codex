@@ -6,19 +6,57 @@
     "maxLength": 14
   },
   "values": [
-    { "value": "ERP", "description": "Enterprise resource planning" },
-    { "value": "CRM", "description": "Customer relationship management" },
-    { "value": "HR", "description": "Human resources" },
-    { "value": "ITSM", "description": "IT service management" },
-    { "value": "HELPDESK", "description": "Helpdesk" },
-    { "value": "D365", "description": "Dynamics 365" },
-    { "value": "COPILOT", "description": "Copilot" },
-    { "value": "PORTAL", "description": "Portal" },
-    { "value": "API", "description": "API" },
-    { "value": "WEBAPP", "description": "Web application" },
-    { "value": "MOBILE", "description": "Mobile" },
-    { "value": "POWERAPPS", "description": "Power Apps" },
-    { "value": "POWERAUTOMATE", "description": "Power Automate" },
-    { "value": "CUSTOMAPP", "description": "Custom application" }
+    {
+      "value": "CRM",
+      "description": "Customer relationship management"
+    },
+    {
+      "value": "ERP",
+      "description": "Enterprise resource planning"
+    },
+    {
+      "value": "HR",
+      "description": "Human resources"
+    },
+    {
+      "value": "ITSM",
+      "description": "IT service management"
+    },
+    {
+      "value": "HELPDESK",
+      "description": "Helpdesk"
+    },
+    {
+      "value": "D365",
+      "description": "Dynamics 365"
+    },
+    {
+      "value": "COPILOT",
+      "description": "Copilot"
+    },
+    {
+      "value": "POWERAPPS",
+      "description": "Power Apps"
+    },
+    {
+      "value": "PORTAL",
+      "description": "Portal"
+    },
+    {
+      "value": "API",
+      "description": "API"
+    },
+    {
+      "value": "WEBAPP",
+      "description": "Web application"
+    },
+    {
+      "value": "MOBILE",
+      "description": "Mobile"
+    },
+    {
+      "value": "INTEGRATION",
+      "description": "Integration"
+    }
   ]
 }

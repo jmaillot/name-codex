@@ -1,0 +1,37 @@
+{
+  "name": "Workload",
+  "values": [
+    {
+      "value": "CRM",
+      "description": "Customer relationship management"
+    },
+    {
+      "value": "ERP",
+      "description": "Enterprise resource planning"
+    },
+    {
+      "value": "HR",
+      "description": "Human resources"
+    },
+    {
+      "value": "D365",
+      "description": "Dynamics 365"
+    },
+    {
+      "value": "ITSM",
+      "description": "IT service management"
+    },
+    {
+      "value": "COPILOT",
+      "description": "Copilot"
+    },
+    {
+      "value": "POWERAPPS",
+      "description": "Power Apps"
+    },
+    {
+      "value": "PORTAL",
+      "description": "Portal"
+    }
+  ]
+}

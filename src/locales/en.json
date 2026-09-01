@@ -866,6 +866,24 @@
     "data.lib.azure/log-workload.NETWORK": "Network",
     "data.lib.azure/log-workload.IDENTITY": "Identity",
     "data.lib.azure/log-workload.SECURITY": "Security",
-    "data.lib.azure/log-workload.SHARED": "Shared"
+    "data.lib.azure/log-workload.SHARED": "Shared",
+    "data.lib.azure/sql-db-workload.CRM": "Customer relationship management",
+    "data.lib.azure/sql-db-workload.ERP": "Enterprise resource planning",
+    "data.lib.azure/sql-db-workload.HR": "Human resources",
+    "data.lib.azure/sql-db-workload.D365": "Dynamics 365",
+    "data.lib.azure/sql-db-workload.ITSM": "IT service management",
+    "data.lib.azure/sql-db-workload.COPILOT": "Copilot",
+    "data.lib.azure/sql-db-workload.POWERAPPS": "Power Apps",
+    "data.lib.azure/sql-db-workload.PORTAL": "Portal",
+    "data.lib.azure/sql-db-purpose.APP": "Application database",
+    "data.lib.azure/sql-db-purpose.USERS": "Users database",
+    "data.lib.azure/sql-db-purpose.CUSTOMERS": "Customers database",
+    "data.lib.azure/sql-db-purpose.ORDERS": "Orders database",
+    "data.lib.azure/sql-db-purpose.REPORTING": "Reporting database",
+    "data.lib.azure/sql-db-purpose.AUDIT": "Audit database",
+    "data.lib.azure/sql-db-purpose.LOGGING": "Logging database",
+    "data.lib.azure/sql-db-purpose.CONFIG": "Configuration database",
+    "data.lib.azure/sql-db-purpose.IDENTITY": "Identity database",
+    "data.lib.azure/sql-db-purpose.ANALYTICS": "Analytics database"
   }
 }

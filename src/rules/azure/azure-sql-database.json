@@ -2,12 +2,18 @@
   "id": "azure-sql-database",
   "category": "Azure",
   "name": "SQL Database",
-  "description": "Azure SQL Database naming per CAF. Database name 1–128 characters, lowercase letters, numbers and hyphens. Paired with SQL Server logical server (sqlsrv). Pattern sql-[Workload]-[Environment]-[Region]-[Instance].",
-  "pattern": "sql-[Workload]-[Environment]-[Region]-[Instance]",
+  "description": "Azure SQL Database naming per CAF. Database name 1\u2013128 characters, lowercase letters, numbers and hyphens. Pattern sqldb-[Workload]-[Purpose]-[Environment].",
+  "pattern": "sqldb-[Workload]-[Purpose]-[Environment]",
   "fields": [
     {
       "name": "Workload",
-      "library": "azure/sql-workload",
+      "library": "azure/sql-db-workload",
+      "defaultValue": "CRM",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Purpose",
+      "library": "azure/sql-db-purpose",
       "defaultValue": "APP",
       "allowCustomValue": true
     },
@@ -16,26 +22,25 @@
       "library": "core/environment",
       "defaultValue": "PROD",
       "allowCustomValue": true
-    },
-    {
-      "name": "Region",
-      "library": "core/region",
-      "defaultValue": "FRC",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Instance",
-      "library": "core/instance",
-      "defaultValue": "001",
-      "allowCustomValue": true
     }
   ],
-  "examples": ["sql-app-prod-frc-001"],
+  "examples": [
+    "sqldb-crm-app-prod"
+  ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Workload"],
+    "defaultSegments": [
+      "Workload",
+      "Purpose",
+      "Environment"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Workload",
+      "Purpose"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []

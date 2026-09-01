@@ -1,0 +1,45 @@
+{
+  "name": "Purpose",
+  "values": [
+    {
+      "value": "APP",
+      "description": "Application database"
+    },
+    {
+      "value": "USERS",
+      "description": "Users database"
+    },
+    {
+      "value": "CUSTOMERS",
+      "description": "Customers database"
+    },
+    {
+      "value": "ORDERS",
+      "description": "Orders database"
+    },
+    {
+      "value": "REPORTING",
+      "description": "Reporting database"
+    },
+    {
+      "value": "AUDIT",
+      "description": "Audit database"
+    },
+    {
+      "value": "LOGGING",
+      "description": "Logging database"
+    },
+    {
+      "value": "CONFIG",
+      "description": "Configuration database"
+    },
+    {
+      "value": "IDENTITY",
+      "description": "Identity database"
+    },
+    {
+      "value": "ANALYTICS",
+      "description": "Analytics database"
+    }
+  ]
+}

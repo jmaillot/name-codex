@@ -2,7 +2,7 @@
   "id": "azure-virtual-network-gateway",
   "category": "Azure",
   "name": "Virtual Network Gateway",
-  "description": "Azure Virtual Network Gateway naming.",
+  "description": "Azure Virtual Network Gateway naming: Gateway [Region]-[Country]-[Workload]-[Instance]-[Role] plus sub-object Gateway IP [Region]-[Country]-[Workload]-[Instance]-[Role]-[IP].",
   "pattern": "[Region]-[Country]-[Workload]-[Instance]-[Role]",
   "fields": [
     {
@@ -46,33 +46,43 @@
       ]
     }
   ],
-  "examples": [
-    "FRC-FR-VNET-001-GW"
+  "patterns": [
+    {
+      "id": "gateway",
+      "name": "Gateway",
+      "description": "Virtual Network Gateway: [Region]-[Country]-[Workload]-[Instance]-[Role].",
+      "pattern": "[Region]-[Country]-[Workload]-[Instance]-[Role]",
+      "examples": ["FRC-FR-VNET-001-GW"]
+    },
+    {
+      "id": "gateway-ip",
+      "name": "Gateway IP",
+      "description": "Virtual Network Gateway IP: [Region]-[Country]-[Workload]-[Instance]-[Role]-[IP].",
+      "pattern": "[Region]-[Country]-[Workload]-[Instance]-[Role]-[IP]",
+      "fields": [
+        {
+          "name": "IP",
+          "defaultValue": "IP",
+          "allowCustomValue": false,
+          "values": [
+            {
+              "value": "IP",
+              "description": "IP Address"
+            }
+          ]
+        }
+      ],
+      "examples": ["FRC-FR-VNET-001-GW-IP"]
+    }
   ],
+  "examples": ["FRC-FR-VNET-001-GW"],
   "builder": {
     "separator": "-",
-    "defaultSegments": [
-      "Region",
-      "Country",
-      "Workload",
-      "Instance",
-      "Role"
-    ],
-    "availableSegments": [
-      "Custom"
-    ],
-    "recommendedSegments": [
-      "Country",
-      "Instance"
-    ],
-    "lockedSegments": [
-      "Workload"
-    ],
-    "fixedFirstSegments": [
-      "Region"
-    ],
-    "fixedLastSegments": [
-      "Role"
-    ]
+    "defaultSegments": ["Region", "Country", "Workload", "Instance", "Role"],
+    "availableSegments": ["Region", "Country", "Workload", "Instance", "Role", "IP", "Custom"],
+    "recommendedSegments": ["Country", "Instance"],
+    "lockedSegments": ["Workload"],
+    "fixedFirstSegments": ["Region"],
+    "fixedLastSegments": ["Role"]
   }
 }

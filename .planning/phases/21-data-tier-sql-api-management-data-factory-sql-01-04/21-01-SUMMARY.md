@@ -110,6 +110,13 @@ None - no external service configuration required.
 - Workload dropdowns filter via Phase 19 `getConstraintsForField` when libs carry constraints; Custom input remains available
 - Ready for Phase 22/23 (observability / network edge) — catalog at 53 conventions, 11 categories, all gates green
 
+## Self-Check: PASSED
+
+- All 7 created files found (4 rules + 3 workload libs)
+- Task commits verified: b5feefb, 369beda
+- Summary commit verified: 1a7de07
+- Gates: check:data 118 PASS, 238 tests PASS, build PASS, lint PASS
+
 ---
 *Phase: 21-data-tier-sql-api-management-data-factory-sql-01-04*
 *Completed: 2026-09-01*

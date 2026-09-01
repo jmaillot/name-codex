@@ -546,7 +546,7 @@
     "data.rule.azure-function-app.name": "Function App",
     "data.rule.azure-function-app.description": "Azure Function App naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The name is globally unique across Azure — uniqueness itself cannot be checked here. Lowercase letters, numbers and hyphens, 2–60 characters.",
     "data.rule.azure-app-service.name": "App Service",
-    "data.rule.azure-app-service.description": "Azure App Service naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The name is globally unique across Azure — uniqueness itself cannot be checked here. Lowercase letters, numbers and hyphens, 2–60 characters: app-[Workload]-[Environment]-[Region]-[Instance].",
+    "data.rule.azure-app-service.description": "Azure App Service naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources). The name is globally unique across Azure — uniqueness itself cannot be checked here. Lowercase letters, numbers and hyphens, 2–60 characters.",
     "data.lib.azure/acr-workload.CRM": "Customer relationship management",
     "data.lib.azure/acr-workload.ERP": "Enterprise resource planning",
     "data.lib.azure/acr-workload.HR": "Human resources",

@@ -546,7 +546,7 @@
     "data.rule.azure-function-app.name": "Application de fonction",
     "data.rule.azure-function-app.description": "Nommage des applications de fonction Azure selon le CAF (Microsoft Cloud Adoption Framework — ensemble des recommandations Microsoft pour structurer et nommer les ressources cloud). Le nom est globalement unique — l'unicité ne peut pas être vérifiée ici. Lettres minuscules, chiffres et tirets, 2–60 caractères.",
     "data.rule.azure-app-service.name": "Service d'application",
-    "data.rule.azure-app-service.description": "Nommage du service d'application Azure selon le CAF (Microsoft Cloud Adoption Framework — ensemble des recommandations Microsoft pour structurer et nommer les ressources cloud). Le nom est globalement unique — l'unicité ne peut pas être vérifiée ici. Lettres minuscules, chiffres et tirets, 2–60 caractères : app-[Charge de travail]-[Environnement]-[Région]-[Instance].",
+    "data.rule.azure-app-service.description": "Nommage du service d'application Azure selon le CAF (Microsoft Cloud Adoption Framework — ensemble des recommandations Microsoft pour structurer et nommer les ressources cloud). Le nom est globalement unique — l'unicité ne peut pas être vérifiée ici. Lettres minuscules, chiffres et tirets, 2–60 caractères.",
     "data.lib.azure/acr-workload.CRM": "Gestion de la relation client",
     "data.lib.azure/acr-workload.ERP": "Progiciel de gestion intégré",
     "data.lib.azure/acr-workload.HR": "Ressources humaines",

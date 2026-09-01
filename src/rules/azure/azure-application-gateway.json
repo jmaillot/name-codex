@@ -2,56 +2,37 @@
   "id": "azure-application-gateway",
   "category": "Azure",
   "name": "Application Gateway",
-  "description": "Azure Application Gateway naming per CAF. Name 4–80 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens. Pattern agw-[Workload]-[Environment]-[Region]-[Instance].",
-  "pattern": "agw-[Workload]-[Environment]-[Region]-[Instance]",
+  "description": "Azure Application Gateway naming per CAF. Name 4\u201380 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens. Pattern agw-[Purpose]-[Environment].",
+  "pattern": "agw-[Purpose]-[Environment]",
   "fields": [
     {
-      "name": "Workload",
-      "defaultValue": "APP",
-      "allowCustomValue": true,
-      "values": [
-        {
-          "value": "WEB",
-          "description": "Web tier"
-        },
-        {
-          "value": "APP",
-          "description": "Application tier"
-        },
-        {
-          "value": "API",
-          "description": "API tier"
-        },
-        {
-          "value": "SHARED",
-          "description": "Shared"
-        }
-      ]
+      "name": "Purpose",
+      "library": "azure/agw-workload",
+      "defaultValue": "INTERNAL",
+      "allowCustomValue": true
     },
     {
       "name": "Environment",
       "library": "core/environment",
       "defaultValue": "PROD",
       "allowCustomValue": true
-    },
-    {
-      "name": "Region",
-      "library": "core/region",
-      "defaultValue": "FRC",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Instance",
-      "library": "core/instance",
-      "defaultValue": "001",
-      "allowCustomValue": true
     }
+  ],
+  "examples": [
+    "agw-internal-prod"
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Custom"],
-    "recommendedSegments": ["Workload"],
+    "defaultSegments": [
+      "Purpose",
+      "Environment"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [
+      "Purpose"
+    ],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []
@@ -60,6 +41,5 @@
     "maxLength": 80,
     "forceLowercase": true,
     "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{2,78}[a-z0-9]$"
-  },
-  "examples": ["agw-app-prod-frc-001"]
+  }
 }

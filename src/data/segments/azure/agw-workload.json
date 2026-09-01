@@ -1,0 +1,37 @@
+{
+  "name": "Purpose",
+  "values": [
+    {
+      "value": "INTERNAL",
+      "description": "Internal gateway"
+    },
+    {
+      "value": "EXTERNAL",
+      "description": "External gateway"
+    },
+    {
+      "value": "PARTNER",
+      "description": "Partner gateway"
+    },
+    {
+      "value": "B2B",
+      "description": "Business-to-business gateway"
+    },
+    {
+      "value": "PLATFORM",
+      "description": "Platform gateway"
+    },
+    {
+      "value": "SHARED",
+      "description": "Shared gateway"
+    },
+    {
+      "value": "DMZ",
+      "description": "Demilitarized zone gateway"
+    },
+    {
+      "value": "WAF",
+      "description": "Web application firewall"
+    }
+  ]
+}

@@ -819,6 +819,14 @@
     "data.lib.azure/apim-workload.INTERNAL": "Internal APIs",
     "data.lib.azure/apim-workload.EXTERNAL": "External APIs",
     "data.lib.azure/apim-workload.AI": "AI APIs",
-    "data.lib.azure/apim-workload.B2B": "Business-to-business APIs"
+    "data.lib.azure/apim-workload.B2B": "Business-to-business APIs",
+    "data.lib.azure/agw-workload.INTERNAL": "Internal gateway",
+    "data.lib.azure/agw-workload.EXTERNAL": "External gateway",
+    "data.lib.azure/agw-workload.PARTNER": "Partner gateway",
+    "data.lib.azure/agw-workload.B2B": "Business-to-business gateway",
+    "data.lib.azure/agw-workload.PLATFORM": "Platform gateway",
+    "data.lib.azure/agw-workload.SHARED": "Shared gateway",
+    "data.lib.azure/agw-workload.DMZ": "Demilitarized zone gateway",
+    "data.lib.azure/agw-workload.WAF": "Web application firewall"
   }
 }

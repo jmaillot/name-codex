@@ -819,6 +819,14 @@
     "data.lib.azure/apim-workload.INTERNAL": "API interne",
     "data.lib.azure/apim-workload.EXTERNAL": "API externe",
     "data.lib.azure/apim-workload.AI": "API IA",
-    "data.lib.azure/apim-workload.B2B": "API B2B"
+    "data.lib.azure/apim-workload.B2B": "API B2B",
+    "data.lib.azure/agw-workload.INTERNAL": "Passerelle interne",
+    "data.lib.azure/agw-workload.EXTERNAL": "Passerelle externe",
+    "data.lib.azure/agw-workload.PARTNER": "Passerelle partenaire",
+    "data.lib.azure/agw-workload.B2B": "Passerelle B2B",
+    "data.lib.azure/agw-workload.PLATFORM": "Passerelle plateforme",
+    "data.lib.azure/agw-workload.SHARED": "Passerelle partagée",
+    "data.lib.azure/agw-workload.DMZ": "Passerelle DMZ",
+    "data.lib.azure/agw-workload.WAF": "Pare-feu applicatif"
   }
 }

@@ -1,0 +1,72 @@
+{
+  "id": "azure-event-hub",
+  "category": "Azure",
+  "name": "Event Hub",
+  "description": "Azure Event Hub naming per CAF \u2014 Namespace 6\u201350 characters and Event Hub (entity) 1\u201350 characters, lowercase letters, numbers and hyphens, start letter, no consecutive hyphens. File exposes two patterns: namespace evh-[Workload]-[Environment]-[Region]-[Instance] and hub evh-[Purpose].",
+  "pattern": "evh-[Workload]-[Environment]-[Region]-[Instance]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/evh-workload",
+      "defaultValue": "INGEST",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "patterns": [
+    {
+      "id": "namespace",
+      "name": "Namespace",
+      "description": "Event Hub Namespace. Globally unique, 6\u201350 characters, lowercase, hyphenated.",
+      "pattern": "evh-[Workload]-[Environment]-[Region]-[Instance]",
+      "examples": ["evh-ingest-prod-frc-001"]
+    },
+    {
+      "id": "hub",
+      "name": "Event Hub",
+      "description": "Event Hub entity within a namespace. Name identifies the streaming hub purpose.",
+      "pattern": "evh-[Purpose]",
+      "fields": [
+        {
+          "name": "Purpose",
+          "library": "azure/evh-hub-purpose",
+          "defaultValue": "ORDERS",
+          "allowCustomValue": true
+        }
+      ],
+      "examples": ["evh-orders"]
+    }
+  ],
+  "examples": ["evh-ingest-prod-frc-001"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
+    "availableSegments": ["Workload", "Purpose", "Environment", "Region", "Instance", "Custom"],
+    "recommendedSegments": ["Workload", "Purpose"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 50,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{4,48}[a-z0-9]$"
+  }
+}

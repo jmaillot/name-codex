@@ -1,0 +1,17 @@
+{
+  "name": "Workload",
+  "constraints": {
+    "allowedPattern": "^[A-Z]+$",
+    "minLength": 2,
+    "maxLength": 14
+  },
+  "values": [
+    { "value": "INGEST", "description": "Ingestion" },
+    { "value": "STREAM", "description": "Streaming" },
+    { "value": "TELEMETRY", "description": "Telemetry" },
+    { "value": "ORDERS", "description": "Orders domain" },
+    { "value": "PAYMENTS", "description": "Payments domain" },
+    { "value": "ANALYTICS", "description": "Analytics" },
+    { "value": "IOT", "description": "IoT" }
+  ]
+}

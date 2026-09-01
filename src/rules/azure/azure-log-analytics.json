@@ -1,0 +1,48 @@
+{
+  "id": "azure-log-analytics",
+  "category": "Azure",
+  "name": "Log Analytics Workspace",
+  "description": "Azure Log Analytics Workspace naming per CAF (Microsoft Cloud Adoption Framework). Workspace name 4\u201363 characters, lowercase letters, numbers and hyphens, must start with letter and end with letter or number, no consecutive hyphens. Pattern log-[Workload]-[Environment]-[Region]-[Instance].",
+  "pattern": "log-[Workload]-[Environment]-[Region]-[Instance]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/log-workload",
+      "defaultValue": "MONITORING",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 63,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{2,61}[a-z0-9]$"
+  },
+  "examples": ["log-monitoring-prod-frc-001"]
+}

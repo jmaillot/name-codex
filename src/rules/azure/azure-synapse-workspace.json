@@ -1,0 +1,48 @@
+{
+  "id": "azure-synapse-workspace",
+  "category": "Azure",
+  "name": "Synapse Workspace",
+  "description": "Azure Synapse Analytics workspace naming per CAF (Microsoft Cloud Adoption Framework). The workspace provides unified analytics for Spark and SQL pools over data lake and warehouse. The name refers to the workspace itself and its analytics pools scope and should be globally unique where applicable.",
+  "pattern": "synw-[Workload]-[Environment]-[Region]-[Instance]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/synw-workload",
+      "defaultValue": "SHARED",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Instance",
+      "library": "core/instance",
+      "defaultValue": "001",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["synw-shared-prod-frc-001"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
+    "availableSegments": ["Workload", "Environment", "Region", "Instance", "Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 50,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,48}[a-z0-9]$"
+  }
+}

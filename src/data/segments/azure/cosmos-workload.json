@@ -5,6 +5,23 @@
     { "value": "CATALOG", "description": "Catalog domain" },
     { "value": "USERS", "description": "Users domain" },
     { "value": "PAYMENTS", "description": "Payments domain" },
-    { "value": "ANALYTICS", "description": "Analytics domain" }
+    { "value": "ANALYTICS", "description": "Analytics domain" },
+    { "value": "CRM", "description": "Customer relationship management" },
+    { "value": "ERP", "description": "Enterprise resource planning" },
+    { "value": "HR", "description": "Human resources" },
+    { "value": "FINANCE", "description": "Finance" },
+    { "value": "ITSM", "description": "IT service management" },
+    { "value": "HELPDESK", "description": "Helpdesk" },
+    { "value": "PORTAL", "description": "Portal" },
+    { "value": "API", "description": "API" },
+    { "value": "MOBILE", "description": "Mobile" },
+    { "value": "COPILOT", "description": "Copilot" },
+    { "value": "D365", "description": "Dynamics 365" },
+    { "value": "POWERAPPS", "description": "Power Apps" },
+    { "value": "IDENTITY", "description": "Identity" },
+    { "value": "AUTH", "description": "Authentication" },
+    { "value": "SESSION", "description": "Session" },
+    { "value": "PROFILE", "description": "Profile" },
+    { "value": "TELEMETRY", "description": "Telemetry" }
   ]
 }

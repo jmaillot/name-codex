@@ -48,6 +48,10 @@
   "examples": [
     "FRAZLASEAR"
   ],
+  "validation": {
+    "maxLength": 43,
+    "allowedPattern": "^[A-Za-z0-9_().-]{1,43}$"
+  },
   "builder": {
     "separator": "",
     "defaultSegments": [

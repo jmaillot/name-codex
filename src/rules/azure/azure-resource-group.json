@@ -54,6 +54,10 @@
   "examples": [
     "RG-FRC-PROD-VNET"
   ],
+  "validation": {
+    "maxLength": 90,
+    "allowedPattern": "^[A-Za-z0-9_().-]{1,90}$"
+  },
   "builder": {
     "separator": "-",
     "defaultSegments": [

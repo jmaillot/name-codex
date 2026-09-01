@@ -43,6 +43,10 @@
   "examples": [
     "FRAZWADP001"
   ],
+  "validation": {
+    "maxLength": 64,
+    "allowedPattern": "^[A-Za-z0-9][A-Za-z0-9-]{0,62}[A-Za-z0-9]$|^[A-Za-z0-9]$"
+  },
   "builder": {
     "separator": "",
     "defaultSegments": [

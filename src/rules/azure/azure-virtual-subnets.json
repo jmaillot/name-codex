@@ -61,7 +61,8 @@
     ]
   },
   "validation": {
+    "maxLength": 80,
     "forceUppercase": true,
-    "allowedPattern": "^[A-Za-z0-9_.-]+$"
+    "allowedPattern": "^[A-Za-z0-9_.-]{1,80}$"
   }
 }

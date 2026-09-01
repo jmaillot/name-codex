@@ -76,6 +76,10 @@
     }
   ],
   "examples": ["FRC-FR-VNET-001-GW"],
+  "validation": {
+    "maxLength": 80,
+    "allowedPattern": "^[A-Za-z0-9_.-]{1,80}$"
+  },
   "builder": {
     "separator": "-",
     "defaultSegments": ["Region", "Country", "Workload", "Instance", "Role"],

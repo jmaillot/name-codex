@@ -89,7 +89,7 @@
     "separator": "-",
     "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
     "availableSegments": ["Workload", "Purpose", "Consumer", "Environment", "Region", "Instance", "Custom"],
-    "recommendedSegments": ["Workload"],
+    "recommendedSegments": ["Workload", "Purpose", "Consumer"],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []

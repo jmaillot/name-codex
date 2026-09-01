@@ -126,11 +126,16 @@ export function validateName(name: string, convention: NamingConvention, segment
     });
   });
 
-  (convention.builder?.lockedSegments ?? []).forEach((s: string) =>
+  // For grouped conventions (patterns[]), filter locked/recommended to active pattern fields only
+  // so e.g. Service Bus Namespace (SBNS-...) does not flag Purpose/Consumer, and queue only flags Purpose.
+  // For single-pattern conventions keep legacy behavior (no filter) to preserve existing governance tests
+  // where recommended may be a custom segment not in fields (e.g. Rec in synthetic tests).
+  const hasPatterns = (convention.patterns?.length ?? 0) > 0;
+  (convention.builder?.lockedSegments ?? []).filter((s) => !hasPatterns || (fields ?? []).some((f) => f.name === s)).forEach((s: string) =>
     results.push({ label: tl("ui.valLockedPresent", `Locked segment present: ${s}`, { name: s }), valid: names.includes(s) }),
   );
 
-  (convention.builder?.recommendedSegments ?? []).forEach((s: string) =>
+  (convention.builder?.recommendedSegments ?? []).filter((s) => !hasPatterns || (fields ?? []).some((f) => f.name === s)).forEach((s: string) =>
     results.push({ label: tl("ui.valRecommendedPresent", `Recommended segment present: ${s}`, { name: s }), valid: names.includes(s) }),
   );
 

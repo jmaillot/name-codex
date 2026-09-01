@@ -143,15 +143,15 @@ describe("data integrity", () => {
     expect(getGeneratorFile("nonexistent-generator-xyz")).toBeUndefined()
   })
 
-  it("catalog contains exactly 53 conventions (25 existing + 19 new + 6 CAF -1 grouped VNet GW + 4 data-tier)", () => {
-    expect(allConventions.length).toBe(53)
+  it("catalog contains exactly 56 conventions (25 existing + 19 new + 6 CAF -1 grouped VNet GW + 4 data-tier + 3 observability)", () => {
+    expect(allConventions.length).toBe(56)
   })
 
   it("catalog spans exactly 11 categories with expected counts", () => {
     const counts: Record<string, number> = {}
     for (const conv of allConventions) counts[conv.category] = (counts[conv.category] ?? 0) + 1
     expect(counts).toEqual({
-      "Azure": 21,
+      "Azure": 24,
       "Conditional Access": 2,
       "Defender for M365": 3,
       "Entra ID": 1,
@@ -176,10 +176,11 @@ describe("data integrity", () => {
     "azure-container-registry", "azure-kubernetes-service", "azure-cosmos-db",
     "azure-service-bus", "azure-function-app", "azure-app-service",
     "azure-sql-server", "azure-sql-database", "azure-api-management", "azure-data-factory",
+    "azure-log-analytics", "azure-app-insights", "azure-event-hub",
   ]
 
   it("every new convention is reachable via global-search (name/description/id/pattern match)", () => {
-    expect(NEW_CONVENTION_IDS.length).toBe(29)
+    expect(NEW_CONVENTION_IDS.length).toBe(32)
     // WR-04: mirror the exact predicate used by filteredConventions in
     // useAppState (name/description/id/pattern) and query with a PARTIAL
     // id fragment, so the test exercises real substring matching instead

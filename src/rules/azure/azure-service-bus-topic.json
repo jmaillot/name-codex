@@ -1,0 +1,30 @@
+{
+  "id": "azure-service-bus-topic",
+  "category": "Azure",
+  "name": "Service Bus Topic",
+  "description": "Azure Service Bus Topic naming per CAF: SBT-[Purpose]. Topic name identifies the publish/subscribe topic purpose.",
+  "pattern": "SBT-[Purpose]",
+  "fields": [
+    {
+      "name": "Purpose",
+      "library": "azure/sb-topic-purpose",
+      "defaultValue": "ORDEREVENTS",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["SBT-orderevents"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Purpose"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Purpose"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 260,
+    "forceLowercase": true,
+    "allowedPattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+  }
+}

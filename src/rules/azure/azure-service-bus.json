@@ -1,9 +1,9 @@
 {
   "id": "azure-service-bus",
   "category": "Azure",
-  "name": "Service Bus",
-  "description": "Azure Service Bus naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): sb-[Workload]-[Environment]-[Region]-[Instance].",
-  "pattern": "sb-[Workload]-[Environment]-[Region]-[Instance]",
+  "name": "Service Bus Namespace",
+  "description": "Azure Service Bus Namespace (Standard) naming per CAF (Microsoft Cloud Adoption Framework — Microsoft's guidance collection for structuring and naming cloud resources): SBNS-[Workload]-[Environment]-[Region]-[Instance].",
+  "pattern": "SBNS-[Workload]-[Environment]-[Region]-[Instance]",
   "fields": [
     {
       "name": "Workload",
@@ -30,7 +30,7 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["sb-orders-prod-frc-001"],
+  "examples": ["SBNS-orders-prod-frc-001"],
   "builder": {
     "separator": "-",
     "defaultSegments": ["Workload", "Environment", "Region", "Instance"],

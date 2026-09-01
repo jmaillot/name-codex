@@ -1,0 +1,13 @@
+{
+  "name": "Consumer",
+  "values": [
+    { "value": "CRM", "description": "Customer relationship management" },
+    { "value": "ERP", "description": "Enterprise resource planning" },
+    { "value": "DATALAKE", "description": "Data lake" },
+    { "value": "AUDIT", "description": "Audit" },
+    { "value": "POWERBI", "description": "Power BI" },
+    { "value": "ARCHIVE", "description": "Archive" },
+    { "value": "ANALYTICS", "description": "Analytics" },
+    { "value": "INTEGRATION", "description": "Integration" }
+  ]
+}

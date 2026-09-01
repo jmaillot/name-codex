@@ -1,0 +1,30 @@
+{
+  "id": "azure-service-bus-queue",
+  "category": "Azure",
+  "name": "Service Bus Queue",
+  "description": "Azure Service Bus Queue naming per CAF: SBQ-[Purpose]. Queue name identifies the message queue purpose within a Service Bus namespace.",
+  "pattern": "SBQ-[Purpose]",
+  "fields": [
+    {
+      "name": "Purpose",
+      "library": "azure/sb-queue-purpose",
+      "defaultValue": "ORDERS",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["SBQ-orders"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Purpose"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Purpose"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 260,
+    "forceLowercase": true,
+    "allowedPattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+  }
+}

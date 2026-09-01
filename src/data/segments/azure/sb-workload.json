@@ -4,6 +4,20 @@
     { "value": "ORDERS", "description": "Orders messaging" },
     { "value": "EVENTS", "description": "Events messaging" },
     { "value": "NOTIFICATIONS", "description": "Notifications" },
-    { "value": "MESSAGES", "description": "General messages" }
+    { "value": "MESSAGES", "description": "General messages" },
+    { "value": "INTEGRATION", "description": "Integration" },
+    { "value": "MESSAGING", "description": "Messaging" },
+    { "value": "SYNC", "description": "Synchronization" },
+    { "value": "IMPORT", "description": "Import" },
+    { "value": "EXPORT", "description": "Export" },
+    { "value": "WORKFLOW", "description": "Workflow" },
+    { "value": "CRM", "description": "Customer relationship management" },
+    { "value": "ERP", "description": "Enterprise resource planning" },
+    { "value": "HR", "description": "Human resources" },
+    { "value": "FINANCE", "description": "Finance" },
+    { "value": "ITSM", "description": "IT service management" },
+    { "value": "HELPDESK", "description": "Helpdesk" },
+    { "value": "COPILOT", "description": "Copilot" },
+    { "value": "D365", "description": "Dynamics 365" }
   ]
 }

@@ -1,0 +1,30 @@
+{
+  "id": "azure-service-bus-subscription",
+  "category": "Azure",
+  "name": "Service Bus Subscription",
+  "description": "Azure Service Bus Subscription naming per CAF: SBTS-[Consumer]. Subscription name identifies the consumer of a Service Bus topic.",
+  "pattern": "SBTS-[Consumer]",
+  "fields": [
+    {
+      "name": "Consumer",
+      "library": "azure/sb-subscription-consumer",
+      "defaultValue": "CRM",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["SBTS-crm"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Consumer"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": ["Consumer"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 50,
+    "forceLowercase": true,
+    "allowedPattern": "^[a-z0-9]([a-z0-9-]*[a-z0-9])?$"
+  }
+}

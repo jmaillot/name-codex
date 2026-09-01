@@ -1,0 +1,15 @@
+{
+  "name": "Purpose",
+  "values": [
+    { "value": "ORDERS", "description": "Orders" },
+    { "value": "INVOICES", "description": "Invoices" },
+    { "value": "NOTIFICATIONS", "description": "Notifications" },
+    { "value": "PROVISIONING", "description": "Provisioning" },
+    { "value": "PAYMENTS", "description": "Payments" },
+    { "value": "SHIPMENTS", "description": "Shipments" },
+    { "value": "IMPORT", "description": "Import" },
+    { "value": "EXPORT", "description": "Export" },
+    { "value": "SYNC", "description": "Synchronization" },
+    { "value": "CUSTOMERSYNC", "description": "Customer synchronization" }
+  ]
+}

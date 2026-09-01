@@ -1,0 +1,12 @@
+{
+  "name": "Purpose",
+  "values": [
+    { "value": "ORDEREVENTS", "description": "Order events" },
+    { "value": "USEREVENTS", "description": "User events" },
+    { "value": "PAYMENTEVENTS", "description": "Payment events" },
+    { "value": "CUSTOMEREVENTS", "description": "Customer events" },
+    { "value": "AUDITEVENTS", "description": "Audit events" },
+    { "value": "SECURITYEVENTS", "description": "Security events" },
+    { "value": "DEVICEEVENTS", "description": "Device events" }
+  ]
+}

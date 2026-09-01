@@ -121,7 +121,9 @@ export function useAppState() {
 
   const activeDescription =
     selectedPattern?.description ?? selectedConvention.description;
-  const activeDescriptionLabel = tl(`data.rule.${selectedConvention.id}.description`, activeDescription);
+  const activeDescriptionLabel = selectedPattern
+    ? tl(`data.rule.${selectedConvention.id}.pattern.${selectedPattern.id}.description`, activeDescription)
+    : tl(`data.rule.${selectedConvention.id}.description`, activeDescription);
 
   const activeFields = useMemo(
     () =>

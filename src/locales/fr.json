@@ -13,6 +13,7 @@
     "filter": "Filtrer",
     "filterPlaceholder": "Filtrer...",
     "clearFilter": "Effacer le filtre",
+    "noSearchResults": "Aucune convention ne correspond à votre recherche.",
     "objectType": "Type d'objet",
     "pattern": "Modèle",
     "description": "Description :",

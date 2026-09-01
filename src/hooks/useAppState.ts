@@ -94,7 +94,7 @@ export function useAppState() {
     const query = objectSearch.trim().toLowerCase();
     if (!query) return conventionsForCategory;
 
-    return conventionsForCategory.filter(
+    return allConventions.filter(
       (item) =>
         conventionName(item).toLowerCase().includes(query) ||
         conventionDescription(item).toLowerCase().includes(query) ||

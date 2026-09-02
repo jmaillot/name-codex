@@ -3,7 +3,7 @@
   "category": "Azure",
   "name": "Redis Cache",
   "description": "Azure Redis Cache naming per CAF (Microsoft Cloud Adoption Framework). The Redis cache instance provides in-memory data store for caching and session state. The name refers to the cache instance itself and must be globally unique where applicable.",
-  "pattern": "REDIS-[Purpose]-[Location]-[Environment]",
+  "pattern": "REDIS-[Purpose]-[Region]-[Environment]",
   "fields": [
     {
       "name": "Purpose",
@@ -12,9 +12,9 @@
       "allowCustomValue": true
     },
     {
-      "name": "Location",
-      "library": "core/location",
-      "defaultValue": "AZ",
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
       "allowCustomValue": true
     },
     {
@@ -24,11 +24,11 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["REDIS-CACHE-AZ-PROD", "REDIS-SESSION-AAD-DEV"],
+  "examples": ["REDIS-CACHE-FRC-PROD", "REDIS-SESSION-WE-DEV"],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Purpose", "Location", "Environment"],
-    "availableSegments": ["Purpose", "Location", "Environment", "Custom"],
+    "defaultSegments": ["Purpose", "Region", "Environment"],
+    "availableSegments": ["Purpose", "Region", "Environment", "Custom"],
     "recommendedSegments": ["Purpose"],
     "lockedSegments": [],
     "fixedFirstSegments": [],

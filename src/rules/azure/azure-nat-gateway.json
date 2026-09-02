@@ -3,7 +3,7 @@
   "category": "Azure",
   "name": "NAT Gateway",
   "description": "Azure NAT Gateway naming per CAF (Microsoft Cloud Adoption Framework). NAT Gateway provides secure outbound connectivity for resources in a virtual network subnet. The name identifies the gateway associated with its subnet and resource group scope.",
-  "pattern": "NGW-[Workload]-[Location]-[Environment]",
+  "pattern": "NGW-[Workload]-[Region]-[Environment]",
   "fields": [
     {
       "name": "Workload",
@@ -12,9 +12,9 @@
       "allowCustomValue": true
     },
     {
-      "name": "Location",
-      "library": "core/location",
-      "defaultValue": "AZ",
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
       "allowCustomValue": true
     },
     {
@@ -24,11 +24,11 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["NGW-SHARED-AZ-PROD", "NGW-HUB-AAD-DEV"],
+  "examples": ["NGW-SHARED-FRC-PROD", "NGW-HUB-WE-DEV"],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Location", "Environment"],
-    "availableSegments": ["Workload", "Location", "Environment", "Custom"],
+    "defaultSegments": ["Workload", "Region", "Environment"],
+    "availableSegments": ["Workload", "Region", "Environment", "Custom"],
     "recommendedSegments": ["Workload"],
     "lockedSegments": [],
     "fixedFirstSegments": [],

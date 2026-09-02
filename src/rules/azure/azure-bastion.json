@@ -3,12 +3,12 @@
   "category": "Azure",
   "name": "Bastion Host",
   "description": "Azure Bastion naming per CAF (Microsoft Cloud Adoption Framework). Bastion provides secure RDP and SSH connectivity to virtual machines without exposing a public IP. The name identifies the bastion host within its virtual network and resource group scope.",
-  "pattern": "BAS-[Location]-[Environment]",
+  "pattern": "BAS-[Region]-[Environment]",
   "fields": [
     {
-      "name": "Location",
-      "library": "core/location",
-      "defaultValue": "AZ",
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
       "allowCustomValue": true
     },
     {
@@ -18,11 +18,11 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["BAS-AZ-PROD", "BAS-AAD-DEV"],
+  "examples": ["BAS-FRC-PROD", "BAS-WE-DEV"],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Location", "Environment"],
-    "availableSegments": ["Location", "Environment", "Custom"],
+    "defaultSegments": ["Region", "Environment"],
+    "availableSegments": ["Region", "Environment", "Custom"],
     "recommendedSegments": [],
     "lockedSegments": [],
     "fixedFirstSegments": [],

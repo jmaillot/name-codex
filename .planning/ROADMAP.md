@@ -288,7 +288,7 @@ Plans:
 
 **Depends on:** Phase 28 (sequential for catalog count proofs, or parallel after Phase 28 files land).
 
-**Plans:** TBD by plan-phase.
+**Plans:** 1/1 plans complete
 
 ---
 

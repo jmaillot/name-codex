@@ -11,9 +11,9 @@
 - [x] **CAF-13**: User can generate Backup Vault names per CAF (`bvault-[Workload]-[Region]-[Environment]` lowercase, per-resource Workload library)
 - [x] **CAF-14**: User can generate Databricks Workspace names per CAF (`adb-[Workload]-[Region]-[Environment]` lowercase, per-resource Workload library)
 - [x] **CAF-15**: User can generate third new CAF convention per backlog (e.g., next high-demand from `docs/CATALOG-POSSIBILITIES.md`) as lowercase `prefix-[Workload]-[Region]-[Environment]`
-- [ ] **CAF-16**: User can generate fourth new CAF convention per backlog as lowercase `prefix-[Workload]-[Region]-[Environment]`
-- [ ] **CAF-17**: User can generate fifth new CAF convention per backlog as lowercase `prefix-[Workload]-[Region]-[Environment]`
-- [ ] **CAF-18**: User can generate sixth new CAF convention per backlog as lowercase `prefix-[Workload]-[Region]-[Environment]`
+- [x] **CAF-16**: User can generate fourth new CAF convention per backlog as lowercase `prefix-[Workload]-[Region]-[Environment]`
+- [x] **CAF-17**: User can generate fifth new CAF convention per backlog as lowercase `prefix-[Workload]-[Region]-[Environment]`
+- [x] **CAF-18**: User can generate sixth new CAF convention per backlog as lowercase `prefix-[Workload]-[Region]-[Environment]`
 
 > All six are pure data-driven JSON: one `src/rules/azure/<id>.json` per convention with `pattern`/`fields[]`/`validation`/`builder`/`examples`, optional per-resource workload/purpose library `src/data/segments/azure/<id>-workload.json` (filtered via `getConstraintsForField`), and `data.rule.*` + `data.lib.*` EN/FR locale keys. No code changes beyond Phase 19 wiring; catalog 65→71 (Azure 33→39) auto-discovered via `import.meta.glob`. Patterns use `core/region` (FRC/WE etc.) + `core/environment` + lowercase `forceLowercase` where applicable.
 

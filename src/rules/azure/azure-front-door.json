@@ -2,7 +2,7 @@
   "id": "azure-front-door",
   "category": "Azure",
   "name": "Front Door",
-  "description": "Front Door Azure Front Door naming per CAF (Microsoft Cloud Adoption Framework). Front Door provides global load balancing, CDN, and WAF at the edge. The name identifies the Front Door profile within its resource group and subscription scope for edge governance.",
+  "description": "Azure Front Door naming per CAF (Microsoft Cloud Adoption Framework). Front Door provides global load balancing, CDN, and WAF at the edge. The name identifies the Front Door profile within its resource group and subscription scope for edge governance.",
   "pattern": "afd-[Workload]-[Region]-[Environment]",
   "fields": [
     {

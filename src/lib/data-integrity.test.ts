@@ -248,13 +248,12 @@ describe("data integrity", () => {
       for (const pat of conv.patterns ?? []) {
         const patBase = `${baseKey}.pattern.${pat.id}`
         expect(enKeys.has(`${patBase}.name`), `${conv.id} pattern ${pat.id} missing EN ${patBase}.name`).toBe(true)
-        // description is optional for patterns (e.g., intune-autopilot-device-name patterns have name only in some locales) — check only if JSON has description and locale has at least one of name/description
+        // description is optional for patterns — if JSON has description, locale should have name or description
         if (pat.description) {
-          const hasDesc = enKeys.has(`${patBase}.description`)
-          // allow missing description if name exists (some patterns intentionally have no translated description)
-          if (!hasDesc) {
-            // at least ensure pattern name exists, which we already checked
-          }
+          expect(
+            enKeys.has(`${patBase}.description`) || enKeys.has(`${patBase}.name`),
+            `${conv.id} pattern ${pat.id} should have EN name or description`,
+          ).toBe(true)
         }
       }
     }

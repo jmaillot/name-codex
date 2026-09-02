@@ -1,0 +1,42 @@
+{
+  "id": "azure-dns-zone",
+  "category": "Azure",
+  "name": "DNS Zone",
+  "description": "DNS Zone Azure DNS Zone naming per CAF (Microsoft Cloud Adoption Framework). DNS Zone hosts authoritative DNS records for a domain within Azure DNS. The name identifies the zone within its resource group and subscription scope for DNS governance.",
+  "pattern": "dnsz-[Workload]-[Region]-[Environment]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/dnsz-workload",
+      "defaultValue": "SHARED",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["dnsz-shared-frc-prod", "dnsz-dns-we-dev"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Region", "Environment"],
+    "availableSegments": ["Workload", "Region", "Environment", "Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 50,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,48}[a-z0-9]$"
+  }
+}

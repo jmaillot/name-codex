@@ -1,0 +1,42 @@
+{
+  "id": "azure-front-door",
+  "category": "Azure",
+  "name": "Front Door",
+  "description": "Front Door Azure Front Door naming per CAF (Microsoft Cloud Adoption Framework). Front Door provides global load balancing, CDN, and WAF at the edge. The name identifies the Front Door profile within its resource group and subscription scope for edge governance.",
+  "pattern": "afd-[Workload]-[Region]-[Environment]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/afd-workload",
+      "defaultValue": "SHARED",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["afd-shared-frc-prod", "afd-web-we-dev"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Region", "Environment"],
+    "availableSegments": ["Workload", "Region", "Environment", "Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 50,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,48}[a-z0-9]$"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "azure-private-endpoint",
+  "category": "Azure",
+  "name": "Private Endpoint",
+  "description": "Private Endpoint Azure Private Endpoint naming per CAF (Microsoft Cloud Adoption Framework). Private Endpoint secures private connectivity to PaaS services over the virtual network. The name identifies the endpoint within its resource group and subscription scope for network governance.",
+  "pattern": "pe-[Workload]-[Region]-[Environment]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/pe-workload",
+      "defaultValue": "SHARED",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["pe-shared-frc-prod", "pe-data-we-dev"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Region", "Environment"],
+    "availableSegments": ["Workload", "Region", "Environment", "Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 50,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,48}[a-z0-9]$"
+  }
+}

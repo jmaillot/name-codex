@@ -1,0 +1,13 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "DATA", "description": "Data" },
+    { "value": "ANALYTICS", "description": "Analytics" },
+    { "value": "AI", "description": "AI workload" },
+    { "value": "ML", "description": "Machine learning" },
+    { "value": "DATALAKE", "description": "Data Lake" },
+    { "value": "ETL", "description": "Extract Transform Load" },
+    { "value": "STREAMING", "description": "Streaming analytics" },
+    { "value": "BI", "description": "Business Intelligence" }
+  ]
+}

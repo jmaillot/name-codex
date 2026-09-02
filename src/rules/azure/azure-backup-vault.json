@@ -1,0 +1,42 @@
+{
+  "id": "azure-backup-vault",
+  "category": "Azure",
+  "name": "Backup Vault",
+  "description": "Azure Backup Vault naming per CAF (Microsoft Cloud Adoption Framework). The vault provides policy-driven backup for Azure VMs, disks and file shares with soft delete and immutability. The name identifies the vault within its resource group and subscription scope for backup governance.",
+  "pattern": "bvault-[Workload]-[Region]-[Environment]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/bvault-workload",
+      "defaultValue": "SHARED",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["bvault-shared-frc-prod", "bvault-backup-we-dev"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Region", "Environment"],
+    "availableSegments": ["Workload", "Region", "Environment", "Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 50,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,48}[a-z0-9]$"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "azure-databricks-workspace",
+  "category": "Azure",
+  "name": "Databricks Workspace",
+  "description": "Azure Databricks Workspace naming per CAF (Microsoft Cloud Adoption Framework). The workspace provides unified analytics for Apache Spark, Delta Lake and ML workloads with collaborative notebooks. The name identifies the workspace within its resource group and subscription scope for data and AI governance.",
+  "pattern": "adb-[Workload]-[Region]-[Environment]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/adb-workload",
+      "defaultValue": "DATA",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Region",
+      "library": "core/region",
+      "defaultValue": "FRC",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["adb-data-frc-prod", "adb-analytics-we-dev"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Region", "Environment"],
+    "availableSegments": ["Workload", "Region", "Environment", "Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 50,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,48}[a-z0-9]$"
+  }
+}

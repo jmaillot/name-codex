@@ -3,7 +3,7 @@
   "category": "Azure",
   "name": "Azure AI Services",
   "description": "Azure AI Services naming per CAF (Microsoft Cloud Adoption Framework). Azure AI Services (formerly Cognitive Services) provide AI APIs for OpenAI, vision, speech, language, search and content safety. The name identifies the AI service account within its resource group and subscription scope for AI workload governance.",
-  "pattern": "AIS-[Workload]-[Location]-[Environment]",
+  "pattern": "ais-[Workload]-[Location]-[Environment]",
   "fields": [
     {
       "name": "Workload",
@@ -24,7 +24,7 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["AIS-OPENAI-AZ-PROD", "AIS-COPILOT-AAD-DEV"],
+  "examples": ["ais-openai-az-prod", "ais-copilot-aad-dev"],
   "builder": {
     "separator": "-",
     "defaultSegments": ["Workload", "Location", "Environment"],
@@ -36,6 +36,7 @@
   },
   "validation": {
     "maxLength": 64,
-    "allowedPattern": "^(?!.*--)[A-Za-z][A-Za-z0-9-]{0,62}[A-Za-z0-9]$"
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,62}[a-z0-9]$"
   }
 }

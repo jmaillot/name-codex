@@ -3,7 +3,7 @@
   "category": "Azure",
   "name": "Redis Cache",
   "description": "Azure Redis Cache naming per CAF (Microsoft Cloud Adoption Framework). The Redis cache instance provides in-memory data store for caching and session state. The name refers to the cache instance itself and must be globally unique where applicable.",
-  "pattern": "REDIS-[Purpose]-[Region]-[Environment]",
+  "pattern": "redis-[Purpose]-[Region]-[Environment]",
   "fields": [
     {
       "name": "Purpose",
@@ -24,7 +24,7 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["REDIS-CACHE-FRC-PROD", "REDIS-SESSION-WE-DEV"],
+  "examples": ["redis-cache-frc-prod", "redis-session-we-dev"],
   "builder": {
     "separator": "-",
     "defaultSegments": ["Purpose", "Region", "Environment"],
@@ -36,6 +36,7 @@
   },
   "validation": {
     "maxLength": 63,
-    "allowedPattern": "^(?!.*--)[A-Za-z][A-Za-z0-9-]{0,61}[A-Za-z0-9]$"
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,61}[a-z0-9]$"
   }
 }

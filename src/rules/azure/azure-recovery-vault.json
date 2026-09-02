@@ -3,7 +3,7 @@
   "category": "Azure",
   "name": "Recovery Services Vault",
   "description": "Azure Recovery Services Vault naming per CAF (Microsoft Cloud Adoption Framework). The vault secures backup and disaster recovery data for virtual machines and workloads. The name identifies the vault within its resource group and subscription scope for protection policies.",
-  "pattern": "RSV-[Workload]-[Region]-[Environment]",
+  "pattern": "rsv-[Workload]-[Region]-[Environment]",
   "fields": [
     {
       "name": "Workload",
@@ -24,7 +24,7 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["RSV-SHARED-FRC-PROD", "RSV-BACKUP-WE-DEV"],
+  "examples": ["rsv-shared-frc-prod", "rsv-backup-we-dev"],
   "builder": {
     "separator": "-",
     "defaultSegments": ["Workload", "Region", "Environment"],
@@ -36,6 +36,7 @@
   },
   "validation": {
     "maxLength": 50,
-    "allowedPattern": "^(?!.*--)[A-Za-z][A-Za-z0-9-]{0,48}[A-Za-z0-9]$"
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,48}[a-z0-9]$"
   }
 }

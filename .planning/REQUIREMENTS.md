@@ -46,9 +46,9 @@
 | CAF-13 | Phase 28 | Planned |
 | CAF-14 | Phase 28 | Planned |
 | CAF-15 | Phase 28 | Planned |
-| CAF-16 | Phase 29 | Planned |
-| CAF-17 | Phase 29 | Planned |
-| CAF-18 | Phase 29 | Planned |
+| CAF-16 | Phase 29 | Complete |
+| CAF-17 | Phase 29 | Complete |
+| CAF-18 | Phase 29 | Complete |
 
 **Coverage:**
 - v1.12 requirements: 6 total

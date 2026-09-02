@@ -275,9 +275,9 @@ Plans:
 
 #### Phase 29: Fourth + Fifth + Sixth Resources (CAF-16..18)
 
-- **Status:** Planned
+- **Status:** Complete 2026-09-02
 - **Requirements:** CAF-16, CAF-17, CAF-18
-- **Goal:** Ship three remaining CAF conventions as `prefix-[Workload]-[Region]-[Environment]` lowercase, closing v1.12 at 71 conventions.
+- **Goal:** Ship three remaining CAF conventions as `prefix-[Workload]-[Region]-[Environment]` lowercase (dnsz reworked to `dnsz-[Workload]-[Environment].[Domain]` dotted-domain per CR-01), closing v1.12 at 71 conventions.
 
 | # | Deliverable | Success Criteria |
 |---|-------------|------------------|

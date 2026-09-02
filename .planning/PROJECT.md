@@ -2,7 +2,7 @@
 
 ## What This Is
 
-Name Codex is a zero-backend, data-driven single-page application that helps IT administrators define, explore and govern naming conventions for Azure, Microsoft 365 (Teams, SharePoint, Exchange, Groups), Intune, Defender, Power Platform and Purview resources. Users pick an object type, assemble its segments in a visual builder, and the app generates, validates and documents the final name in real time, in English or French. The UI ships a complete dual dark/light theme that follows OS preference with a persistent manual toggle. Catalog is 59 conventions across 11 categories (Azure 27) — all JSON data-driven — with check:data gate (135 files PASS), bilingual EN/FR parity (911), and 240 vitest tests.
+Name Codex is a zero-backend, data-driven single-page application that helps IT administrators define, explore and govern naming conventions for Azure, Microsoft 365 (Teams, SharePoint, Exchange, Groups), Intune, Defender, Power Platform and Purview resources. Users pick an object type, assemble its segments in a visual builder, and the app generates, validates and documents the final name in real time, in English or French. The UI ships a complete dual dark/light theme that follows OS preference with a persistent manual toggle. Catalog is 71 conventions across 11 categories (Azure 39) — all JSON data-driven — with check:data gate (159 files PASS), bilingual EN/FR parity (1048), and 240 vitest tests.
 
 ## Core Value
 
@@ -121,11 +121,12 @@ Catalog grew from 25 conventions across 7 categories to 45 across 11 — new Mic
 - ✓ Backup Vault `bvault-[Workload]-[Region]-[Environment]` lowercase with bvault-workload (SHARED/BACKUP/ARCHIVE/DR/SERVER/DATA/SAP/VAULT) — v1.12, Phase 28 (CAF-13)
 - ✓ Databricks Workspace `adb-[Workload]-[Region]-[Environment]` lowercase with adb-workload (DATA/ANALYTICS/AI/ML/DATALAKE/ETL/STREAMING/BI) — v1.12, Phase 28 (CAF-14)
 - ✓ Machine Learning Workspace `mlw-[Workload]-[Region]-[Environment]` lowercase with mlw-workload (SHARED/TRAIN/INFER/ML/AI/DATA/RESEARCH/ANALYTICS) as CAF-15 third pick — v1.12, Phase 28 (CAF-15) — catalog 65→68 Azure 33→36 153 files PASS 240 tests
+- ✓ Front Door `afd-[Workload]-[Region]-[Environment]` lowercase with afd-workload (SHARED/WEB/APP/API/CDN/EDGE/GLOBAL/FRONTEND) — v1.12, Phase 29 (CAF-16) — catalog 68→71 Azure 36→39 (fix: reworked from plan)
+- ✓ Private Endpoint `pe-[Workload]-[Region]-[Environment]` lowercase with pe-workload (SHARED/DATA/APP/API/NETWORK/SECURE/PRIVLINK/ENDPOINT) — v1.12, Phase 29 (CAF-17) — 159 files PASS WR-01/WR-02 fixed
+- ✓ DNS Zone `dnsz-[Workload]-[Environment].[Domain]` dotted-domain with dnsz-workload (SHARED/DNS/NETWORK/CORP/PUBLIC/PRIVATE/ZONE/GLOBAL) — v1.12, Phase 29 (CAF-18) — maxLength 63 dotted validator per CR-01 (a) rework, Region removed (global resource), Domain field added
 
 ### Active
-- [ ] **CAF-16**: User can generate 4th new CAF convention per backlog as lowercase `prefix-[Workload]-[Region]-[Environment]`
-- [ ] **CAF-17**: User can generate 5th new CAF convention per backlog as lowercase `prefix-[Workload]-[Region]-[Environment]`
-- [ ] **CAF-18**: User can generate 6th new CAF convention per backlog as lowercase `prefix-[Workload]-[Region]-[Environment]`
+- [ ] *(none — v1.12 CAF Expansion III shipped; 6/6 conventions delivered)*
 
 ### Future Candidates
 
@@ -242,6 +243,7 @@ This document evolves at phase transitions and milestone boundaries.
 - v1.11 shipped on 2026-09-01: CAF Expansion II — Infra + Data/AI (redis/bas/rsv/ngw/synw/cog); catalog 59→65, Azure 27→33, direct pushes to Region-based lowercase (BAS, ais, adf, ngw, redis, synw, rsv) on main. Tags v1.11 at 0574403/d63fa6b.
 - v1.12 started on 2026-09-02: CAF Expansion III — 6 high-demand CAF conventions as Region-based lowercase; catalog 65→71 planned.
 - v1.12 Phase 28 shipped on 2026-09-02: Backup Vault + Databricks + ML Workspace (bvault/adb/mlw) as Region-based lowercase CAF; catalog 65→68 Azure 33→36 153 files PASS 240 tests 1018 EN/FR parity.
+- v1.12 Phase 29 shipped on 2026-09-02: Front Door + Private Endpoint + DNS Zone (afd/pe/dnsz) as lowercase CAF — dnsz reworked to dotted-domain `dnsz-[Workload]-[Environment].[Domain]` per CR-01 (a) fix (maxLength 63, Domain field, global resource); catalog 68→71 Azure 36→39 159 files PASS 240 tests 1048 EN/FR parity, all review findings fixed.
 
 ---
-*Last updated: 2026-09-02 at Phase 28 complete*
+*Last updated: 2026-09-02 at Phase 29 / v1.12 complete*

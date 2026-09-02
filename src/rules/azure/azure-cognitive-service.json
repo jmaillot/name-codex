@@ -1,14 +1,20 @@
 {
   "id": "azure-cognitive-service",
   "category": "Azure",
-  "name": "Cognitive Service",
-  "description": "Azure Cognitive Services (Azure AI Services) naming per CAF (Microsoft Cloud Adoption Framework). Cognitive Services provide AI APIs for vision, speech, language and decision. The name identifies the service account within its resource group and subscription scope for AI workload governance.",
-  "pattern": "cog-[Workload]-[Environment]-[Region]-[Instance]",
+  "name": "Azure AI Services",
+  "description": "Azure AI Services naming per CAF (Microsoft Cloud Adoption Framework). Azure AI Services (formerly Cognitive Services) provide AI APIs for OpenAI, vision, speech, language, search and content safety. The name identifies the AI service account within its resource group and subscription scope for AI workload governance.",
+  "pattern": "AIS-[Workload]-[Location]-[Environment]",
   "fields": [
     {
       "name": "Workload",
       "library": "azure/cog-workload",
-      "defaultValue": "SHARED",
+      "defaultValue": "OPENAI",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Location",
+      "library": "core/location",
+      "defaultValue": "AZ",
       "allowCustomValue": true
     },
     {
@@ -16,25 +22,13 @@
       "library": "core/environment",
       "defaultValue": "PROD",
       "allowCustomValue": true
-    },
-    {
-      "name": "Region",
-      "library": "core/region",
-      "defaultValue": "FRC",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Instance",
-      "library": "core/instance",
-      "defaultValue": "001",
-      "allowCustomValue": true
     }
   ],
-  "examples": ["cog-shared-prod-frc-001"],
+  "examples": ["AIS-OPENAI-AZ-PROD", "AIS-COPILOT-AAD-DEV"],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Workload", "Environment", "Region", "Instance", "Custom"],
+    "defaultSegments": ["Workload", "Location", "Environment"],
+    "availableSegments": ["Workload", "Location", "Environment", "Custom"],
     "recommendedSegments": ["Workload"],
     "lockedSegments": [],
     "fixedFirstSegments": [],
@@ -42,7 +36,6 @@
   },
   "validation": {
     "maxLength": 64,
-    "forceLowercase": true,
-    "allowedPattern": "^(?!.*--)[a-z0-9][a-z0-9-]{0,62}[a-z0-9]$"
+    "allowedPattern": "^(?!.*--)[A-Za-z][A-Za-z0-9-]{0,62}[A-Za-z0-9]$"
   }
 }

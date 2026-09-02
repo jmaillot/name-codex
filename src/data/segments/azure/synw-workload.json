@@ -1,15 +1,18 @@
 {
   "name": "Workload",
   "values": [
-    { "value": "SHARED", "description": "Shared platform" },
-    { "value": "PLATFORM", "description": "Platform" },
-    { "value": "APP", "description": "Application" },
-    { "value": "API", "description": "API service" },
-    { "value": "WEB", "description": "Web workload" },
-    { "value": "DATA", "description": "Data workload" },
-    { "value": "ANALYTICS", "description": "Analytics workload" },
+    { "value": "DATA", "description": "Data" },
+    { "value": "ANALYTICS", "description": "Analytics" },
+    { "value": "BI", "description": "Business Intelligence" },
+    { "value": "DWH", "description": "Data Warehouse" },
+    { "value": "DATALAKE", "description": "Data Lake" },
+    { "value": "REPORTING", "description": "Reporting" },
     { "value": "AI", "description": "AI workload" },
     { "value": "ML", "description": "Machine learning" },
-    { "value": "ETL", "description": "ETL pipeline" }
+    { "value": "ERP", "description": "Enterprise resource planning" },
+    { "value": "CRM", "description": "Customer relationship management" },
+    { "value": "FINANCE", "description": "Finance" },
+    { "value": "HR", "description": "Human resources" },
+    { "value": "SALES", "description": "Sales" }
   ]
 }

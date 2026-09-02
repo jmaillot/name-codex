@@ -1,61 +1,20 @@
 {
   "name": "Workload",
   "values": [
-    {
-      "value": "CRM",
-      "description": "Customer relationship management"
-    },
-    {
-      "value": "ERP",
-      "description": "Enterprise resource planning"
-    },
-    {
-      "value": "HR",
-      "description": "Human resources"
-    },
-    {
-      "value": "FINANCE",
-      "description": "Finance"
-    },
-    {
-      "value": "SALES",
-      "description": "Sales"
-    },
-    {
-      "value": "ITSM",
-      "description": "IT service management"
-    },
-    {
-      "value": "HELPDESK",
-      "description": "Helpdesk"
-    },
-    {
-      "value": "D365",
-      "description": "Dynamics 365"
-    },
-    {
-      "value": "COPILOT",
-      "description": "Copilot"
-    },
-    {
-      "value": "POWERBI",
-      "description": "Power BI"
-    },
-    {
-      "value": "DATA",
-      "description": "Data"
-    },
-    {
-      "value": "ANALYTICS",
-      "description": "Analytics"
-    },
-    {
-      "value": "LAKEHOUSE",
-      "description": "Lakehouse"
-    },
-    {
-      "value": "INTEGRATION",
-      "description": "Integration"
-    }
+    { "value": "DATA", "description": "Data" },
+    { "value": "DATALAKE", "description": "Data Lake" },
+    { "value": "BI", "description": "Business Intelligence" },
+    { "value": "ANALYTICS", "description": "Analytics" },
+    { "value": "ETL", "description": "Extract Transform Load" },
+    { "value": "ELT", "description": "Extract Load Transform" },
+    { "value": "ERP", "description": "Enterprise resource planning" },
+    { "value": "CRM", "description": "Customer relationship management" },
+    { "value": "HR", "description": "Human resources" },
+    { "value": "FINANCE", "description": "Finance" },
+    { "value": "SALES", "description": "Sales" },
+    { "value": "LOGISTICS", "description": "Logistics" },
+    { "value": "INTEGRATION", "description": "Integration" },
+    { "value": "SYNAPSE", "description": "Synapse Analytics" },
+    { "value": "FABRIC", "description": "Microsoft Fabric" }
   ]
 }

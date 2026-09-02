@@ -3,12 +3,18 @@
   "category": "Azure",
   "name": "Data Factory",
   "description": "Azure Data Factory naming per CAF. Factory name 3\u201363 characters, alphanumeric and hyphens, must start with letter.",
-  "pattern": "adf-[Workload]-[Environment]",
+  "pattern": "ADF-[Workload]-[Location]-[Environment]",
   "fields": [
     {
       "name": "Workload",
       "library": "azure/adf-workload",
-      "defaultValue": "CRM",
+      "defaultValue": "DATA",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Location",
+      "library": "core/location",
+      "defaultValue": "AZ",
       "allowCustomValue": true
     },
     {
@@ -18,28 +24,18 @@
       "allowCustomValue": true
     }
   ],
-  "examples": [
-    "adf-crm-prod"
-  ],
+  "examples": ["ADF-DATA-AZ-PROD", "ADF-SYNAPSE-AAD-DEV"],
   "builder": {
     "separator": "-",
-    "defaultSegments": [
-      "Workload",
-      "Environment"
-    ],
-    "availableSegments": [
-      "Custom"
-    ],
-    "recommendedSegments": [
-      "Workload"
-    ],
+    "defaultSegments": ["Workload", "Location", "Environment"],
+    "availableSegments": ["Workload", "Location", "Environment", "Custom"],
+    "recommendedSegments": ["Workload"],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []
   },
   "validation": {
     "maxLength": 63,
-    "forceLowercase": true,
-    "allowedPattern": "^[a-z][a-z0-9-]{1,61}[a-z0-9]$"
+    "allowedPattern": "^(?!.*--)[A-Za-z][A-Za-z0-9-]{1,61}[A-Za-z0-9]$"
   }
 }

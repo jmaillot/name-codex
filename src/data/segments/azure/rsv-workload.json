@@ -2,14 +2,13 @@
   "name": "Workload",
   "values": [
     { "value": "SHARED", "description": "Shared platform" },
-    { "value": "PLATFORM", "description": "Platform" },
-    { "value": "APP", "description": "Application" },
-    { "value": "API", "description": "API service" },
-    { "value": "WEB", "description": "Web workload" },
+    { "value": "CORP", "description": "Corporate" },
+    { "value": "SERVER", "description": "Server backup" },
+    { "value": "AKS", "description": "Azure Kubernetes Service" },
     { "value": "DATA", "description": "Data workload" },
-    { "value": "BACKUP", "description": "Backup workload" },
+    { "value": "ERP", "description": "Enterprise resource planning" },
+    { "value": "SAP", "description": "SAP workload" },
     { "value": "DR", "description": "Disaster recovery" },
-    { "value": "ARCHIVE", "description": "Archive workload" },
-    { "value": "VAULT", "description": "Vault workload" }
+    { "value": "BACKUP", "description": "Backup workload" }
   ]
 }

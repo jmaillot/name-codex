@@ -1,15 +1,15 @@
 {
-  "name": "Workload",
+  "name": "Purpose",
   "values": [
-    { "value": "SHARED", "description": "Shared platform" },
-    { "value": "PLATFORM", "description": "Platform" },
-    { "value": "APP", "description": "Application" },
-    { "value": "API", "description": "API service" },
-    { "value": "WEB", "description": "Web workload" },
-    { "value": "DATA", "description": "Data workload" },
-    { "value": "CACHE", "description": "Cache workload" },
+    { "value": "CACHE", "description": "Cache" },
     { "value": "SESSION", "description": "Session store" },
     { "value": "QUEUE", "description": "Queue backing" },
-    { "value": "ANALYTICS", "description": "Analytics cache" }
+    { "value": "RATE", "description": "Rate limiting" },
+    { "value": "STATE", "description": "State store" },
+    { "value": "APP", "description": "Application cache" },
+    { "value": "API", "description": "API cache" },
+    { "value": "WEB", "description": "Web cache" },
+    { "value": "AKS", "description": "AKS cache" },
+    { "value": "COPILOT", "description": "Copilot cache" }
   ]
 }

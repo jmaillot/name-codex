@@ -3,12 +3,18 @@
   "category": "Azure",
   "name": "Synapse Workspace",
   "description": "Azure Synapse Analytics workspace naming per CAF (Microsoft Cloud Adoption Framework). The workspace provides unified analytics for Spark and SQL pools over data lake and warehouse. The name refers to the workspace itself and its analytics pools scope and should be globally unique where applicable.",
-  "pattern": "synw-[Workload]-[Environment]-[Region]-[Instance]",
+  "pattern": "synw-[Workload]-[Location]-[Environment]",
   "fields": [
     {
       "name": "Workload",
       "library": "azure/synw-workload",
-      "defaultValue": "SHARED",
+      "defaultValue": "DATA",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Location",
+      "library": "core/location",
+      "defaultValue": "AZ",
       "allowCustomValue": true
     },
     {
@@ -16,25 +22,13 @@
       "library": "core/environment",
       "defaultValue": "PROD",
       "allowCustomValue": true
-    },
-    {
-      "name": "Region",
-      "library": "core/region",
-      "defaultValue": "FRC",
-      "allowCustomValue": true
-    },
-    {
-      "name": "Instance",
-      "library": "core/instance",
-      "defaultValue": "001",
-      "allowCustomValue": true
     }
   ],
-  "examples": ["synw-shared-prod-frc-001"],
+  "examples": ["synw-DATA-AZ-PROD", "synw-ANALYTICS-AAD-DEV"],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Environment", "Region", "Instance"],
-    "availableSegments": ["Workload", "Environment", "Region", "Instance", "Custom"],
+    "defaultSegments": ["Workload", "Location", "Environment"],
+    "availableSegments": ["Workload", "Location", "Environment", "Custom"],
     "recommendedSegments": ["Workload"],
     "lockedSegments": [],
     "fixedFirstSegments": [],
@@ -42,7 +36,6 @@
   },
   "validation": {
     "maxLength": 50,
-    "forceLowercase": true,
-    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,48}[a-z0-9]$"
+    "allowedPattern": "^(?!.*--)[A-Za-z][A-Za-z0-9-]{0,48}[A-Za-z0-9]$"
   }
 }

@@ -1,15 +1,19 @@
 {
   "name": "Workload",
   "values": [
-    { "value": "SHARED", "description": "Shared platform" },
-    { "value": "PLATFORM", "description": "Platform" },
-    { "value": "APP", "description": "Application" },
-    { "value": "API", "description": "API service" },
-    { "value": "WEB", "description": "Web workload" },
-    { "value": "DATA", "description": "Data workload" },
-    { "value": "AI", "description": "AI workload" },
-    { "value": "ML", "description": "Machine learning" },
-    { "value": "VISION", "description": "Vision service" },
-    { "value": "SEARCH", "description": "Search service" }
+    { "value": "OPENAI", "description": "Azure OpenAI" },
+    { "value": "COPILOT", "description": "Copilot" },
+    { "value": "RAG", "description": "Retrieval-Augmented Generation" },
+    { "value": "SEARCH", "description": "AI Search" },
+    { "value": "OCR", "description": "Optical Character Recognition" },
+    { "value": "DOCUMENTINT", "description": "Document Intelligence" },
+    { "value": "VISION", "description": "Computer Vision" },
+    { "value": "FACE", "description": "Face API" },
+    { "value": "SPEECH", "description": "Speech Services" },
+    { "value": "TRANSLATE", "description": "Translator" },
+    { "value": "LANGUAGE", "description": "Language Understanding" },
+    { "value": "CHATBOT", "description": "Chatbot" },
+    { "value": "KNOWLEDGE", "description": "Knowledge / QnA" },
+    { "value": "CONTENTSAFETY", "description": "Content Safety" }
   ]
 }

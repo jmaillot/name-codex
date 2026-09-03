@@ -1,0 +1,105 @@
+{
+  "id": "teams-policy",
+  "category": "Teams",
+  "name": "Teams Policy",
+  "description": "Microsoft Teams policy governance for meeting, messaging, app setup, calling and voice policies with scope taxonomy for consistent policy assignment across users and groups",
+  "pattern": "TPP-[PolicyType]-[Scope]",
+  "fields": [
+    {
+      "name": "PolicyType",
+      "type": "dropdown",
+      "defaultValue": "MEETING",
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "MEETING",
+          "description": "Meeting policy — controls meeting settings and features"
+        },
+        {
+          "value": "MESSAGING",
+          "description": "Messaging policy — controls chat and messaging features"
+        },
+        {
+          "value": "APPSETUP",
+          "description": "App setup policy — controls app pinning and availability"
+        },
+        {
+          "value": "CALLING",
+          "description": "Calling policy — controls calling features and PSTN"
+        },
+        {
+          "value": "VOICE",
+          "description": "Voice policy — controls voice routing and features"
+        },
+        {
+          "value": "LIVE",
+          "description": "Live events policy — controls live event settings"
+        }
+      ]
+    },
+    {
+      "name": "Scope",
+      "type": "dropdown",
+      "defaultValue": "GLOBAL",
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "GLOBAL",
+          "description": "Global scope for all users"
+        },
+        {
+          "value": "HR",
+          "description": "Human Resources scoped"
+        },
+        {
+          "value": "FINANCE",
+          "description": "Finance scoped"
+        },
+        {
+          "value": "IT",
+          "description": "Information Technology scoped"
+        },
+        {
+          "value": "PILOT",
+          "description": "Pilot rollout group"
+        },
+        {
+          "value": "VIP",
+          "description": "VIP users"
+        },
+        {
+          "value": "EXEC",
+          "description": "Executive scope"
+        }
+      ]
+    }
+  ],
+  "examples": [
+    "TPP-MEETING-GLOBAL",
+    "TPP-MESSAGING-HR",
+    "TPP-APPSETUP-PILOT"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": [
+      "PolicyType",
+      "Scope"
+    ],
+    "availableSegments": [
+      "Purpose",
+      "Environment",
+      "Custom"
+    ],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [
+      "PolicyType"
+    ],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 64
+  }
+}

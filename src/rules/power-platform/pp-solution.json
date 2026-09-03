@@ -1,0 +1,54 @@
+{
+  "id": "pp-solution",
+  "category": "Power Platform",
+  "name": "Solution",
+  "description": "Power Platform solution governance for publisher prefix and solution layering with managed and unmanaged solution lifecycle and versioning for consistent application lifecycle management.",
+  "pattern": "PPSOL-[Publisher]-[Purpose]",
+  "fields": [
+    {
+      "name": "Publisher",
+      "type": "dropdown",
+      "defaultValue": "CONTOSO",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "CONTOSO", "description": "Contoso publisher prefix (3-8 chars) for solution layering governance" },
+        { "value": "FABRIKAM", "description": "Fabrikam publisher prefix (3-8 chars) for solution layering governance" },
+        { "value": "CORP", "description": "Corporate publisher prefix (3-8 chars) for solution layering governance" },
+        { "value": "HR", "description": "Human Resources publisher prefix (3-8 chars)" },
+        { "value": "FINANCE", "description": "Finance publisher prefix (3-8 chars)" },
+        { "value": "IT", "description": "Information Technology publisher prefix (3-8 chars)" }
+      ]
+    },
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "CORE",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "CORE", "description": "Core solution layer" },
+        { "value": "EXTENSION", "description": "Extension layer" },
+        { "value": "PATCH", "description": "Patch release" },
+        { "value": "RELEASE", "description": "Release version" }
+      ]
+    }
+  ],
+  "examples": [
+    "PPSOL-CONTOSO-ONBOARDING",
+    "PPSOL-FABRIKAM-CRM",
+    "PPSOL-CORP-CORE"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Publisher", "Purpose"],
+    "availableSegments": ["Environment", "Version", "Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Publisher"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 64
+  }
+}

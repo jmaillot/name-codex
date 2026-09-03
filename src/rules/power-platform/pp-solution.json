@@ -1,7 +1,7 @@
 {
   "id": "pp-solution",
   "category": "Power Platform",
-  "name": "Solution",
+  "name": "Power Platform Solution",
   "description": "Power Platform solution governance for domain-aligned solution packaging with business solution taxonomy for consistent application lifecycle management and environment-aware deployment.",
   "pattern": "PPS-[Domain]-[Solution]",
   "fields": [

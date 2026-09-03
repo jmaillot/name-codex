@@ -1,7 +1,7 @@
 {
   "id": "pp-connection",
   "category": "Power Platform",
-  "name": "Connection",
+  "name": "Power Platform Connection",
   "description": "Power Platform connection and connection reference governance for Dataverse, SharePoint Online, Exchange Online, Teams and other connectors with shared purpose taxonomy for consistent integration lifecycle and environment-aware deployment.",
   "pattern": "PPC-[Connector]-[Purpose]",
   "fields": [

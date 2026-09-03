@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp, Lock, Pin, Star, X } from "lucide-react";
+import { ArrowDown, ArrowUp, GripVertical, Lock, Pin, Star, X } from "lucide-react";
 import { tl } from "../lib/i18n-utils";
 import { getGeneratorFile, getSegmentFile } from "../lib/data";
 import { caPolicyIdFallbackRange, caPolicyIdRange, personaRangeKeyForField } from "../lib/generators";
@@ -31,9 +31,14 @@ type SegmentEditorProps = {
   onUpdate: (key: string, value: string) => void;
   onMove: (index: number, direction: -1 | 1) => void;
   onRemove: (key: string) => void;
+  onDragStart?: (index: number, e: React.DragEvent) => void;
+  onDragEnd?: () => void;
+  isDragging?: boolean;
+  isGrabbed?: boolean;
+  onHandleKeyDown?: (e: React.KeyboardEvent, index: number) => void;
 };
 
-export default function SegmentEditor({ segment, index, convention, fields, segments, onUpdate, onMove, onRemove }: SegmentEditorProps) {
+export default function SegmentEditor({ segment, index, convention, fields, segments, onUpdate, onMove, onRemove, onDragStart, onDragEnd, isDragging, isGrabbed, onHandleKeyDown }: SegmentEditorProps) {
   const field = fieldByName(fields, segment.sourceName);
   const options = optionsForSegment(field, segments, convention);
   const constraints: SegmentConstraints | undefined =
@@ -70,13 +75,14 @@ export default function SegmentEditor({ segment, index, convention, fields, segm
             : "optional";
 
   const protectedSegment = locked || fixedFirst || fixedLast;
+  const isMovable = !(fixedFirst || fixedLast || locked);
 
   return (
     <div
-      className={`builder-row ${statusClass}`}
+      className={`builder-row ${statusClass} ${isDragging ? "dragging" : ""} ${isGrabbed ? "grabbing" : ""}`}
     >
       <div
-        className={`builder-handle ${statusClass}`}
+        className={`builder-handle ${statusClass} ${isDragging ? "dragging" : ""} ${isGrabbed ? "grabbing" : ""}`}
         title={
           fixedFirst
             ? tl("ui.segFixed", "Fixed segment")
@@ -90,6 +96,15 @@ export default function SegmentEditor({ segment, index, convention, fields, segm
                     ? tl("ui.segCustom", "Custom segment")
                     : tl("ui.segOptional", "Optional segment")
         }
+        draggable={isMovable}
+        onDragStart={isMovable && onDragStart ? (e) => onDragStart(index, e) : undefined}
+        onDragEnd={onDragEnd}
+        aria-label={tl("ui.dragHandleLabel", "Drag to reorder {{label}}", { label: segment.label })}
+        aria-grabbed={isGrabbed ? "true" : isMovable ? "false" : undefined}
+        aria-pressed={isGrabbed ? "true" : undefined}
+        role="button"
+        tabIndex={isMovable ? 0 : -1}
+        onKeyDown={onHandleKeyDown ? (e) => onHandleKeyDown(e, index) : undefined}
       >
         {fixedFirst ? (
           <Pin size={14} />
@@ -99,6 +114,8 @@ export default function SegmentEditor({ segment, index, convention, fields, segm
           <Lock size={14} />
         ) : recommended ? (
           <Star size={14} />
+        ) : isMovable ? (
+          <GripVertical size={14} />
         ) : (
           index + 1
         )}

@@ -48,6 +48,9 @@ export default function App() {
     addCustomSegment,
     updateSegmentValue,
     moveSegment,
+    reorderSegments,
+    restoreSegments,
+    showFeedback,
     removeSegment,
     namingScore,
     validationResults,
@@ -121,6 +124,9 @@ export default function App() {
             onUpdateSegment={updateSegmentValue}
             onMoveSegment={moveSegment}
             onRemoveSegment={removeSegment}
+            onReorder={reorderSegments}
+            onRestoreSegments={restoreSegments}
+            onShowFeedback={showFeedback}
           />
           <ScoreCard namingScore={namingScore} validationResults={validationResults} segments={builderSegments} fields={activeFields} convention={selectedConvention} generatedName={generatedName} onNavigateToSegment={(name) => { const el = document.querySelector(`[data-segment="${name}"]`); if (el) el.scrollIntoView({ behavior: "smooth", block: "center" }); }} />
           <DocumentationCard markdown={markdown} jsonExport={jsonExport} />

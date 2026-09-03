@@ -570,6 +570,106 @@ export function useAppState() {
       return next;
     });
 
+  const reorderSegments = (fromIndex: number, toIndex: number) =>
+    setBuilderSegments((prev) => {
+      const len = prev.length;
+      if (fromIndex < 0 || fromIndex >= len) return prev;
+      // Clamp toIndex to [0, len-1] for splice insertion; len is original length
+      let clampedTo = Math.max(0, Math.min(toIndex, len - 1));
+      if (fromIndex === clampedTo) return prev;
+
+      const dragged = prev[fromIndex];
+      if (!dragged) return prev;
+
+      if (isFixedFirst(selectedConvention, dragged.sourceName)) {
+        showFeedback("fixed-first");
+        return prev;
+      }
+      if (isFixedLast(selectedConvention, dragged.sourceName)) {
+        showFeedback("fixed-last");
+        return prev;
+      }
+      if (isLocked(selectedConvention, dragged.sourceName)) {
+        showFeedback("locked");
+        return prev;
+      }
+
+      // Pinned barrier check: cannot cross or land on a pinned segment.
+      // Mirrors moveSegment guards but for arbitrary distance (D-06).
+      const isPinned = (name: string) =>
+        isFixedFirst(selectedConvention, name) ||
+        isFixedLast(selectedConvention, name) ||
+        isLocked(selectedConvention, name);
+
+      // Determine effective insertion index in the array after removal
+      // If moving forward, removal shifts subsequent indices left by one.
+      const nextWithoutDragged = [...prev.slice(0, fromIndex), ...prev.slice(fromIndex + 1)];
+      // Adjust clampedTo for post-removal array length
+      let insertionIndex = clampedTo;
+      if (clampedTo > fromIndex) {
+        // After removal, the target position shifts down by one when moving forward,
+        // but we want toIndex to represent final position in resulting array.
+        // Keep insertionIndex as clampedTo adjusted for removal offset when needed
+        // to maintain correct final ordering. Direct splice at clampedTo in nextWithoutDragged
+        // when clampedTo > fromIndex corresponds to final position clampedTo.
+        // However if clampedTo === len-1 and fromIndex < len-1, insertion before last is valid.
+        // Use clampedTo as index in nextWithoutDragged (which has len-1 elements)
+        // When moving forward, insertionIndex should be clampedTo if clampedTo <= nextWithoutDragged.length
+        // else cap. The simple mapping: insertionIndex = clampedTo > fromIndex ? clampedTo - (fromIndex < clampedTo ? 0 : 0) -> keep.
+        // Actually for splice semantics: removing then inserting at clampedTo in the shortened array
+        // yields final position clampedTo when clampedTo <= fromIndex, and clampedTo when clampedTo > fromIndex
+        // the dragged element ends up at insertionIndex in final array where insertionIndex === clampedTo
+        // except when moving forward the element after fromIndex shifts left, so inserting at clampedTo in shortened
+        // array places it at final index clampedTo. We keep insertionIndex = clampedTo when clampedTo < nextWithoutDragged.length
+        // otherwise append.
+        if (insertionIndex > nextWithoutDragged.length) insertionIndex = nextWithoutDragged.length;
+      }
+      if (insertionIndex < 0) insertionIndex = 0;
+      if (insertionIndex > nextWithoutDragged.length) insertionIndex = nextWithoutDragged.length;
+
+      // Reject if insertionIndex points at or would displace a pinned segment
+      // Check the segment that will be at insertionIndex after insertion (currently at insertionIndex in nextWithoutDragged)
+      // and also check barrier crossing: any pinned between fromIndex and clampedTo (exclusive of dragged)
+      const start = Math.min(fromIndex, clampedTo);
+      const end = Math.max(fromIndex, clampedTo);
+      for (let i = start; i <= end; i++) {
+        if (i === fromIndex) continue;
+        const seg = prev[i];
+        if (seg && isPinned(seg.sourceName)) {
+          // Crossing a pinned barrier
+          if (seg.sourceName && isFixedFirst(selectedConvention, seg.sourceName)) {
+            showFeedback("fixed-first");
+          } else if (seg.sourceName && isFixedLast(selectedConvention, seg.sourceName)) {
+            showFeedback("fixed-last");
+          } else {
+            showFeedback("locked");
+          }
+          return prev;
+        }
+      }
+      // Also check the target neighbor in nextWithoutDragged that would be shifted
+      const targetNeighbor = nextWithoutDragged[insertionIndex];
+      if (targetNeighbor && isPinned(targetNeighbor.sourceName)) {
+        if (isFixedFirst(selectedConvention, targetNeighbor.sourceName)) {
+          showFeedback("fixed-first");
+        } else if (isFixedLast(selectedConvention, targetNeighbor.sourceName)) {
+          showFeedback("fixed-last");
+        } else {
+          showFeedback("locked");
+        }
+        return prev;
+      }
+      // Check insertion before fixedLast when inserting at end would place after it
+      if (nextWithoutDragged.length > 0 && isFixedLast(selectedConvention, nextWithoutDragged[nextWithoutDragged.length - 1].sourceName) && insertionIndex === nextWithoutDragged.length) {
+        showFeedback("fixed-last");
+        return prev;
+      }
+
+      const next = [...nextWithoutDragged];
+      next.splice(insertionIndex, 0, dragged);
+      return next;
+    });
+
   const removeSegment = (key: string) =>
     setBuilderSegments((prev) =>
       prev.filter((s) => {
@@ -675,6 +775,8 @@ export function useAppState() {
     return acc;
   }, {});
 
+  const restoreSegments = (snapshot: BuilderSegment[]) => setBuilderSegments([...snapshot]);
+
   return {
     language: i18n.language,
     categories,
@@ -694,6 +796,7 @@ export function useAppState() {
     selectedExample,
     generatedName,
     actionFeedback,
+    showFeedback,
     copyName,
     copyMarkdown,
     addFavorite,
@@ -706,6 +809,8 @@ export function useAppState() {
     addCustomSegment,
     updateSegmentValue,
     moveSegment,
+    reorderSegments,
+    restoreSegments,
     removeSegment,
     namingScore,
     validationResults,

@@ -873,6 +873,58 @@ summary:focus-visible {
   color: var(--accent);
   font-size: 12px;
   font-weight: 800;
+  cursor: grab;
+  transition: box-shadow 120ms ease, transform 120ms ease;
+}
+
+.builder-handle:active,
+.builder-handle.dragging,
+.builder-handle.grabbing {
+  cursor: grabbing;
+  box-shadow: var(--shadow-card);
+}
+
+.builder-handle.fixed-first,
+.builder-handle.fixed-last,
+.builder-handle.locked {
+  cursor: not-allowed;
+}
+
+.builder-row.dragging {
+  opacity: 0.4;
+  border-style: dashed;
+  border-color: var(--accent-hover);
+}
+
+.builder-row.grabbing {
+  box-shadow: var(--shadow-card);
+  border-color: var(--accent-hover);
+}
+
+.insertion-line {
+  height: 2px;
+  background: var(--accent);
+  border-radius: 999px;
+  margin: 2px 8px;
+  transition: opacity 120ms ease, transform 120ms ease;
+  animation: insertionPulse 1s ease-in-out infinite;
+}
+
+@keyframes insertionPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .builder-label {

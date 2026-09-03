@@ -1,0 +1,62 @@
+{
+  "id": "pp-connection",
+  "category": "Power Platform",
+  "name": "Connection",
+  "description": "Power Platform connection and connection reference governance for SharePoint, Dataverse, SQL, Teams and other connectors with purpose taxonomy for consistent integration lifecycle and environment-aware deployment.",
+  "pattern": "PPCON-[Connector]-[Purpose]",
+  "fields": [
+    {
+      "name": "Connector",
+      "type": "dropdown",
+      "defaultValue": "SHAREPOINT",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "SHAREPOINT", "description": "SharePoint connector" },
+        { "value": "SQL", "description": "SQL Server connector" },
+        { "value": "DATAVERSE", "description": "Microsoft Dataverse" },
+        { "value": "OUTLOOK", "description": "Outlook connector" },
+        { "value": "TEAMS", "description": "Microsoft Teams connector" },
+        { "value": "APPROVALS", "description": "Approvals connector" },
+        { "value": "POWERBI", "description": "Power BI connector" },
+        { "value": "AZUREAD", "description": "Azure Active Directory connector" },
+        { "value": "HTTP", "description": "HTTP connector" },
+        { "value": "OFFICE365", "description": "Office 365 connector" },
+        { "value": "ONEDRIVE", "description": "OneDrive connector" },
+        { "value": "DYNAMICS", "description": "Dynamics 365 connector" }
+      ]
+    },
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "SYNC",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "SYNC", "description": "Data synchronization" },
+        { "value": "IMPORT", "description": "Data import" },
+        { "value": "EXPORT", "description": "Data export" },
+        { "value": "NOTIFICATION", "description": "Notification delivery" },
+        { "value": "APPROVAL", "description": "Approval workflows" },
+        { "value": "AUTOMATION", "description": "Process automation" }
+      ]
+    }
+  ],
+  "examples": [
+    "PPCON-SHAREPOINT-SYNC",
+    "PPCON-SQL-IMPORT",
+    "PPCON-DATAVERSE-APPROVAL"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Connector", "Purpose"],
+    "availableSegments": ["Environment", "Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Connector"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 64
+  }
+}

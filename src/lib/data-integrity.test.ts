@@ -143,8 +143,8 @@ describe("data integrity", () => {
     expect(getGeneratorFile("nonexistent-generator-xyz")).toBeUndefined()
   })
 
-  it("catalog contains exactly 87 conventions (77 + 5 ca/entra phase 32 + 5 pp/teams phase 33)", () => {
-    expect(allConventions.length).toBe(87)
+  it("catalog contains exactly 86 conventions (77 + 5 ca/entra phase 32 + 5 pp/teams phase 33 -1 eDiscovery grouped)", () => {
+    expect(allConventions.length).toBe(86)
   })
 
   it("catalog spans exactly 11 categories with expected counts", () => {
@@ -159,7 +159,7 @@ describe("data integrity", () => {
       "Groups": 5,
       "Intune": 10,
       "Power Platform": 5,
-      "Purview": 8,
+      "Purview": 7,
       "SharePoint": 3,
       "Teams": 2,
     })
@@ -182,7 +182,7 @@ describe("data integrity", () => {
     "azure-cognitive-service", "azure-synapse-workspace",
     "azure-backup-vault", "azure-databricks-workspace", "azure-machine-learning-workspace",
     "azure-front-door", "azure-private-endpoint", "azure-dns-zone", "azure-private-dns-zone",
-    "purview-information-protection", "purview-ediscovery-case", "purview-ediscovery-hold", "purview-data-map",
+    "purview-information-protection", "purview-ediscovery", "purview-data-map",
     "defender-alert-policy",
     "ca-named-location", "ca-auth-strength",
     "entra-service-principal", "entra-admin-unit", "entra-enterprise-app",
@@ -190,7 +190,7 @@ describe("data integrity", () => {
   ]
 
   it("every new convention is reachable via global-search (name/description/id/pattern match)", () => {
-    expect(NEW_CONVENTION_IDS.length).toBe(63)
+    expect(NEW_CONVENTION_IDS.length).toBe(62)
     // WR-04: mirror the exact predicate used by filteredConventions in
     // useAppState (name/description/id/pattern) and query with a PARTIAL
     // id fragment, so the test exercises real substring matching instead

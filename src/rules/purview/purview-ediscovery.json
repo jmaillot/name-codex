@@ -1,0 +1,96 @@
+{
+  "id": "purview-ediscovery",
+  "category": "Purview",
+  "name": "eDiscovery",
+  "description": "Microsoft Purview eDiscovery governance for cases and holds, enabling consistent identification of legal and compliance investigations and preservation scopes for audit, hold and retention workflows.",
+  "pattern": "EDC-[Type]-[Name]",
+  "fields": [
+    {
+      "name": "Type",
+      "type": "dropdown",
+      "defaultValue": "LEGAL",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "LEGAL", "description": "Legal matter" },
+        { "value": "HR", "description": "Human Resources investigation" },
+        { "value": "SECURITY", "description": "Security incident" },
+        { "value": "COMPLIANCE", "description": "Compliance review" },
+        { "value": "PRIVACY", "description": "Privacy inquiry" },
+        { "value": "INVESTIGATION", "description": "General investigation" },
+        { "value": "AUDIT", "description": "Audit inquiry" }
+      ]
+    },
+    {
+      "name": "Name",
+      "type": "text",
+      "allowCustomValue": true,
+      "examples": ["CONTRACTDISPUTE", "EMPLOYEEINVESTIGATION", "DATAEXFILTRATION"]
+    },
+    {
+      "name": "Scope",
+      "type": "dropdown",
+      "defaultValue": "M365",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "EXO", "description": "Exchange Online" },
+        { "value": "SPO", "description": "SharePoint Online" },
+        { "value": "OD", "description": "OneDrive for Business" },
+        { "value": "TEAMS", "description": "Microsoft Teams" },
+        { "value": "M365", "description": "Microsoft 365 overall" },
+        { "value": "ALL", "description": "All workloads" }
+      ]
+    },
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "LEGAL",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "LEGAL", "description": "Legal hold" },
+        { "value": "HR", "description": "Human Resources hold" },
+        { "value": "SECURITY", "description": "Security hold" },
+        { "value": "COMPLIANCE", "description": "Compliance hold" },
+        { "value": "PRIVACY", "description": "Privacy hold" },
+        { "value": "AUDIT", "description": "Audit hold" }
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "case",
+      "name": "eDiscovery Case",
+      "description": "eDiscovery case for legal and compliance investigations by matter type and investigation name for audit and hold workflows",
+      "pattern": "EDC-[Type]-[Name]",
+      "defaultSegments": ["Type", "Name"],
+      "examples": ["EDC-LEGAL-CONTRACTDISPUTE", "EDC-HR-EMPLOYEEINVESTIGATION"]
+    },
+    {
+      "id": "hold",
+      "name": "eDiscovery Hold",
+      "description": "eDiscovery hold for preservation scopes and purposes by workload scope and matter purpose for legal and compliance retention",
+      "pattern": "EDH-[Scope]-[Purpose]",
+      "defaultSegments": ["Scope", "Purpose"],
+      "examples": ["EDH-M365-LEGAL", "EDH-EXO-COMPLIANCE"]
+    }
+  ],
+  "examples": [
+    "EDC-LEGAL-CONTRACTDISPUTE",
+    "EDC-HR-EMPLOYEEINVESTIGATION",
+    "EDH-M365-LEGAL",
+    "EDH-EXO-COMPLIANCE"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Type", "Name"],
+    "availableSegments": ["Scope", "Purpose", "Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Type"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 128
+  }
+}

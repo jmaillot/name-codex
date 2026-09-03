@@ -1,0 +1,12 @@
+{
+  "name": "Service",
+  "values": [
+    { "value": "SQL", "description": "SQL" },
+    { "value": "KV", "description": "Key Vault" },
+    { "value": "STG", "description": "Storage" },
+    { "value": "ACR", "description": "Container Registry" },
+    { "value": "COSMOS", "description": "Cosmos DB" },
+    { "value": "AKS", "description": "Azure Kubernetes Service" },
+    { "value": "WEB", "description": "Web" }
+  ]
+}

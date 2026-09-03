@@ -2,12 +2,14 @@
   "name": "Workload",
   "values": [
     { "value": "SHARED", "description": "Shared platform" },
-    { "value": "BACKUP", "description": "Backup workload" },
-    { "value": "ARCHIVE", "description": "Archive workload" },
-    { "value": "DR", "description": "Disaster recovery" },
-    { "value": "SERVER", "description": "Server backup" },
+    { "value": "CORP", "description": "Corporate" },
+    { "value": "VM", "description": "Virtual machines" },
+    { "value": "AKS", "description": "Azure Kubernetes Service" },
+    { "value": "AVD", "description": "Azure Virtual Desktop" },
     { "value": "DATA", "description": "Data workload" },
+    { "value": "SQL", "description": "SQL workload" },
     { "value": "SAP", "description": "SAP workload" },
-    { "value": "VAULT", "description": "Vault workload" }
+    { "value": "ERP", "description": "Enterprise resource planning" },
+    { "value": "CRM", "description": "Customer relationship management" }
   ]
 }

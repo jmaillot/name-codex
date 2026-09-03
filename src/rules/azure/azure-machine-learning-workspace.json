@@ -3,12 +3,12 @@
   "category": "Azure",
   "name": "Machine Learning Workspace",
   "description": "Azure Machine Learning Workspace naming per CAF (Microsoft Cloud Adoption Framework). The workspace centralizes model training, inference endpoints and feature stores for machine learning lifecycles. The name identifies the workspace within its resource group and subscription scope for AI governance.",
-  "pattern": "mlw-[Workload]-[Region]-[Environment]",
+  "pattern": "aml-[Purpose]-[Region]-[Environment]",
   "fields": [
     {
-      "name": "Workload",
-      "library": "azure/mlw-workload",
-      "defaultValue": "SHARED",
+      "name": "Purpose",
+      "library": "azure/aml-purpose",
+      "defaultValue": "AI",
       "allowCustomValue": true
     },
     {
@@ -24,12 +24,12 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["mlw-shared-frc-prod", "mlw-train-we-dev"],
+  "examples": ["aml-ai-frc-prod", "aml-genai-we-dev"],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Region", "Environment"],
-    "availableSegments": ["Workload", "Region", "Environment", "Custom"],
-    "recommendedSegments": ["Workload"],
+    "defaultSegments": ["Purpose", "Region", "Environment"],
+    "availableSegments": ["Purpose", "Region", "Environment", "Custom"],
+    "recommendedSegments": ["Purpose"],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []

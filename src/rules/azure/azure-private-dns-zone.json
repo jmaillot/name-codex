@@ -1,0 +1,36 @@
+{
+  "id": "azure-private-dns-zone",
+  "category": "Azure",
+  "name": "Private DNS Zone",
+  "description": "Azure Private DNS Zone naming per CAF (Microsoft Cloud Adoption Framework). The private zone hosts authoritative DNS records for private virtual network resolution. The zone is linked to virtual networks and resolves private endpoints and internal services without public exposure.",
+  "pattern": "pdnsz-[Service]-[Environment]",
+  "fields": [
+    {
+      "name": "Service",
+      "library": "azure/pdnsz-service",
+      "defaultValue": "SQL",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["pdnsz-sql-prod", "pdnsz-kv-dev"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Service", "Environment"],
+    "availableSegments": ["Service", "Environment", "Custom"],
+    "recommendedSegments": ["Service"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 63,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)[a-z][a-z0-9-]{0,61}[a-z0-9]$"
+  }
+}

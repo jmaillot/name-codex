@@ -2,19 +2,19 @@
   "id": "azure-private-endpoint",
   "category": "Azure",
   "name": "Private Endpoint",
-  "description": "Azure Private Endpoint naming per CAF (Microsoft Cloud Adoption Framework). Private Endpoint secures private connectivity to PaaS services over the virtual network. The name identifies the endpoint within its resource group and subscription scope for network governance. House prefix pe is used for brevity; CAF abbreviation table lists pep.",
-  "pattern": "pe-[Workload]-[Region]-[Environment]",
+  "description": "Azure Private Endpoint naming per CAF (Microsoft Cloud Adoption Framework). Private Endpoint secures private connectivity to PaaS services over the virtual network. The name identifies the endpoint within its resource group and subscription scope for network governance.",
+  "pattern": "pep-[Service]-[Workload]-[Environment]",
   "fields": [
     {
-      "name": "Workload",
-      "library": "azure/pe-workload",
-      "defaultValue": "SHARED",
+      "name": "Service",
+      "library": "azure/pep-service",
+      "defaultValue": "KV",
       "allowCustomValue": true
     },
     {
-      "name": "Region",
-      "library": "core/region",
-      "defaultValue": "FRC",
+      "name": "Workload",
+      "library": "azure/pep-workload",
+      "defaultValue": "SHARED",
       "allowCustomValue": true
     },
     {
@@ -24,12 +24,12 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["pe-shared-frc-prod", "pe-data-we-dev"],
+  "examples": ["pep-kv-shared-prod", "pep-sql-data-dev"],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Workload", "Region", "Environment"],
-    "availableSegments": ["Workload", "Region", "Environment", "Custom"],
-    "recommendedSegments": ["Workload"],
+    "defaultSegments": ["Service", "Workload", "Environment"],
+    "availableSegments": ["Service", "Workload", "Environment", "Custom"],
+    "recommendedSegments": ["Service"],
     "lockedSegments": [],
     "fixedFirstSegments": [],
     "fixedLastSegments": []

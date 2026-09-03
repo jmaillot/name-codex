@@ -2,13 +2,13 @@
   "id": "azure-dns-zone",
   "category": "Azure",
   "name": "DNS Zone",
-  "description": "Azure DNS Zone naming per CAF (Microsoft Cloud Adoption Framework). DNS Zone hosts authoritative DNS records for a domain within Azure DNS. The Azure resource name is the DNS domain itself (1-63 characters, 2-34 labels separated by periods). This convention generates the zone name with workload taxonomy plus environment and domain.",
+  "description": "Azure Public DNS Zone naming per CAF (Microsoft Cloud Adoption Framework). The public zone hosts authoritative DNS records for an internet-facing domain within Azure DNS. The Azure resource name is the DNS domain itself. This convention applies workload taxonomy plus environment and domain for public zone governance.",
   "pattern": "dnsz-[Workload]-[Environment].[Domain]",
   "fields": [
     {
       "name": "Workload",
       "library": "azure/dnsz-workload",
-      "defaultValue": "SHARED",
+      "defaultValue": "CORP",
       "allowCustomValue": true
     },
     {
@@ -23,7 +23,7 @@
       "allowCustomValue": true
     }
   ],
-  "examples": ["dnsz-shared-prod.contoso.com", "dnsz-dns-dev.internal.net"],
+  "examples": ["dnsz-corp-prod.contoso.com", "dnsz-web-dev.example.net"],
   "builder": {
     "separator": "-",
     "defaultSegments": ["Workload", "Environment", "Domain"],

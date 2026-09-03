@@ -1,0 +1,15 @@
+{
+  "name": "Service",
+  "values": [
+    { "value": "KV", "description": "Key Vault" },
+    { "value": "SQL", "description": "SQL" },
+    { "value": "STG", "description": "Storage" },
+    { "value": "COSMOS", "description": "Cosmos DB" },
+    { "value": "APP", "description": "Application" },
+    { "value": "ACR", "description": "Container Registry" },
+    { "value": "SYN", "description": "Synapse" },
+    { "value": "ADB", "description": "Databricks" },
+    { "value": "AIS", "description": "AI Services" },
+    { "value": "AKS", "description": "Azure Kubernetes Service" }
+  ]
+}

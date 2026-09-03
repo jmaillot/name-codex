@@ -3,11 +3,12 @@
   "values": [
     { "value": "DATA", "description": "Data" },
     { "value": "ANALYTICS", "description": "Analytics" },
-    { "value": "AI", "description": "AI workload" },
-    { "value": "ML", "description": "Machine learning" },
-    { "value": "DATALAKE", "description": "Data Lake" },
+    { "value": "DWH", "description": "Data Warehouse" },
+    { "value": "LAKEHOUSE", "description": "Lakehouse" },
     { "value": "ETL", "description": "Extract Transform Load" },
-    { "value": "STREAMING", "description": "Streaming analytics" },
-    { "value": "BI", "description": "Business Intelligence" }
+    { "value": "ML", "description": "Machine learning" },
+    { "value": "AI", "description": "AI workload" },
+    { "value": "GENAI", "description": "Generative AI" },
+    { "value": "STREAMING", "description": "Streaming analytics" }
   ]
 }

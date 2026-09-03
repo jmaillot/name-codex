@@ -3,7 +3,6 @@ import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { useAppState } from "../hooks/useAppState";
 import BuilderCard from "./BuilderCard";
-import SegmentEditor from "./SegmentEditor";
 import { isFixedFirst, isFixedLast, isLocked } from "../lib/validation";
 import type { BuilderSegment } from "../lib/segments";
 import type { NamingConvention } from "../types/Rule";
@@ -54,7 +53,6 @@ describe("BuilderCard reorder + constraints", () => {
     // Segments currently: Region(locked), Environment(locked), Workload(movable)
     const segs = s().builderSegments;
     expect(segs.map((x) => x.sourceName)).toEqual(expect.arrayContaining(["Region", "Environment", "Workload"]));
-    const workloadIdx = segs.findIndex((x) => x.sourceName === "Workload");
     // Add a custom segment to have more movables
     await act(async () => {
       s().setCustomSegmentName("CustomA");
@@ -121,7 +119,7 @@ describe("BuilderCard reorder + constraints", () => {
 
   it("validationResults and namingScore recompute after reorder", async () => {
     const beforeScore = s().namingScore;
-    const beforeValidation = s().validationResults.map((r) => r.valid);
+    void beforeScore;
     // Do a legal reorder: swap two movables (Environment and Region) if possible
     const segs = s().builderSegments;
     const envIdx = segs.findIndex((x) => x.sourceName === "Environment");
@@ -219,6 +217,7 @@ describe("BuilderCard keyboard and ARIA", () => {
         <BuilderCard
           category="Test"
           patternModified={false}
+          generatedName="test-name"
           dynamicPattern="[FixedA][B][LockedC][D][FixedZ]"
           segments={segments}
           fields={mockConvention.fields}
@@ -276,6 +275,7 @@ describe("BuilderCard keyboard and ARIA", () => {
         <BuilderCard
           category="Test"
           patternModified={false}
+          generatedName="test-name"
           dynamicPattern="[FixedA][B][LockedC][D][FixedZ]"
           segments={segments}
           fields={mockConvention.fields}
@@ -338,6 +338,7 @@ describe("BuilderCard keyboard and ARIA", () => {
         <BuilderCard
           category="Test"
           patternModified={false}
+          generatedName="test-name"
           dynamicPattern="[FixedA][B][LockedC][D][FixedZ]"
           segments={segments}
           fields={mockConvention.fields}
@@ -378,6 +379,7 @@ describe("BuilderCard keyboard and ARIA", () => {
         <BuilderCard
           category="Test"
           patternModified={false}
+          generatedName="test-name"
           dynamicPattern="[FixedA][B][LockedC][D][FixedZ]"
           segments={segments}
           fields={mockConvention.fields}

@@ -1,0 +1,62 @@
+{
+  "id": "ca-named-location",
+  "category": "Conditional Access",
+  "name": "Named Location",
+  "description": "Microsoft Entra Conditional Access Named Location governance for trusted and untrusted network locations with trust type, network type, and purpose scoping for consistent access policy assignment and network-aware conditional access control.",
+  "pattern": "CANL-[Trust]-[Network]-[Purpose]",
+  "fields": [
+    {
+      "name": "Trust",
+      "type": "dropdown",
+      "defaultValue": "TRUSTED",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "TRUSTED", "description": "Trusted location that satisfies network trust evaluation" },
+        { "value": "UNTRUSTED", "description": "Untrusted location treated as risky network context" }
+      ]
+    },
+    {
+      "name": "Network",
+      "type": "dropdown",
+      "defaultValue": "IP",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "IP", "description": "IP address range based named location" },
+        { "value": "GEO", "description": "Geographic country or region based location" },
+        { "value": "VPN", "description": "Virtual private network based location" }
+      ]
+    },
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "CORP",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "CORP", "description": "Corporate headquarters and primary sites" },
+        { "value": "BRANCH", "description": "Branch office location" },
+        { "value": "REMOTE", "description": "Remote or work-from-home context" },
+        { "value": "PILOT", "description": "Pilot rollout location" },
+        { "value": "TEST", "description": "Test and validation location" }
+      ]
+    }
+  ],
+  "examples": [
+    "CANL-TRUSTED-IP-CORP",
+    "CANL-UNTRUSTED-GEO-REMOTE",
+    "CANL-TRUSTED-VPN-PILOT"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Trust", "Network"],
+    "availableSegments": ["Purpose", "Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Trust", "Network"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 128
+  }
+}

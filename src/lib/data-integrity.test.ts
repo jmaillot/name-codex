@@ -143,8 +143,8 @@ describe("data integrity", () => {
     expect(getGeneratorFile("nonexistent-generator-xyz")).toBeUndefined()
   })
 
-  it("catalog contains exactly 77 conventions (72 + 5 purview/defender phase 31)", () => {
-    expect(allConventions.length).toBe(77)
+  it("catalog contains exactly 82 conventions (77 + 5 ca/entra phase 32)", () => {
+    expect(allConventions.length).toBe(82)
   })
 
   it("catalog spans exactly 11 categories with expected counts", () => {
@@ -152,9 +152,9 @@ describe("data integrity", () => {
     for (const conv of allConventions) counts[conv.category] = (counts[conv.category] ?? 0) + 1
     expect(counts).toEqual({
       "Azure": 40,
-      "Conditional Access": 2,
+      "Conditional Access": 4,
       "Defender for M365": 4,
-      "Entra ID": 1,
+      "Entra ID": 4,
       "Exchange": 2,
       "Groups": 5,
       "Intune": 10,
@@ -184,10 +184,12 @@ describe("data integrity", () => {
     "azure-front-door", "azure-private-endpoint", "azure-dns-zone", "azure-private-dns-zone",
     "purview-information-protection", "purview-ediscovery-case", "purview-ediscovery-hold", "purview-data-map",
     "defender-alert-policy",
+    "ca-named-location", "ca-auth-strength",
+    "entra-service-principal", "entra-admin-unit", "entra-enterprise-app",
   ]
 
   it("every new convention is reachable via global-search (name/description/id/pattern match)", () => {
-    expect(NEW_CONVENTION_IDS.length).toBe(53)
+    expect(NEW_CONVENTION_IDS.length).toBe(58)
     // WR-04: mirror the exact predicate used by filteredConventions in
     // useAppState (name/description/id/pattern) and query with a PARTIAL
     // id fragment, so the test exercises real substring matching instead

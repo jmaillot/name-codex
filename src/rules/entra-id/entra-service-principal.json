@@ -1,0 +1,83 @@
+{
+  "id": "entra-service-principal",
+  "category": "Entra ID",
+  "name": "Service Principal",
+  "description": "Microsoft Entra service principal workload identity governance for automation, platform, Microsoft 365 and operations workloads with environment and purpose taxonomy for consistent service principal lifecycle and access control.",
+  "pattern": "SPN-[Workload]-[Environment]",
+  "fields": [
+    {
+      "name": "Workload",
+      "type": "dropdown",
+      "defaultValue": "AUTOMATION",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "AUTOMATION", "description": "Automation workload identity" },
+        { "value": "DEVOPS", "description": "DevOps pipeline identity" },
+        { "value": "CICD", "description": "CI CD pipeline identity" },
+        { "value": "PIPELINE", "description": "Pipeline execution identity" },
+        { "value": "AZURE", "description": "Azure platform workload" },
+        { "value": "DATA", "description": "Data workload identity" },
+        { "value": "ETL", "description": "Extract transform load workload" },
+        { "value": "ANALYTICS", "description": "Analytics workload" },
+        { "value": "AI", "description": "Artificial intelligence workload" },
+        { "value": "M365", "description": "Microsoft 365 workload" },
+        { "value": "EXO", "description": "Exchange Online workload" },
+        { "value": "SPO", "description": "SharePoint Online workload" },
+        { "value": "TEAMS", "description": "Microsoft Teams workload" },
+        { "value": "MONITORING", "description": "Monitoring workload identity" },
+        { "value": "BACKUP", "description": "Backup workload identity" }
+      ]
+    },
+    {
+      "name": "Environment",
+      "type": "dropdown",
+      "defaultValue": "PROD",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "PROD", "description": "Production" },
+        { "value": "PREPROD", "description": "Pre-production" },
+        { "value": "UAT", "description": "User Acceptance Testing" },
+        { "value": "TEST", "description": "Test" },
+        { "value": "DEV", "description": "Development" },
+        { "value": "LAB", "description": "Laboratory" },
+        { "value": "PILOT", "description": "Pilot" }
+      ]
+    },
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "API",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "API", "description": "Application programming interface integration" },
+        { "value": "AUTOMATION", "description": "Automation purpose" },
+        { "value": "INTEGRATION", "description": "System integration purpose" },
+        { "value": "MONITORING", "description": "Monitoring purpose" },
+        { "value": "BACKUP", "description": "Backup purpose" },
+        { "value": "SAAS", "description": "Software as a service" },
+        { "value": "SSO", "description": "Single sign on" },
+        { "value": "PROVISIONING", "description": "Provisioning workflow" },
+        { "value": "SCIM", "description": "System for Cross domain Identity Management" }
+      ]
+    }
+  ],
+  "examples": [
+    "SPN-AUTOMATION-PROD",
+    "SPN-AZURE-DEV-API",
+    "SPN-M365-PROD-BACKUP"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment"],
+    "availableSegments": ["Purpose", "Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Workload"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 128
+  }
+}

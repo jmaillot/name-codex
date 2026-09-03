@@ -1,0 +1,54 @@
+{
+  "id": "ca-auth-strength",
+  "category": "Conditional Access",
+  "name": "Authentication Strength",
+  "description": "Microsoft Entra Conditional Access authentication strength governance for multifactor and phishing-resistant strength tiers with scope and level taxonomy to enforce consistent authentication requirements across conditional access policies.",
+  "pattern": "CAAS-[Purpose]-[Level]",
+  "fields": [
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "MFA",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "MFA", "description": "Multifactor authentication strength tier" },
+        { "value": "STRONG", "description": "Strong authentication strength tier" },
+        { "value": "PHISHRESISTANT", "description": "Phishing-resistant multifactor strength tier" },
+        { "value": "PASSWORDLESS", "description": "Passwordless authentication strength tier" }
+      ]
+    },
+    {
+      "name": "Level",
+      "type": "dropdown",
+      "defaultValue": "GLOBAL",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "GLOBAL", "description": "Global scope for all users" },
+        { "value": "STANDARD", "description": "Standard assurance level" },
+        { "value": "STRONG", "description": "Strong assurance level" },
+        { "value": "HIGH", "description": "High assurance level" },
+        { "value": "PILOT", "description": "Pilot rollout scope" },
+        { "value": "TEST", "description": "Test scope" }
+      ]
+    }
+  ],
+  "examples": [
+    "CAAS-MFA-STRONG",
+    "CAAS-PHISHRESISTANT-GLOBAL",
+    "CAAS-PASSWORDLESS-PILOT"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Purpose", "Level"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Purpose"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 128
+  }
+}

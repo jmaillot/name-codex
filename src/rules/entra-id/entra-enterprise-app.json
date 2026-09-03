@@ -1,0 +1,61 @@
+{
+  "id": "entra-enterprise-app",
+  "category": "Entra ID",
+  "name": "Enterprise Application",
+  "description": "Microsoft Entra enterprise application gallery app governance for SAML and OIDC software as a service integrations with purpose and environment taxonomy for consistent enterprise app registration and single sign on lifecycle management.",
+  "pattern": "EAP-[Purpose]-[Environment]",
+  "fields": [
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "SSO",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "SAAS", "description": "Software as a service gallery app" },
+        { "value": "SSO", "description": "Single sign on" },
+        { "value": "PROVISIONING", "description": "User provisioning" },
+        { "value": "SCIM", "description": "Cross domain Identity provisioning" },
+        { "value": "INTEGRATION", "description": "Application integration" },
+        { "value": "AUTOMATION", "description": "Automation integration" },
+        { "value": "PBI", "description": "Power BI gallery app" },
+        { "value": "TEAMS", "description": "Microsoft Teams gallery app" },
+        { "value": "CRM", "description": "Customer relationship management gallery app" },
+        { "value": "SALESFORCE", "description": "Salesforce gallery app" }
+      ]
+    },
+    {
+      "name": "Environment",
+      "type": "dropdown",
+      "defaultValue": "PROD",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "PROD", "description": "Production" },
+        { "value": "PREPROD", "description": "Pre-production" },
+        { "value": "UAT", "description": "User Acceptance Testing" },
+        { "value": "TEST", "description": "Test" },
+        { "value": "DEV", "description": "Development" },
+        { "value": "LAB", "description": "Laboratory" },
+        { "value": "PILOT", "description": "Pilot" }
+      ]
+    }
+  ],
+  "examples": [
+    "EAP-SSO-PROD",
+    "EAP-SCIM-TEST",
+    "EAP-SALESFORCE-PROD"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Purpose", "Environment"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Purpose"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 128
+  }
+}

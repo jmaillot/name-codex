@@ -1,0 +1,46 @@
+{
+  "id": "entra-admin-unit",
+  "category": "Entra ID",
+  "name": "Administrative Unit",
+  "description": "Microsoft Entra administrative unit scoped delegation governance for department, region, and project based delegation boundaries with type and value taxonomy for consistent delegated administration and management scope control.",
+  "pattern": "EAU-[Type]-[Value]",
+  "fields": [
+    {
+      "name": "Type",
+      "type": "dropdown",
+      "defaultValue": "DEPARTMENT",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "DEPARTMENT", "description": "Department based administrative unit scope" },
+        { "value": "REGION", "description": "Geographic region based scope" },
+        { "value": "PROJECT", "description": "Project based administrative unit scope" }
+      ]
+    },
+    {
+      "name": "Value",
+      "type": "text",
+      "defaultValue": "",
+      "allowCustomValue": true,
+      "placeholder": "e.g. HR, EMEA, PHOENIX"
+    }
+  ],
+  "examples": [
+    "EAU-DEPARTMENT-HR",
+    "EAU-REGION-EMEA",
+    "EAU-PROJECT-PHOENIX"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Type", "Value"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Type"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 128
+  }
+}

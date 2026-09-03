@@ -7,51 +7,9 @@
   "fields": [
     {
       "name": "Domain",
-      "type": "dropdown",
+      "library": "power-platform/domain",
       "defaultValue": "CORP",
-      "allowCustomValue": true,
-      "values": [
-        {
-          "value": "HR",
-          "description": "Human Resources"
-        },
-        {
-          "value": "FINANCE",
-          "description": "Finance"
-        },
-        {
-          "value": "SALES",
-          "description": "Sales"
-        },
-        {
-          "value": "CRM",
-          "description": "Customer Relationship Management"
-        },
-        {
-          "value": "IT",
-          "description": "Information Technology"
-        },
-        {
-          "value": "SECURITY",
-          "description": "Security"
-        },
-        {
-          "value": "LEGAL",
-          "description": "Legal"
-        },
-        {
-          "value": "OPERATIONS",
-          "description": "Operations"
-        },
-        {
-          "value": "PROCUREMENT",
-          "description": "Procurement"
-        },
-        {
-          "value": "CORP",
-          "description": "Corporate"
-        }
-      ]
+      "allowCustomValue": true
     },
     {
       "name": "Purpose",

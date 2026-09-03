@@ -1,0 +1,167 @@
+{
+  "id": "pp-power-app",
+  "category": "Power Platform",
+  "name": "Power App",
+  "description": "Power Platform canvas and model-driven app naming governance with domain and business-purpose taxonomy for consistent app lifecycle, discovery and ownership across enterprise workloads and environments.",
+  "pattern": "PPA-[Domain]-[Purpose]",
+  "fields": [
+    {
+      "name": "Domain",
+      "type": "dropdown",
+      "defaultValue": "CORP",
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "HR",
+          "description": "Human Resources"
+        },
+        {
+          "value": "FINANCE",
+          "description": "Finance"
+        },
+        {
+          "value": "SALES",
+          "description": "Sales"
+        },
+        {
+          "value": "CRM",
+          "description": "Customer Relationship Management"
+        },
+        {
+          "value": "IT",
+          "description": "Information Technology"
+        },
+        {
+          "value": "SECURITY",
+          "description": "Security"
+        },
+        {
+          "value": "LEGAL",
+          "description": "Legal"
+        },
+        {
+          "value": "OPERATIONS",
+          "description": "Operations"
+        },
+        {
+          "value": "PROCUREMENT",
+          "description": "Procurement"
+        },
+        {
+          "value": "CORP",
+          "description": "Corporate"
+        }
+      ]
+    },
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "CUSTOM",
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "ONBOARDING",
+          "description": "Employee onboarding"
+        },
+        {
+          "value": "LEAVE",
+          "description": "Leave management"
+        },
+        {
+          "value": "TRAINING",
+          "description": "Training and learning"
+        },
+        {
+          "value": "TIMESHEET",
+          "description": "Timesheet tracking"
+        },
+        {
+          "value": "RECRUITMENT",
+          "description": "Talent recruitment"
+        },
+        {
+          "value": "EXPENSES",
+          "description": "Expense management"
+        },
+        {
+          "value": "INVOICE",
+          "description": "Invoice processing"
+        },
+        {
+          "value": "BUDGET",
+          "description": "Budget management"
+        },
+        {
+          "value": "HELPDESK",
+          "description": "IT helpdesk"
+        },
+        {
+          "value": "ASSETMGMT",
+          "description": "Asset management"
+        },
+        {
+          "value": "SERVICEDESK",
+          "description": "Service desk"
+        },
+        {
+          "value": "CUSTOMER",
+          "description": "Customer management"
+        },
+        {
+          "value": "PIPELINE",
+          "description": "Sales pipeline"
+        },
+        {
+          "value": "APPROVALS",
+          "description": "Approval workflows"
+        },
+        {
+          "value": "VISITORS",
+          "description": "Visitor management"
+        },
+        {
+          "value": "SURVEY",
+          "description": "Surveys and feedback"
+        },
+        {
+          "value": "CHECKLIST",
+          "description": "Checklist and compliance"
+        },
+        {
+          "value": "REPORTING",
+          "description": "Reporting and analytics"
+        },
+        {
+          "value": "CUSTOM",
+          "description": "Custom purpose with free-form value via allowCustomValue"
+        }
+      ]
+    }
+  ],
+  "examples": [
+    "PPA-HR-ONBOARDING",
+    "PPA-FINANCE-INVOICE",
+    "PPA-IT-HELPDESK"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": [
+      "Domain",
+      "Purpose"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [
+      "Domain"
+    ],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 64
+  }
+}

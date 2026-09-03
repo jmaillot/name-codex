@@ -1,0 +1,147 @@
+{
+  "id": "pp-power-flow",
+  "category": "Power Platform",
+  "name": "Power Automate Flow",
+  "description": "Power Automate flow naming governance for automated, instant and scheduled flows with domain and business-process taxonomy for consistent flow lifecycle, discovery and ownership across enterprise workloads.",
+  "pattern": "PPF-[Domain]-[Purpose]",
+  "fields": [
+    {
+      "name": "Domain",
+      "type": "dropdown",
+      "defaultValue": "CORP",
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "HR",
+          "description": "Human Resources"
+        },
+        {
+          "value": "FINANCE",
+          "description": "Finance"
+        },
+        {
+          "value": "SALES",
+          "description": "Sales"
+        },
+        {
+          "value": "CRM",
+          "description": "Customer Relationship Management"
+        },
+        {
+          "value": "IT",
+          "description": "Information Technology"
+        },
+        {
+          "value": "SECURITY",
+          "description": "Security"
+        },
+        {
+          "value": "LEGAL",
+          "description": "Legal"
+        },
+        {
+          "value": "OPERATIONS",
+          "description": "Operations"
+        },
+        {
+          "value": "PROCUREMENT",
+          "description": "Procurement"
+        },
+        {
+          "value": "CORP",
+          "description": "Corporate"
+        }
+      ]
+    },
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "APPROVAL",
+      "allowCustomValue": true,
+      "values": [
+        {
+          "value": "APPROVAL",
+          "description": "Approval workflows"
+        },
+        {
+          "value": "NOTIFICATION",
+          "description": "Notification delivery"
+        },
+        {
+          "value": "REMINDER",
+          "description": "Reminder scheduling"
+        },
+        {
+          "value": "SYNC",
+          "description": "Data synchronization"
+        },
+        {
+          "value": "IMPORT",
+          "description": "Data import"
+        },
+        {
+          "value": "EXPORT",
+          "description": "Data export"
+        },
+        {
+          "value": "ONBOARDING",
+          "description": "Employee onboarding"
+        },
+        {
+          "value": "OFFBOARDING",
+          "description": "Employee offboarding"
+        },
+        {
+          "value": "PROVISIONING",
+          "description": "Resource provisioning"
+        },
+        {
+          "value": "DEPROVISIONING",
+          "description": "Resource deprovisioning"
+        },
+        {
+          "value": "TICKET",
+          "description": "Ticketing and ITSM"
+        },
+        {
+          "value": "INCIDENT",
+          "description": "Incident response"
+        },
+        {
+          "value": "ACCESSREVIEW",
+          "description": "Access reviews"
+        },
+        {
+          "value": "COMPLIANCE",
+          "description": "Compliance and audit"
+        }
+      ]
+    }
+  ],
+  "examples": [
+    "PPF-HR-APPROVAL",
+    "PPF-FINANCE-SYNC",
+    "PPF-SECURITY-COMPLIANCE"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": [
+      "Domain",
+      "Purpose"
+    ],
+    "availableSegments": [
+      "Custom"
+    ],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": [
+      "Domain"
+    ],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 64
+  }
+}

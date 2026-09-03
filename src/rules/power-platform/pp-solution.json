@@ -2,48 +2,62 @@
   "id": "pp-solution",
   "category": "Power Platform",
   "name": "Solution",
-  "description": "Power Platform solution governance for publisher prefix and solution layering with managed and unmanaged solution lifecycle and versioning for consistent application lifecycle management.",
-  "pattern": "PPSOL-[Publisher]-[Purpose]",
+  "description": "Power Platform solution governance for domain-aligned solution packaging with business solution taxonomy for consistent application lifecycle management and environment-aware deployment.",
+  "pattern": "PPS-[Domain]-[Solution]",
   "fields": [
     {
-      "name": "Publisher",
+      "name": "Domain",
       "type": "dropdown",
-      "defaultValue": "CONTOSO",
+      "defaultValue": "CORP",
       "allowCustomValue": true,
       "values": [
-        { "value": "CONTOSO", "description": "Contoso publisher prefix (3-8 chars) for solution layering governance" },
-        { "value": "FABRIKAM", "description": "Fabrikam publisher prefix (3-8 chars) for solution layering governance" },
-        { "value": "CORP", "description": "Corporate publisher prefix (3-8 chars) for solution layering governance" },
-        { "value": "HR", "description": "Human Resources publisher prefix (3-8 chars)" },
-        { "value": "FINANCE", "description": "Finance publisher prefix (3-8 chars)" },
-        { "value": "IT", "description": "Information Technology publisher prefix (3-8 chars)" }
+        { "value": "HR", "description": "Human Resources" },
+        { "value": "FINANCE", "description": "Finance" },
+        { "value": "CRM", "description": "Customer Relationship Management" },
+        { "value": "SALES", "description": "Sales" },
+        { "value": "IT", "description": "Information Technology" },
+        { "value": "SECURITY", "description": "Security" },
+        { "value": "LEGAL", "description": "Legal" },
+        { "value": "PROCUREMENT", "description": "Procurement" },
+        { "value": "OPERATIONS", "description": "Operations" },
+        { "value": "CORP", "description": "Corporate" }
       ]
     },
     {
-      "name": "Purpose",
+      "name": "Solution",
       "type": "dropdown",
-      "defaultValue": "CORE",
+      "defaultValue": "ONBOARDING",
       "allowCustomValue": true,
       "values": [
-        { "value": "CORE", "description": "Core solution layer" },
-        { "value": "EXTENSION", "description": "Extension layer" },
-        { "value": "PATCH", "description": "Patch release" },
-        { "value": "RELEASE", "description": "Release version" }
+        { "value": "ONBOARDING", "description": "Employee onboarding" },
+        { "value": "LEAVE", "description": "Leave management" },
+        { "value": "TIMESHEET", "description": "Timesheet tracking" },
+        { "value": "TRAINING", "description": "Training and learning" },
+        { "value": "EXPENSES", "description": "Expense management" },
+        { "value": "INVOICE", "description": "Invoice processing" },
+        { "value": "BUDGET", "description": "Budget management" },
+        { "value": "HELPDESK", "description": "IT helpdesk" },
+        { "value": "ASSETMGMT", "description": "Asset management" },
+        { "value": "SERVICEDESK", "description": "Service desk" },
+        { "value": "CUSTOMERS", "description": "Customer management" },
+        { "value": "OPPORTUNITIES", "description": "Sales opportunities" },
+        { "value": "APPROVALS", "description": "Approval workflows" },
+        { "value": "VISITORS", "description": "Visitor management" }
       ]
     }
   ],
   "examples": [
-    "PPSOL-CONTOSO-ONBOARDING",
-    "PPSOL-FABRIKAM-CRM",
-    "PPSOL-CORP-CORE"
+    "PPS-HR-ONBOARDING",
+    "PPS-FINANCE-INVOICE",
+    "PPS-CRM-OPPORTUNITIES"
   ],
   "builder": {
     "separator": "-",
-    "defaultSegments": ["Publisher", "Purpose"],
-    "availableSegments": ["Environment", "Version", "Custom"],
+    "defaultSegments": ["Domain", "Solution"],
+    "availableSegments": ["Environment", "Custom"],
     "recommendedSegments": [],
     "lockedSegments": [],
-    "fixedFirstSegments": ["Publisher"],
+    "fixedFirstSegments": ["Domain"],
     "fixedLastSegments": []
   },
   "validation": {

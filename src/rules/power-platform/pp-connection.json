@@ -2,48 +2,52 @@
   "id": "pp-connection",
   "category": "Power Platform",
   "name": "Connection",
-  "description": "Power Platform connection and connection reference governance for SharePoint, Dataverse, SQL, Teams and other connectors with purpose taxonomy for consistent integration lifecycle and environment-aware deployment.",
-  "pattern": "PPCON-[Connector]-[Purpose]",
+  "description": "Power Platform connection and connection reference governance for Dataverse, SharePoint Online, Exchange Online, Teams and other connectors with shared purpose taxonomy for consistent integration lifecycle and environment-aware deployment.",
+  "pattern": "PPC-[Connector]-[Purpose]",
   "fields": [
     {
       "name": "Connector",
       "type": "dropdown",
-      "defaultValue": "SHAREPOINT",
+      "defaultValue": "DATAVERSE",
       "allowCustomValue": true,
       "values": [
-        { "value": "SHAREPOINT", "description": "SharePoint connector" },
-        { "value": "SQL", "description": "SQL Server connector" },
-        { "value": "DATAVERSE", "description": "Microsoft Dataverse" },
-        { "value": "OUTLOOK", "description": "Outlook connector" },
+        { "value": "DATAVERSE", "description": "Microsoft Dataverse connector" },
+        { "value": "SPO", "description": "SharePoint Online connector" },
+        { "value": "EXO", "description": "Exchange Online connector" },
         { "value": "TEAMS", "description": "Microsoft Teams connector" },
-        { "value": "APPROVALS", "description": "Approvals connector" },
-        { "value": "POWERBI", "description": "Power BI connector" },
-        { "value": "AZUREAD", "description": "Azure Active Directory connector" },
+        { "value": "SQL", "description": "SQL Server connector" },
+        { "value": "GRAPH", "description": "Microsoft Graph connector" },
         { "value": "HTTP", "description": "HTTP connector" },
-        { "value": "OFFICE365", "description": "Office 365 connector" },
-        { "value": "ONEDRIVE", "description": "OneDrive connector" },
-        { "value": "DYNAMICS", "description": "Dynamics 365 connector" }
+        { "value": "SAP", "description": "SAP connector" },
+        { "value": "D365", "description": "Dynamics 365 connector" },
+        { "value": "SERVICENOW", "description": "ServiceNow connector" },
+        { "value": "SALESFORCE", "description": "Salesforce connector" },
+        { "value": "CUSTOMAPI", "description": "Custom API connector" }
       ]
     },
     {
       "name": "Purpose",
       "type": "dropdown",
-      "defaultValue": "SYNC",
+      "defaultValue": "SHARED",
       "allowCustomValue": true,
       "values": [
-        { "value": "SYNC", "description": "Data synchronization" },
-        { "value": "IMPORT", "description": "Data import" },
-        { "value": "EXPORT", "description": "Data export" },
-        { "value": "NOTIFICATION", "description": "Notification delivery" },
-        { "value": "APPROVAL", "description": "Approval workflows" },
-        { "value": "AUTOMATION", "description": "Process automation" }
+        { "value": "SHARED", "description": "Shared connection for broad reuse" },
+        { "value": "AUTOMATION", "description": "Process automation" },
+        { "value": "APPROVALS", "description": "Approval workflows" },
+        { "value": "HELPDESK", "description": "Helpdesk and support" },
+        { "value": "HR", "description": "Human Resources" },
+        { "value": "FINANCE", "description": "Finance" },
+        { "value": "CRM", "description": "Customer Relationship Management" },
+        { "value": "ERP", "description": "Enterprise Resource Planning" },
+        { "value": "COPILOT", "description": "Copilot and AI workloads" },
+        { "value": "INTEGRATION", "description": "System integration" }
       ]
     }
   ],
   "examples": [
-    "PPCON-SHAREPOINT-SYNC",
-    "PPCON-SQL-IMPORT",
-    "PPCON-DATAVERSE-APPROVAL"
+    "PPC-DATAVERSE-SHARED",
+    "PPC-SPO-INTEGRATION",
+    "PPC-SQL-AUTOMATION"
   ],
   "builder": {
     "separator": "-",

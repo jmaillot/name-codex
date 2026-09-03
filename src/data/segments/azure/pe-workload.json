@@ -1,0 +1,13 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "SHARED", "description": "Shared platform" },
+    { "value": "DATA", "description": "Data workload" },
+    { "value": "APP", "description": "Application workload" },
+    { "value": "API", "description": "API workload" },
+    { "value": "NETWORK", "description": "Network workload" },
+    { "value": "SECURE", "description": "Secure workload" },
+    { "value": "PRIVLINK", "description": "Private Link workload" },
+    { "value": "ENDPOINT", "description": "Endpoint workload" }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "SHARED", "description": "Shared platform" },
+    { "value": "TRAIN", "description": "Model training" },
+    { "value": "INFER", "description": "Model inference" },
+    { "value": "ML", "description": "Machine learning" },
+    { "value": "AI", "description": "AI workload" },
+    { "value": "DATA", "description": "Data workload" },
+    { "value": "RESEARCH", "description": "Research" },
+    { "value": "ANALYTICS", "description": "Analytics" }
+  ]
+}

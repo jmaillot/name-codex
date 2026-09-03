@@ -1,0 +1,13 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "SHARED", "description": "Shared platform" },
+    { "value": "WEB", "description": "Web workload" },
+    { "value": "APP", "description": "Application workload" },
+    { "value": "API", "description": "API workload" },
+    { "value": "CDN", "description": "Content delivery" },
+    { "value": "EDGE", "description": "Edge workload" },
+    { "value": "GLOBAL", "description": "Global workload" },
+    { "value": "FRONTEND", "description": "Frontend workload" }
+  ]
+}

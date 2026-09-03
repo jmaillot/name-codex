@@ -1,0 +1,41 @@
+{
+  "id": "azure-dns-zone",
+  "category": "Azure",
+  "name": "DNS Zone",
+  "description": "Azure DNS Zone naming per CAF (Microsoft Cloud Adoption Framework). DNS Zone hosts authoritative DNS records for a domain within Azure DNS. The Azure resource name is the DNS domain itself (1-63 characters, 2-34 labels separated by periods). This convention generates the zone name with workload taxonomy plus environment and domain.",
+  "pattern": "dnsz-[Workload]-[Environment].[Domain]",
+  "fields": [
+    {
+      "name": "Workload",
+      "library": "azure/dnsz-workload",
+      "defaultValue": "SHARED",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Environment",
+      "library": "core/environment",
+      "defaultValue": "PROD",
+      "allowCustomValue": true
+    },
+    {
+      "name": "Domain",
+      "defaultValue": "contoso.com",
+      "allowCustomValue": true
+    }
+  ],
+  "examples": ["dnsz-shared-prod.contoso.com", "dnsz-dns-dev.internal.net"],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Workload", "Environment", "Domain"],
+    "availableSegments": ["Workload", "Environment", "Domain", "Custom"],
+    "recommendedSegments": ["Workload"],
+    "lockedSegments": [],
+    "fixedFirstSegments": [],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "maxLength": 63,
+    "forceLowercase": true,
+    "allowedPattern": "^(?!.*--)(?!-)[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?(\\.[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?)+$"
+  }
+}

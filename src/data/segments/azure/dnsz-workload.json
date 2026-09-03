@@ -1,0 +1,13 @@
+{
+  "name": "Workload",
+  "values": [
+    { "value": "SHARED", "description": "Shared platform" },
+    { "value": "DNS", "description": "DNS workload" },
+    { "value": "NETWORK", "description": "Network workload" },
+    { "value": "CORP", "description": "Corporate" },
+    { "value": "PUBLIC", "description": "Public DNS" },
+    { "value": "PRIVATE", "description": "Private DNS" },
+    { "value": "ZONE", "description": "Zone workload" },
+    { "value": "GLOBAL", "description": "Global workload" }
+  ]
+}

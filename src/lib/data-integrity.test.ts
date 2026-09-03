@@ -143,8 +143,8 @@ describe("data integrity", () => {
     expect(getGeneratorFile("nonexistent-generator-xyz")).toBeUndefined()
   })
 
-  it("catalog contains exactly 82 conventions (77 + 5 ca/entra phase 32)", () => {
-    expect(allConventions.length).toBe(82)
+  it("catalog contains exactly 87 conventions (77 + 5 ca/entra phase 32 + 5 pp/teams phase 33)", () => {
+    expect(allConventions.length).toBe(87)
   })
 
   it("catalog spans exactly 11 categories with expected counts", () => {
@@ -158,10 +158,10 @@ describe("data integrity", () => {
       "Exchange": 2,
       "Groups": 5,
       "Intune": 10,
-      "Power Platform": 1,
+      "Power Platform": 5,
       "Purview": 8,
       "SharePoint": 3,
-      "Teams": 1,
+      "Teams": 2,
     })
   })
 
@@ -186,10 +186,11 @@ describe("data integrity", () => {
     "defender-alert-policy",
     "ca-named-location", "ca-auth-strength",
     "entra-service-principal", "entra-admin-unit", "entra-enterprise-app",
+    "pp-power-app", "pp-power-flow", "pp-connection", "pp-solution", "teams-policy",
   ]
 
   it("every new convention is reachable via global-search (name/description/id/pattern match)", () => {
-    expect(NEW_CONVENTION_IDS.length).toBe(58)
+    expect(NEW_CONVENTION_IDS.length).toBe(63)
     // WR-04: mirror the exact predicate used by filteredConventions in
     // useAppState (name/description/id/pattern) and query with a PARTIAL
     // id fragment, so the test exercises real substring matching instead

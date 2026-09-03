@@ -1,0 +1,73 @@
+{
+  "id": "defender-alert-policy",
+  "category": "Defender for M365",
+  "name": "Defender Alert Policy",
+  "description": "Microsoft Defender for Office 365 alert policy governance with severity triage, workload scope, and SOC notification purpose for consistent threat response and escalation handling.",
+  "pattern": "DAP-ALERT-[Severity]-[Scope]-[Purpose]",
+  "fields": [
+    {
+      "name": "Severity",
+      "type": "dropdown",
+      "defaultValue": "MEDIUM",
+      "allowCustomValue": false,
+      "values": [
+        { "value": "INFORMATIONAL", "description": "Informational severity" },
+        { "value": "LOW", "description": "Low severity" },
+        { "value": "MEDIUM", "description": "Medium severity" },
+        { "value": "HIGH", "description": "High severity" },
+        { "value": "CRITICAL", "description": "Critical severity" }
+      ]
+    },
+    {
+      "name": "Scope",
+      "type": "dropdown",
+      "defaultValue": "GLOBAL",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "GLOBAL", "description": "Global scope" },
+        { "value": "ENDPOINT", "description": "Endpoint workload" },
+        { "value": "IDENTITY", "description": "Identity workload" },
+        { "value": "EMAIL", "description": "Email workload" },
+        { "value": "O365", "description": "Office 365 workload" },
+        { "value": "CLOUDAPPS", "description": "Cloud Apps workload" },
+        { "value": "DATA", "description": "Data workload" },
+        { "value": "XDR", "description": "Extended Detection and Response" }
+      ]
+    },
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "SOC",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "NOTIFICATION", "description": "Notification purpose" },
+        { "value": "SOC", "description": "Security Operations Center" },
+        { "value": "SECOPS", "description": "Security Operations" },
+        { "value": "ESCALATION", "description": "Escalation handling" },
+        { "value": "SUPPRESSION", "description": "Alert suppression" },
+        { "value": "VIP", "description": "VIP protection" },
+        { "value": "PILOT", "description": "Pilot rollout" },
+        { "value": "TEST", "description": "Test policy" }
+      ]
+    }
+  ],
+  "examples": [
+    "DAP-ALERT-HIGH-GLOBAL-SOC",
+    "DAP-ALERT-CRITICAL-ENDPOINT-ESCALATION",
+    "DAP-ALERT-INFORMATIONAL-EMAIL-NOTIFICATION"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Severity", "Scope", "Purpose"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Severity", "Scope"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 128
+  }
+}

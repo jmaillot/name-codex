@@ -1,0 +1,89 @@
+{
+  "id": "purview-data-map",
+  "category": "Purview",
+  "name": "Data Map",
+  "description": "Microsoft Purview Data Map governance for data domain and data product hierarchy, covering catalog organization, scan registration, and ownership for discoverability across analytics and governance scopes.",
+  "pattern": "PDD-[Domain]",
+  "fields": [
+    {
+      "name": "Domain",
+      "type": "dropdown",
+      "defaultValue": "DATA",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "HR", "description": "Human Resources" },
+        { "value": "FINANCE", "description": "Finance" },
+        { "value": "SALES", "description": "Sales" },
+        { "value": "MARKETING", "description": "Marketing" },
+        { "value": "CRM", "description": "Customer Relationship Management" },
+        { "value": "CUSTOMER", "description": "Customer domain" },
+        { "value": "PRODUCT", "description": "Product domain" },
+        { "value": "PROCUREMENT", "description": "Procurement" },
+        { "value": "SUPPLYCHAIN", "description": "Supply Chain" },
+        { "value": "LOGISTICS", "description": "Logistics" },
+        { "value": "MANUFACTURING", "description": "Manufacturing" },
+        { "value": "IT", "description": "Information Technology" },
+        { "value": "SECURITY", "description": "Security" },
+        { "value": "DATA", "description": "Data platform" },
+        { "value": "ANALYTICS", "description": "Analytics" },
+        { "value": "LEGAL", "description": "Legal" },
+        { "value": "OPERATIONS", "description": "Operations" }
+      ]
+    },
+    {
+      "name": "Product",
+      "type": "dropdown",
+      "defaultValue": "CUSTOMER360",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "CUSTOMER360", "description": "Customer 360 product" },
+        { "value": "EMPLOYEE", "description": "Employee product" },
+        { "value": "PAYROLL", "description": "Payroll product" },
+        { "value": "INVOICE", "description": "Invoice product" },
+        { "value": "INVENTORY", "description": "Inventory product" },
+        { "value": "SUPPLIERS", "description": "Suppliers product" },
+        { "value": "ORDERS", "description": "Orders product" },
+        { "value": "PIPELINE", "description": "Pipeline product" },
+        { "value": "WORKFORCEANALYTICS", "description": "Workforce analytics" },
+        { "value": "EXECUTIVEDASHBOARD", "description": "Executive dashboard" }
+      ]
+    }
+  ],
+  "patterns": [
+    {
+      "id": "domain",
+      "name": "Data Domain",
+      "description": "Data domain registration in Purview Data Map — top-level governance domain for catalog organization and scan scope, kept short and stable per domain taxonomy.",
+      "pattern": "PDD-[Domain]",
+      "defaultSegments": ["Domain"],
+      "examples": ["PDD-FINANCE"]
+    },
+    {
+      "id": "product",
+      "name": "Data Product",
+      "description": "Data product registration within a domain in Purview Data Map — product catalog entry with domain and product taxonomy for discoverability and ownership.",
+      "pattern": "PDP-[Domain]-[Product]",
+      "defaultSegments": ["Domain", "Product"],
+      "examples": ["PDP-SALES-CUSTOMER360", "PDP-HR-EMPLOYEE"]
+    }
+  ],
+  "examples": [
+    "PDD-FINANCE",
+    "PDP-SALES-CUSTOMER360",
+    "PDP-HR-EMPLOYEE"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Domain"],
+    "availableSegments": ["Product", "Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Domain"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 128
+  }
+}

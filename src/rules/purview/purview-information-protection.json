@@ -1,0 +1,68 @@
+{
+  "id": "purview-information-protection",
+  "category": "Purview",
+  "name": "Information Protection Policy",
+  "description": "Microsoft Purview Information Protection policy governance for sensitivity labeling and protection scopes across organizational audiences and purpose taxonomy to enforce consistent classification and handling controls.",
+  "pattern": "IPP-[Audience]-[Purpose]",
+  "fields": [
+    {
+      "name": "Audience",
+      "type": "dropdown",
+      "defaultValue": "GLOBAL",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "GLOBAL", "description": "Organization-wide scope" },
+        { "value": "CORP", "description": "Corporate scope" },
+        { "value": "HR", "description": "Human Resources" },
+        { "value": "FINANCE", "description": "Finance" },
+        { "value": "LEGAL", "description": "Legal" },
+        { "value": "SECURITY", "description": "Security" },
+        { "value": "IT", "description": "Information Technology" },
+        { "value": "SALES", "description": "Sales" },
+        { "value": "MARKETING", "description": "Marketing" },
+        { "value": "OPERATIONS", "description": "Operations" },
+        { "value": "EXECUTIVE", "description": "Executive" },
+        { "value": "BOARD", "description": "Board" },
+        { "value": "ADMINS", "description": "Administrators" },
+        { "value": "ENGINEERING", "description": "Engineering" },
+        { "value": "DEVELOPERS", "description": "Developers" },
+        { "value": "VIP", "description": "VIP users" },
+        { "value": "PARTNERS", "description": "External partners" },
+        { "value": "CONTRACTORS", "description": "Contractors" }
+      ]
+    },
+    {
+      "name": "Purpose",
+      "type": "dropdown",
+      "defaultValue": "STANDARD",
+      "allowCustomValue": true,
+      "values": [
+        { "value": "STANDARD", "description": "Standard protection" },
+        { "value": "CONFIDENTIAL", "description": "Confidential data" },
+        { "value": "RESTRICTED", "description": "Restricted access" },
+        { "value": "EXTERNAL", "description": "External sharing" },
+        { "value": "PILOT", "description": "Pilot rollout" },
+        { "value": "TEST", "description": "Test policy" }
+      ]
+    }
+  ],
+  "examples": [
+    "IPP-GLOBAL-STANDARD",
+    "IPP-HR-CONFIDENTIAL",
+    "IPP-FINANCE-RESTRICTED"
+  ],
+  "builder": {
+    "separator": "-",
+    "defaultSegments": ["Audience", "Purpose"],
+    "availableSegments": ["Custom"],
+    "recommendedSegments": [],
+    "lockedSegments": [],
+    "fixedFirstSegments": ["Audience"],
+    "fixedLastSegments": []
+  },
+  "validation": {
+    "allowedPattern": "^[A-Z0-9_.-]+$",
+    "caseMode": "upper",
+    "maxLength": 128
+  }
+}

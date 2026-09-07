@@ -160,10 +160,12 @@ export function getValidationHint(
   const generatedName = ctx?.generatedName ?? "";
 
   function extractSegmentName(): string | null {
-    const m1 = label.match(/Segment (\w+)/i);
-    if (m1) return m1[1];
+    // Trailing "…: Name" wins: the generic /Segment (\w+)/ would otherwise
+    // capture "present" from labels like "Locked segment present: Env".
     const m2 = label.match(/:\s*(\w+)\s*$/);
     if (m2) return m2[1];
+    const m1 = label.match(/Segment (\w+)/i);
+    if (m1) return m1[1];
     const m3 = label.match(/:\s*(\w+)/);
     if (m3) return m3[1];
     return null;

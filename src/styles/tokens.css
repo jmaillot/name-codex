@@ -83,12 +83,12 @@
 :root[data-theme="light"] {
   color-scheme: light;
 
-  /* Surfaces — navy-tinted day mode, same ~220° hue family inverted */
-  --surface-canvas: #e4e9f2;
-  --surface-raised: #f4f6fb;
-  --surface-panel: #ffffff;
-  --surface-overlay: #f8fafd;
-  --surface-inset: #f1f4f9;
+  /* Surfaces — light blue day mode, same ~220° hue family inverted */
+  --surface-canvas: #d7e3f7;
+  --surface-raised: #e6edf9;
+  --surface-panel: #eaf1fd;
+  --surface-overlay: #e2eaf8;
+  --surface-inset: #dbe4f3;
   --surface-hover: rgba(15, 23, 42, 0.05);
 
   /* Text (--text-on-accent inherits dark's #ffffff) */

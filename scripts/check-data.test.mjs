@@ -11,7 +11,7 @@ import { validateRule, validateSegment, validateGenerator, scanData } from './ch
 import { mkdtemp, writeFile, mkdir, rm } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import { tmpdir } from 'node:os';
-import { join, dirname } from 'node:path';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const SCRIPT_PATH = join(fileURLToPath(new URL('.', import.meta.url)), 'check-data.mjs');

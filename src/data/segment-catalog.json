@@ -112,15 +112,15 @@
     "tip": "Conditional Access Grant Policy"
   },
   {
-    "name": "CA-Disruption",
-    "label": "CA-Disruption",
+    "name": "Disruption",
+    "label": "Disruption",
     "type": "dropdown",
     "library": "conditional-access/ca-disruption",
     "tip": "The access control mechanism that is disrupted or unavailable"
   },
   {
-    "name": "CA-EmergencyApps",
-    "label": "CA-EmergencyApps",
+    "name": "EmergencyApps",
+    "label": "EmergencyApps",
     "type": "dropdown",
     "library": "conditional-access/ca-emergencyapps",
     "tip": "The application or group of applications this contingency policy applies to"

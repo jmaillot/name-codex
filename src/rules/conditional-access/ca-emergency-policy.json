@@ -3,7 +3,7 @@
   "category": "Conditional Access",
   "name": "Conditional Access Policy - Emergency",
   "description": "Use for break-glass contingency policies. Keep in Report-Only mode until a disruption occurs.",
-  "pattern": "[PolicyId]-ENABLEINEMERGENCY-[CA-Disruption]-[CA-EmergencyApps]-[Platforms]-[Controls]-[Conditions]",
+  "pattern": "[PolicyId]-ENABLEINEMERGENCY-[Disruption]-[EmergencyApps]-[Platforms]-[Controls]-[Conditions]",
   "fields": [
     {
       "name": "PolicyId",
@@ -18,7 +18,7 @@
       "defaultValue": "EM001"
     },
     {
-      "name": "CA-Disruption",
+      "name": "Disruption",
       "label": "Disruption",
       "library": "conditional-access/ca-disruption",
       "defaultValue": "MFAOutage",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "name": "CA-EmergencyApps",
+      "name": "EmergencyApps",
       "label": "Applications",
       "library": "conditional-access/ca-emergencyapps",
       "defaultValue": "MissionCritical",
@@ -88,8 +88,8 @@
     "separator": "-",
     "defaultSegments": [
       "PolicyId",
-      "CA-Disruption",
-      "CA-EmergencyApps",
+      "Disruption",
+      "EmergencyApps",
       "Platforms",
       "Controls",
       "Conditions"
@@ -101,8 +101,8 @@
     "lockedSegments": [],
     "fixedFirstSegments": [
       "PolicyId",
-      "CA-Disruption",
-      "CA-EmergencyApps",
+      "Disruption",
+      "EmergencyApps",
       "Platforms",
       "Controls",
       "Conditions"

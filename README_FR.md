@@ -11,7 +11,7 @@ Name Codex est une application monopage qui vous aide à définir, explorer et g
 ## Fonctionnalités
 
 ### Explorer les standards de nommage
-- Parcourez les conventions par catégorie : Azure, Entra ID, Exchange, Groups, Intune, Conditional Access, Defender, Teams, SharePoint, Power Platform, Purview (11 catégories, 45 conventions)
+- Parcourez les conventions par catégorie : Azure, Entra ID, Exchange, Groups, Intune, Conditional Access, Defender, Teams, SharePoint, Power Platform, Purview (11 catégories, 86 conventions)
 - Recherchez et filtrez les types d'objets, et basculez entre leurs variantes de modèle
 - Consultez la description active et un exemple pour chaque convention
 
@@ -119,9 +119,9 @@ Ouvrez l'URL locale affichée dans le terminal (généralement <http://localhost
 | `npm run dev`           | Lancer le serveur de développement (HMR)                   |
 | `npm run build`         | Vérifier les types et compiler pour la prod                |
 | `npm run lint`          | Exécuter oxlint                                            |
-| `npm run check:data`    | Valider tous les fichiers JSON de données (96 fichiers)    |
+| `npm run check:data`    | Valider tous les fichiers JSON de données (180 fichiers)    |
 | `npm run check:tokens`  | Valider les tokens de design (0 littéraux, 18/18 WCAG)     |
-| `npm test`              | Lancer les tests unitaires Vitest (jsdom, 226 tests)       |
+| `npm test`              | Lancer les tests unitaires Vitest (jsdom, 249 tests)       |
 | `npm run test:watch`    | Lancer les tests en mode watch                             |
 | `npm run test:coverage` | Lancer les tests avec couverture v8 (80% lignes sur src/lib) |
 | `npm run preview`       | Prévisualiser la compilation de production                 |

@@ -121,7 +121,7 @@ Ouvrez l'URL locale affichée dans le terminal (généralement <http://localhost
 | `npm run lint`          | Exécuter oxlint                                            |
 | `npm run check:data`    | Valider tous les fichiers JSON de données (180 fichiers)    |
 | `npm run check:tokens`  | Valider les tokens de design (0 littéraux, 18/18 WCAG)     |
-| `npm test`              | Lancer les tests unitaires Vitest (jsdom, 249 tests)       |
+| `npm test`              | Lancer les tests unitaires Vitest (jsdom, 274 tests)       |
 | `npm run test:watch`    | Lancer les tests en mode watch                             |
 | `npm run test:coverage` | Lancer les tests avec couverture v8 (80% lignes sur src/lib) |
 | `npm run preview`       | Prévisualiser la compilation de production                 |

@@ -121,7 +121,7 @@ Open the local URL printed in the terminal (usually <http://localhost:5173/>) in
 | `npm run lint`          | Run oxlint                                       |
 | `npm run check:data`    | Validate all JSON data files (180 files, `file: reason` reporting) |
 | `npm run check:tokens`  | Validate design tokens (0 literals, 18/18 WCAG)  |
-| `npm test`              | Run Vitest unit tests (jsdom, 249 tests)         |
+| `npm test`              | Run Vitest unit tests (jsdom, 274 tests)         |
 | `npm run test:watch`    | Run tests in watch mode                          |
 | `npm run test:coverage` | Run tests with v8 coverage (80% lines on src/lib) |
 | `npm run preview`       | Preview the production build locally             |

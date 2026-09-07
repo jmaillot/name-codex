@@ -122,7 +122,7 @@ export default function SegmentEditor({ segment, index, convention, fields, segm
       </div>
 
       <div className="builder-label">
-        {segment.label}
+        <span className="builder-label-text">{segment.label}</span>
         {field?.tip && <InfoIcon text={fieldTip(field, field.tip, convention.id)} />}
       </div>
 

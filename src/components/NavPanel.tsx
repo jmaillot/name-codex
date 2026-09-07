@@ -48,6 +48,8 @@ export default function NavPanel({ categories, selectedCategory, categoryCounts,
     <aside className="nav-panel nav-rail" aria-label={tl("ui.categories", "Categories")}>
       <div className="rail-brand">
         <img src={logo} alt="Name Codex" className="rail-logo" />
+        <div className="rail-title">Name Codex</div>
+        <div className="rail-subtitle">{tl("ui.appTagline", "Naming Governance App")}</div>
       </div>
       <nav className="nav-list" aria-label={tl("ui.categories", "Categories")}>
         {categories.map((c) => {

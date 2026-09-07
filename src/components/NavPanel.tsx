@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
 import { tl } from "../lib/i18n-utils";
 import logo from "../assets/name-codex.svg";
 import LangSwitcher from "./LangSwitcher";
@@ -48,8 +50,43 @@ function getCategoryClass(category: string): string {
 }
 
 export default function NavPanel({ categories, selectedCategory, categoryCounts, onSelectCategory, language, onSelectLanguage }: NavPanelProps) {
+  // Mobile drawer (≤1100px): categories collapse behind a hamburger toggle.
+  // The list expands in normal flow (no fixed positioning, so app zoom can't clip it).
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!drawerOpen) return;
+    navRef.current?.focus({ preventScroll: true });
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setDrawerOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [drawerOpen]);
+
+  const handleSelect = (c: string) => {
+    onSelectCategory(c);
+    setDrawerOpen(false);
+  };
+
   return (
-    <aside className="nav-panel nav-rail" aria-label={tl("ui.categories", "Categories")}>
+    <aside className={`nav-panel nav-rail${drawerOpen ? " drawer-open" : ""}`} aria-label={tl("ui.categories", "Categories")}>
+      <button
+        ref={toggleRef}
+        type="button"
+        className="drawer-toggle"
+        aria-label={tl("ui.toggleNav", "Toggle navigation")}
+        aria-expanded={drawerOpen}
+        aria-controls="category-nav"
+        onClick={() => setDrawerOpen((v) => !v)}
+      >
+        {drawerOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+      </button>
       <div className="rail-brand">
         <img src={logo} alt="Name Codex" className="rail-logo" />
         <div className="rail-title">Name Codex</div>
@@ -59,14 +96,14 @@ export default function NavPanel({ categories, selectedCategory, categoryCounts,
         <ThemeToggle />
         <LangSwitcher language={language} onSelectLanguage={onSelectLanguage} />
       </div>
-      <nav className="nav-list" aria-label={tl("ui.categories", "Categories")}>
+      <nav id="category-nav" ref={navRef} tabIndex={-1} className="nav-list" aria-label={tl("ui.categories", "Categories")}>
         {categories.map((c) => {
           const active = selectedCategory === c;
           return (
             <button
               key={c}
               className={`nav-item ${active ? "active" : ""}`}
-              onClick={() => onSelectCategory(c)}
+              onClick={() => handleSelect(c)}
               title={`${c} (${categoryCounts[c] ?? 0})`}
               aria-label={`${c} (${categoryCounts[c] ?? 0})`}
               aria-current={active ? "page" : undefined}

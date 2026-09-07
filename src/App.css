@@ -154,6 +154,11 @@ select {
   position: static;
 }
 
+/* Mobile drawer toggle — desktop only shows the full list */
+.drawer-toggle {
+  display: none;
+}
+
 .brand-panel{
   display:flex;
   justify-content:center;
@@ -1419,9 +1424,23 @@ summary:focus-visible {
     border-right: 0;
     border-bottom: 1px solid var(--border-subtle);
     flex-direction: row;
+    flex-wrap: wrap;
     padding: 8px 10px;
     gap: 10px;
     overflow-y: visible;
+  }
+
+  .drawer-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-subtle);
+    background: var(--surface-raised);
+    color: var(--text-primary);
   }
 
   .rail-brand {
@@ -1443,20 +1462,33 @@ summary:focus-visible {
 
   .rail-controls {
     width: auto;
-    padding: 0 10px;
+    margin-left: auto;
+    padding: 0 0 0 10px;
     border-bottom: 0;
     border-left: 1px solid var(--border-subtle);
-    border-right: 1px solid var(--border-subtle);
+    border-right: 0;
   }
 
+  /* Categories collapse into an in-flow expandable list (no fixed
+     positioning, so app zoom can't clip it) */
   .nav-rail .nav-list {
-    flex-direction: row;
-    overflow-x: auto;
-    gap: 8px;
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-height: 60vh;
+    overflow-y: auto;
+    gap: 6px;
+  }
+
+  .nav-rail.drawer-open .nav-list {
+    display: flex;
   }
 
   .nav-rail .nav-item {
-    min-width: 190px;
+    min-width: 0;
+    width: 100%;
   }
 
   .main-panel {
@@ -1517,6 +1549,53 @@ summary:focus-visible {
   .builder-actions {
     grid-area: actions;
     justify-content: flex-end;
+  }
+
+  /* Compact phone density — single column, tighter cards and controls */
+  .main-panel {
+    padding: 8px;
+  }
+
+  .glass-card {
+    padding: 8px;
+    border-radius: 14px;
+  }
+
+  input,
+  select {
+    height: 40px;
+  }
+
+  .policy-id-prefix {
+    height: 40px;
+  }
+
+  .generated-name {
+    font-size: clamp(16px, 5.5vw, 22px);
+    min-height: 40px;
+  }
+
+  .pattern-box,
+  .example-box {
+    padding: 6px 8px;
+  }
+
+  .custom-dropdown-editor.preset-mode,
+  .custom-dropdown-editor.custom-mode {
+    grid-template-columns: 1fr;
+  }
+
+  .add-segment-row {
+    grid-template-columns: 1fr;
+  }
+
+  .builder-actions button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .footer {
+    padding: 12px 8px;
   }
 
   .info-wrapper {

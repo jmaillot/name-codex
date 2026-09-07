@@ -18,14 +18,15 @@ export function isFixedFirst(
   convention: NamingConvention,
   name: string
 ): boolean {
-  return (
-    convention.builder?.fixedFirstSegments?.includes(name) ??
-    false
-  );
+  return convention.builder?.fixedFirstSegments?.includes(name) ?? false;
 }
 
 export function isFixedLast(convention: NamingConvention, name: string): boolean {
   return convention.builder?.fixedLastSegments?.includes(name) ?? false;
+}
+
+function resolveRule(convention: NamingConvention) {
+  return validationRules?.[convention.category]?.[convention.name] ?? convention.validation ?? validationRules.default;
 }
 
 export function normalizeName(
@@ -33,7 +34,7 @@ export function normalizeName(
   convention: NamingConvention,
   options?: { truncate?: boolean }
 ): string {
-  const rule = validationRules?.[convention.category]?.[convention.name] ?? convention.validation ?? validationRules.default;
+  const rule = resolveRule(convention);
   if (!rule) return name;
   const truncate = options?.truncate ?? true;
   let n = name;
@@ -52,7 +53,7 @@ export function normalizeName(
 }
 
 export function validateName(name: string, convention: NamingConvention, segments: BuilderSegment[], fields: NamingField[] = convention.fields): ValidationResult[] {
-  const rule = validationRules?.[convention.category]?.[convention.name] ?? convention.validation ?? validationRules.default;
+  const rule = resolveRule(convention);
   const names = segments.map((s) => s.sourceName);
   const results: ValidationResult[] = [
     { label: tl("ui.valEmpty", "Generated name is not empty"), valid: name.length > 0 },

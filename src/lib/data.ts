@@ -23,24 +23,19 @@ function moduleKeyFromName(name: string): string {
   return name.trim().toLowerCase();
 }
 
+function moduleKeyFromPath(path: string, marker: string): string {
+  const lower = path.toLowerCase();
+  const idx = lower.indexOf(marker);
+  if (idx >= 0) return lower.slice(idx + marker.length).replace(".json", "");
+  return lower.split("/").pop()?.replace(".json", "") ?? "";
+}
+
 const segmentModuleMap = new Map<string, SegmentFile>(
-  Object.entries(segmentModules).map(([path, file]) => {
-    const lower = path.toLowerCase();
-    const marker = "/segments/";
-    const idx = lower.indexOf(marker);
-    const key = idx >= 0 ? lower.slice(idx + marker.length).replace(".json", "") : lower.split("/").pop()?.replace(".json", "") ?? "";
-    return [key, file] as const;
-  })
+  Object.entries(segmentModules).map(([path, file]) => [moduleKeyFromPath(path, "/segments/"), file] as const)
 );
 
 const generatorModuleMap = new Map<string, SegmentGenerator>(
-  Object.entries(generatorModules).map(([path, file]) => {
-    const lower = path.toLowerCase();
-    const marker = "/generators/";
-    const idx = lower.indexOf(marker);
-    const key = idx >= 0 ? lower.slice(idx + marker.length).replace(".json", "") : lower.split("/").pop()?.replace(".json", "") ?? "";
-    return [key, file] as const;
-  })
+  Object.entries(generatorModules).map(([path, file]) => [moduleKeyFromPath(path, "/generators/"), file] as const)
 );
 
 // S9 unified policy-id variants: policy-id.json contains variants for ca-policy-id and ca-emergency-policy-id
@@ -79,24 +74,29 @@ export const allConventions = Object.entries(ruleModules)
 // S12 pattern inheritance: merge top-level fields into each pattern's fields (pattern overrides by name)
 // Only merge base fields that are actually referenced in the pattern's pattern string
 // e.g. pp-environment developer pattern PPE-DEV-[User] should not inherit Workload/Environment
+function mergeBaseFieldsIntoPattern(
+  baseFields: NamingField[],
+  pat: { pattern?: string; fields?: NamingField[] }
+): void {
+  const patternStr = pat.pattern ?? "";
+  const baseForPat = baseFields.filter((f) => patternStr.includes(`[${f.name}]`));
+  if (baseForPat.length === 0) return;
+  if (!pat.fields) {
+    pat.fields = [...baseForPat];
+    return;
+  }
+  const merged: NamingField[] = [...baseForPat];
+  for (const pf of pat.fields) {
+    const idx = merged.findIndex((f) => f.name === pf.name);
+    if (idx >= 0) merged[idx] = { ...merged[idx], ...pf } as NamingField;
+    else merged.push(pf as NamingField);
+  }
+  pat.fields = merged;
+}
+
 for (const conv of allConventions) {
   if (!conv.patterns?.length) continue;
   const baseFields = conv.fields ?? [];
   if (baseFields.length === 0) continue;
-  for (const pat of conv.patterns) {
-    const patternStr = pat.pattern ?? "";
-    const baseForPat = baseFields.filter((f) => patternStr.includes(`[${f.name}]`));
-    if (baseForPat.length === 0) continue;
-    if (!pat.fields) {
-      pat.fields = [...baseForPat];
-    } else {
-      const merged: NamingField[] = [...baseForPat];
-      for (const pf of pat.fields) {
-        const idx = merged.findIndex((f) => f.name === pf.name);
-        if (idx >= 0) merged[idx] = { ...merged[idx], ...pf } as NamingField;
-        else merged.push(pf as NamingField);
-      }
-      pat.fields = merged;
-    }
-  }
+  for (const pat of conv.patterns) mergeBaseFieldsIntoPattern(baseFields, pat);
 }

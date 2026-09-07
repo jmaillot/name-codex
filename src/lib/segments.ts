@@ -47,6 +47,12 @@ function matchesConstraintPattern(value: string, pattern: string): boolean {
   }
 }
 
+function filterByAllowedPattern(options: NamingFieldOption[], pattern: string | undefined): NamingFieldOption[] {
+  if (!pattern) return options;
+  const filtered = options.filter((o) => matchesConstraintPattern(optionValue(o), pattern));
+  return filtered.length > 0 || options.length === 0 ? filtered : options;
+}
+
 export type BuilderSegment = { key: string; sourceName: string; label: string; value: string; custom?: boolean };
 
 export function assembleRawName(
@@ -135,6 +141,16 @@ export function patternName(convention: NamingConvention, pattern: { id: string;
   return tl(`data.rule.${convention.id}.pattern.${pattern.id}.name`, pattern.name);
 }
 
+function isBareTextField(field: NamingField): boolean {
+  return (
+    field.type === "text" &&
+    !field.library &&
+    !field.values &&
+    !field.generator &&
+    !field.allowedValues
+  );
+}
+
 export function fieldByName(fields: NamingField[], name: string): NamingField | undefined {
   const conventionField = fields.find((field) => field.name === name);
   const catalogField = segmentCatalog.find((field) => field.name === name);
@@ -151,14 +167,7 @@ export function fieldByName(fields: NamingField[], name: string): NamingField | 
   // Text-intended fields must not inherit a catalog dropdown library.
   // e.g. MAM "Purpose" is type:text with examples, but catalog Purpose is dropdown core/purpose (Alerts/Invoices).
   // Without this, the text field would incorrectly render as a dropdown with library values.
-  if (
-    conventionField &&
-    conventionField.type === "text" &&
-    !conventionField.library &&
-    !conventionField.values &&
-    !conventionField.generator &&
-    !conventionField.allowedValues
-  ) {
+  if (conventionField && isBareTextField(conventionField)) {
     delete (merged as unknown as Record<string, unknown>).library;
     delete (merged as unknown as Record<string, unknown>).values;
     delete (merged as unknown as Record<string, unknown>).generator;
@@ -203,26 +212,14 @@ export function valuesForField(field?: NamingField): NamingFieldOption[] {
   }
 
   const constraints = getConstraintsForField(field);
-  if (constraints?.allowedPattern) {
-    const filtered = options.filter((o) => matchesConstraintPattern(optionValue(o), constraints.allowedPattern!));
-    if (filtered.length > 0 || options.length === 0) options = filtered;
-  }
-
-  return options;
+  return filterByAllowedPattern(options, constraints?.allowedPattern);
 }
 
 export function defaultValueForField(field?: NamingField): string {
-  if (!field) return "";
-
-  if (field.defaultValue !== undefined) {
-    return field.defaultValue;
-  }
+  if (field?.defaultValue !== undefined) return field.defaultValue;
 
   const values = valuesForField(field);
-
-  return values.length > 0
-    ? optionValue(values[0])
-    : "";
+  return values.length > 0 ? optionValue(values[0]) : "";
 }
 
 export type BuildSegmentOptions = {
@@ -299,10 +296,5 @@ export function optionsForSegment(
   }
 
   const segConstraints = getConstraintsForField(field);
-  if (segConstraints?.allowedPattern) {
-    const filtered = options.filter((o) => matchesConstraintPattern(optionValue(o), segConstraints.allowedPattern!));
-    if (filtered.length > 0 || options.length === 0) options = filtered;
-  }
-
-  return options;
+  return filterByAllowedPattern(options, segConstraints?.allowedPattern);
 }

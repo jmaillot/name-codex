@@ -58,26 +58,19 @@ export function generateSequence(generator: SequenceGenerator): NamingFieldOptio
   );
 }
 
+function expandCaPolicyRange(range: CaPolicyRange): NamingFieldOption[] {
+  return Array.from({ length: range.max - range.min + 1 }, (_, index) => {
+    const number = range.min + index;
+    const value = `${range.prefix}${String(number).padStart(range.digits, "0")}`;
+    return { value, description: tl(`data.caRange.${range.label}`, range.label) };
+  });
+}
+
 export function generateCaPolicyIds(generator: CaPolicyIdGenerator): NamingFieldOption[] {
   const ranges = generator.ranges
     ?? (generator.prefix ? { fallback: caPolicyIdFallbackRange(generator) } : caNumberingRanges);
 
-  return Object.values(ranges).flatMap((range) => {
-    if (!range) return [];
-    return Array.from(
-      { length: range.max - range.min + 1 },
-      (_, index) => {
-        const number = range.min + index;
-        const suffix = String(number).padStart(range.digits, "0");
-        const value = `${range.prefix}${suffix}`;
-
-        return {
-          value,
-          description: tl(`data.caRange.${range.label}`, range.label),
-        };
-      }
-    );
-  });
+  return Object.values(ranges).flatMap((range) => (range ? expandCaPolicyRange(range) : []));
 }
 
 export function generateValues(generator: SegmentGenerator): NamingFieldOption[] {
@@ -120,21 +113,13 @@ export function caPolicyIdOptionsForRange(
 ): NamingFieldOption[] {
   const range = caPolicyIdRange(generator, rangeKey);
   if (!range) return [];
-
-  return Array.from({ length: range.max - range.min + 1 }, (_, index) => {
-    const number = range.min + index;
-    const value = `${range.prefix}${String(number).padStart(range.digits, "0")}`;
-    return { value, description: tl(`data.caRange.${range.label}`, range.label) };
-  });
+  return expandCaPolicyRange(range);
 }
 
 export function caPolicyIdPersonaSource(field: NamingField | undefined): string {
-  if (!field?.generator) return "Persona";
-
-  const generatorFile = getGeneratorFile(field.generator);
-  return generatorFile?.type === "caPolicyId"
-    ? generatorFile.personaSource ?? "Persona"
-    : "Persona";
+  const generatorFile = field?.generator ? getGeneratorFile(field.generator) : undefined;
+  if (generatorFile?.type !== "caPolicyId") return "Persona";
+  return generatorFile.personaSource ?? "Persona";
 }
 
 export function personaRangeKeyForField(

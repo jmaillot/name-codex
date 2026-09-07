@@ -45,26 +45,29 @@ function getCategoryClass(category: string): string {
 
 export default function NavPanel({ categories, selectedCategory, categoryCounts, onSelectCategory }: NavPanelProps) {
   return (
-    <aside className="nav-panel">
-      <div className="brand-card">
-        <img src={logo} alt="Name Codex" className="brand-logo" />
-        <div className="brand-divider" />
-        <div>
-          <div className="brand-title">Name Codex</div>
-          <div className="brand-subtitle">{tl("ui.appTagline", "Naming Governance App")}</div>
-        </div>
-        <div className="brand-divider" />
+    <aside className="nav-panel nav-rail" aria-label={tl("ui.categories", "Categories")}>
+      <div className="rail-brand">
+        <img src={logo} alt="Name Codex" className="rail-logo" />
       </div>
-      <div className="nav-section-title">{tl("ui.categories", "Categories")}</div>
-      <div className="nav-list">
-        {categories.map((c) => (
-          <button key={c} className={`nav-item ${selectedCategory === c ? "active" : ""}`} onClick={() => onSelectCategory(c)}>
-            <span className={`nav-icon ${getCategoryClass(c)}`}>{getCategoryIcon(c)}</span>
-            <span className="nav-label">{c}</span>
-            <span className="nav-count">{categoryCounts[c]}</span>
-          </button>
-        ))}
-      </div>
+      <nav className="nav-list" aria-label={tl("ui.categories", "Categories")}>
+        {categories.map((c) => {
+          const active = selectedCategory === c;
+          return (
+            <button
+              key={c}
+              className={`nav-item ${active ? "active" : ""}`}
+              onClick={() => onSelectCategory(c)}
+              title={`${c} (${categoryCounts[c] ?? 0})`}
+              aria-label={`${c} (${categoryCounts[c] ?? 0})`}
+              aria-current={active ? "page" : undefined}
+            >
+              <span className={`nav-icon ${getCategoryClass(c)}`}>{getCategoryIcon(c)}</span>
+              <span className="nav-label" aria-hidden="true">{c}</span>
+              <span className="nav-count" aria-hidden="true">{categoryCounts[c]}</span>
+            </button>
+          );
+        })}
+      </nav>
     </aside>
   );
 }

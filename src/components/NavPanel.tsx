@@ -55,6 +55,10 @@ export default function NavPanel({ categories, selectedCategory, categoryCounts,
         <div className="rail-title">Name Codex</div>
         <div className="rail-subtitle">{tl("ui.appTagline", "Naming Governance App")}</div>
       </div>
+      <div className="rail-controls">
+        <ThemeToggle />
+        <LangSwitcher language={language} onSelectLanguage={onSelectLanguage} />
+      </div>
       <nav className="nav-list" aria-label={tl("ui.categories", "Categories")}>
         {categories.map((c) => {
           const active = selectedCategory === c;
@@ -74,10 +78,6 @@ export default function NavPanel({ categories, selectedCategory, categoryCounts,
           );
         })}
       </nav>
-      <div className="rail-footer">
-        <ThemeToggle />
-        <LangSwitcher language={language} onSelectLanguage={onSelectLanguage} />
-      </div>
     </aside>
   );
 }

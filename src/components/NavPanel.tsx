@@ -1,5 +1,7 @@
 import { tl } from "../lib/i18n-utils";
 import logo from "../assets/name-codex.svg";
+import LangSwitcher from "./LangSwitcher";
+import ThemeToggle from "./ThemeToggle";
 import iconAzure from "../assets/icons/azure.svg";
 import iconEntraId from "../assets/icons/entra-id.svg";
 import iconExchange from "../assets/icons/exchange.svg";
@@ -17,6 +19,8 @@ type NavPanelProps = {
   selectedCategory: string;
   categoryCounts: Record<string, number>;
   onSelectCategory: (category: string) => void;
+  language: string;
+  onSelectLanguage: (code: string) => void;
 };
 
 const CATEGORY_META: Record<string, { icon: string; cls: string }> = {
@@ -43,7 +47,7 @@ function getCategoryClass(category: string): string {
   return CATEGORY_META[category]?.cls ?? "";
 }
 
-export default function NavPanel({ categories, selectedCategory, categoryCounts, onSelectCategory }: NavPanelProps) {
+export default function NavPanel({ categories, selectedCategory, categoryCounts, onSelectCategory, language, onSelectLanguage }: NavPanelProps) {
   return (
     <aside className="nav-panel nav-rail" aria-label={tl("ui.categories", "Categories")}>
       <div className="rail-brand">
@@ -70,6 +74,10 @@ export default function NavPanel({ categories, selectedCategory, categoryCounts,
           );
         })}
       </nav>
+      <div className="rail-footer">
+        <ThemeToggle />
+        <LangSwitcher language={language} onSelectLanguage={onSelectLanguage} />
+      </div>
     </aside>
   );
 }

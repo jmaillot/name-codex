@@ -135,6 +135,21 @@ select {
   color: var(--text-secondary);
 }
 
+.rail-footer {
+  margin-top: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.rail-footer .lang-switcher {
+  position: static;
+}
+
 .brand-panel{
   display:flex;
   justify-content:center;
@@ -1363,6 +1378,17 @@ summary:focus-visible {
     display: none;
   }
 
+  .rail-footer {
+    margin-top: 0;
+    margin-left: auto;
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 0 0 10px;
+    border-top: 0;
+    border-left: 1px solid var(--border-subtle);
+  }
+
   .nav-rail .nav-list {
     flex-direction: row;
     overflow-x: auto;
@@ -1605,7 +1631,8 @@ summary:focus-visible {
 }
 
 /* ── Theme toggle pill (Phase 12) — mirrors .command-bar .lang-switcher chrome ── */
-.command-bar .theme-toggle {
+.command-bar .theme-toggle,
+.rail-footer .theme-toggle {
   display: flex;
   align-items: center;
   background: var(--surface-panel);
@@ -1615,7 +1642,8 @@ summary:focus-visible {
   pointer-events: auto;
 }
 
-.command-bar .theme-btn {
+.command-bar .theme-btn,
+.rail-footer .theme-btn {
   width: 30px;
   height: 30px;
   display: inline-flex;
@@ -1628,7 +1656,8 @@ summary:focus-visible {
   cursor: pointer;
 }
 
-.command-bar .theme-btn:hover {
+.command-bar .theme-btn:hover,
+.rail-footer .theme-btn:hover {
   background: var(--surface-hover);
   color: var(--text-primary);
 }

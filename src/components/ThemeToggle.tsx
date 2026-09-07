@@ -10,7 +10,7 @@ import {
 import { tl } from "../lib/i18n-utils";
 
 /**
- * ThemeToggle — sun/moon pill in the CommandBar (Phase 12, THEME-L-03).
+ * ThemeToggle — sun/moon pill in the menu footer (Phase 12, THEME-L-03).
  *
  * State source of truth is the `data-theme` attribute on <html>, which lives
  * outside React (set pre-paint by the inline script in index.html). Clicking

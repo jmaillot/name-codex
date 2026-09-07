@@ -3,7 +3,6 @@ import { allConventions } from "./lib/data";
 import { tl } from "./lib/i18n-utils";
 import { setLanguage } from "./i18n";
 import NavPanel from "./components/NavPanel";
-import CommandBar from "./components/CommandBar";
 import ConfigureCard from "./components/ConfigureCard";
 import ResultCard from "./components/ResultCard";
 import BuilderCard from "./components/BuilderCard";
@@ -77,13 +76,14 @@ export default function App() {
 
   return (
     <>
-      <CommandBar language={language} onSelectLanguage={setLanguage} />
       <div className="app-shell">
         <NavPanel
           categories={categories}
           selectedCategory={selectedCategory}
           categoryCounts={categoryCounts}
           onSelectCategory={setSelectedCategory}
+          language={language}
+          onSelectLanguage={setLanguage}
         />
         <main className="main-panel">
         <section className="workspace-stack">

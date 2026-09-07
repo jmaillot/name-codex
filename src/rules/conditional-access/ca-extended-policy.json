@@ -3,7 +3,7 @@
   "category": "Conditional Access",
   "name": "Conditional Access Policy - Extended",
   "description": "Use for full context policies. Includes Platform and Version segments not available in the Microsoft Recommended pattern. Recommended when platform-specific targeting or change tracking is required.",
-  "pattern": "[PolicyId]-[CA-Persona]-[CA-Applications]-[CA-Platforms]-[CA-Conditions]-[CA-Controls]",
+  "pattern": "[PolicyId]-[Persona]-[Applications]-[Platforms]-[Conditions]-[Controls]",
   "fields": [
     {
       "name": "PolicyId",
@@ -18,7 +18,7 @@
       "defaultValue": ""
     },
     {
-      "name": "CA-Persona",
+      "name": "Persona",
       "label": "Persona",
       "library": "conditional-access/ca-persona",
       "defaultValue": "",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "name": "CA-Applications",
+      "name": "Applications",
       "label": "Application",
       "library": "conditional-access/ca-apps",
       "defaultValue": "AllApps",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "name": "CA-Platforms",
+      "name": "Platforms",
       "label": "Platforms",
       "library": "conditional-access/ca-platforms",
       "multiSelect": true,
@@ -46,7 +46,7 @@
       "defaultValue": "AllPlatforms"
     },
     {
-      "name": "CA-Conditions",
+      "name": "Conditions",
       "label": "Condition/When",
       "library": "conditional-access/ca-conditions",
       "defaultValue": "",
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "name": "CA-Controls",
+      "name": "Controls",
       "label": "Controls",
       "library": "conditional-access/ca-controls",
       "defaultValue": "MFA",
@@ -88,11 +88,11 @@
     "separator": "-",
     "defaultSegments": [
       "PolicyId",
-      "CA-Persona",
-      "CA-Applications",
-      "CA-Platforms",
-      "CA-Conditions",
-      "CA-Controls"
+      "Persona",
+      "Applications",
+      "Platforms",
+      "Conditions",
+      "Controls"
     ],
     "availableSegments": [
       "Custom"
@@ -101,11 +101,11 @@
     "lockedSegments": [],
     "fixedFirstSegments": [
       "PolicyId",
-      "CA-Persona",
-      "CA-Applications",
-      "CA-Platforms",
-      "CA-Conditions",
-      "CA-Controls"
+      "Persona",
+      "Applications",
+      "Platforms",
+      "Conditions",
+      "Controls"
     ],
     "fixedLastSegments": []
   }

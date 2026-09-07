@@ -3,7 +3,7 @@
   "category": "Conditional Access",
   "name": "Conditional Access Policy - Emergency",
   "description": "Use for break-glass contingency policies. Keep in Report-Only mode until a disruption occurs.",
-  "pattern": "[PolicyId]-ENABLEINEMERGENCY-[CA-Disruption]-[CA-EmergencyApps]-[CA-Platforms]-[CA-Controls]-[CA-Conditions]",
+  "pattern": "[PolicyId]-ENABLEINEMERGENCY-[CA-Disruption]-[CA-EmergencyApps]-[Platforms]-[Controls]-[Conditions]",
   "fields": [
     {
       "name": "PolicyId",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "name": "CA-Platforms",
+      "name": "Platforms",
       "label": "Platforms",
       "library": "conditional-access/ca-platforms",
       "multiSelect": true,
@@ -46,7 +46,7 @@
       "defaultValue": "AllPlatforms"
     },
     {
-      "name": "CA-Controls",
+      "name": "Controls",
       "label": "Controls",
       "library": "conditional-access/ca-controls",
       "defaultValue": "MFA",
@@ -60,7 +60,7 @@
       "multiAllValue": "Block"
     },
     {
-      "name": "CA-Conditions",
+      "name": "Conditions",
       "label": "Condition/When",
       "library": "conditional-access/ca-conditions",
       "defaultValue": "",
@@ -90,9 +90,9 @@
       "PolicyId",
       "CA-Disruption",
       "CA-EmergencyApps",
-      "CA-Platforms",
-      "CA-Controls",
-      "CA-Conditions"
+      "Platforms",
+      "Controls",
+      "Conditions"
     ],
     "availableSegments": [
       "Custom"
@@ -103,9 +103,9 @@
       "PolicyId",
       "CA-Disruption",
       "CA-EmergencyApps",
-      "CA-Platforms",
-      "CA-Controls",
-      "CA-Conditions"
+      "Platforms",
+      "Controls",
+      "Conditions"
     ],
     "fixedLastSegments": []
   }

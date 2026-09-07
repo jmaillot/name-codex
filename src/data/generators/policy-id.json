@@ -3,7 +3,7 @@
   "type": "caPolicyId",
   "variants": {
     "ca-policy-id": {
-      "personaSource": "CA-Persona",
+      "personaSource": "Persona",
       "personaRanges": {
         "ALLUSERS": "Global",
         "EMPLOYEES": "Internals",

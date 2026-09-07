@@ -13,7 +13,7 @@ describe("valuesForField", () => {
   })
 
   it("resolves library via getSegmentFile", () => {
-    const field: NamingField = { name: "CA-Persona", library: "conditional-access/ca-persona" }
+    const field: NamingField = { name: "Persona", library: "conditional-access/ca-persona" }
     const vals = valuesForField(field)
     expect(vals.length).toBeGreaterThan(0)
     const first = vals[0] as any
@@ -129,7 +129,7 @@ describe("optionsForSegment allowedValuesByField first-match", () => {
 describe("optionsForSegment persona-range path", () => {
   it("scopes ca-policy-id generator via personaRange", () => {
     const field: NamingField = { name: "PolicyId", generator: "ca-policy-id" }
-    const segments = [seg("CA-Persona", "Employees")]
+    const segments = [seg("Persona", "Employees")]
     const opts = optionsForSegment(field, segments)
     expect(opts.length).toBe(100)
     expect((opts[0] as any).value).toBe("CA200")
@@ -143,7 +143,7 @@ describe("optionsForSegment persona-range path", () => {
 
   it("returns all options for non-caPolicyId generator persona not scoped", () => {
     const field: NamingField = { name: "PolicyId", generator: "ca-emergency-policy-id" }
-    const opts = optionsForSegment(field, [seg("CA-Persona", "Employees")])
+    const opts = optionsForSegment(field, [seg("Persona", "Employees")])
     expect(opts.length).toBe(1000)
   })
 })

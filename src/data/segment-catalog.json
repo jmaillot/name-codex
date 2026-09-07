@@ -77,36 +77,36 @@
     "tip": "Prefix used for Intune policies."
   },
   {
-    "name": "CA-Persona",
-    "label": "CA-Persona",
+    "name": "Persona",
+    "label": "Persona",
     "type": "dropdown",
     "library": "conditional-access/ca-persona",
     "tip": "User type."
   },
   {
-    "name": "CA-Applications",
-    "label": "CA-Applications",
+    "name": "Applications",
+    "label": "Applications",
     "type": "dropdown",
     "library": "conditional-access/ca-apps",
     "tip": "Scoped Apps."
   },
   {
-    "name": "CA-Platforms",
-    "label": "CA-Platforms",
+    "name": "Platforms",
+    "label": "Platforms",
     "type": "dropdown",
     "library": "conditional-access/ca-platforms",
     "tip": "Scoped Platforms."
   },
   {
-    "name": "CA-Conditions",
-    "label": "CA-Conditions",
+    "name": "Conditions",
+    "label": "Conditions",
     "type": "dropdown",
     "library": "conditional-access/ca-conditions",
     "tip": "Conditions where CA must apply."
   },
   {
-    "name": "CA-Controls",
-    "label": "CA-Controls",
+    "name": "Controls",
+    "label": "Controls",
     "type": "dropdown",
     "library": "conditional-access/ca-controls",
     "tip": "Conditional Access Grant Policy"

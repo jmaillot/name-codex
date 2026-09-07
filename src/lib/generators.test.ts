@@ -149,15 +149,15 @@ describe("caPolicyIdOptionsForRange", () => {
 describe("personaRangeKeyForField", () => {
   it("returns Internals for Employees persona with ca-policy-id generator", () => {
     const field = { name: "PolicyId", generator: "ca-policy-id" } as any
-    const segments = [seg("CA-Persona", "Employees")]
+    const segments = [seg("Persona", "Employees")]
     expect(personaRangeKeyForField(field, segments)).toBe("Internals")
   })
 
   it("case-insensitive matching", () => {
     const field = { name: "PolicyId", generator: "ca-policy-id" } as any
-    expect(personaRangeKeyForField(field, [seg("CA-Persona", "employees")])).toBe("Internals")
-    expect(personaRangeKeyForField(field, [seg("CA-Persona", "EMPLOYEES")])).toBe("Internals")
-    expect(personaRangeKeyForField(field, [seg("CA-Persona", "  Employees  ")])).toBe("Internals")
+    expect(personaRangeKeyForField(field, [seg("Persona", "employees")])).toBe("Internals")
+    expect(personaRangeKeyForField(field, [seg("Persona", "EMPLOYEES")])).toBe("Internals")
+    expect(personaRangeKeyForField(field, [seg("Persona", "  Employees  ")])).toBe("Internals")
   })
 
   it("returns undefined when persona missing", () => {
@@ -168,16 +168,16 @@ describe("personaRangeKeyForField", () => {
 
   it("returns undefined for non-caPolicyId generator", () => {
     const field = { name: "Other", generator: "ca-emergency-policy-id" } as any
-    expect(personaRangeKeyForField(field, [seg("CA-Persona", "Employees")])).toBeUndefined()
+    expect(personaRangeKeyForField(field, [seg("Persona", "Employees")])).toBeUndefined()
   })
 
   it("returns undefined when field has no generator", () => {
-    expect(personaRangeKeyForField(undefined, [seg("CA-Persona", "Employees")])).toBeUndefined()
-    expect(personaRangeKeyForField({ name: "PolicyId" } as any, [seg("CA-Persona", "Employees")])).toBeUndefined()
+    expect(personaRangeKeyForField(undefined, [seg("Persona", "Employees")])).toBeUndefined()
+    expect(personaRangeKeyForField({ name: "PolicyId" } as any, [seg("Persona", "Employees")])).toBeUndefined()
   })
 
   it("returns Global for AllUsers persona", () => {
     const field = { name: "PolicyId", generator: "ca-policy-id" } as any
-    expect(personaRangeKeyForField(field, [seg("CA-Persona", "AllUsers")])).toBe("Global")
+    expect(personaRangeKeyForField(field, [seg("Persona", "AllUsers")])).toBe("Global")
   })
 })

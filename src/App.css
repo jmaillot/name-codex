@@ -1450,6 +1450,11 @@ summary:focus-visible {
     width: auto;
   }
 
+  .rail-logo {
+    width: 40px;
+    height: 40px;
+  }
+
   .rail-title,
   .rail-subtitle {
     display: none;

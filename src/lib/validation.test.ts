@@ -1,4 +1,4 @@
-import { governanceScore, isFixedFirst, isFixedLast, isLocked, isRecommended, normalizeName, validateName } from './validation'
+import { governanceScore, isFixedFirst, isFixedLast, isLocked, isRecommended, normalizeName, segmentStatus, validateName } from './validation'
 import { makeConvention } from "../test/fixtures/synthetic-conventions"
 import type { BuilderSegment } from "./segments"
 
@@ -317,5 +317,29 @@ describe("isLocked helpers", () => {
     expect(isRecommended(conv, "A")).toBe(false)
     expect(isFixedFirst(conv, "A")).toBe(false)
     expect(isFixedLast(conv, "A")).toBe(false)
+  })
+})
+
+describe("segmentStatus", () => {
+  it("prefers fixed over locked over recommended", () => {
+    const conv = makeConvention({
+      builder: {
+        fixedFirstSegments: ["F"],
+        fixedLastSegments: ["L"],
+        lockedSegments: ["K"],
+        recommendedSegments: ["R"],
+      } as any,
+    })
+    expect(segmentStatus(conv, "F")).toBe("fixed")
+    expect(segmentStatus(conv, "L")).toBe("fixed")
+    expect(segmentStatus(conv, "K")).toBe("locked")
+    expect(segmentStatus(conv, "R")).toBe("recommended")
+  })
+
+  it("falls back to custom then optional", () => {
+    const conv = makeConvention()
+    expect(segmentStatus(conv, "X", true)).toBe("custom")
+    expect(segmentStatus(conv, "X")).toBe("optional")
+    expect(segmentStatus(conv, "X", false)).toBe("optional")
   })
 })

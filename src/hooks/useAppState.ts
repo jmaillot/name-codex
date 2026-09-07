@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { allConventions, getGeneratorFile, getSegmentFile, validationRules } from "../lib/data";
 import type { SegmentConstraints } from "../types/Rule";
 import { tl } from "../lib/i18n-utils";
-import { parsePattern, patternToSegments } from "../lib/parse";
+import { parsePatternLiterals, patternToSegments } from "../lib/parse";
 import { randWidth } from "../lib/macros";
 import {
   assembleRawName,
@@ -26,8 +26,8 @@ import {
   isFixedFirst,
   isFixedLast,
   isLocked,
-  isRecommended,
   normalizeName,
+  segmentStatus,
   validateName,
 } from "../lib/validation";
 import type { BuilderSegment } from "../lib/segments";
@@ -57,6 +57,22 @@ async function writeClipboard(text: string): Promise<boolean> {
     }
   }
 }
+
+const STATUS_I18N_KEY = {
+  fixed: "ui.mdFixed",
+  locked: "ui.mdLocked",
+  recommended: "ui.mdRecommended",
+  custom: "ui.mdCustom",
+  optional: "ui.mdOptional",
+} as const;
+
+const STATUS_FALLBACK = {
+  fixed: "Fixed",
+  locked: "Locked",
+  recommended: "Recommended",
+  custom: "Custom",
+  optional: "Optional",
+} as const;
 
 export function useAppState() {
   const { i18n } = useTranslation();
@@ -241,21 +257,8 @@ export function useAppState() {
     selectedPattern?.examples?.[0] ?? selectedConvention.examples?.[0];
   const separator = selectedConvention.builder?.separator ?? "-";
 
-  const patternTokens = parsePattern(activePattern);
-  const literalPrefixes = new Map<string, string>();
-  const patternSegmentOrder: string[] = [];
-  let pendingLiteral = "";
-  for (const token of patternTokens) {
-    if (token.type === "literal") {
-      pendingLiteral += token.value;
-    } else {
-      literalPrefixes.set(token.value, pendingLiteral);
-      patternSegmentOrder.push(token.value);
-      pendingLiteral = "";
-    }
-  }
-  const patternSuffix = pendingLiteral;
-  const lastPatternSegment = patternSegmentOrder[patternSegmentOrder.length - 1];
+  const { literalPrefixes, patternSuffix, lastPatternSegment } =
+    parsePatternLiterals(activePattern);
 
   const rawAssembled = assembleRawName(builderSegments, {
     literalPrefixes,
@@ -314,22 +317,10 @@ export function useAppState() {
     `## ${tl("ui.mdSegments", "Segments")}`,
     `| ${tl("ui.mdSegmentCol", "Segment")} | ${tl("ui.mdValueCol", "Value")} | ${tl("ui.mdStatusCol", "Status")} |`,
     "|---|---|---|",
-    ...builderSegments.map(
-      (s) =>
-        `| ${s.label} | ${s.value || tl("ui.mdEmpty", "<empty>")} | ${
-          isFixedFirst(selectedConvention, s.sourceName)
-            ? tl("ui.mdFixed", "Fixed")
-            : isFixedLast(selectedConvention, s.sourceName)
-              ? tl("ui.mdFixed", "Fixed")
-              : isLocked(selectedConvention, s.sourceName)
-                ? tl("ui.mdLocked", "Locked")
-                : isRecommended(selectedConvention, s.sourceName)
-                  ? tl("ui.mdRecommended", "Recommended")
-                  : s.custom
-                    ? tl("ui.mdCustom", "Custom")
-                    : tl("ui.mdOptional", "Optional")
-        } |`,
-    ),
+    ...builderSegments.map((s) => {
+      const status = segmentStatus(selectedConvention, s.sourceName, s.custom);
+      return `| ${s.label} | ${s.value || tl("ui.mdEmpty", "<empty>")} | ${tl(STATUS_I18N_KEY[status], STATUS_FALLBACK[status])} |`;
+    }),
     "",
     `## ${tl("ui.mdScore", "Governance Score")}`,
     `${namingScore}/100`,
@@ -349,17 +340,7 @@ export function useAppState() {
         label: s.label,
         value: s.value,
         custom: !!s.custom,
-        status: isFixedFirst(selectedConvention, s.sourceName)
-          ? "Fixed"
-          : isFixedLast(selectedConvention, s.sourceName)
-            ? "Fixed"
-            : isLocked(selectedConvention, s.sourceName)
-              ? "Locked"
-              : isRecommended(selectedConvention, s.sourceName)
-                ? "Recommended"
-                : s.custom
-                  ? "Custom"
-                  : "Optional",
+        status: STATUS_FALLBACK[segmentStatus(selectedConvention, s.sourceName, s.custom)],
       })),
       validation: (selectedConvention.validation as unknown) ?? (validationRules as Record<string, Record<string, unknown>>)[selectedConvention.category]?.[selectedConvention.name] ?? (validationRules as Record<string, unknown>).default ?? null,
       fields: activeFields.map((f) => ({ name: f.name, label: fieldLabel(f, f.name) })),
@@ -601,29 +582,11 @@ export function useAppState() {
         isFixedLast(selectedConvention, name) ||
         isLocked(selectedConvention, name);
 
-      // Determine effective insertion index in the array after removal
-      // If moving forward, removal shifts subsequent indices left by one.
+      // Determine effective insertion index in the array after removal.
+      // Splice at clampedTo in the shortened array lands the dragged element
+      // at final index clampedTo (forward moves) — cap at the array length.
       const nextWithoutDragged = [...prev.slice(0, fromIndex), ...prev.slice(fromIndex + 1)];
-      // Adjust clampedTo for post-removal array length
       let insertionIndex = clampedTo;
-      if (clampedTo > fromIndex) {
-        // After removal, the target position shifts down by one when moving forward,
-        // but we want toIndex to represent final position in resulting array.
-        // Keep insertionIndex as clampedTo adjusted for removal offset when needed
-        // to maintain correct final ordering. Direct splice at clampedTo in nextWithoutDragged
-        // when clampedTo > fromIndex corresponds to final position clampedTo.
-        // However if clampedTo === len-1 and fromIndex < len-1, insertion before last is valid.
-        // Use clampedTo as index in nextWithoutDragged (which has len-1 elements)
-        // When moving forward, insertionIndex should be clampedTo if clampedTo <= nextWithoutDragged.length
-        // else cap. The simple mapping: insertionIndex = clampedTo > fromIndex ? clampedTo - (fromIndex < clampedTo ? 0 : 0) -> keep.
-        // Actually for splice semantics: removing then inserting at clampedTo in the shortened array
-        // yields final position clampedTo when clampedTo <= fromIndex, and clampedTo when clampedTo > fromIndex
-        // the dragged element ends up at insertionIndex in final array where insertionIndex === clampedTo
-        // except when moving forward the element after fromIndex shifts left, so inserting at clampedTo in shortened
-        // array places it at final index clampedTo. We keep insertionIndex = clampedTo when clampedTo < nextWithoutDragged.length
-        // otherwise append.
-        if (insertionIndex > nextWithoutDragged.length) insertionIndex = nextWithoutDragged.length;
-      }
       if (insertionIndex < 0) insertionIndex = 0;
       if (insertionIndex > nextWithoutDragged.length) insertionIndex = nextWithoutDragged.length;
 
@@ -770,10 +733,14 @@ export function useAppState() {
     localStorage.removeItem(STORAGE_KEYS.favorites);
   };
 
-  const categoryCounts = categories.reduce<Record<string, number>>((acc, category) => {
-    acc[category] = allConventions.filter((item) => item.category === category).length;
-    return acc;
-  }, {});
+  const categoryCounts = useMemo(
+    () =>
+      categories.reduce<Record<string, number>>((acc, category) => {
+        acc[category] = allConventions.filter((item) => item.category === category).length;
+        return acc;
+      }, {}),
+    [categories]
+  );
 
   const restoreSegments = (snapshot: BuilderSegment[]) => setBuilderSegments([...snapshot]);
 

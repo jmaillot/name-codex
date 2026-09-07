@@ -1,4 +1,4 @@
-import { parsePattern, patternToSegments } from './parse'
+import { parsePattern, parsePatternLiterals, patternToSegments } from './parse'
 
 describe("parsePattern", () => {
   it("returns empty array for empty string", () => {
@@ -102,5 +102,32 @@ describe("patternToSegments", () => {
 
   it("ignores literals between segments", () => {
     expect(patternToSegments("pre[A]mid[B]post")).toEqual(["A", "B"])
+  })
+})
+
+describe("parsePatternLiterals", () => {
+  it("maps each segment to its preceding literal", () => {
+    const { literalPrefixes, patternSegmentOrder, patternSuffix, lastPatternSegment } =
+      parsePatternLiterals("[A]-[B]")
+    expect(literalPrefixes.get("A")).toBe("")
+    expect(literalPrefixes.get("B")).toBe("-")
+    expect(patternSegmentOrder).toEqual(["A", "B"])
+    expect(patternSuffix).toBe("")
+    expect(lastPatternSegment).toBe("B")
+  })
+
+  it("captures a trailing literal as the pattern suffix", () => {
+    const { literalPrefixes, patternSuffix, lastPatternSegment } =
+      parsePatternLiterals("pre[A]mid[B]post")
+    expect(literalPrefixes.get("A")).toBe("pre")
+    expect(literalPrefixes.get("B")).toBe("mid")
+    expect(patternSuffix).toBe("post")
+    expect(lastPatternSegment).toBe("B")
+  })
+
+  it("handles adjacent segments and empty patterns", () => {
+    expect(parsePatternLiterals("[A][B]").patternSuffix).toBe("")
+    expect(parsePatternLiterals("").lastPatternSegment).toBeUndefined()
+    expect(parsePatternLiterals("").patternSegmentOrder).toEqual([])
   })
 })

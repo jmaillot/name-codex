@@ -25,6 +25,21 @@ export function isFixedLast(convention: NamingConvention, name: string): boolean
   return convention.builder?.fixedLastSegments?.includes(name) ?? false;
 }
 
+export type SegmentStatus = "fixed" | "locked" | "recommended" | "custom" | "optional";
+
+/** Single precedence for segment badges: fixed > locked > recommended > custom > optional. */
+export function segmentStatus(
+  convention: NamingConvention,
+  name: string,
+  custom?: boolean
+): SegmentStatus {
+  if (isFixedFirst(convention, name) || isFixedLast(convention, name)) return "fixed";
+  if (isLocked(convention, name)) return "locked";
+  if (isRecommended(convention, name)) return "recommended";
+  if (custom) return "custom";
+  return "optional";
+}
+
 function resolveRule(convention: NamingConvention) {
   return validationRules?.[convention.category]?.[convention.name] ?? convention.validation ?? validationRules.default;
 }
